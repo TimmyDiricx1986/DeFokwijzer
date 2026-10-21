@@ -63,6 +63,10 @@ test("CSRF: zonder eigen header of met vreemde herkomst geweigerd", async () => 
   assert.equal(r1.status, 403);
   const r2 = await put("/api/c/paarden/p2", { naam: "x" }, c, { origin: "https://kwaadaardig.example" });
   assert.equal(r2.status, 403);
+  const r3 = await put("/api/c/paarden/p2", { naam: "x" }, c, { origin: "null" });
+  assert.equal(r3.status, 403);
+  const r4 = await put("/api/c/paarden/p2", { naam: "x" }, c, { origin: base });
+  assert.equal(r4.status, 200, "eigen adres wordt aanvaard");
 });
 
 test("validatie: HTML, prototype-sleutels, foute id's en te grote documenten", async () => {
@@ -192,6 +196,6 @@ test("bulk-import alleen met service-token, met validatie per document", async (
 test("eerste beheerder via instellingen alleen als er nog geen gebruikers zijn", async () => {
   process.env.ADMIN_EMAIL = "nieuw@test.be"; process.env.ADMIN_PASSWORD = "Nog-een-sterk-ww-1";
   await auth.bootstrapAdmin();
-  assert.ok(!auth.listUsers().some((u) => u.email === "nieuw@test.be"));
+  assert.ok(!auth.listUsers().some((u) => u.email === "nieuw@test.be"), "er is al een beheerder");
   delete process.env.ADMIN_EMAIL; delete process.env.ADMIN_PASSWORD;
 });

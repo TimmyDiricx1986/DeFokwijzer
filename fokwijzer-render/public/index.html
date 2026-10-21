@@ -23,7 +23,8 @@
     <div class="hdr-side"><div id="adKop"></div><div class="small muted" id="count"></div></div>
   </header>
   <nav class="tabs" role="tablist" aria-label="Onderdelen">
-    <button role="tab" id="tab-zoeken" aria-selected="true" data-tab="zoeken">Zoeken</button>
+    <button role="tab" id="tab-info" aria-selected="true" data-tab="info">Info</button>
+    <button role="tab" id="tab-zoeken" aria-selected="false" data-tab="zoeken">Zoeken</button>
     <button role="tab" id="tab-vergelijken" aria-selected="false" data-tab="vergelijken">Vergelijken</button>
     <button role="tab" id="tab-matches" aria-selected="false" data-tab="matches">Beste matches</button>
     <button role="tab" id="tab-stam" aria-selected="false" data-tab="stam">Stamlijnen</button>
@@ -33,8 +34,28 @@
   </nav>
   <div id="banner"></div>
 
+  <!-- INFO -->
+  <section class="panel" id="p-info" role="tabpanel" aria-labelledby="tab-info">
+    <div class="info-hero">
+      <div class="info-kick">Welkom bij</div>
+      <h2 class="info-title">De <span class="fok">Fok</span>wijzer</h2>
+      <p class="info-lead">Een vrije wikigids over sportpaarden, gemaakt <b>voor en door paardenfokkers</b>. Je vindt er per hengst en merrie de afstamming, prestaties, fokwaarden en gezondheid op één plek, met bronvermelding. Zo kies je sneller en beter onderbouwd de juiste combinatie voor je merrie.</p>
+      <button class="btn primary info-cta" type="button" data-goto="zoeken">Start met zoeken</button>
+    </div>
+    <div class="info-grid">
+      <div class="card info-step"><span class="info-n">1</span><h3>Zoeken</h3><p>Zoek op naam, UELN, vader of moeder. Klik een paard aan voor zijn stamboomkaart, gegevens, bronnen en opmerkingen. De stamboomkaart download je als afbeelding of PDF.</p><button class="linkbtn" type="button" data-goto="zoeken">Naar Zoeken</button></div>
+      <div class="card info-step"><span class="info-n">2</span><h3>Vergelijken</h3><p>Zet een hengst en een merrie naast elkaar en bekijk het virtuele veulen: verwachte sterktes, inteelt en aandachtspunten.</p><button class="linkbtn" type="button" data-goto="vergelijken">Naar Vergelijken</button></div>
+      <div class="card info-step"><span class="info-n">3</span><h3>Beste matches</h3><p>Kies je merrie en krijg de hengsten die het best scoren op fokwaarden, prestaties, inteelt en gezondheid.</p><button class="linkbtn" type="button" data-goto="matches">Naar Beste matches</button></div>
+      <div class="card info-step"><span class="info-n">4</span><h3>Bijdragen</h3><p>Mist er een paard of klopt iets niet? Vraag het aan via <b>Paard aanvragen</b> of laat een opmerking achter. Bijdragers vullen aan, beheerders controleren. Gegevens met het label <i>Te controleren</i> zijn nog niet nagekeken.</p><button class="linkbtn" type="button" data-goto="aanvragen">Paard aanvragen</button></div>
+    </div>
+    <div class="info-foot">
+      <div class="card info-note"><h3>Onafhankelijk</h3><p>De Fokwijzer is gratis en wordt gedragen door partners. Partners zijn altijd herkenbaar als partner en hebben <b>nooit</b> invloed op scores, matches of de volgorde van zoekresultaten.</p></div>
+      <div class="card info-note info-soon"><h3>Binnenkort</h3><p><b>Stamlijnen</b>: volg moederlijnen over generaties heen. <b>Veilingen</b>: veulens en jonge paarden uit de belangrijkste veilingen, gekoppeld aan hun stamboom. Hou ons in de gaten.</p></div>
+    </div>
+  </section>
+
   <!-- ZOEKEN -->
-  <section class="panel" id="p-zoeken" role="tabpanel" aria-labelledby="tab-zoeken">
+  <section class="panel" id="p-zoeken" role="tabpanel" aria-labelledby="tab-zoeken" hidden>
     <div class="row">
       <div class="field grow"><label class="label" for="q">Naam, UELN, vader of moeder</label><input id="q" type="search" placeholder="Bv. Astor of 056..."></div>
       <div class="field"><label class="label" for="fSex">Geslacht</label><select id="fSex"><option value="">Alle</option><option value="hengst">Hengsten</option><option value="merrie">Merries</option></select></div>

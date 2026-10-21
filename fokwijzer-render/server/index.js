@@ -76,11 +76,13 @@ app.use("/api/", rateLimit({ windowMs: 60e3, limit: 300, skip: (req) => !!(req.a
 app.use("/api/", (req, res, next) => {
   if (["GET", "HEAD", "OPTIONS"].includes(req.method) || req.actor.service) return next();
   if (req.get("x-fokwijzer") !== "1") return res.status(403).json({ fout: "Ongeldig verzoek." });
+  // De aanvraag moet van de eigen site komen: het ingestelde adres (PUBLIC_URL) of het adres waarop de site nu draait.
   const origin = req.get("origin");
-  if (origin) {
-    const own = PUBLIC_URL || `${req.protocol}://${req.get("host")}`;
-    if (origin !== own) return res.status(403).json({ fout: "Ongeldige herkomst." });
-  }
+  if (origin && origin !== "null") {
+    const allowed = new Set([`${req.protocol}://${req.get("host")}`]);
+    if (PUBLIC_URL) allowed.add(PUBLIC_URL);
+    if (!allowed.has(origin)) return res.status(403).json({ fout: "Ongeldige herkomst." });
+  } else if (origin === "null") return res.status(403).json({ fout: "Ongeldige herkomst." });
   next();
 });
 app.use("/api/", (req, res, next) => { res.setHeader("Cache-Control", "no-store"); next(); });

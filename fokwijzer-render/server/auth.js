@@ -230,10 +230,22 @@ function listUsers() { return q.users.all(); }
 // Eerste beheerder aanmaken vanuit instellingen (handig op Render, zonder shell).
 // Werkt alleen zolang er nog geen enkele gebruiker bestaat.
 async function bootstrapAdmin() {
-  const email = process.env.ADMIN_EMAIL, pw = process.env.ADMIN_PASSWORD;
+  const email = cleanEmail(process.env.ADMIN_EMAIL), pw = process.env.ADMIN_PASSWORD;
   if (!email || !pw) return;
-  if (db.prepare("SELECT COUNT(*) AS n FROM users").get().n > 0) {
-    console.log("[beheerder] Er bestaan al gebruikers; ADMIN_PASSWORD wordt genegeerd. Verwijder het uit de instellingen.");
+  if (q.admins.get().n > 0) {
+    console.log("[beheerder] Er bestaat al een beheerder; ADMIN_PASSWORD wordt genegeerd. Verwijder het uit de instellingen.");
+    return;
+  }
+  const p = passwordProblem(pw, email);
+  if (p) { console.log(`[beheerder] Niet aangemaakt: ${p}`); return; }
+  const bestaand = q.userByEmail.get(email);
+  if (bestaand) {
+    // Account bestond al (bv. via "Account maken"): maak er de beheerder van, met het wachtwoord uit de instellingen.
+    q.setPw.run(await hashPasswordAsync(pw), bestaand.id);
+    q.setRole.run("beheerder", bestaand.id);
+    q.delUserSessions.run(bestaand.id);
+    audit({ actor: "instellingen", user_id: bestaand.id, action: `${email} beheerder gemaakt via ADMIN_EMAIL` });
+    console.log(`[beheerder] Bestaand account ${email} is nu beheerder. Verwijder ADMIN_PASSWORD nu uit de instellingen.`);
     return;
   }
   const r = await createUser(email, process.env.ADMIN_NAME || "Beheerder", pw, "beheerder");
