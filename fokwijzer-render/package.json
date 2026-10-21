@@ -1,0 +1,26 @@
+{
+  "name": "de-fokwijzer",
+  "version": "1.0.0",
+  "description": "De Fokwijzer: een wikigids voor en door paardenfokkers",
+  "private": true,
+  "type": "commonjs",
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "import": "node scripts/import.js",
+    "create-admin": "node scripts/create-admin.js",
+    "test": "node --test test/*.test.js",
+    "fonts": "npm install --no-save --no-audit --no-fund @fontsource/bitter@5.2.8 @fontsource/source-sans-3@5.2.8 @fontsource/ibm-plex-mono@5.2.7 @fontsource/cinzel@5.2.6",
+    "build": "python3 tools/build.py"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.4.1",
+    "compression": "1.8.1",
+    "express": "5.1.0",
+    "express-rate-limit": "8.1.0",
+    "helmet": "8.1.0"
+  }
+}

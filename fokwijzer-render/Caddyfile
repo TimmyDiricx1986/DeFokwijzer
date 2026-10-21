@@ -1,0 +1,16 @@
+# Caddy regelt automatisch een HTTPS-certificaat (Let's Encrypt) voor je domein.
+{$DOMAIN} {
+	encode zstd gzip
+	header -Server
+	request_body {
+		max_size 5MB
+	}
+	reverse_proxy app:8080 {
+		flush_interval -1
+	}
+}
+
+# www doorsturen naar het hoofddomein
+www.{$DOMAIN} {
+	redir https://{$DOMAIN}{uri} permanent
+}

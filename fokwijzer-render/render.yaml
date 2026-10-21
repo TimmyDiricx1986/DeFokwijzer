@@ -1,0 +1,42 @@
+# Render Blueprint voor De Fokwijzer (website, schijf en instellingen in één keer).
+# In Render: New > Blueprint > kies deze repository.
+services:
+  - type: web
+    name: fokwijzer
+    runtime: docker
+    region: frankfurt
+    plan: 0.5c-512mb
+    branch: main
+    autoDeployTrigger: commit
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/me
+    disk:
+      name: fokwijzer-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /data
+      - key: TRUST_PROXY
+        value: "1"
+      - key: REGISTRATION
+        value: open
+      - key: BACKUP_KEEP
+        value: "14"
+      - key: SERVICE_TOKEN
+        generateValue: true
+      # Het adres van je site, bv. https://www.fokwijzer.be (eerst het onrender.com-adres, later je domein)
+      - key: PUBLIC_URL
+        sync: false
+      # Eerste beheerder; verwijder ADMIN_PASSWORD na de eerste start
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_NAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      # Optioneel: AI-advies voor de council
+      - key: ANTHROPIC_API_KEY
+        sync: false

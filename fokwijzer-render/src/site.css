@@ -1,0 +1,33 @@
+.fw-acct{display:flex;align-items:center;gap:4px 12px;flex-wrap:wrap;justify-content:flex-end;font-size:.84rem;line-height:1.3}
+.fw-lnk{font:inherit;font-size:.84rem;background:none;border:0;padding:0;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.fw-lnk.strong{font-weight:700}
+.fw-lnk:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.det-foot{gap:5px}
+.det-foot .btn{padding:4px 9px;font-size:.82rem}
+.fw-who{font-size:.84rem;color:var(--muted)}
+.fw-who b{color:var(--fg)}
+dialog.fw-dlg{border:1px solid var(--line);border-radius:12px;padding:0;width:min(560px,94vw);background:var(--surface);color:var(--fg)}
+dialog.fw-dlg::backdrop{background:rgba(0,0,0,.4)}
+.fw-dlg-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.fw-dlg-head h2{margin:0;font-size:1.2rem}
+.fw-dlg-body{padding:14px 16px;max-height:75vh;overflow:auto}
+.fw-dlg .stack{display:flex;flex-direction:column;gap:10px}
+.fw-link{align-self:flex-start;border:0;padding:0;background:none;color:var(--accent);text-decoration:underline}
+.fw-users{width:100%;border-collapse:collapse;font-size:.88rem}
+.fw-users th,.fw-users td{text-align:left;padding:6px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+.fw-hist{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:10px}
+.fw-hist ul{margin:4px 0;padding-left:16px;overflow-wrap:anywhere}
+.fw-links a{color:var(--muted);margin:0 2px}
+.sitefoot .fw-links{margin-left:12px}
+/* Knoppen alleen tonen aan wie ze mag gebruiken (de server controleert dit altijd zelf). */
+html:not([data-rol="beheerder"]) #bkCard,
+html:not([data-rol="beheerder"]) #adCard,
+html:not([data-rol="beheerder"]) [data-act="del"],
+html:not([data-rol="beheerder"]) [data-addel]{display:none!important}
+html:not([data-rol="bijdrager"]):not([data-rol="beheerder"]) [data-act="hist"],
+html:not([data-rol="bijdrager"]):not([data-rol="beheerder"]) [data-act="edit"]{display:none!important}
+/* Losse pagina's (privacy, over, 404) */
+.page{max-width:760px;margin:0 auto;padding:28px 16px 48px;line-height:1.6}
+.page h1{font-family:var(--f-display);color:var(--accent);margin:0 0 6px}
+.page h2{font-family:var(--f-display);margin:26px 0 6px;font-size:1.2rem}
+.page .back{display:inline-block;margin-bottom:18px;color:var(--accent)}

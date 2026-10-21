@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De Fokwijzer</title>
+<meta name="description" content="De Fokwijzer: een wikigids voor en door paardenfokkers. Zoek springpaarden, vergelijk combinaties, bekijk stamlijnen en veilingprijzen.">
+<meta name="theme-color" content="#2F5A3A">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brandrow">
+      <img class="logo" id="fwLogo" alt="De Fokwijzer" width="76" height="66">
+      <div>
+      <h1>De <span class="fok">Fok</span>wijzer</h1>
+      <div class="slogan">Een wikigids voor en door paardenfokkers</div><p>Zoek hengsten en merries op, zet ze naast elkaar en bekijk welke combinaties het best scoren op fokwaarden, prestaties, inteelt en gezondheid.</p>
+      </div>
+    </div>
+    <div class="hdr-side"><div id="adKop"></div><div class="small muted" id="count"></div></div>
+  </header>
+  <nav class="tabs" role="tablist" aria-label="Onderdelen">
+    <button role="tab" id="tab-zoeken" aria-selected="true" data-tab="zoeken">Zoeken</button>
+    <button role="tab" id="tab-vergelijken" aria-selected="false" data-tab="vergelijken">Vergelijken</button>
+    <button role="tab" id="tab-matches" aria-selected="false" data-tab="matches">Beste matches</button>
+    <button role="tab" id="tab-stam" aria-selected="false" data-tab="stam">Stamlijnen</button>
+    <button role="tab" id="tab-veilingen" aria-selected="false" data-tab="veilingen">Veilingen</button>
+    <button role="tab" id="tab-aanvragen" aria-selected="false" data-tab="aanvragen">Paard aanvragen <span class="count-badge" id="reqBadge" hidden></span></button>
+    <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer">Paarden beheren</button>
+  </nav>
+  <div id="banner"></div>
+
+  <!-- ZOEKEN -->
+  <section class="panel" id="p-zoeken" role="tabpanel" aria-labelledby="tab-zoeken">
+    <div class="row">
+      <div class="field grow"><label class="label" for="q">Naam, UELN, vader of moeder</label><input id="q" type="search" placeholder="Bv. Astor of 056..."></div>
+      <div class="field"><label class="label" for="fSex">Geslacht</label><select id="fSex"><option value="">Alle</option><option value="hengst">Hengsten</option><option value="merrie">Merries</option></select></div>
+      <div class="field"><label class="label" for="fStb">Stamboek</label><select id="fStb"><option value="">Alle</option></select></div>
+      <div class="field"><label class="label" for="fSort">Sorteer op</label><select id="fSort"><option value="naam">Naam</option><option value="niveau">Hoogste niveau</option><option value="fok">Fokwaarde</option><option value="jaar">Geboortejaar</option></select></div>
+    </div>
+    <div class="split">
+      <div class="list" id="results"></div>
+      <div id="detail"></div>
+    </div>
+  </section>
+
+  <!-- VERGELIJKEN -->
+  <section class="panel" id="p-vergelijken" role="tabpanel" aria-labelledby="tab-vergelijken" hidden>
+    <div class="row">
+      <div class="field grow"><label class="label" for="cS">Hengst</label><select id="cS"></select></div>
+      <div class="field grow"><label class="label" for="cM">Merrie</label><select id="cM"></select></div>
+    </div>
+    <div id="cmpOut" style="margin-top:16px"></div>
+    <div id="councilOut" style="margin-top:20px"></div>
+  </section>
+
+  <!-- MATCHES -->
+  <section class="panel" id="p-matches" role="tabpanel" aria-labelledby="tab-matches" hidden>
+    <div class="row">
+      <div class="field grow"><label class="label" for="mFor">Zoek de beste partner voor</label><select id="mFor"></select></div>
+    </div>
+    <div id="adMatch"></div>
+    <details class="card" style="margin-top:14px" id="wDetails">
+      <summary>Gewichten en drempels aanpassen</summary>
+      <div class="sliders" style="margin-top:12px">
+        <div><label for="w-gen"><span>Genetische indexen</span><span class="num" id="wv-gen"></span></label><input type="range" id="w-gen" min="0" max="60" step="5"></div>
+        <div><label for="w-perf"><span>Prestaties en nakomelingen</span><span class="num" id="wv-perf"></span></label><input type="range" id="w-perf" min="0" max="60" step="5"></div>
+        <div><label for="w-coi"><span>Inteelt</span><span class="num" id="wv-coi"></span></label><input type="range" id="w-coi" min="0" max="60" step="5"></div>
+        <div><label for="w-health"><span>Gezondheid</span><span class="num" id="wv-health"></span></label><input type="range" id="w-health" min="0" max="60" step="5"></div>
+        <div><label for="w-data"><span>Datavolledigheid</span><span class="num" id="wv-data"></span></label><input type="range" id="w-data" min="0" max="60" step="5"></div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <div class="field"><label class="label" for="tWarn">Waarschuwing inteelt vanaf (%)</label><input id="tWarn" type="number" step="0.25" min="0" max="50" style="width:120px"></div>
+        <div class="field"><label class="label" for="tMax">Uitsluiten vanaf (%)</label><input id="tMax" type="number" step="0.25" min="0" max="50" style="width:120px"></div>
+        <button class="btn ghost" id="wReset" type="button">Standaardwaarden</button>
+      </div>
+      <p class="small muted" style="margin:10px 0 0">Gewichten worden herschaald over de onderdelen waarvoor data bestaat. Een onderdeel zonder data telt niet mee, maar verlaagt de datavolledigheid.</p>
+    </details>
+    <div id="matchOut" style="margin-top:16px"></div>
+  </section>
+
+  <!-- VEILINGEN -->
+  <section class="panel" id="p-veilingen" role="tabpanel" aria-labelledby="tab-veilingen" hidden>
+    <div class="row" style="justify-content:space-between;align-items:center"><p class="small muted" id="vmInfo" style="margin:0;max-width:75ch"></p><button class="btn ghost" type="button" id="vmRun">Nu controleren</button></div>
+    <div class="status" id="vmStatus" role="status"></div>
+    <div id="adVeil"></div><div id="vKpi" style="margin-top:8px"></div>
+    <div class="row" style="margin-top:14px">
+      <div class="field grow"><label class="label" for="vQ">Zoek paard, vader, moeder of veiling</label><input id="vQ" type="search"></div>
+      <div class="field"><label class="label" for="vCat">Categorie</label><select id="vCat"></select></div>
+      <div class="field"><label class="label" for="vReg">Regio</label><select id="vReg"></select></div>
+      <div class="field"><label class="label" for="vJaar">Jaar</label><select id="vJaar"></select></div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div class="field"><label class="label" for="vHuis">Veilinghuis</label><select id="vHuis"></select></div>
+      <div class="field grow"><label class="label" for="vVeil">Veiling</label><select id="vVeil"></select></div>
+      <button class="btn ghost" type="button" id="vReset" style="align-self:end">Filters wissen</button>
+    </div>
+    <div id="vVeilInfo"></div>
+    <div id="vChart"></div>
+    <div id="vSires" style="margin-top:14px"></div>
+    <div id="vLots"></div>
+  </section>
+
+  <!-- STAMLIJNEN -->
+  <section class="panel" id="p-stam" role="tabpanel" aria-labelledby="tab-stam" hidden>
+    <div class="row">
+      <div class="field grow"><label class="label" for="stPaard">Toon de stamlijn van</label><select id="stPaard"></select></div>
+      <div class="field"><label class="label" for="stDiepte">Generaties</label><select id="stDiepte"><option value="4">4</option><option value="6" selected>6</option><option value="8">8</option></select></div>
+      <div class="field"><label class="label" for="stZonen">Zonen tonen</label><select id="stZonen"><option value="ja" selected>Ja</option><option value="nee">Nee, enkel dochters</option></select></div>
+    </div>
+    <p class="small muted" style="margin:8px 0 0">De stamlijn vertrekt bij de oudst bekende stammoeder (moeder van moeder van moeder...) en volgt de nakomelingen langs de vrouwelijke lijn. Dochters worden verder uitgewerkt, zonen staan als eindpunt. De nummers (1, 1.2, 1.2.1) tonen de plaats in de lijn. Klik op een paard dat in de database staat om het te openen.</p>
+    <div id="stTop" style="margin-top:12px"></div>
+    <div id="stOut" style="margin-top:12px"></div>
+  </section>
+
+  <!-- AANVRAGEN -->
+  <section class="panel" id="p-aanvragen" role="tabpanel" aria-labelledby="tab-aanvragen" hidden>
+    <div class="card">
+      <form class="reqform" id="aForm" novalidate>
+        <div class="field"><label class="label" for="aNaam">Naam van het paard</label><input id="aNaam" autocomplete="off" placeholder="Bv. Dominator 2000 Z"></div>
+        <button class="btn" type="submit" id="aBtn">Laat opzoeken</button>
+      </form>
+      <div class="small" id="aHint" style="margin-top:8px"></div>
+      <p class="small muted" style="margin:10px 0 0">De data-agent zoekt afstamming, sport, gezondheid en identiteit op in de goedgekeurde bronnen en zet alles hier klaar. Jij controleert enkel en keurt goed.</p>
+      <div class="status" id="aStatus" role="status"></div>
+      <div class="actions" style="margin-top:8px">
+        <button class="btn" type="button" id="runBtn" disabled>Start verwerking</button>
+        <span class="small muted" id="runInfo"></span>
+      </div>
+    </div>
+    <div class="split">
+      <div id="aLists"></div>
+      <div id="aReview"></div>
+    </div>
+  </section>
+
+  <!-- BEHEER -->
+  <section class="panel" id="p-beheer" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div id="writeNote"></div>
+    <details class="card" id="bkCard" style="margin-top:12px">
+      <summary><b>Back-up, verhuizen en instellingen</b></summary>
+      <p class="small muted" style="margin:8px 0">Exporteer alle gegevens (paarden, veilingen, aanvragen, council-adviezen, wachtrij) naar één JSON-bestand, of importeer zo'n bestand in deze Fokwijzer. Importeren voegt toe en overschrijft documenten met hetzelfde id; niets wordt verwijderd.</p>
+      <div class="row">
+        <button class="btn ghost" type="button" id="bkExport">Exporteer alle data</button>
+        <label class="btn ghost" for="bkFile" style="display:inline-block">Importeer uit bestand</label>
+        <input type="file" id="bkFile" accept=".json,application/json" hidden>
+      </div>
+      <div class="status" id="bkStatus" role="status"></div>
+      <div hidden><h3 style="margin-top:14px">Geplande taken</h3>
+      <p class="small muted" style="margin:4px 0 8px">Id's van de geplande taken die de knoppen "Start verwerking" en "Nu controleren" starten (te vinden na het aanmaken van de taken, ze beginnen met trig_).</p>
+      <div class="row">
+        <div class="field grow"><label class="label" for="inRun">Taak aanvragen verwerken</label><input id="inRun" placeholder="trig_..."></div>
+        <div class="field grow"><label class="label" for="inVm">Taak veilingmeester</label><input id="inVm" placeholder="trig_..."></div>
+        <button class="btn" type="button" id="inSave" style="align-self:end">Bewaren</button>
+      </div>
+      <div class="status" id="inStatus" role="status"></div></div>
+    </details>
+    <details class="card" id="adCard" style="margin-top:12px">
+      <summary><b>Partners en advertenties</b></summary>
+      <p class="small muted" style="margin:8px 0">Beheer de partnerplekken. Gesponsorde vermeldingen hebben nooit invloed op matchscores, council-adviezen of de volgorde van paarden. Zolang er geen partners zijn ingevoerd, toont de Fokwijzer voorbeeldadvertenties.</p>
+      <label class="small" style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="adDemo"> Voorbeeldadvertenties tonen zolang er geen partners zijn</label>
+      <div class="list ad-list" id="adList" style="margin-top:10px"></div>
+      <h3 style="margin-top:14px" id="adFormTitle">Partner toevoegen</h3>
+      <div class="grid3" style="margin-top:6px">
+        <div class="field"><label class="label" for="adType">Plek</label><select id="adType"><option value="kop">1 · Partner in de kop</option><option value="hengst">2 · Sponsorlogo bij een hengst</option><option value="voet">4 · Partnerstrip in de voet</option><option value="veiling">5 · Veilingbanner</option><option value="matches">6 · Dienstenkaart bij matches</option></select></div>
+        <div class="field"><label class="label" for="adNaam">Naam partner *</label><input id="adNaam"></div>
+        <div class="field"><label class="label" for="adUrl">Link</label><input id="adUrl" placeholder="https://..."></div>
+        <div class="field"><label class="label" for="adTitel">Titel</label><input id="adTitel" placeholder="Bv. Voorjaarsveiling, online 14 tot 21 maart"></div>
+        <div class="field"><label class="label" for="adTekst">Korte tekst</label><input id="adTekst" placeholder="Bv. Seizoen 2027 open"></div>
+        <div class="field"><label class="label" for="adKnop">Knoptekst</label><input id="adKnop" placeholder="Bv. Bekijk collectie"></div>
+        <div class="field" id="adHengstF"><label class="label" for="adHengst">Hengst (plek 2)</label><input id="adHengst" list="adHengstL" placeholder="Naam van de hengst"><datalist id="adHengstL"></datalist></div>
+        <div class="field" id="adDekF"><label class="label" for="adDek">Dekinfo (plek 3, optioneel)</label><input id="adDek" placeholder="Bv. dekgeld en beschikbaarheid"></div>
+        <div class="field"><label class="label" for="adLogo">Logo</label><input id="adLogo" type="file" accept="image/*"></div>
+        <div class="field"><label class="label" for="adVan">Zichtbaar vanaf</label><input id="adVan" type="date"></div>
+        <div class="field"><label class="label" for="adTot">Zichtbaar tot</label><input id="adTot" type="date"></div>
+      </div>
+      <div class="row" style="margin-top:10px"><button class="btn" type="button" id="adSave">Partner bewaren</button><button class="btn ghost" type="button" id="adNew" hidden>Nieuwe partner</button></div>
+      <div class="status" id="adStatus" role="status"></div>
+    </details>
+    <form id="hForm" class="stack" style="margin-top:12px" novalidate>
+      <h2 id="formTitle">Paard toevoegen</h2>
+      <fieldset><legend>Identiteit</legend>
+        <div class="grid3">
+          <div class="field"><label class="label" for="h-naam">Naam *</label><input id="h-naam" required></div>
+          <div class="field"><label class="label" for="h-geslacht">Geslacht *</label><select id="h-geslacht"><option value="hengst">Hengst</option><option value="merrie">Merrie</option></select></div>
+          <div class="field"><label class="label" for="h-jaar">Geboortejaar</label><input id="h-jaar" type="number" min="1950" max="2030"></div>
+          <div class="field"><label class="label" for="h-stamboek">Stamboek</label><input id="h-stamboek" placeholder="BWP, KWPN, Z, OS..."></div>
+          <div class="field"><label class="label" for="h-ueln">UELN</label><input id="h-ueln" class="mono" maxlength="15" placeholder="15 tekens"></div>
+          <div class="field"><label class="label" for="h-fei">FEI-ID</label><input id="h-fei" class="mono"></div>
+          <div class="field"><label class="label" for="h-stokmaat">Stokmaat (cm)</label><input id="h-stokmaat" type="number" min="120" max="200"></div>
+        </div>
+      </fieldset>
+      <fieldset><legend>Stamboom (3 generaties)</legend>
+        <p class="small muted" style="margin:0 0 8px">V = vader, M = moeder. MV = vader van de moeder, VMV = vader van de moeder van de vader, enzovoort. Schrijf namen exact zoals in het stamboek: inteelt wordt op naam berekend.</p>
+        <div class="pedform" id="pedInputs"></div>
+      </fieldset>
+      <fieldset><legend>Prestaties</legend>
+        <div class="grid3">
+          <div class="field"><label class="label" for="h-niveau">Hoogste niveau (cm)</label><input id="h-niveau" type="number" min="60" max="170" placeholder="bv. 155"></div>
+          <div class="field"><label class="label" for="h-niveaulabel">Omschrijving niveau</label><input id="h-niveaulabel" placeholder="bv. CSI5* Grand Prix"></div>
+          <div class="field"><label class="label" for="h-sport">Nakomelingen in de sport</label><input id="h-sport" type="number" min="0"></div>
+          <div class="field"><label class="label" for="h-m140">Waarvan 1m40+</label><input id="h-m140" type="number" min="0"></div>
+          <div class="field"><label class="label" for="h-m150">Waarvan 1m50+</label><input id="h-m150" type="number" min="0"></div>
+        </div>
+      </fieldset>
+      <fieldset><legend>Fokwaarden</legend>
+        <p class="small muted" style="margin:0 0 8px">Eén per regel: <span class="mono">systeem | waarde | gemiddelde | standaarddeviatie | jaar | betrouwbaarheid %</span>. Haal gemiddelde en standaarddeviatie uit de documentatie van het stamboek.</p>
+        <textarea id="h-fok" placeholder="KWPN springen | 112 | 100 | 4 | 2026 | 85"></textarea>
+      </fieldset>
+      <fieldset><legend>Gezondheid</legend>
+        <div class="grid3">
+          <div class="field"><label class="label" for="h-wffs">WFFS-status</label><select id="h-wffs"><option value="onbekend">Onbekend</option><option value="N/N">N/N (vrij)</option><option value="N/WFFS">N/WFFS (drager)</option><option value="WFFS/WFFS">WFFS/WFFS</option></select></div>
+          <div class="field"><label class="label" for="h-ocd">OC/OCD</label><select id="h-ocd"><option value="onbekend">Onbekend</option><option value="vrij">Vrij</option><option value="bevinding">Bevinding</option></select></div>
+          <div class="field"><label class="label" for="h-ocdnote">Toelichting</label><input id="h-ocdnote"></div>
+        </div>
+      </fieldset>
+      <fieldset><legend>Bronnen *</legend>
+        <p class="small muted" style="margin:0 0 8px">Eén per regel: <span class="mono">naam | url | datum geraadpleegd</span>. Elk paard heeft minstens één bron nodig.</p>
+        <textarea id="h-bronnen" placeholder="BWP hengstenlijst | https://... | 2026-10-08"></textarea>
+        <div class="field" style="margin-top:8px"><label class="label" for="h-opm">Opmerking</label><input id="h-opm"></div>
+      </fieldset>
+      <div class="row">
+        <button class="btn" type="submit" id="saveBtn">Paard opslaan</button>
+        <button class="btn ghost" type="button" id="clearBtn">Formulier leegmaken</button>
+        <span class="status" id="formStatus" role="status"></span>
+      </div>
+    </form>
+
+    <div class="card stack" style="margin-top:28px">
+      <h3>Importeren via een link</h3>
+      <p class="small muted" style="margin:0">Plak de link naar een paard op Horsetelex, de FEI, een stamboek of een andere website. De data-agent leest die pagina, vult aan met andere bronnen en zet het resultaat klaar voor review in het tabblad Paard aanvragen.</p>
+      <div class="reqform">
+        <div class="field"><label class="label" for="lnkUrl">Link</label><input id="lnkUrl" type="url" inputmode="url" placeholder="https://www.horsetelex.com/horses/pedigree/..."></div>
+        <div class="field" style="flex:0 1 220px"><label class="label" for="lnkNaam">Naam (optioneel)</label><input id="lnkNaam" placeholder="Wordt uit de link gehaald"></div>
+        <button class="btn" type="button" id="lnkBtn">Link verwerken</button>
+      </div>
+      <span class="status" id="lnkStatus" role="status"></span>
+    </div>
+
+    <div class="grid2" style="margin-top:20px">
+      <div class="card stack">
+        <h3>Importeren (JSON)</h3>
+        <p class="small muted" style="margin:0">Plak een lijst paarden in hetzelfde formaat als de export. Bestaande paarden met dezelfde UELN of naam en jaar worden overschreven.</p>
+        <label class="label" for="impText">JSON</label>
+        <textarea id="impText" placeholder='[{"naam":"...","geslacht":"hengst","stamboom":{"v":"...","m":"..."},"bronnen":[{"naam":"...","url":"...","datum":"..."}]}]'></textarea>
+        <div class="row"><button class="btn" type="button" id="impBtn">Importeren</button><span class="status" id="impStatus" role="status"></span></div>
+      </div>
+      <div class="card stack">
+        <h3>Exporteren</h3>
+        <p class="small muted" style="margin:0">Kopieer alle opgeslagen paarden als JSON, als back-up of om door de data-agent te laten aanvullen.</p>
+        <div class="row"><button class="btn ghost" type="button" id="expBtn">Kopieer JSON</button><span class="status" id="expStatus" role="status"></span></div>
+        <textarea id="expText" readonly hidden></textarea>
+      </div>
+    </div>
+  </section>
+  <footer class="sitefoot"><span id="adVoet"></span><span>Powered by DeDilieHoeve</span><span class="fw-links"><a href="/over.html" target="_top">Over</a> · <a href="/privacy.html" target="_top">Privacy</a></span></footer>
+</div>
+<script src="/fokwijzer-api.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
