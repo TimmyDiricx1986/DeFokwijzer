@@ -63,13 +63,14 @@ app.use((req, res, next) => {
 app.use(compression({ filter: (req, res) => req.path !== "/api/stream" && compression.filter(req, res) }));
 
 // Algemene limiet op API-gebruik per IP.
-app.use("/api/", rateLimit({ windowMs: 60e3, limit: 300, standardHeaders: "draft-7", legacyHeaders: false, message: { fout: "Te veel verzoeken. Wacht even." } }));
 const authLimiter = (limit) => rateLimit({ windowMs: 15 * 60e3, limit, standardHeaders: "draft-7", legacyHeaders: false, message: { fout: "Te veel pogingen. Probeer het later opnieuw." } });
 const loginLimit = authLimiter(20), registerLimit = authLimiter(10), passwordLimit = authLimiter(10);
-const writeLimit = rateLimit({ windowMs: 60e3, limit: 120, skip: (req) => !!(req.actor && req.actor.service), standardHeaders: "draft-7", legacyHeaders: false, message: { fout: "Te veel wijzigingen per minuut." } });
+const writeLimit = rateLimit({ windowMs: 60e3, limit: 120, skip: (req) => !!(req.actor && (req.actor.service || req.actor.level >= 3)), standardHeaders: "draft-7", legacyHeaders: false, message: { fout: "Te veel wijzigingen per minuut." } });
 
 app.use("/api/", express.json({ limit: "4mb" }));
 app.use("/api/", auth.identify);
+// Algemene limiet op API-gebruik per IP (beheerders en automatisering uitgezonderd, bv. voor een import).
+app.use("/api/", rateLimit({ windowMs: 60e3, limit: 300, skip: (req) => !!(req.actor.service || req.actor.level >= 3), standardHeaders: "draft-7", legacyHeaders: false, message: { fout: "Te veel verzoeken. Wacht even." } }));
 
 // CSRF-bescherming: elke wijziging moet de eigen header dragen en van de eigen site komen.
 app.use("/api/", (req, res, next) => {

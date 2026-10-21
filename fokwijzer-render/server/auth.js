@@ -41,7 +41,8 @@ function hashPasswordAsync(pw) {
 function passwordProblem(pw, email) {
   if (typeof pw !== "string" || pw.length < 12) return "Kies een wachtwoord van minstens 12 tekens.";
   if (pw.length > 200) return "Dit wachtwoord is te lang.";
-  if (email && pw.toLowerCase().includes(String(email).split("@")[0].toLowerCase())) return "Gebruik je e-mailadres niet in je wachtwoord.";
+  const local = String(email || "").split("@")[0].toLowerCase();
+  if (local.length >= 4 && pw.toLowerCase().includes(local)) return "Gebruik je e-mailadres niet in je wachtwoord.";
   if (/^(.)\1+$/.test(pw) || /^(0123456789|1234567890|password|wachtwoord)/i.test(pw)) return "Dit wachtwoord is te makkelijk te raden.";
   return null;
 }
