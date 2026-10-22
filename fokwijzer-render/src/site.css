@@ -31,3 +31,12 @@ html:not([data-rol="bijdrager"]):not([data-rol="beheerder"]) [data-act="edit"]{d
 .page h1{font-family:var(--f-display);color:var(--accent);margin:0 0 6px}
 .page h2{font-family:var(--f-display);margin:26px 0 6px;font-size:1.2rem}
 .page .back{display:inline-block;margin-bottom:18px;color:var(--accent)}
+/* Mobiel */
+@media (max-width:820px){
+  header.top .hdr-side{flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:6px 14px;border-top:1px solid var(--line);padding-top:8px}
+  .fw-acct{justify-content:flex-start;gap:6px 16px}
+  .fw-lnk,.fw-link{min-height:0;padding:4px 0}
+  header.top #count{flex:1 1 100%}
+  .fw-users{display:block;overflow-x:auto}
+  .det-foot .btn{min-height:36px}
+}

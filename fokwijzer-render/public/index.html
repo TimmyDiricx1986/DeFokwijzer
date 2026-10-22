@@ -25,12 +25,13 @@
   <nav class="tabs" role="tablist" aria-label="Onderdelen">
     <button role="tab" id="tab-info" aria-selected="true" data-tab="info">Info</button>
     <button role="tab" id="tab-zoeken" aria-selected="false" data-tab="zoeken">Zoeken</button>
-    <button role="tab" id="tab-vergelijken" aria-selected="false" data-tab="vergelijken">Vergelijken</button>
     <button role="tab" id="tab-matches" aria-selected="false" data-tab="matches">Beste matches</button>
-    <button role="tab" id="tab-stam" aria-selected="false" data-tab="stam">Stamlijnen</button>
-    <button role="tab" id="tab-veilingen" aria-selected="false" data-tab="veilingen">Veilingen</button>
-    <button role="tab" id="tab-aanvragen" aria-selected="false" data-tab="aanvragen">Paard aanvragen <span class="count-badge" id="reqBadge" hidden></span></button>
-    <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer">Paarden beheren</button>
+    <button type="button" class="tab-more" id="tabMore" aria-expanded="false" aria-label="Meer onderdelen"><span class="tm-txt">Meer </span><span aria-hidden="true">&#9662;</span></button>
+    <button role="tab" id="tab-vergelijken" aria-selected="false" data-tab="vergelijken" class="tab-xtra">Vergelijken</button>
+    <button role="tab" id="tab-stam" aria-selected="false" data-tab="stam" class="tab-xtra">Stamlijnen</button>
+    <button role="tab" id="tab-veilingen" aria-selected="false" data-tab="veilingen" class="tab-xtra">Veilingen</button>
+    <button role="tab" id="tab-aanvragen" aria-selected="false" data-tab="aanvragen" class="tab-xtra">Paard aanvragen <span class="count-badge" id="reqBadge" hidden></span></button>
+    <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer" class="tab-xtra">Paarden beheren</button>
   </nav>
   <div id="banner"></div>
 
@@ -44,8 +45,8 @@
     </div>
     <div class="info-grid">
       <div class="card info-step"><span class="info-n">1</span><h3>Zoeken</h3><p>Zoek op naam, UELN, vader of moeder. Klik een paard aan voor zijn stamboomkaart, gegevens, bronnen en opmerkingen. De stamboomkaart download je als afbeelding of PDF.</p><button class="linkbtn" type="button" data-goto="zoeken">Naar Zoeken</button></div>
-      <div class="card info-step"><span class="info-n">2</span><h3>Vergelijken</h3><p>Zet een hengst en een merrie naast elkaar en bekijk het virtuele veulen: verwachte sterktes, inteelt en aandachtspunten.</p><button class="linkbtn" type="button" data-goto="vergelijken">Naar Vergelijken</button></div>
-      <div class="card info-step"><span class="info-n">3</span><h3>Beste matches</h3><p>Kies je merrie en krijg de hengsten die het best scoren op fokwaarden, prestaties, inteelt en gezondheid.</p><button class="linkbtn" type="button" data-goto="matches">Naar Beste matches</button></div>
+      <div class="card info-step"><span class="info-n">2</span><h3>Beste matches</h3><p>Kies je merrie en krijg de hengsten die het best scoren op fokwaarden, prestaties, inteelt en gezondheid.</p><button class="linkbtn" type="button" data-goto="matches">Naar Beste matches</button></div>
+      <div class="card info-step"><span class="info-n">3</span><h3>Vergelijken</h3><p>Zet een hengst en een merrie naast elkaar en bekijk het virtuele veulen: verwachte sterktes, inteelt en aandachtspunten.</p><button class="linkbtn" type="button" data-goto="vergelijken">Naar Vergelijken</button></div>
       <div class="card info-step"><span class="info-n">4</span><h3>Bijdragen</h3><p>Mist er een paard of klopt iets niet? Vraag het aan via <b>Paard aanvragen</b> of laat een opmerking achter. Bijdragers vullen aan, beheerders controleren. Gegevens met het label <i>Te controleren</i> zijn nog niet nagekeken.</p><button class="linkbtn" type="button" data-goto="aanvragen">Paard aanvragen</button></div>
     </div>
     <div class="info-foot">
@@ -189,7 +190,7 @@
         <div class="field"><label class="label" for="adType">Plek</label><select id="adType"><option value="kop">1 · Partner in de kop</option><option value="hengst">2 · Sponsorlogo bij een hengst</option><option value="voet">4 · Partnerstrip in de voet</option><option value="veiling">5 · Veilingbanner</option><option value="matches">6 · Dienstenkaart bij matches</option></select></div>
         <div class="field"><label class="label" for="adNaam">Naam partner *</label><input id="adNaam"></div>
         <div class="field"><label class="label" for="adUrl">Link</label><input id="adUrl" placeholder="https://..."></div>
-        <div class="field"><label class="label" for="adTitel">Titel</label><input id="adTitel" placeholder="Bv. Voorjaarsveiling, online 14 tot 21 maart"></div>
+        <div class="field"><label class="label" for="adTitel">Titel <span class="muted" style="text-transform:none;letter-spacing:0">(bij onderaan: de rubriek, bv. Voeders)</span></label><input id="adTitel" placeholder="Bv. Voeders, Transport of Voorjaarsveiling"></div>
         <div class="field"><label class="label" for="adTekst">Korte tekst</label><input id="adTekst" placeholder="Bv. Seizoen 2027 open"></div>
         <div class="field"><label class="label" for="adKnop">Knoptekst</label><input id="adKnop" placeholder="Bv. Bekijk collectie"></div>
         <div class="field" id="adHengstF"><label class="label" for="adHengst">Hengst (plek 2)</label><input id="adHengst" list="adHengstL" placeholder="Naam van de hengst"><datalist id="adHengstL"></datalist></div>

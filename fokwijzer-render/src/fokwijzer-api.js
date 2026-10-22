@@ -137,7 +137,7 @@
   };
   var downloadsNs = {
     save: function (o) {
-      var blob = new Blob([o.data], { type: o.mimeType || "application/json" });
+      var blob = (o.data instanceof Blob && !o.mimeType) ? o.data : new Blob([o.data], { type: o.mimeType || (o.data && o.data.type) || "application/json" });
       var a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
       a.download = String(o.filename || "download").replace(/[^\w.\-]+/g, "_");
