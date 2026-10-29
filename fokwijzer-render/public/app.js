@@ -56,14 +56,18 @@ const safeUrl=(u)=>{try{const x=new URL(String(u||"").replace(/[\u0000-\u0020\u0
 const esc=(s)=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const num=(x)=>{if(x==null||x==="")return null;const n=Number(x);return isFinite(n)?n:null};
 const clamp=(x,a=0,b=100)=>Math.max(a,Math.min(b,x));
-const norm=(s)=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");
+const _normRaw=(s)=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");
+const _normC=new Map();const norm=(s)=>{const k=String(s||"");let v=_normC.get(k);if(v===undefined){v=_normRaw(k);if(_normC.size>60000)_normC.clear();_normC.set(k,v)}return v};
 const fmtH=(cm)=>{const n=num(cm);return n==null?"onbekend":(Math.floor(n/100)+"m"+String(Math.round(n%100)).padStart(2,"0"))};
 const fn=(x)=>Number(x).toLocaleString("nl-BE",{maximumFractionDigits:2});
 const fz=(z,d=1)=>(z>=0?"+":"")+z.toLocaleString("nl-BE",{minimumFractionDigits:d,maximumFractionDigits:d});
 const pct=(f)=>(f*100).toLocaleString("nl-BE",{maximumFractionDigits:2})+"%";
 const slug=(s)=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,80)||("paard-"+Date.now());
-const byId=(id)=>state.horses.find(h=>h.id===id);
-const byName=(n)=>{const k=norm(n);return k?state.horses.find(h=>norm(h.naam)===k):null};
+// Snelle opzoektabellen, opnieuw opgebouwd telkens de lijst met paarden vervangen wordt.
+let _hIdx={src:null,id:null,name:null};
+function hIdx(){if(_hIdx.src!==state.horses){const id=new Map(),nm=new Map();for(const h of state.horses){if(!id.has(h.id))id.set(h.id,h);const k=norm(h.naam);if(k&&!nm.has(k))nm.set(k,h)}_hIdx={src:state.horses,id,name:nm}}return _hIdx}
+const byId=(id)=>hIdx().id.get(id);
+const byName=(n)=>{const k=norm(n);return k?(hIdx().name.get(k)||null):null};
 const sexChip=(h)=>`<span class="sex ${h.geslacht==="hengst"?"h":""}" aria-label="${esc(h.geslacht)}">${h.geslacht==="hengst"?"H":"M"}</span>`;
 const isCarrier=(w)=>w==="N/WFFS"||w==="WFFS/WFFS";
 
@@ -119,8 +123,10 @@ function match(s,m){const w=state.w,t=state.t;const warnings=[],reasons=[],weak=
   return{s,m,total,comps,coi:c,excluded,warnings,reasons,weak,conf,z}}
 
 // ---------- rendering ----------
-function setTab(t){if((t==="stam"&&!FW_EXTRA.stamlijnen)||(t==="veilingen"&&!FW_EXTRA.veilingen))t="zoeken";state.tab=t;document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===t)));
-  ["info","zoeken","vergelijken","matches","stam","veilingen","aanvragen","beheer"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab()}
+function setTab(t){if((t==="stam"&&!FW_EXTRA.stamlijnen)||(t==="veilingen"&&!FW_EXTRA.veilingen))t="zoeken";const prevTab=state.tab;state.tab=t;document.querySelectorAll("nav.tabs button[data-tab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===t)));
+  ["info","zoeken","vergelijken","matches","stam","veilingen","aanvragen","beheer"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab();
+  // Na een tabwissel bovenaan het nieuwe onderdeel beginnen (vooral op de gsm stond je anders halverwege de pagina).
+  if(prevTab!==t){const n=document.querySelector("nav.tabs");if(n&&n.getBoundingClientRect().top<0)window.scrollTo({top:Math.max(0,n.getBoundingClientRect().top+window.scrollY-8)})}}
 function renderTab(){if(state.tab==="zoeken"){renderSearch();requestAnimationFrame(fitList)}if(state.tab==="vergelijken")renderCompare();if(state.tab==="matches")renderMatches();if(state.tab==="stam")renderStam();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="aanvragen")renderAanvragen();if(state.tab==="beheer"){renderBeheer();renderAdAdmin()}}
 
 // ---------- veilingen (veilingmeester) ----------
@@ -580,6 +586,7 @@ async function drawPedCard(h,opt){
   const top=lineY+(cmp?8:Math.max(10,sp(20))),bottom=H-(cmp?24:Math.max(30,sp(74))),left=pad,right=W-pad,gap=Math.max(3,sp(6));
   const fixed=Math.max(16,sp(26)),fr=[.9,1.15,1,1],unit=(right-left-fixed-gap*4)/(fr[0]+fr[1]+fr[2]+fr[3]);
   const ws=[fixed,fr[0]*unit,fr[1]*unit,fr[2]*unit,fr[3]*unit],xs=[left];for(let i=1;i<5;i++)xs[i]=xs[i-1]+ws[i-1]+gap;
+  cv._lay={W,subjX:xs[1],parEnd:xs[2]+ws[2]};
   const rowH=(bottom-top-gap*7)/8,ry=(r)=>top+(r-1)*(rowH+gap),rh=(span)=>span*rowH+(span-1)*gap;
   const cells=[["v",2,1,4],["m",2,5,4]].concat(PC_G2.map((x,i)=>[x,3,1+i*2,2]),PC_G3.map((x,i)=>[x,4,1+i,1]));
   const dotX=Math.max(8,sp(14)),txtX=Math.max(15,sp(26)),rad=Math.max(3,sp(4.5));
@@ -640,10 +647,13 @@ async function drawPedCard(h,opt){
 // Stamboomkaart in de app: dezelfde tekening als de download, op de maat van de plek waar ze staat.
 const pcObjs={};
 function pedCardSlot(h,mode){pcObjs[h.id]=h;return `<figure class="pcard-slot ${mode||""}" data-pc="${esc(h.id)}"><button type="button" class="pcard-img" data-act="card" data-id="${esc(h.id)}" title="Klik om de stamboomkaart groot te bekijken of te downloaden"><img alt="Stamboom van ${esc(h.naam)}"></button><figcaption><button type="button" class="pc-dl" data-act="card" data-id="${esc(h.id)}">Stamboomkaart downloaden</button></figcaption></figure>`}
-let pcPainting=0;
+let pcPainting=0,pcRatio=.52;
 async function paintPedSlots(){const my=++pcPainting;const slots=[...document.querySelectorAll(".pcard-slot")].filter(s=>s.offsetParent!==null);
   const dpr=Math.max(1,window.devicePixelRatio||1);
   for(const sl of slots){const h=pcObjs[sl.dataset.pc]||byId(sl.dataset.pc);if(!h)continue;const btn=sl.querySelector(".pcard-img");
+    // Gsm: kaart zo breed tekenen dat paard, vader en moeder meteen volledig in beeld staan; de rest veeg je opzij.
+    const scr=sl.closest(".ov-ped");const mob=scr&&window.matchMedia("(max-width:820px)").matches;
+    if(mob){const vis=scr.clientWidth;btn.style.minWidth=Math.max(520,Math.min(760,Math.round((vis-4)/pcRatio)))+"px"}else btn.style.minWidth="";
     const W=Math.floor(btn.clientWidth);if(W<50)continue;const nat=Math.round(W*794/1123);let Hh=nat;
     if(sl.classList.contains("pc-fill")){const det=$("detail"),body=sl.closest(".det-body"),cap=sl.querySelector("figcaption");
       if(det&&body&&det.style.height&&fwDetBase){
@@ -654,7 +664,8 @@ async function paintPedSlots(){const my=++pcPainting;const slots=[...document.qu
         det.style.height=Math.max(fwDetBase,fwDetBase+(Hh-avail))+"px"}
     }
     const key=[h.id,JSON.stringify(h.stamboom||{}),h.naam,W,Hh,dpr].join("|");const img=btn.querySelector("img");if(img.dataset.key===key)continue;
-    try{const cv=await drawPedCard(h,{W,H:Hh,S:dpr,compact:W<700,minPx:12});if(my!==pcPainting)return;img.src=cv.toDataURL("image/png");img.dataset.key=key;img.style.width=W+"px";img.style.height=Hh+"px"}catch(_){}}
+    try{const cv=await drawPedCard(h,{W,H:Hh,S:dpr,compact:W<700,minPx:12});if(my!==pcPainting)return;img.src=cv.toDataURL("image/png");img.dataset.key=key;img.style.width=W+"px";img.style.height=Hh+"px";
+      if(cv._lay){pcRatio=cv._lay.parEnd/cv._lay.W;if(mob){const over=cv._lay.parEnd-scr.clientWidth+4;scr.scrollLeft=over>0?Math.ceil(over):0}}}catch(_){}}
   if(typeof checkDetOverflow==="function")checkDetOverflow()}
 let pcResizeT=null;window.addEventListener("resize",()=>{clearTimeout(pcResizeT);pcResizeT=setTimeout(paintPedSlots,200)});
 // Eenvoudige PDF (A4 liggend) met de kaart als afbeelding
@@ -1015,7 +1026,7 @@ $("inSave").addEventListener("click",async()=>{const st=$("inStatus");const d={r
 let fwDetBase=0;
 function fitList(){const r=$("results"),d=$("detail");if(!r||$("p-zoeken").hidden)return;
   if(window.matchMedia("(max-width:820px)").matches){r.style.maxHeight="";d.style.height="";return}
-  const top=r.getBoundingClientRect().top+window.scrollY;const f=document.querySelector(".sitefoot");const below=(f?f.offsetHeight+18:0)+12+10;const h=Math.max(300,Math.round(window.innerHeight-top-below));
+  const top=r.getBoundingClientRect().top+window.scrollY;/* de voettekst met partners mag onder de vouw staan */const below=12+10;const h=Math.max(300,Math.round(window.innerHeight-top-below));
   r.style.maxHeight=h+"px";d.style.height=h+"px";fwDetBase=h;checkDetOverflow();paintPedSlots()}
 window.addEventListener("resize",fitList);
 // ---------- start ----------

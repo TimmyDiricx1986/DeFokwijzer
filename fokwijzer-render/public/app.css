@@ -343,7 +343,6 @@ nav.tabs .tab-more{display:none}
   #p-zoeken .split{grid-template-columns:minmax(0,1fr)}
   #results{max-height:52vh}
   .ov-ped{max-height:none;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
-  .ov-ped .pcard-slot .pcard-img{min-width:680px}
   .ov-ped .pcard-slot figcaption{position:sticky;left:0;justify-content:flex-start}
   .ov-ped::before{content:"Veeg opzij om de hele stamboom te zien";display:block;font-size:.75rem;color:var(--muted,#777);margin-bottom:6px;position:sticky;left:0}
   .pcdlg .pc-prev{overflow-x:auto;-webkit-overflow-scrolling:touch}
