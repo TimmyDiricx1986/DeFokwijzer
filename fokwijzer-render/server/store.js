@@ -154,4 +154,14 @@ function startBackups() {
   }, 60 * 60 * 1000).unref();
 }
 
-module.exports = { db, now, listDocs, listJson, getDoc, writeDoc, deleteDoc, history, audit, startBackups, DATA_DIR };
+// Staat de database op een aparte, vaste schijf (bv. de Disk van Render op /data)?
+// Zonder vaste schijf is alles weg bij elke nieuwe versie: paarden, accounts en geschiedenis.
+function opslagInfo() {
+  let vast = null;
+  try { vast = fs.statSync(DATA_DIR).dev !== fs.statSync(path.dirname(path.resolve(DATA_DIR))).dev; } catch (_) { vast = null; }
+  if (process.env.DATA_DISK === "ja") vast = true;
+  let paarden = 0, gebruikers = 0;
+  try { paarden = db.prepare("SELECT COUNT(*) n FROM docs WHERE coll='paarden'").get().n; gebruikers = db.prepare("SELECT COUNT(*) n FROM users").get().n; } catch (_) {}
+  return { pad: DATA_DIR, vast, paarden, gebruikers };
+}
+module.exports = { db, now, listDocs, listJson, getDoc, writeDoc, deleteDoc, history, audit, startBackups, opslagInfo, DATA_DIR };

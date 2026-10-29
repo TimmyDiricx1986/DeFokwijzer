@@ -231,7 +231,10 @@ function listUsers() { return q.users.all(); }
 // Werkt alleen zolang er nog geen enkele gebruiker bestaat.
 async function bootstrapAdmin() {
   const email = cleanEmail(process.env.ADMIN_EMAIL), pw = process.env.ADMIN_PASSWORD;
-  if (!email || !pw) return;
+  if (!email || !pw) {
+    if (q.admins.get().n === 0) console.warn("[beheerder] LET OP: er is geen enkele beheerder. Zet ADMIN_EMAIL en ADMIN_PASSWORD bij Environment en start opnieuw.");
+    return;
+  }
   if (q.admins.get().n > 0) {
     console.log("[beheerder] Er bestaat al een beheerder; ADMIN_PASSWORD wordt genegeerd. Verwijder het uit de instellingen.");
     return;
@@ -249,7 +252,7 @@ async function bootstrapAdmin() {
     return;
   }
   const r = await createUser(email, process.env.ADMIN_NAME || "Beheerder", pw, "beheerder");
-  console.log(r.fout ? `[beheerder] Niet aangemaakt: ${r.fout}` : `[beheerder] ${email} aangemaakt. Verwijder ADMIN_PASSWORD nu uit de instellingen.`);
+  console.log(r.fout ? `[beheerder] Niet aangemaakt: ${r.fout}` : `[beheerder] ${email} aangemaakt. Verwijder ADMIN_PASSWORD pas uit de instellingen als de Disk op /data werkt.`);
 }
 function setRole(actor, id, role) {
   if (!ROLES.includes(role)) return { fout: "Onbekende rol." };

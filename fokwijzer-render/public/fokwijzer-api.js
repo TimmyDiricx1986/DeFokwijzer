@@ -318,6 +318,10 @@
 
   // ------------------------------------------------------------ accountknoppen in de kop
   function mountAccount(m) {
+    if (m.opslag && m.opslag.vast === false) {
+      var wb = el("div", { class: "fw-warn-disk", role: "alert" }, [el("b", { text: "Let op, beheerder: " }), "de database staat niet op een vaste schijf (" + m.opslag.pad + "). Bij elke nieuwe versie gaan alle paarden en accounts verloren. Koppel in Render een Disk op " + m.opslag.pad + " en maak nu een export."]);
+      var hd = document.querySelector("header.top"); if (hd && hd.parentNode) hd.parentNode.insertBefore(wb, hd.nextSibling);
+    }
     var side = document.querySelector("header.top .hdr-side") || document.querySelector("header.top");
     if (!side) return;
     var box = el("div", { class: "fw-acct" });

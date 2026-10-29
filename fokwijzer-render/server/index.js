@@ -96,6 +96,7 @@ app.get("/api/me", (req, res) => {
     registratie: process.env.REGISTRATION !== "closed",
     ai: ai.enabled(),
     taken: { verwerking: HOOKS.has("verwerking"), veilingmeester: HOOKS.has("veilingmeester") },
+    ...(req.actor && req.actor.level >= 3 ? { opslag: store.opslagInfo() } : {}),
   });
 });
 app.post("/api/auth/register", registerLimit, async (req, res) => {
@@ -307,6 +308,11 @@ app.use((req, res) => res.status(404).sendFile(path.join(PUB, "404.html")));
 if (require.main === module) {
   store.startBackups();
   auth.bootstrapAdmin().catch((e) => console.error("[beheerder]", e.message));
-  app.listen(PORT, () => console.log(`De Fokwijzer draait op poort ${PORT}`));
+  app.listen(PORT, () => {
+    console.log(`De Fokwijzer draait op poort ${PORT}`);
+    const o = store.opslagInfo();
+    console.log(`[opslag] database in ${o.pad}: ${o.paarden} paarden, ${o.gebruikers} gebruikers`);
+    if (o.vast === false) console.warn(`[opslag] LET OP: ${o.pad} is GEEN vaste schijf. Bij elke nieuwe versie gaan alle gegevens en accounts verloren. Koppel in Render een Disk op ${o.pad}.`);
+  });
 }
 module.exports = app;

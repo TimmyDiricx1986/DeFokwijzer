@@ -85,3 +85,18 @@ Je hebt Python 3 nodig op je computer (op een Mac is het meestal al aanwezig).
   Anders krijgen de databasebestanden de verkeerde eigenaar.
 - **Beveiliging:** zie `BEVEILIGING.md`. De punten "Server" en "Back-ups buiten de server" regelt Render grotendeels voor je.
 - **Nog in te vullen:** de privacyverklaring (`src/privacy.html`) en `src/security.txt`.
+
+## Probleem: na een nieuwe versie is alles weg en kan niemand inloggen
+
+Dan staat de database niet op een vaste schijf. Zonder Disk wist Render bij elke nieuwe versie alles: paarden, accounts en geschiedenis. Je ziet dan de voorbeeldpaarden (Fictief) en geen enkel account werkt nog.
+
+**Controleren:** open bij je service de **Logs** na een herstart. Staat er `[opslag] LET OP: /data is GEEN vaste schijf`, dan ontbreekt de Disk. Als beheerder zie je dezelfde waarschuwing ook in een rode balk bovenaan de site.
+
+**Oplossen:**
+
+1. Zet je service op een betaald plan (bv. Starter). Een Disk kan niet bij het gratis plan.
+2. Kies **Disks**, **Add Disk**: naam `fokwijzer-data`, Mount Path `/data`, grootte 1 GB. Bewaar.
+3. Controleer bij **Environment**: `DATA_DIR` staat op `/data`, en `ADMIN_EMAIL`, `ADMIN_NAME` en `ADMIN_PASSWORD` zijn ingevuld. Het wachtwoord mag het eerste deel van je e-mailadres niet bevatten.
+4. Wacht tot de site opnieuw draait. In de Logs staat nu geen waarschuwing meer, en wel `[beheerder] ... aangemaakt`.
+5. Log in en importeer je laatste export via **Paarden beheren, Back-up, verhuizen en instellingen**. Of gebruik `tools/upload.py` met het `SERVICE_TOKEN` (zie stap 5 hierboven); daarvoor hoef je niet in te loggen.
+6. Pas daarna, als je ziet dat alles na een nieuwe versie blijft staan, verwijder je `ADMIN_PASSWORD`.

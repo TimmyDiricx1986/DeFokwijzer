@@ -40,3 +40,4 @@ html:not([data-rol="bijdrager"]):not([data-rol="beheerder"]) [data-act="edit"]{d
   .fw-users{display:block;overflow-x:auto}
   .det-foot .btn{min-height:36px}
 }
+.fw-warn-disk{margin:10px 0 0;padding:10px 14px;border:1px solid #C9523B;border-left:5px solid #C9523B;border-radius:10px;background:#FBEDEA;color:#5A1E12;font-size:.9rem;line-height:1.45}
