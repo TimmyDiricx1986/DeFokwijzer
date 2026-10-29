@@ -68,7 +68,7 @@ let _hIdx={src:null,id:null,name:null};
 function hIdx(){if(_hIdx.src!==state.horses){const id=new Map(),nm=new Map();for(const h of state.horses){if(!id.has(h.id))id.set(h.id,h);const k=norm(h.naam);if(k&&!nm.has(k))nm.set(k,h)}_hIdx={src:state.horses,id,name:nm}}return _hIdx}
 const byId=(id)=>hIdx().id.get(id);
 const byName=(n)=>{const k=norm(n);return k?(hIdx().name.get(k)||null):null};
-const sexChip=(h)=>`<span class="sex ${h.geslacht==="hengst"?"h":""}" aria-label="${esc(h.geslacht)}">${h.geslacht==="hengst"?"H":"M"}</span>`;
+const sexChip=(h)=>`<span class="sex ${h.geslacht==="hengst"?"h":h.geslacht==="merrie"?"m":""}" aria-label="${esc(h.geslacht)}">${h.geslacht==="hengst"?"H":"M"}</span>`;
 const isCarrier=(w)=>w==="N/WFFS"||w==="WFFS/WFFS";
 
 // ---------- scoring ----------

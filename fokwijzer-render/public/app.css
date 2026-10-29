@@ -145,7 +145,9 @@ input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-vis
 .item[aria-current="true"]{background:var(--accent-soft)}
 .item .name{font-weight:700}
 .sex{font-family:var(--f-display);font-weight:700;font-size:.85rem;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--fg)}
-.sex.h{background:var(--accent-soft);color:var(--accent)}
+/* Geslacht in één oogopslag: hengst donkergroen, merrie goud (zelfde kleuren als de stamboomkaart) */
+.sex.h{background:#1E4639;color:#FFFFFF;box-shadow:0 0 0 2px #FFFFFF,0 0 0 3px #1E4639}
+.sex.m{background:#A06A28;color:#FFFFFF;box-shadow:0 0 0 2px #FFFFFF,0 0 0 3px #A06A28}
 .chip{display:inline-flex;align-items:center;gap:4px;font-size:.76rem;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--sunk);color:var(--muted);white-space:nowrap}
 .chip.good{background:var(--good-soft);color:var(--good)}
 .chip.warn{background:var(--warn-soft);color:var(--warn)}
