@@ -3,8 +3,19 @@
 const crypto = require("crypto");
 const { db, now, audit } = require("./store");
 
-const ROLES = ["lezer", "bijdrager", "beheerder"];
-const LEVEL = { anoniem: 0, lezer: 1, bijdrager: 2, beheerder: 3 };
+// Rollen: lezen kan zonder account. Gebruiker vult wiki-onderdelen aan (bronnen, opmerkingen),
+// paarden-beheerder voegt paarden toe en bewerkt ze, beheerder beheert alles (ook andere beheerders).
+const ROLES = ["gebruiker", "paardenbeheerder", "beheerder"];
+const LEVEL = { anoniem: 0, gebruiker: 1, paardenbeheerder: 2, beheerder: 3, lezer: 1, bijdrager: 2 };
+// Oude rolnamen omzetten (lezer -> gebruiker, bijdrager -> paardenbeheerder) en kolommen voor rolaanvragen.
+(function migrate() {
+  const cols = db.prepare("PRAGMA table_info(users)").all().map((c) => c.name);
+  if (!cols.includes("aanvraag")) db.exec("ALTER TABLE users ADD COLUMN aanvraag TEXT");
+  if (!cols.includes("aanvraag_tekst")) db.exec("ALTER TABLE users ADD COLUMN aanvraag_tekst TEXT");
+  // Partner zijn staat los van de rol: een gebruiker of paarden-beheerder kan ook partner zijn.
+  if (!cols.includes("partner")) db.exec("ALTER TABLE users ADD COLUMN partner INTEGER NOT NULL DEFAULT 0");
+  db.exec("UPDATE users SET role = 'gebruiker' WHERE role = 'lezer'; UPDATE users SET role = 'paardenbeheerder' WHERE role = 'bijdrager';");
+})();
 const SESSION_DAYS = parseInt(process.env.SESSION_DAYS || "14", 10);
 const COOKIE = process.env.COOKIE_SECURE === "false" ? "fw_sess" : "__Host-fw_sess";
 const SECURE = process.env.COOKIE_SECURE !== "false";
@@ -52,7 +63,7 @@ const sha = (s) => crypto.createHash("sha256").update(s).digest("hex");
 const q = {
   userByEmail: db.prepare("SELECT * FROM users WHERE email = ?"),
   userById: db.prepare("SELECT id, email, name, role, created_at, last_login FROM users WHERE id = ?"),
-  session: db.prepare("SELECT s.user_id, s.expires_at, u.email, u.name, u.role FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token_hash = ?"),
+  session: db.prepare("SELECT s.user_id, s.expires_at, u.email, u.name, u.role, u.aanvraag, u.partner FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token_hash = ?"),
   newSession: db.prepare("INSERT INTO sessions (token_hash, user_id, created_at, expires_at) VALUES (?, ?, ?, ?)"),
   touch: db.prepare("UPDATE sessions SET expires_at = ? WHERE token_hash = ?"),
   delSession: db.prepare("DELETE FROM sessions WHERE token_hash = ?"),
@@ -63,7 +74,9 @@ const q = {
   setPw: db.prepare("UPDATE users SET pw = ? WHERE id = ?"),
   setRole: db.prepare("UPDATE users SET role = ? WHERE id = ?"),
   delUser: db.prepare("DELETE FROM users WHERE id = ?"),
-  users: db.prepare("SELECT id, email, name, role, created_at, last_login FROM users ORDER BY created_at"),
+  users: db.prepare("SELECT id, email, name, role, created_at, last_login, aanvraag, aanvraag_tekst, partner FROM users ORDER BY created_at"),
+  setPartner: db.prepare("UPDATE users SET partner = ? WHERE id = ?"),
+  setAanvraag: db.prepare("UPDATE users SET aanvraag = ?, aanvraag_tekst = ? WHERE id = ?"),
   admins: db.prepare("SELECT COUNT(*) AS n FROM users WHERE role = 'beheerder'"),
 };
 const expiry = () => new Date(Date.now() + SESSION_DAYS * 864e5).toISOString();
@@ -122,7 +135,7 @@ function identify(req, res, next) {
         q.touch.run(expiry(), h);
         setSessionCookie(res, token);
       }
-      req.actor = { level: LEVEL[s.role] || LEVEL.lezer, role: s.role, label: `${s.name} <${s.email}>`, userId: s.user_id, name: s.name, email: s.email, ip, tokenHash: h };
+      req.actor = { level: LEVEL[s.role] || LEVEL.gebruiker, role: s.role, aanvraag: s.aanvraag || null, partner: !!s.partner, label: `${s.name} <${s.email}>`, userId: s.user_id, name: s.name, email: s.email, ip, tokenHash: h };
       return next();
     }
     if (s) q.delSession.run(h);
@@ -146,14 +159,17 @@ function cleanName(n) {
   return n.length >= 2 && n.length <= 60 ? n : null;
 }
 
-async function register({ email, name, password }) {
+async function register({ email, name, password, aanvraag, rol, partner }) {
   const e = cleanEmail(email), n = cleanName(name);
   if (!e) return { fout: "Vul een geldig e-mailadres in." };
   if (!n) return { fout: "Vul een naam in van 2 tot 60 tekens." };
   const p = passwordProblem(password, e);
   if (p) return { fout: p };
   if (q.userByEmail.get(e)) return { fout: "Met deze gegevens kan geen account gemaakt worden. Heb je al een account? Log dan in." };
-  const info = q.insertUser.run(e, n, await hashPasswordAsync(password), process.env.DEFAULT_ROLE === "bijdrager" ? "bijdrager" : "lezer", now());
+  const info = q.insertUser.run(e, n, await hashPasswordAsync(password), ["paardenbeheerder", "bijdrager"].includes(process.env.DEFAULT_ROLE) ? "paardenbeheerder" : "gebruiker", now());
+  // Paarden-beheerder kies je zelf bij het aanmaken; je kunt meteen aan de slag (geen goedkeuring nodig).
+  if (aanvraag === "paardenbeheerder" || rol === "paardenbeheerder") q.setRole.run("paardenbeheerder", info.lastInsertRowid);
+  if (partner === true) q.setPartner.run(1, info.lastInsertRowid);
   audit({ actor: `${n} <${e}>`, user_id: info.lastInsertRowid, action: "account aangemaakt" });
   return { id: info.lastInsertRowid };
 }
@@ -260,6 +276,7 @@ function setRole(actor, id, role) {
   if (!u) return { fout: "Gebruiker niet gevonden." };
   if (u.role === "beheerder" && role !== "beheerder" && q.admins.get().n <= 1) return { fout: "Er moet minstens één beheerder overblijven." };
   q.setRole.run(role, id);
+  q.setAanvraag.run(null, null, id); // een rolwijziging handelt een openstaande aanvraag af
   q.delUserSessions.run(id); // nieuwe rol geldt vanaf de volgende login
   audit({ actor: actor.label, user_id: actor.userId, ip: actor.ip, action: `rol van ${u.email} gewijzigd naar ${role}` });
   return { ok: true };
@@ -273,4 +290,30 @@ function deleteUser(actor, id) {
   return { ok: true };
 }
 
-module.exports = { bootstrapAdmin, LEVEL, ROLES, identify, need, register, login, logout, startSession, changePassword, createUser, listUsers, setRole, deleteUser, userById: (id) => q.userById.get(id) };
+// Een gebruiker kan zichzelf meteen paarden-beheerder maken.
+function becomeHorseManager(actor) {
+  const u = q.userById.get(actor.userId);
+  if (!u) return { fout: "Gebruiker niet gevonden." };
+  if (u.role !== "gebruiker") return { fout: "Je hebt deze rol al, of een hogere." };
+  q.setRole.run("paardenbeheerder", u.id);
+  q.setAanvraag.run(null, null, u.id);
+  q.delUserSessions.run(u.id);
+  audit({ actor: actor.label, user_id: u.id, ip: actor.ip, action: `${u.email} werd paarden-beheerder` });
+  return { ok: true, id: u.id };
+}
+// Partner worden (of niet meer zijn): voor jezelf, of door een beheerder voor iemand anders.
+function setPartnerFlag(actor, id, aan) {
+  const u = q.userById.get(id);
+  if (!u) return { fout: "Gebruiker niet gevonden." };
+  q.setPartner.run(aan ? 1 : 0, id);
+  audit({ actor: actor.label, user_id: actor.userId, ip: actor.ip, action: `${u.email} ${aan ? "is nu partner" : "is geen partner meer"}` });
+  return { ok: true, id };
+}
+function rejectRequest(actor, id) {
+  const u = q.userById.get(id);
+  if (!u) return { fout: "Gebruiker niet gevonden." };
+  q.setAanvraag.run(null, null, id);
+  audit({ actor: actor.label, user_id: actor.userId, ip: actor.ip, action: `aanvraag van ${u.email} geweigerd` });
+  return { ok: true };
+}
+module.exports = { setPartnerFlag, becomeHorseManager, rejectRequest, bootstrapAdmin, LEVEL, ROLES, identify, need, register, login, logout, startSession, changePassword, createUser, listUsers, setRole, deleteUser, userById: (id) => q.userById.get(id) };

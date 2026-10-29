@@ -20,12 +20,12 @@ dialog.fw-dlg::backdrop{background:rgba(0,0,0,.4)}
 .fw-links a{color:var(--muted);margin:0 2px}
 .sitefoot .fw-links{margin-left:12px}
 /* Knoppen alleen tonen aan wie ze mag gebruiken (de server controleert dit altijd zelf). */
+html:not([data-rol="beheerder"]) .fw-wonly,
+html:not([data-rol="beheerder"]) #p-admin,
 html:not([data-rol="beheerder"]) #bkCard,
-html:not([data-rol="beheerder"]) #adCard,
-html:not([data-rol="beheerder"]) [data-act="del"],
-html:not([data-rol="beheerder"]) [data-addel]{display:none!important}
-html:not([data-rol="bijdrager"]):not([data-rol="beheerder"]) [data-act="hist"],
-html:not([data-rol="bijdrager"]):not([data-rol="beheerder"]) [data-act="edit"]{display:none!important}
+html:not([data-rol="beheerder"]) [data-act="del"]:not([data-own="1"]){display:none!important}
+html:not([data-rol="paardenbeheerder"]):not([data-rol="beheerder"]) [data-act="hist"],
+html:not([data-rol="paardenbeheerder"]):not([data-rol="beheerder"]) [data-act="edit"]{display:none!important}
 /* Losse pagina's (privacy, over, 404) */
 .page{max-width:760px;margin:0 auto;padding:28px 16px 48px;line-height:1.6}
 .page h1{font-family:var(--f-display);color:var(--accent);margin:0 0 6px}
@@ -41,3 +41,17 @@ html:not([data-rol="bijdrager"]):not([data-rol="beheerder"]) [data-act="edit"]{d
   .det-foot .btn{min-height:36px}
 }
 .fw-warn-disk{margin:10px 0 0;padding:10px 14px;border:1px solid #C9523B;border-left:5px solid #C9523B;border-radius:10px;background:#FBEDEA;color:#5A1E12;font-size:.9rem;line-height:1.45}
+/* Rolkeuze bij registreren */
+.fw-rolkeuze{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0;display:flex;flex-direction:column;gap:8px}
+.fw-rolkeuze legend{font-weight:700;font-size:.9rem;padding:0 4px}
+.fw-rol{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:8px;border-radius:8px;border:1px solid transparent}
+.fw-rol:has(input:checked){border-color:var(--gold);background:var(--sunk)}
+.fw-rol input{margin-top:3px}
+.fw-rol>span{display:flex;flex-direction:column;gap:2px;line-height:1.35}
+.fw-pending{color:#8A5630;background:#F6ECE3;border-radius:6px;padding:2px 7px}
+.fw-users-wrap{overflow-x:auto}
+.fw-users tr.fw-open td{background:#FBF4EA}
+.fw-aanv{display:flex;flex-direction:column;gap:2px;max-width:260px}
+#adminAcct{justify-content:flex-end;margin:-34px 0 14px auto}
+@media (max-width:820px){#adminAcct{margin:0 0 12px;justify-content:flex-start}}
+.fw-partnerkeuze{border:1px solid var(--line);border-radius:10px;padding:10px}

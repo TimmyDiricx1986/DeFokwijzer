@@ -20,7 +20,7 @@
       <div class="slogan">Een wikigids voor en door paardenfokkers</div><p>Zoek hengsten en merries op, zet ze naast elkaar en bekijk welke combinaties het best scoren op fokwaarden, prestaties, inteelt en gezondheid.</p>
       </div>
     </div>
-    <div class="hdr-side"><div id="adKop"></div><div class="small muted" id="count"></div></div>
+    <div class="hdr-side"><div class="fw-acct" id="artWho"></div><div id="adKop"></div><div class="small muted" id="count"></div></div>
   </header>
   <nav class="tabs" role="tablist" aria-label="Onderdelen">
     <button role="tab" id="tab-info" aria-selected="true" data-tab="info">Info</button>
@@ -32,6 +32,7 @@
     <button role="tab" id="tab-veilingen" aria-selected="false" data-tab="veilingen" class="tab-xtra">Veilingen</button>
     <button role="tab" id="tab-aanvragen" aria-selected="false" data-tab="aanvragen" class="tab-xtra">Paard aanvragen <span class="count-badge" id="reqBadge" hidden></span></button>
     <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer" class="tab-xtra">Paarden beheren</button>
+    <button role="tab" id="tab-partners" aria-selected="false" data-tab="partners" class="tab-xtra">Partners</button>
   </nav>
   <div id="banner"></div>
 
@@ -47,7 +48,7 @@
       <div class="card info-step"><span class="info-n">1</span><h3>Zoeken</h3><p>Zoek op naam, UELN, vader of moeder. Klik een paard aan voor zijn stamboomkaart, gegevens, bronnen en opmerkingen. De stamboomkaart download je als afbeelding of PDF.</p><button class="linkbtn" type="button" data-goto="zoeken">Naar Zoeken</button></div>
       <div class="card info-step"><span class="info-n">2</span><h3>Beste matches</h3><p>Kies je merrie en krijg de hengsten die het best scoren op fokwaarden, prestaties, inteelt en gezondheid.</p><button class="linkbtn" type="button" data-goto="matches">Naar Beste matches</button></div>
       <div class="card info-step"><span class="info-n">3</span><h3>Vergelijken</h3><p>Zet een hengst en een merrie naast elkaar en bekijk het virtuele veulen: verwachte sterktes, inteelt en aandachtspunten.</p><button class="linkbtn" type="button" data-goto="vergelijken">Naar Vergelijken</button></div>
-      <div class="card info-step"><span class="info-n">4</span><h3>Bijdragen</h3><p>Mist er een paard of klopt iets niet? Vraag het aan via <b>Paard aanvragen</b> of laat een opmerking achter. Bijdragers vullen aan, beheerders controleren. Gegevens met het label <i>Te controleren</i> zijn nog niet nagekeken.</p><button class="linkbtn" type="button" data-goto="aanvragen">Paard aanvragen</button></div>
+      <div class="card info-step"><span class="info-n">4</span><h3>Bijdragen</h3><p><b>Lezen</b> kan zonder account. Met een account als <b>gebruiker</b> vul je bronnen en opmerkingen aan en vraag je paarden aan. Een <b>paarden-beheerder</b> voegt zijn eigen paarden toe en past gegevens aan. Gegevens met het label <i>Te controleren</i> zijn nog niet nagekeken.</p><button class="linkbtn" type="button" data-goto="aanvragen">Paard aanvragen</button></div>
     </div>
     <div class="info-foot">
       <div class="card info-note"><h3>Onafhankelijk</h3><p>De Fokwijzer is gratis en wordt gedragen door partners. Partners zijn altijd herkenbaar als partner en hebben <b>nooit</b> invloed op scores, matches of de volgorde van zoekresultaten.</p></div>
@@ -159,11 +160,15 @@
     </div>
   </section>
 
-  <!-- BEHEER -->
-  <section class="panel" id="p-beheer" role="tabpanel" aria-labelledby="tab-beheer" hidden>
-    <div id="writeNote"></div>
-    <details class="card" id="bkCard" style="margin-top:12px">
-      <summary><b>Back-up, verhuizen en instellingen</b></summary>
+  <!-- BEHEER (via account) -->
+  <section class="panel" id="p-admin" role="region" aria-label="Beheer" hidden>
+    <div id="adminAcct" class="fw-acct small"></div>
+    <h2 style="margin:0 0 4px">Beheer</h2>
+    <p class="small muted" style="margin:0 0 12px">Back-up, verhuizen en gebruikers van De Fokwijzer. Alleen voor beheerders.</p>
+    <div id="adminExtra"></div>
+    <div class="card" id="poCard" style="margin-bottom:12px"><div class="po-head"><h3 style="margin:0" id="poTitle">Partners</h3><button class="btn ghost" type="button" id="poNew">Partner toevoegen</button></div><p class="small muted" style="margin:6px 0 10px" id="poSum">Overzicht van je partners, met hun contact- en betaalgegevens. Alleen beheerders zien deze gegevens.</p><div class="fw-users-wrap" id="poList"></div></div>
+    <div class="card" id="bkCard">
+      <h3 style="margin:0">Back-up en verhuizen</h3>
       <p class="small muted" style="margin:8px 0">Exporteer alle gegevens (paarden, veilingen, aanvragen, council-adviezen, wachtrij) naar één JSON-bestand, of importeer zo'n bestand in deze Fokwijzer. Importeren voegt toe en overschrijft documenten met hetzelfde id; niets wordt verwijderd.</p>
       <div class="row">
         <button class="btn ghost" type="button" id="bkExport">Exporteer alle data</button>
@@ -171,23 +176,36 @@
         <input type="file" id="bkFile" accept=".json,application/json" hidden>
       </div>
       <div class="status" id="bkStatus" role="status"></div>
-      <div hidden><h3 style="margin-top:14px">Geplande taken</h3>
+      </div>
+    <div class="card" id="bkTasks" style="margin-top:12px" hidden>
+      <h3 style="margin:0">Instellingen: geplande taken</h3>
       <p class="small muted" style="margin:4px 0 8px">Id's van de geplande taken die de knoppen "Start verwerking" en "Nu controleren" starten (te vinden na het aanmaken van de taken, ze beginnen met trig_).</p>
       <div class="row">
         <div class="field grow"><label class="label" for="inRun">Taak aanvragen verwerken</label><input id="inRun" placeholder="trig_..."></div>
         <div class="field grow"><label class="label" for="inVm">Taak veilingmeester</label><input id="inVm" placeholder="trig_..."></div>
         <button class="btn" type="button" id="inSave" style="align-self:end">Bewaren</button>
       </div>
-      <div class="status" id="inStatus" role="status"></div></div>
-    </details>
-    <details class="card" id="adCard" style="margin-top:12px">
-      <summary><b>Partners en advertenties</b></summary>
+      <div class="status" id="inStatus" role="status"></div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="panel" id="p-partners" role="tabpanel" aria-labelledby="tab-partners" hidden>
+    <h2 style="margin:0 0 4px">Partners en advertenties</h2>
+    <div id="partnersNote"></div>
+    <div class="card" id="adCard">
       <p class="small muted" style="margin:8px 0">Beheer de partnerplekken. Gesponsorde vermeldingen hebben nooit invloed op matchscores, council-adviezen of de volgorde van paarden. Zolang er geen partners zijn ingevoerd, toont de Fokwijzer voorbeeldadvertenties.</p>
       <label class="small" style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="adDemo"> Voorbeeldadvertenties tonen zolang er geen partners zijn</label>
       <div class="list ad-list" id="adList" style="margin-top:10px"></div>
       <h3 style="margin-top:14px" id="adFormTitle">Partner toevoegen</h3>
+      <div class="ad-plek">
+        <div><div class="field"><label class="label" for="adType">Plek</label><select id="adType"><option value="kop">1 · Partner in de kop</option><option value="hengst">2 · Sponsorlogo bij een hengst</option><option value="voet">4 · Partnerstrip in de voet</option><option value="veiling">5 · Veilingbanner</option><option value="matches">6 · Dienstenkaart bij matches</option></select><p class="small muted" id="adPlekUitleg" style="margin:8px 0 0"></p></div></div>
+        <div class="ad-plek-prev" aria-live="polite">
+          <div class="adw-col"><div class="label" id="adWireT">Waar</div><div id="adWire"></div></div>
+          <div class="adw-col grow"><div class="label">Hoe het er ongeveer uitziet</div><div class="ad-pv" id="adPlekVb"></div></div>
+        </div>
+      </div>
       <div class="grid3" style="margin-top:6px">
-        <div class="field"><label class="label" for="adType">Plek</label><select id="adType"><option value="kop">1 · Partner in de kop</option><option value="hengst">2 · Sponsorlogo bij een hengst</option><option value="voet">4 · Partnerstrip in de voet</option><option value="veiling">5 · Veilingbanner</option><option value="matches">6 · Dienstenkaart bij matches</option></select></div>
         <div class="field"><label class="label" for="adNaam">Naam partner *</label><input id="adNaam"></div>
         <div class="field"><label class="label" for="adUrl">Link</label><input id="adUrl" placeholder="https://..."></div>
         <div class="field"><label class="label" for="adTitel">Titel <span class="muted" style="text-transform:none;letter-spacing:0">(bij onderaan: de rubriek, bv. Voeders)</span></label><input id="adTitel" placeholder="Bv. Voeders, Transport of Voorjaarsveiling"></div>
@@ -201,7 +219,13 @@
       </div>
       <div class="row" style="margin-top:10px"><button class="btn" type="button" id="adSave">Partner bewaren</button><button class="btn ghost" type="button" id="adNew" hidden>Nieuwe partner</button></div>
       <div class="status" id="adStatus" role="status"></div>
-    </details>
+    </div>
+  </section>
+
+  <!-- BEHEER -->
+  <section class="panel" id="p-beheer" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div id="writeNote"></div>
+    <div class="card" id="mineCard" hidden><h3 style="margin:0 0 6px" id="mineTitle">Mijn paarden</h3><p class="small muted" style="margin:0 0 10px">Paarden die jij toevoegde. Je kunt ze bekijken, bewerken en verwijderen.</p><div class="mine-list" id="mineList"></div></div>
     <form id="hForm" class="stack" style="margin-top:12px" novalidate>
       <h2 id="formTitle">Paard toevoegen</h2>
       <fieldset><legend>Identiteit</legend>

@@ -46,30 +46,31 @@ def transform(html, links=('/over.html', '/privacy.html')):
         fail("inline event-handlers in de HTML zijn niet toegestaan door de CSP")
 
     # ---------------------------------------------------------------- HTML-aanpassingen
-    body = rep(body, '<h3 style="margin-top:14px">Geplande taken</h3>', '<div hidden><h3 style="margin-top:14px">Geplande taken</h3>')
-    body = rep(body, '<div class="status" id="inStatus" role="status"></div>', '<div class="status" id="inStatus" role="status"></div></div>')
+    # Geplande taken (Claude-taken) bestaan niet op de website
+    body = rep(body, '<div class="card" id="bkTasks" style="margin-top:12px">', '<div class="card" id="bkTasks" style="margin-top:12px" hidden>')
+    body = rep(body, '<p class="small muted" style="margin:0 0 12px">Back-up, verhuizen en instellingen van De Fokwijzer. Alleen voor beheerders.</p>', '<p class="small muted" style="margin:0 0 12px">Back-up, verhuizen en gebruikers van De Fokwijzer. Alleen voor beheerders.</p>')
     body = rep(body, "<span>Powered by DeDilieHoeve</span></footer>",
                '<span>Powered by DeDilieHoeve</span><span class="fw-links"><a href="%s" target="_top">Over</a> · <a href="%s" target="_top">Privacy</a></span></footer>' % links)
 
     # ---------------------------------------------------------------- JavaScript-aanpassingen
     texts = [
         ("De council werkt alleen in de Claude-app, aangemeld, met toestemming om Claude te gebruiken.",
-         "De council is beschikbaar voor ingelogde bijdragers, als AI-advies op de server is ingesteld."),
+         "De council is beschikbaar voor ingelogde paarden-beheerders, als AI-advies op de server is ingesteld."),
         ("Dit gebruikt je eigen Claude-verbruik (5 vragen).", "Dit telt mee voor je limiet van AI-vragen (5 vragen)."),
-        ("Je gaf geen toestemming om Claude te gebruiken voor deze pagina.", "Log in als bijdrager om de council te gebruiken."),
+        ("Je gaf geen toestemming om Claude te gebruiken voor deze pagina.", "Log in als paarden-beheerder om de council te gebruiken."),
         ("Claude is niet beschikbaar voor dit account.", "AI-advies is niet beschikbaar op deze server."),
         ("Aanvragen kan alleen als de pagina in Claude geopend is terwijl je aangemeld bent.", "Log in om een paard aan te vragen."),
         ("In deze weergave kan niets bewaard worden. Open de pagina in Claude terwijl je aangemeld bent.", "Log in om bij te dragen."),
         ('Starten kan alleen in de Claude-app met de connector Claude Code Remote. Je kunt ook in de chat vragen: \\"verwerk de aanvragen\\".',
-         "Automatisch verwerken is niet ingesteld op deze server, of je bent niet ingelogd als bijdrager."),
+         "Automatisch verwerken is niet ingesteld op deze server, of je bent niet ingelogd als paarden-beheerder."),
         ('"Starten lukte niet ("+(c||"onbekend")+").";', '(err&&err.message)||"Starten lukte niet.";'),
         ('"Starten lukte niet ("+(err&&err.code||"onbekend")+"). Je kunt ook in de chat vragen: \\"laat de veilingmeester controleren\\"."',
          '(err&&err.message)||"Starten lukte niet."'),
         ('"De connector Claude Code Remote moet opnieuw verbonden worden (claude.ai, Instellingen, Connectors)."', '"Log opnieuw in."'),
         ('"De connector Claude Code Remote is niet beschikbaar voor deze weergave. Voeg hem toe in claude.ai, Instellingen, Connectors, of vraag in de chat: \\"verwerk de aanvragen\\"."',
          '"Automatisch verwerken is niet ingesteld op deze server."'),
-        ("Je hebt geen rechten om paarden toe te voegen of te wijzigen. Vraag de eigenaar om je bijdragerrechten te geven.",
-         "Je hebt geen rechten om paarden toe te voegen of te wijzigen. Log in, of vraag een beheerder om bijdragerrechten."),
+        ("Je hebt geen rechten om paarden toe te voegen of te wijzigen. Vraag de eigenaar om je paarden-beheerdersrechten te geven.",
+         "Je hebt geen rechten om paarden toe te voegen of te wijzigen. Log in als paarden-beheerder, of vraag die rol aan bij Account maken."),
     ]
     for old, new in texts:
         js = rep(js, old, new)
@@ -78,7 +79,7 @@ def transform(html, links=('/over.html', '/privacy.html')):
     js = re.sub(r'const RUN_TRIGGER="[^"]*";', 'const RUN_TRIGGER="verwerking";', js)
     js = rep(js, "(state.inst&&state.inst.vm_trigger)||VM_TRIGGER", "VM_TRIGGER")
     js = rep(js, "(state.inst&&state.inst.run_trigger)||RUN_TRIGGER", "RUN_TRIGGER")
-    # Lezers (ingelogd, zonder bijdragerrechten) mogen paarden aanvragen.
+    # Gebruikers (ingelogd, zonder paarden-beheerdersrechten) mogen paarden aanvragen.
     js = rep(js, "state.canWrite=can!==false;", "state.canWrite=can===true;state.canAsk=!!(user&&user.level>=1);")
     js = rep(js, 'const can=!!db&&state.canWrite&&state.dbState==="ready";$("aBtn").disabled=!can;',
              'const can=!!db&&state.canAsk&&state.dbState==="ready";$("aBtn").disabled=!can;')
@@ -86,8 +87,8 @@ def transform(html, links=('/over.html', '/privacy.html')):
              'if(!db||!state.canAsk){st.className="status err";st.textContent="Log in om een paard aan te vragen.";return}')
     js = rep(js, 'finally{$("aBtn").disabled=!state.canWrite}', 'finally{$("aBtn").disabled=!state.canAsk}')
     # Wiki-geschiedenis per paard.
-    js = rep(js, '<button class="btn danger" type="button" data-act="del" data-id="${esc(h.id)}">',
-             '<button class="btn ghost" type="button" data-act="hist" data-id="${esc(h.id)}">Geschiedenis</button><button class="btn danger" type="button" data-act="del" data-id="${esc(h.id)}">')
+    js = rep(js, '<button class="btn danger" type="button" data-act="del" data-own=',
+             '<button class="btn ghost" type="button" data-act="hist" data-id="${esc(h.id)}">Geschiedenis</button><button class="btn danger" type="button" data-act="del" data-own=')
     if re.search(r"Claude|in de chat|claude\.ai", js.replace("Claude Code Remote", "")):
         left = sorted(set(re.findall(r"[^\"'`]{0,40}(?:Claude|in de chat|claude\.ai)[^\"'`]{0,40}", js.replace("Claude Code Remote", ""))))
         fail("nog verwijzingen naar Claude: " + "; ".join(left))

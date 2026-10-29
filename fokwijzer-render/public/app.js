@@ -124,10 +124,10 @@ function match(s,m){const w=state.w,t=state.t;const warnings=[],reasons=[],weak=
 
 // ---------- rendering ----------
 function setTab(t){if((t==="stam"&&!FW_EXTRA.stamlijnen)||(t==="veilingen"&&!FW_EXTRA.veilingen))t="zoeken";const prevTab=state.tab;state.tab=t;document.querySelectorAll("nav.tabs button[data-tab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===t)));
-  ["info","zoeken","vergelijken","matches","stam","veilingen","aanvragen","beheer"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab();
+  ["info","zoeken","vergelijken","matches","stam","veilingen","aanvragen","beheer","partners","admin"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab();
   // Na een tabwissel bovenaan het nieuwe onderdeel beginnen (vooral op de gsm stond je anders halverwege de pagina).
   if(prevTab!==t){const n=document.querySelector("nav.tabs");if(n&&n.getBoundingClientRect().top<0)window.scrollTo({top:Math.max(0,n.getBoundingClientRect().top+window.scrollY-8)})}}
-function renderTab(){if(state.tab==="zoeken"){renderSearch();requestAnimationFrame(fitList)}if(state.tab==="vergelijken")renderCompare();if(state.tab==="matches")renderMatches();if(state.tab==="stam")renderStam();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="aanvragen")renderAanvragen();if(state.tab==="beheer"){renderBeheer();renderAdAdmin()}}
+function renderTab(){if(state.tab==="zoeken"){renderSearch();requestAnimationFrame(fitList)}if(state.tab==="vergelijken")renderCompare();if(state.tab==="matches")renderMatches();if(state.tab==="stam")renderStam();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="aanvragen")renderAanvragen();if(state.tab==="beheer")renderBeheer();if(state.tab==="partners"){renderPartnersNote();renderAdAdmin()}if(state.tab==="admin")renderAdmin()}
 
 // ---------- veilingen (veilingmeester) ----------
 const V_COLL="veilingen",C_COLL="council";
@@ -287,7 +287,7 @@ function renderCouncil(s,m){const box=$("councilOut");if(!box)return;if(!s||!m){
   const id=cId(s,m);const saved=(state.council||{})[id];const live=councilBusy&&councilBusy.id===id?councilBusy:null;
   const exp=live?live.exp:saved&&saved.experts||{};const vz=live?live.vz:saved&&saved.voorzitter;
   const can=!!sampleNs&&!live;
-  let note="";if(!sampleNs)note=(sampleChecked||state.dbState==="none")?"De council is beschikbaar voor ingelogde bijdragers, als AI-advies op de server is ingesteld.":"Council wordt geladen...";
+  let note="";if(!sampleNs)note=(sampleChecked||state.dbState==="none")?"De council is beschikbaar voor ingelogde paarden-beheerders, als AI-advies op de server is ingesteld.":"Council wordt geladen...";
   else if(live)note="De experten beoordelen de combinatie. Dit duurt meestal 30 tot 90 seconden.";
   else if(saved)note=`Advies van ${fmtDate(saved.gemaakt_op)}${saved.veilinglots!=null?`, met ${saved.veilinglots} veilinglots in de database`:""}.`;
   else note="Laat de vijf experten deze combinatie beoordelen. Dit telt mee voor je limiet van AI-vragen (5 vragen).";
@@ -297,7 +297,7 @@ function renderCouncil(s,m){const box=$("councilOut");if(!box)return;if(!s||!m){
    ${(saved||live)?`${chairCard(vz,live?(Object.keys(live.st).every(k=>live.st[k]!=="bezig")&&!vz?(live.vzSt||""):""):"")}
    <div class="xgrid">${EXPERTS.map(e=>expertCard(e,exp[e.id],live?live.st[e.id]:(exp[e.id]?"":"Geen oordeel."))).join("")}</div>`:""}`;
   const a=$("cAsk");if(a)a.onclick=()=>askCouncil(s,m,!!saved);const st=$("cStop");if(st)st.onclick=()=>{if(councilBusy&&councilBusy.ctl)councilBusy.ctl.abort()}}
-const sampleErr=(e)=>{const c=e&&e.code;return c==="not_granted"?"Log in als bijdrager om de council te gebruiken.":c==="rate_limited"?"Even te veel vragen of je verbruikslimiet is bereikt. Probeer later opnieuw.":c==="sampling_disabled"?"AI-advies is niet beschikbaar op deze server.":c==="cancelled"?"Gestopt.":c==="invalid_json"?"Het antwoord was geen geldig formaat.":c==="session_expired"?"Meld je opnieuw aan.":"Geen antwoord ("+(c||"fout")+")."};
+const sampleErr=(e)=>{const c=e&&e.code;return c==="not_granted"?"Log in als paarden-beheerder om de council te gebruiken.":c==="rate_limited"?"Even te veel vragen of je verbruikslimiet is bereikt. Probeer later opnieuw.":c==="sampling_disabled"?"AI-advies is niet beschikbaar op deze server.":c==="cancelled"?"Gestopt.":c==="invalid_json"?"Het antwoord was geen geldig formaat.":c==="session_expired"?"Meld je opnieuw aan.":"Geen antwoord ("+(c||"fout")+")."};
 async function askCouncil(s,m,again){if(!sampleNs||councilBusy)return;const id=cId(s,m);const data=councilData(s,m);const ctl=new AbortController();
   state.cErr="";councilBusy={id,ctl,exp:{},st:Object.fromEntries(EXPERTS.map(e=>[e.id,"bezig"])),vz:null,vzSt:""};const rr=()=>{if(state.tab==="vergelijken")renderCouncil(byId($("cS").value),byId($("cM").value))};rr();
   const opts={signal:ctl.signal};if(again)opts.cache=false;
@@ -468,7 +468,76 @@ function renderReview0(){const box=$("aReview");const a=state.aanvragen.find(x=>
     <div class="field" style="flex:1 1 200px"><label class="label" for="rReden">Reden (optioneel)</label><input id="rReden" placeholder="Bv. verkeerd paard, andere moeder"></div>
     <span class="status" id="rStatus" role="status"></span>
    </div></div>`}
-function renderAll(){renderBanner();fillSelects();renderTab();renderAds()}
+const LEDEN_COLL="leden";
+const ROL_NAAM={gebruiker:"Gebruiker",paardenbeheerder:"Paarden-beheerder",beheerder:"Beheerder"};
+function applyArtRole(){if(state.site)return;const mine=(state.leden||{})[state.meId];
+  state.rol=state.isOwner?"beheerder":(mine&&ROL_NAAM[mine.rol]?mine.rol:"gebruiker");
+  state.isAdmin=state.rol==="beheerder";
+  state.canWrite=!!state.platformWrite&&state.rol!=="gebruiker";state.canWiki=!!state.platformWrite;
+  state.isPartner=!!state.platformWrite&&(state.isAdmin||!!(mine&&mine.partner))}
+function renderWho(){if(state.site)return;if(state.dbState!=="ready"){$("artWho").innerHTML="";$("adminAcct").innerHTML="";return}const nm=state.meName||(state.isOwner?"Eigenaar":"Jij");const rl=ROL_NAAM[state.rol]||"Lezer";
+  const ro=state.dbState==="ready"&&!state.platformWrite;
+  $("artWho").innerHTML=`<span class="fw-who"><b>${esc(nm)}</b> - ${ro?"Lezer":esc(rl)}${state.isPartner&&!state.isAdmin?" · Partner":""}</span>${state.isAdmin?'<button type="button" class="fw-lnk" id="adminLink">Beheer</button>':""}`;
+  $("adminAcct").innerHTML=`<span class="muted">Ingelogd als</span><span class="fw-who"><b>${esc(nm)}</b> - ${esc(rl)}</span>`}
+async function renderLeden(){if(state.site||!state.isAdmin)return;const box=$("adminExtra");if(!box)return;
+  const L=state.leden||{};const ids=Object.keys(L);let ps={};try{ps=state.userNs&&state.userNs.profiles?await state.userNs.profiles(ids):{}}catch(_){ps={}}
+  const rows=ids.sort((a,b)=>String((ps[a]||{}).name||"").localeCompare(String((ps[b]||{}).name||""))).map(id=>{const d=L[id]||{};const nm=(ps[id]&&ps[id].name)||"Onbekende gebruiker";const me=id===state.meId;
+    const sel=me&&state.isOwner?'<span class="small">Beheerder (eigenaar)</span>':`<select data-lid="${esc(id)}" aria-label="Rol van ${esc(nm)}">${["gebruiker","paardenbeheerder","beheerder"].map(r=>`<option value="${r}" ${d.rol===r?"selected":""}>${ROL_NAAM[r]}</option>`).join("")}</select>`;
+    const n=state.horses.filter(h=>h.eigenaar_id!=null&&String(h.eigenaar_id)===id).length;
+    return `<tr><td>${esc(nm)}${me?' <span class="small muted">(jij)</span>':""}</td><td>${sel}</td><td><input type="checkbox" data-lpartner="${esc(id)}" aria-label="${esc(nm)} is partner" ${d.partner?"checked":""}></td><td class="num">${n}</td><td>${esc(d.laatst||"-")}</td></tr>`}).join("");
+  box.innerHTML=`<div class="card" style="margin-bottom:12px"><h3 style="margin:0 0 6px">Gebruikers en rollen (${ids.length})</h3><p class="small muted" style="margin:0 0 10px">Iedereen met wie je deze Fokwijzer deelt en die ze opende. Gebruiker: vult bronnen en opmerkingen aan. Paarden-beheerder: voegt paarden toe en beheert ze. Beheerder: alles. Wie de pagina alleen mag bekijken, blijft lezer.</p><div class="fw-users-wrap"><table class="fw-users"><tr><th>Naam</th><th>Rol</th><th>Partner</th><th>Eigen paarden</th><th>Laatst gezien</th></tr>${rows||'<tr><td colspan="5" class="small muted">Nog niemand anders opende deze Fokwijzer.</td></tr>'}</table></div><div class="status" role="status" id="ledenStatus"></div></div>`}
+// ---------- partners: contact- en betaalgegevens (alleen beheerders) ----------
+// Voorlopig zijn alle partners gratis; de betaalgegevens staan klaar voor later.
+const PA_ST={gratis:["Gratis","good"],open:["Open","warn"],betaald:["Betaald","good"],achterstallig:["Achterstallig","bad"]};
+const PA_PER={maand:"per maand",jaar:"per jaar",eenmalig:"eenmalig"};
+const AD_PLEK_KORT={kop:"Kop",hengst:"Hengst",voet:"Voet",veiling:"Veiling",matches:"Matches"};
+let paSub=null;
+function paColl(){return state.site?"partner_admin":"beheerdata/partners/gegevens"}
+function paListen(){if(paSub||!db||!state.isAdmin)return;try{paSub=db.collection(paColl()).onSnapshot(snap=>{state.pAdmin={};snap.docs.forEach(d=>{state.pAdmin[d.id]=d.data()});state.pAdminErr=false;if(state.tab==="admin")renderPartnerOverview()},err=>{state.pAdminErr=true;if(state.tab==="admin")renderPartnerOverview()})}catch(_){state.pAdminErr=true}}
+function adZicht(p){const t=new Date().toISOString().slice(0,10);if(p.actief===false)return["Uit","demo"];if(p.van&&p.van>t)return["Vanaf "+p.van,"warn"];if(p.tot&&p.tot<t)return["Verlopen "+p.tot,"bad"];return[p.tot?"Tot "+p.tot:"Actief","good"]}
+function paEuro(n){const v=num(n);return v==null?"":"€ "+v.toLocaleString("nl-BE",{minimumFractionDigits:0,maximumFractionDigits:2})}
+function renderPartnerOverview(){if(!$("poList"))return;paListen();
+  const real=state.partners||[];const L=real.length?real:(state.adDemo===false?[]:AD_DEMO);const A=state.pAdmin||{};const demo=!real.length;
+  const nOpen=real.filter(p=>{const a=A[p.id]||{};return a.status==="open"||a.status==="achterstallig"}).length;
+  $("poTitle").textContent=`Partners (${real.length})`;
+  $("poSum").textContent=demo?"Nog geen echte partners. Hieronder zie je de voorbeeldpartners; zodra je een partner toevoegt, verschijnen hier zijn contact- en betaalgegevens.":(state.pAdminErr?"De betaalgegevens konden niet geladen worden. Alleen wie de Fokwijzer mag bewerken, ziet ze.":(nOpen?`${nOpen} partner${nOpen>1?"s":""} met een openstaande betaling. `:"Voorlopig zijn alle partners gratis. ")+"Alleen beheerders zien deze gegevens.");
+  if(!L.length){$("poList").innerHTML='<p class="small muted" style="margin:0">Nog geen partners.</p>';return}
+  $("poList").innerHTML=`<table class="fw-users po-table"><tr><th>Partner</th><th>Plek</th><th>Zichtbaar</th><th>Contact</th><th>Tarief</th><th>Betaling</th><th></th></tr>${L.map(p=>{const a=A[p.id]||{};const z=adZicht(p);const st=PA_ST[a.status||"gratis"];
+    return `<tr><td><span class="po-name">${adLogo(p,26,26)}<span><b>${esc(p.naam)}</b>${p.titel?`<span class="small muted">${esc(p.titel)}</span>`:""}</span></span></td><td>${esc(AD_PLEK_KORT[p.type]||p.type||"")}</td><td><span class="chip ${z[1]}">${esc(z[0])}</span></td><td class="small">${a.contact?esc(a.contact):""}${a.email?`<br><a href="mailto:${esc(a.email)}">${esc(a.email)}</a>`:""}${!a.contact&&!a.email?'<span class="muted">-</span>':""}</td><td class="small">${a.tarief?esc(paEuro(a.tarief))+" "+esc(PA_PER[a.periode]||""):'<span class="muted">gratis</span>'}</td><td>${demo?'<span class="chip demo">voorbeeld</span>':st?`<span class="chip ${st[1]}">${st[0]}</span>${a.betaald_tot?`<div class="small muted">tot ${esc(a.betaald_tot)}</div>`:""}`:'<span class="muted small">niet ingevuld</span>'}</td><td>${demo?"":`<button class="btn ghost" type="button" data-pa="${esc(p.id)}">Gegevens</button>`}</td></tr>`}).join("")}</table>`}
+function openPartnerAdmin(id){const p=(state.partners||[]).find(x=>x.id===id);if(!p)return;const a=(state.pAdmin||{})[id]||{};
+  const f=(k,l,type,ph)=>`<div class="field"><label class="label" for="pa-${k}">${l}</label><input id="pa-${k}" type="${type||"text"}" value="${esc(a[k]||"")}" ${ph?`placeholder="${esc(ph)}"`:""}></div>`;
+  const d=document.createElement("dialog");d.className="detdlg padlg";
+  d.innerHTML=`<div class="dlg-head"><h3 style="margin:0;display:flex;gap:10px;align-items:center">${adLogo(p,28,28)} ${esc(p.naam)}</h3><button type="button" class="btn ghost" data-close>Sluiten</button></div>
+  <form class="dlg-body" novalidate>
+   <div class="label" style="margin-bottom:6px">Contact</div>
+   <div class="grid3">${f("contact","Contactpersoon")}${f("email","E-mail","email","naam@bedrijf.be")}${f("telefoon","Telefoon","tel")}</div>
+   <div class="label" style="margin:12px 0 6px">Facturatie</div>
+   <div class="grid3">${f("bedrijf","Bedrijfsnaam")}${f("btw","BTW-nummer","text","BE0123.456.789")}${f("adres","Facturatieadres")}</div>
+   <div class="label" style="margin:12px 0 6px">Betaling <span class="muted" style="text-transform:none;letter-spacing:0">(voorlopig is alles gratis; vul dit in zodra partners betalen)</span></div>
+   <div class="grid3">${f("tarief","Tarief (€)","number")}<div class="field"><label class="label" for="pa-periode">Periode</label><select id="pa-periode">${Object.entries(PA_PER).map(([k,v])=>`<option value="${k}" ${a.periode===k?"selected":""}>${v}</option>`).join("")}</select></div><div class="field"><label class="label" for="pa-status">Betaalstatus</label><select id="pa-status">${Object.entries(PA_ST).map(([k,v])=>`<option value="${k}" ${(a.status||"gratis")===k?"selected":""}>${v[0]}</option>`).join("")}</select></div>
+   ${f("factuur","Laatste factuurnummer")}${f("betaald_op","Laatst betaald op","date")}${f("betaald_tot","Betaald tot","date")}</div>
+   <div class="field" style="margin-top:10px"><label class="label" for="pa-notities">Notities</label><textarea id="pa-notities" rows="3" maxlength="2000">${esc(a.notities||"")}</textarea></div>
+   <div class="row" style="margin-top:12px;gap:8px"><button class="btn" type="submit">Gegevens bewaren</button><button class="btn ghost" type="button" data-edit-ad>Advertentie bewerken</button>${p.url?`<a class="btn ghost" href="${esc(p.url)}" target="_blank" rel="noopener">Website partner</a>`:""}</div>
+   <div class="status" role="status"></div></form>`;
+  document.body.appendChild(d);d.addEventListener("close",()=>d.remove());d.querySelector("[data-close]").onclick=()=>d.close();
+  d.querySelector("[data-edit-ad]").onclick=()=>{d.close();adFill(p);setTab("partners");$("adNaam").focus()};
+  d.querySelector("form").addEventListener("submit",async e=>{e.preventDefault();const st=d.querySelector(".status");const out={};["contact","email","telefoon","bedrijf","btw","adres","tarief","factuur","betaald_op","betaald_tot","notities"].forEach(k=>{const v=d.querySelector("#pa-"+k).value.trim();if(v)out[k]=k==="tarief"?num(v):v});
+    out.periode=d.querySelector("#pa-periode").value;const sv=d.querySelector("#pa-status").value;if(sv)out.status=sv;out.bijgewerkt=new Date().toISOString().slice(0,10);
+    if(out.email&&!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(out.email)){st.className="status err";st.textContent="Dit e-mailadres klopt niet.";return}
+    try{await db.collection(paColl()).doc(id).set(out);st.className="status ok";st.textContent="Bewaard."}catch(err){st.className="status err";st.textContent="Bewaren lukte niet: "+(err&&err.message||"onbekende fout")}});
+  d.showModal()}
+// Partners-pagina: zonder beheerdersrechten een duidelijke melding in plaats van het formulier.
+function renderPartnersNote(){const ready=state.dbState==="ready";const adm=!!state.isAdmin&&ready;const pt=!!state.isPartner&&ready;let n="";
+  const uitleg='Als <b>partner</b> zet je je bedrijf of dienst in de kijker: je logo rechtsboven in de kop, als sponsor bij je hengsten, onderaan elke pagina of bij Beste matches. Je kunt tegelijk gebruiker of paarden-beheerder zijn. Voorlopig is partner zijn <b>gratis</b>.';
+  if(!ready)n='<p class="small muted">Rechten worden gecontroleerd...</p>';
+  else if(adm)n="";
+  else if(pt)n='<p class="small muted" style="margin:0 0 10px">Je bent partner. Hier beheer je je eigen partnerplekken; een beheerder van De Fokwijzer kan ze ook aanpassen.</p>';
+  else if(state.site&&(state.rol||"anoniem")==="anoniem")n=`<div class="card pb-cta"><h3 style="margin:0">Partner worden</h3><p style="margin:6px 0 12px">${uitleg} Maak een account en vink <b>Ik wil ook partner worden</b> aan, of log in.</p><div class="row"><button class="btn" type="button" data-acct="registreren-partner">Account maken als partner</button><button class="btn ghost" type="button" data-acct="inloggen">Ik heb al een account: inloggen</button></div></div>`;
+  else if(!state.site&&!state.platformWrite)n='<div class="banner"><strong>Alleen lezen.</strong> Je mag deze Fokwijzer bekijken maar niet bewerken. Vraag de eigenaar om bewerkrechten als je partner wilt worden.</div>';
+  else n=`<div class="card pb-cta"><h3 style="margin:0">Word partner</h3><p style="margin:6px 0 12px">${uitleg} Je account blijft verder hetzelfde.</p><div class="row"><button class="btn" type="button" data-acct="word-partner">Word partner</button></div><div class="status" role="status" id="ptStatus"></div></div>`;
+  $("partnersNote").innerHTML=n;$("adCard").style.display=adm||pt?"":"none"}
+function renderAdmin(){renderLeden();renderPartnerOverview();const al=$("adminLink");if(al)al.setAttribute("aria-current",state.tab==="admin"?"page":"false")}
+function renderAll(){const adm=state.site?state.isAdmin:(state.dbState==="ready"?!!state.isAdmin:true);document.documentElement.classList.toggle("fw-ro",!adm);if(!adm&&state.tab==="admin")state.tab="info";renderWho();renderBanner();fillSelects();renderTab();renderAds()}
 const P_COLL="partners";
 // Tijdelijk logo voor de voorbeeldpartner; vervang door het echte logo van DeDilieHoeve.
 const FW_DDH="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxMzMwMkEiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQjA4QTVBIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzMiIgeT0iMzkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjRTlEM0FFIiBsZXR0ZXItc3BhY2luZz0iMSI+REg8L3RleHQ+PC9zdmc+";
@@ -486,12 +555,17 @@ function adInit(n){const w=String(n||"?").replace(/\b(voorbeeld|bv|bvba|nv)\b/ig
 function adLogo(p,w,h){return `<span class="ad-logo" style="width:${w}px;height:${h}px">${p.logo&&/^data:image\//.test(p.logo)?`<img src="${esc(p.logo)}" alt="">`:esc(adInit(p.naam))}</span>`}
 function adWrap(p,inner,cls){const u=p.url&&/^https?:\/\//.test(p.url)?p.url:"";return u?`<a class="ad ${cls||""}" href="${esc(u)}" target="_blank" rel="sponsored noopener" title="${esc(p.naam)}">${inner}</a>`:`<div class="ad ${cls||""}" title="${esc(p.naam)}">${inner}</div>`}
 function sponsorOf(h){if(!h||h.geslacht!=="hengst")return null;const ks=hKeys(h);return adsOf("hengst").find(p=>(p.hengst_id&&p.hengst_id===h.id)||(p.hengst_naam&&ks.has(keyL(p.hengst_naam))))||null}
+function adKopHtml(k){return adWrap(k,`<span class="ad-tag">Partner</span>${adLogo(k,32,32)}<span class="ad-txt"><b>${esc(k.naam)}</b>${k.tekst?`<span>${esc(k.tekst)}</span>`:""}</span>`,"ad-kop")}
+function adVoetHtml(v){return `<div class="ad-strip"><div class="ad-strip-head"><span class="ad-tag">Partners</span><span class="ad-strip-note">Zij maken De Fokwijzer gratis mogelijk${v.some(p=>p.voorbeeld)?" · voorbeeld":""}</span></div><div class="ad-voet-row">${v.slice(0,6).map(p=>adWrap(p,`${adLogo(p,34,34)}<span class="ad-vt"><b>${esc(p.titel||p.naam)}</b>${p.titel?`<span>${esc(p.naam)}</span>`:""}</span>`,"ad-voet")).join("")}</div></div>`}
+function adVeilHtml(vb){return adWrap(vb,`${adLogo(vb,96,48)}<div class="ad-body"><div><span class="ad-tag">Partner</span> <b style="font-size:1.02rem">${esc(vb.titel||vb.naam)}</b></div>${vb.tekst?`<div class="ad-sub">${esc(vb.tekst)}</div>`:""}</div>${vb.knop?`<span class="btn">${esc(vb.knop)}</span>`:""}`,"ad-banner")}
+function adMatchHtml(mc){return adWrap(mc,`<span class="ad-tag">Partner</span>${adLogo(mc,40,40)}<div class="ad-body"><b>${esc(mc.titel||mc.naam)}</b>${mc.tekst?`<div class="ad-sub">${esc(mc.tekst)}</div>`:""}</div>${mc.knop?`<span class="btn ghost">${esc(mc.knop)}</span>`:""}`,"ad-card")}
+function adDekHtml(sp){return adWrap(sp,`<span class="ad-tag">Partner</span><span class="ad-msg">Dekt bij <b>${esc(sp.naam)}</b> · ${esc(sp.dekinfo)}</span>${sp.url?'<span class="ad-cta">Bekijk</span>':""}`,"ad-dek")}
 function renderAds(){
-  const k=adsOf("kop")[0];$("adKop").innerHTML=k?adWrap(k,`<span class="ad-tag">Partner</span>${adLogo(k,32,32)}<span class="ad-txt"><b>${esc(k.naam)}</b>${k.tekst?`<span>${esc(k.tekst)}</span>`:""}</span>`,"ad-kop"):"";
-  const v=adsOf("voet");$("adVoet").innerHTML=v.length?`<div class="ad-strip"><div class="ad-strip-head"><span class="ad-tag">Partners</span><span class="ad-strip-note">Zij maken De Fokwijzer gratis mogelijk${v.some(p=>p.voorbeeld)?" · voorbeeld":""}</span></div><div class="ad-voet-row">${v.slice(0,6).map(p=>adWrap(p,`${adLogo(p,34,34)}<span class="ad-vt"><b>${esc(p.titel||p.naam)}</b>${p.titel?`<span>${esc(p.naam)}</span>`:""}</span>`,"ad-voet")).join("")}</div></div>`:"";
-  const vb=adsOf("veiling")[0];$("adVeil").innerHTML=vb?adWrap(vb,`${adLogo(vb,96,48)}<div class="ad-body"><div><span class="ad-tag">Partner</span> <b style="font-size:1.02rem">${esc(vb.titel||vb.naam)}</b></div>${vb.tekst?`<div class="ad-sub">${esc(vb.tekst)}</div>`:""}</div>${vb.knop?`<span class="btn">${esc(vb.knop)}</span>`:""}`,"ad-banner"):"";
-  const mc=adsOf("matches")[0];$("adMatch").innerHTML=mc?adWrap(mc,`<span class="ad-tag">Partner</span>${adLogo(mc,40,40)}<div class="ad-body"><b>${esc(mc.titel||mc.naam)}</b>${mc.tekst?`<div class="ad-sub">${esc(mc.tekst)}</div>`:""}</div>${mc.knop?`<span class="btn ghost">${esc(mc.knop)}</span>`:""}`,"ad-card"):"";
-  if(state.tab==="beheer")renderAdAdmin()}
+  const k=adsOf("kop")[0];$("adKop").innerHTML=k?adKopHtml(k):"";
+  const v=adsOf("voet");$("adVoet").innerHTML=v.length?adVoetHtml(v):"";
+  const vb=adsOf("veiling")[0];$("adVeil").innerHTML=vb?adVeilHtml(vb):"";
+  const mc=adsOf("matches")[0];$("adMatch").innerHTML=mc?adMatchHtml(mc):"";
+  if(state.tab==="partners")renderAdAdmin();if(state.tab==="admin")renderPartnerOverview()}
 
 
 function renderBanner(){const n=state.horses.length;const h=state.horses.filter(x=>x.geslacht==="hengst").length;
@@ -720,18 +794,18 @@ function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<d
     ${h.ocd_toelichting?`<dt>OCD</dt><dd class="wide">${esc(h.ocd_toelichting)}</dd>`:""}
    </dl>`;
   else if(t==="veilingen")body=mk.replace('<h3 style="margin-top:16px">Veilingen</h3>','');
-  else if(t==="bronnen")body=srcHtml(h);
-  else body=`<p class="small" style="margin:0;white-space:pre-line">${esc(h.opmerking)}</p>`;
+  else if(t==="bronnen")body=srcHtml(h)+(state.canWiki&&!isDemo&&db?`<form class="wiki-form" data-wiki="bron" data-id="${esc(h.id)}"><div class="label" style="margin-top:12px">Bron toevoegen</div><div class="row"><div class="field grow"><label class="label" for="wbNaam">Naam van de bron</label><input id="wbNaam" maxlength="200" placeholder="Bv. FEI-profiel, studbook, veilingcatalogus" required></div><div class="field grow"><label class="label" for="wbUrl">Link (optioneel)</label><input id="wbUrl" type="url" maxlength="500" placeholder="https://..."></div><button class="btn" type="submit" style="align-self:end">Toevoegen</button></div><div class="status" role="status"></div></form>`:"");
+  else body=(state.canWiki&&!isDemo&&db?`<form class="wiki-form" data-wiki="opm" data-id="${esc(h.id)}"><label class="label" for="wOpm">Opmerkingen (wiki)</label><textarea id="wOpm" rows="5" maxlength="4000" placeholder="Wat weet je over dit paard? Vermeld je bron bij Bronnen.">${esc(h.opmerking||"")}</textarea><div class="row" style="margin-top:8px"><button class="btn" type="submit">Opmerking bewaren</button></div><div class="status" role="status"></div></form>`:(h.opmerking?`<p class="small" style="margin:0;white-space:pre-line">${esc(h.opmerking)}</p>`:'<p class="small muted" style="margin:0">Nog geen opmerkingen. Log in als gebruiker om er een toe te voegen.</p>'));
   $("detail").innerHTML=`<div class="card det">
    <div class="det-head"><div style="min-width:0"><div class="label">${esc(h.geslacht)}${h.geboortejaar?" &middot; "+esc(h.geboortejaar):""} &middot; ${Math.round(completeOf(h))}% volledig</div><h2 class="det-name">${esc(h.naam)}</h2></div>
    <div class="chips">${sp?adWrap(sp,`<span class="ad-tag">Gesponsord door</span>${adLogo(sp,20,20)}<b style="font-size:.78rem">${esc(sp.naam)}</b>`,"ad-badge"):""}${isDemo?'<span class="chip demo">Fictief</span>':""}${h.record_status==="te_controleren"?'<span class="chip warn">Te controleren</span>':""}${h.ruin?'<span class="chip">Ruin</span>':""}${String(h.herkomst||"").startsWith("veiling")?'<span class="chip">Uit veiling</span>':""}${(h.aangevuld_door_gebruiker||[]).length?`<span class="chip">Aangevuld</span>`:""}${wffsChip(h.wffs)}${ocdChip(h)}</div></div>
    <div class="dtabs" role="tablist">${tabs.map(([k,l])=>`<button type="button" role="tab" data-dtab="${k}" aria-selected="${k===t}">${esc(l)}</button>`).join("")}</div>
-   <div class="det-body${t==="overzicht"?" ov":""}">${body}</div><button type="button" class="btn ghost det-more" id="detMore" hidden>Toon alles</button>${sp&&sp.dekinfo?adWrap(sp,`<span class="ad-tag">Partner</span><span class="ad-msg">Dekt bij <b>${esc(sp.naam)}</b> · ${esc(sp.dekinfo)}</span>${sp.url?'<span class="ad-cta">Bekijk</span>':""}`,"ad-dek"):""}
+   <div class="det-body${t==="overzicht"?" ov":""}">${body}</div><button type="button" class="btn ghost det-more" id="detMore" hidden>Toon alles</button>${sp&&sp.dekinfo?adDekHtml(sp):""}
    <div class="det-foot">
     <button class="btn" type="button" data-act="matches" data-id="${esc(h.id)}">Beste matches</button>
     <button class="btn ghost" type="button" data-act="compare" data-id="${esc(h.id)}">Vergelijk</button>
     <button class="btn ghost" type="button" data-act="stam" data-id="${esc(h.id)}">Stamlijn</button>
-    ${state.canWrite&&!isDemo?`<button class="btn ghost" type="button" data-act="edit" data-id="${esc(h.id)}">Bewerken</button><button class="btn ghost" type="button" data-act="hist" data-id="${esc(h.id)}">Geschiedenis</button><button class="btn danger" type="button" data-act="del" data-id="${esc(h.id)}">Verwijderen</button>`:""}
+    ${state.canWrite&&!isDemo?`<button class="btn ghost" type="button" data-act="edit" data-id="${esc(h.id)}">Bewerken</button>${state.isAdmin||state.site||(state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId)?`<button class="btn ghost" type="button" data-act="hist" data-id="${esc(h.id)}">Geschiedenis</button><button class="btn danger" type="button" data-act="del" data-own="${state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId?1:0}" data-id="${esc(h.id)}">Verwijderen</button>`:""}`:""}
    </div><div class="status" id="detStatus" role="status"></div></div>`;
   requestAnimationFrame(()=>{checkDetOverflow();paintPedSlots()})}
 function checkDetOverflow(){const b=document.querySelector(".det-body"),m=$("detMore");if(!b||!m)return;b.classList.remove("cut");m.hidden=true;
@@ -803,8 +877,22 @@ function buildPedInputs(){$("pedInputs").innerHTML=PED_KEYS.map(k=>`<div class="
 function renderBeheer(){let note="";
   if(state.dbState==="none")note='<div class="banner"><strong>Opslag niet beschikbaar.</strong> Log in om bij te dragen.</div>';
   else if(state.dbState==="loading")note='<p class="small muted">Opslag wordt geladen...</p>';
-  else if(!state.canWrite)note='<div class="banner"><strong>Alleen lezen.</strong> Je hebt geen rechten om paarden toe te voegen of te wijzigen. Log in, of vraag een beheerder om bijdragerrechten.</div>';
-  $("writeNote").innerHTML=note;const dis=!state.canWrite;["saveBtn","impBtn","lnkBtn"].forEach(id=>$(id).disabled=dis)}
+  else if(!state.canWrite)note='<div class="banner"><strong>Alleen lezen.</strong> Je hebt geen rechten om paarden toe te voegen of te wijzigen. Log in als paarden-beheerder, of vraag die rol aan bij Account maken.</div>';
+  // Op de website: zonder de juiste rol eerst een account (of de rol paarden-beheerder) nemen.
+  const rol=state.site?state.rol||"anoniem":(state.platformWrite?state.rol:"lezer");const site=state.site||state.dbState==="ready";
+  if(site&&!state.canWrite&&!(state.site===false&&!state.platformWrite)){
+    note=rol==="anoniem"
+      ?`<div class="card pb-cta"><h3 style="margin:0">Je eigen paarden beheren</h3><p style="margin:6px 0 12px">Voeg je eigen paarden toe en houd hun gegevens bij. Daarvoor maak je eerst een gratis account als <b>paarden-beheerder</b>. Je kunt meteen aan de slag.</p><div class="row"><button class="btn" type="button" data-acct="registreren-pb">Account maken als paarden-beheerder</button><button class="btn ghost" type="button" data-acct="inloggen">Ik heb al een account: inloggen</button></div></div>`
+      :`<div class="card pb-cta"><h3 style="margin:0">Word paarden-beheerder</h3><p style="margin:6px 0 12px">Je bent ingelogd als <b>gebruiker</b>. Als paarden-beheerder voeg je je eigen paarden toe en pas je gegevens aan. Dat kan meteen, zonder goedkeuring.</p><div class="row"><button class="btn" type="button" data-acct="word-pb">Word paarden-beheerder</button></div><div class="status" role="status" id="pbStatus"></div></div>`}
+  $("writeNote").innerHTML=note;const dis=!state.canWrite;["saveBtn","impBtn","lnkBtn"].forEach(id=>$(id).disabled=dis);
+  if(!state.site&&state.dbState==="ready"&&!state.platformWrite)note='<div class="banner"><strong>Alleen lezen.</strong> Je mag deze Fokwijzer bekijken maar niet bewerken. Vraag de eigenaar om bewerkrechten (Kan bewerken) als je wilt bijdragen.</div>';
+  $("writeNote").innerHTML=note;
+  {const off=site&&!state.canWrite;[...$("p-beheer").children].forEach(c=>{if(c.id!=="writeNote"&&c.id!=="mineCard")c.style.display=off?"none":""})}
+  const mine=site&&state.canWrite&&state.meId?state.horses.filter(h=>h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId).sort((a,b)=>String(a.naam).localeCompare(String(b.naam))):null;
+  $("mineCard").hidden=!mine;
+  if(mine){$("mineTitle").textContent=`Mijn paarden (${mine.length})`;
+    $("mineList").innerHTML=mine.length?mine.map(h=>`<div class="mine-item"><span><b>${esc(h.naam)}</b> <span class="small muted">${esc(h.geslacht||"")}${h.geboortejaar?" · "+esc(h.geboortejaar):""}</span></span><span class="row" style="gap:6px"><button class="btn ghost" type="button" data-mine="bekijk" data-id="${esc(h.id)}">Bekijk</button><button class="btn ghost" type="button" data-mine="edit" data-id="${esc(h.id)}">Bewerken</button></span></div>`).join(""):'<p class="small muted" style="margin:0">Je hebt nog geen paarden toegevoegd. Gebruik het formulier hieronder.</p>'}}
+function editHorse(h){resetForm();fillForm(h);state.editId=h.id;$("formTitle").textContent="Bewerk "+h.naam;$("saveBtn").textContent="Wijzigingen opslaan";setTab("beheer");$("h-naam").focus()}
 function parseLines(txt,fields){return txt.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>{const p=l.split("|").map(x=>x.trim());const o={};fields.forEach((f,i)=>{o[f]=p[i]==null?"":p[i]});return o})}
 function formToHorse(){const g=(id)=>$(id).value.trim();const n=(id)=>num($(id).value);
   const stamboom={};PED_KEYS.forEach(k=>{const v=g("ped-"+k);if(v)stamboom[k]=v});
@@ -829,6 +917,16 @@ function resetForm(){$("hForm").reset();state.editId=null;$("formTitle").textCon
 // ---------- events ----------
 {const hi=document.createElement("img");hi.className="info-horses";hi.alt="";hi.src=FW_HORSES;document.querySelector("#p-info .info-hero").appendChild(hi)}
 $("p-info").addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(g){setTab(g.dataset.goto);window.scrollTo({top:0,behavior:"smooth"})}});
+document.addEventListener("click",e=>{if(e.target.closest("#adminLink")){e.preventDefault();setTab("admin")}});
+$("poList").addEventListener("click",e=>{const b=e.target.closest("[data-pa]");if(b)openPartnerAdmin(b.dataset.pa)});
+$("poNew").addEventListener("click",()=>{adFill(null);setTab("partners");$("adNaam").focus()});
+$("adminExtra").addEventListener("change",async e=>{const pc=e.target.closest("input[data-lpartner]");if(pc&&!state.site&&state.isAdmin){const st=$("ledenStatus");try{await db.collection(LEDEN_COLL).doc(pc.dataset.lpartner).update({partner:pc.checked});if(st){st.className="status ok";st.textContent=pc.checked?"Is nu partner.":"Is geen partner meer."}}catch(err){if(st){st.className="status err";st.textContent="Wijzigen lukte niet."}}return}
+  const sel=e.target.closest("select[data-lid]");if(!sel||state.site||!state.isAdmin)return;const st=$("ledenStatus");
+  try{await db.collection(LEDEN_COLL).doc(sel.dataset.lid).update({rol:sel.value});if(st){st.className="status ok";st.textContent="Rol gewijzigd."}}catch(err){if(st){st.className="status err";st.textContent="Wijzigen lukte niet: "+(err&&err.message||"onbekende fout")}}});
+document.addEventListener("click",async e=>{const b=e.target.closest("[data-acct]");if(!b||state.site)return;e.preventDefault();
+  if(b.dataset.acct==="word-partner"&&db&&state.meId){b.disabled=true;try{await db.collection(LEDEN_COLL).doc(state.meId).update({partner:true})}catch(err){b.disabled=false;const st=$("ptStatus");if(st){st.className="status err";st.textContent="Lukte niet: "+(err&&err.message||"onbekende fout")}}return}
+  if(b.dataset.acct==="word-pb"&&db&&state.meId){b.disabled=true;try{await db.collection(LEDEN_COLL).doc(state.meId).update({rol:"paardenbeheerder"})}catch(err){b.disabled=false;const st=$("pbStatus");if(st){st.className="status err";st.textContent="Lukte niet: "+(err&&err.message||"onbekende fout")}}}});
+$("mineList").addEventListener("click",e=>{const b=e.target.closest("[data-mine]");if(!b)return;const h=byId(b.dataset.id);if(!h)return;if(b.dataset.mine==="edit")editHorse(h);else{state.sel=h.id;state.detTab="overzicht";$("q").value=h.naam;setTab("zoeken")}});
 $("tabMore").addEventListener("click",()=>{const n=document.querySelector("nav.tabs");const o=!n.classList.contains("open");n.classList.toggle("open",o);$("tabMore").setAttribute("aria-expanded",String(o))});
 document.querySelector("nav.tabs").addEventListener("click",e=>{if(e.target.closest("button[data-tab]")){const n=document.querySelector("nav.tabs");n.classList.remove("open");$("tabMore").setAttribute("aria-expanded","false")}});
 document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(b)setTab(b.dataset.tab)});
@@ -836,12 +934,20 @@ document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target
 $("results").addEventListener("click",e=>{const b=e.target.closest(".item");if(!b)return;const r=$("results"),st=r.scrollTop;state.sel=b.dataset.id;state.detTab="overzicht";renderSearch();r.scrollTop=st;if(window.matchMedia("(max-width:820px)").matches)requestAnimationFrame(()=>{const d=$("detail");if(d)d.scrollIntoView({behavior:"smooth",block:"start"})})});
 let armTimer=null;
 $("detail").addEventListener("click",e=>{const tb=e.target.closest("[data-dtab]");if(tb){state.detTab=tb.dataset.dtab;renderDetail();return}if(e.target.closest("#detMore"))openDetDialog()});
+$("detail").addEventListener("submit",async e=>{const f=e.target.closest("form.wiki-form");if(!f)return;e.preventDefault();const h=byId(f.dataset.id);if(!h||!db)return;const st=f.querySelector(".status");const btn=f.querySelector("button[type=submit]");
+  try{btn.disabled=true;st.className="status";st.textContent="Bewaren...";
+    if(f.dataset.wiki==="bron"){const naam=$("wbNaam").value.trim(),url=$("wbUrl").value.trim();if(!naam){st.className="status err";st.textContent="Vul de naam van de bron in.";btn.disabled=false;return}
+      if(url&&!/^https?:\/\//.test(url)){st.className="status err";st.textContent="Een link begint met http:// of https://.";btn.disabled=false;return}
+      const b={naam,datum:new Date().toISOString().slice(0,10)};if(url)b.url=url;await db.collection(DB_COLL).doc(h.id).update({bronnen:(h.bronnen||[]).concat([b])})}
+    else await db.collection(DB_COLL).doc(h.id).update({opmerking:$("wOpm").value.trim()});
+    st.className="status ok";st.textContent="Bewaard. Dank je voor je bijdrage."}
+  catch(err){st.className="status err";st.textContent="Bewaren lukte niet: "+(err&&err.message||"onbekende fout")}finally{btn.disabled=false}});
 $("detail").addEventListener("click",async e=>{const b=e.target.closest("button[data-act]");if(!b)return;const h=byId(b.dataset.id);if(!h)return;const act=b.dataset.act;
   if(act==="matches"){fillSelects();$("mFor").value=h.id;setTab("matches")}
   if(act==="stam"){state.stamSel=h.id;setTab("stam");return}
   if(act==="veil"){state.vSire=h.geslacht==="hengst"?(lotsFor(h).alsVader[0]||{})._kv||keyL(h.naam):"";$("vQ").value=h.geslacht==="hengst"?"":h.naam;state.vLim=60;setTab("veilingen");return}
   if(act==="compare"){fillSelects();if(h.geslacht==="hengst")$("cS").value=h.id;else $("cM").value=h.id;setTab("vergelijken")}
-  if(act==="edit"){resetForm();fillForm(h);state.editId=h.id;$("formTitle").textContent="Bewerk "+h.naam;$("saveBtn").textContent="Wijzigingen opslaan";setTab("beheer");$("h-naam").focus()}
+  if(act==="edit")editHorse(h);
   if(act==="del"){if(!b.classList.contains("arm")){b.classList.add("arm");b.textContent="Klik opnieuw om te verwijderen";clearTimeout(armTimer);armTimer=setTimeout(()=>{b.classList.remove("arm");b.textContent="Verwijderen"},4000);return}
     try{b.disabled=true;await db.collection(DB_COLL).doc(h.id).delete();state.sel=null}catch(err){$("detStatus").className="status err";$("detStatus").textContent="Verwijderen lukte niet: "+(err&&err.message||"onbekende fout")}}});
 ["cS","cM"].forEach(id=>$(id).addEventListener("change",renderCompare));
@@ -872,6 +978,7 @@ $("clearBtn").addEventListener("click",()=>{resetForm();$("formStatus").textCont
 $("hForm").addEventListener("submit",async e=>{e.preventDefault();const st=$("formStatus");if(!db||!state.canWrite){st.className="status err";st.textContent="Opslaan is hier niet mogelijk.";return}
   const h=formToHorse();const errs=validate(h);if(errs.length){st.className="status err";st.textContent="Niet opgeslagen: "+errs.join("; ")+".";return}
   const id=state.editId||docIdFor(h);$("saveBtn").disabled=true;
+  if(!state.site&&state.meId){const cur=state.editId?byId(state.editId):null;if(cur&&cur.eigenaar_id!=null)h.eigenaar_id=cur.eigenaar_id;else if(!cur)h.eigenaar_id=state.meId}
   try{await saveHorse(h,id);st.className="status ok";st.textContent=h.naam+" is opgeslagen.";state.sel=id;resetForm()}
   catch(err){st.className="status err";st.textContent=err&&err.code==="quota_exceeded"?"De database is vol. Verwijder eerst paarden.":"Opslaan lukte niet: "+(err&&err.message||"onbekende fout")}
   finally{$("saveBtn").disabled=!state.canWrite}});
@@ -905,7 +1012,7 @@ function renderRun(){const btn=$("runBtn"),info=$("runInfo");const wacht=state.a
   btn.disabled=!wacht||!mcpNs||!state.canWrite||(recent&&!!bezig)||runBusy;
   let t="";
   if(runMsg)t=runMsg;
-  else if(mcpChecked&&!mcpNs)t="Automatisch verwerken is niet ingesteld op deze server, of je bent niet ingelogd als bijdrager.";
+  else if(mcpChecked&&!mcpNs)t="Automatisch verwerken is niet ingesteld op deze server, of je bent niet ingelogd als paarden-beheerder.";
   else if(bezig)t=`De agent werkt aan ${bezig} aanvraag${bezig>1?"en":""}. Resultaten verschijnen hier vanzelf.`;
   else if(!wacht)t="Niets in de wachtrij.";
   else if(last)t="Laatst gestart: "+fmtDate(state.run.gestart_op)+".";
@@ -972,13 +1079,14 @@ $("aReview").addEventListener("click",async e=>{const b=e.target.closest("button
 
 
 // ---------- back-up en verhuizen ----------
-const BK_COLLS=["paarden","veilingen","aanvragen","council","veiling_backlog","systeem","partners"];
+const BK_COLLS=["paarden","veilingen","aanvragen","council","veiling_backlog","systeem","partners","partner_admin"];
+const bkPath=(c)=>c==="partner_admin"?paColl():c;
 let dlNs=null;
 async function readAll(c){return new Promise((res,rej)=>{let un=null;un=db.collection(c).onSnapshot(snap=>{const o={};snap.docs.forEach(d=>{o[d.id]=d.data()});try{un&&un()}catch(_){};res(o)},err=>rej(err))})}
 $("bkExport").addEventListener("click",async()=>{const st=$("bkStatus");if(!db){st.className="status err";st.textContent="Opslag niet beschikbaar.";return}
   st.className="status";st.textContent="Gegevens verzamelen...";
   try{const out={formaat:"fokwijzer-export",versie:1,export_datum:new Date().toISOString(),collecties:{}};
-    for(const c of BK_COLLS){out.collecties[c]=await readAll(c)}
+    for(const c of BK_COLLS){try{out.collecties[c]=await readAll(bkPath(c))}catch(_){out.collecties[c]={}}}
     const txt=JSON.stringify(out);const n=BK_COLLS.map(c=>c+": "+Object.keys(out.collecties[c]).length).join(", ");
     if(!dlNs){dlNs=await window.claude.use("downloads")}
     if(!dlNs){st.className="status err";st.textContent="Downloaden is niet beschikbaar in deze weergave.";return}
@@ -994,16 +1102,46 @@ $("bkFile").addEventListener("change",async e=>{const f=e.target.files&&e.target
   const lab=BK_COLLS.map(c=>c+": "+Object.keys(cols[c]||{}).length).join(", ");
   if(!confirm("Importeer "+jobs.length+" documenten ("+lab+")? Bestaande documenten met hetzelfde id worden overschreven."))return;
   let done=0,fail=0;st.className="status";
-  const worker=async()=>{while(jobs.length){const [c,id,d]=jobs.shift();try{await db.collection(c).doc(id).set(d)}catch(_){fail++}done++;if(done%25===0)st.textContent="Importeren... "+done+" klaar"}};
+  const worker=async()=>{while(jobs.length){const [c,id,d]=jobs.shift();try{await db.collection(bkPath(c)).doc(id).set(d)}catch(_){fail++}done++;if(done%25===0)st.textContent="Importeren... "+done+" klaar"}};
   await Promise.all(Array.from({length:6},worker));
   st.className=fail?"status err":"status ok";st.textContent="Import klaar: "+(done-fail)+" documenten bewaard"+(fail?", "+fail+" mislukt (probeer opnieuw te importeren)":"")+"."});
 let adEdit=null,adLogoData=null;
-function renderAdAdmin(){const L=state.partners||[];$("adDemo").checked=state.adDemo!==false;$("adDemo").disabled=!state.canWrite;
+function adMag(){return !!(state.isAdmin||state.isPartner)}
+function adOwn(p){return !!(state.meId&&p.eigenaar_id!=null&&String(p.eigenaar_id)===String(state.meId))}
+function renderAdAdmin(){const L=(state.partners||[]).filter(p=>state.isAdmin||adOwn(p));$("adDemo").checked=state.adDemo!==false;$("adDemo").disabled=!state.isAdmin;$("adDemo").closest("label").style.display=state.isAdmin?"":"none";
   const nm={kop:"1 · Kop",hengst:"2 · Hengst",voet:"4 · Voet",veiling:"5 · Veilingen",matches:"6 · Matches"};
-  $("adList").innerHTML=L.length?L.map(p=>`<div class="item">${adLogo(p,36,36)}<span style="min-width:0"><span class="name">${esc(p.naam)}</span><br><span class="small muted">${esc(nm[p.type]||p.type)}${p.hengst_naam?" · "+esc(p.hengst_naam):""}${p.van||p.tot?" · "+esc(p.van||"…")+" tot "+esc(p.tot||"…"):""}${adActive(p)?"":" · niet actief"}</span></span><span class="chips">${state.canWrite?`<button class="btn ghost" type="button" data-adedit="${esc(p.id)}">Bewerken</button><button class="btn danger" type="button" data-addel="${esc(p.id)}">Verwijderen</button>`:""}</span></div>`).join(""):'<p class="small muted" style="margin:0">Nog geen partners. Nu zichtbaar: voorbeeldadvertenties.</p>';
+  $("adList").innerHTML=L.length?L.map(p=>`<div class="item">${adLogo(p,36,36)}<span style="min-width:0"><span class="name">${esc(p.naam)}</span><br><span class="small muted">${esc(nm[p.type]||p.type)}${p.hengst_naam?" · "+esc(p.hengst_naam):""}${p.van||p.tot?" · "+esc(p.van||"…")+" tot "+esc(p.tot||"…"):""}${adActive(p)?"":" · niet actief"}</span></span><span class="chips">${adMag()?`<button class="btn ghost" type="button" data-adedit="${esc(p.id)}">Bewerken</button><button class="btn danger" type="button" data-addel="${esc(p.id)}">Verwijderen</button>`:""}</span></div>`).join(""):(state.isAdmin?'<p class="small muted" style="margin:0">Nog geen partners. Nu zichtbaar: voorbeeldadvertenties.</p>':'<p class="small muted" style="margin:0">Je hebt nog geen partnerplekken. Kies hieronder een plek en vul je gegevens in.</p>');
   $("adHengstL").innerHTML=(state.horses||[]).filter(h=>h.geslacht==="hengst").map(h=>`<option value="${esc(h.naam)}">`).join("");
-  $("adSave").disabled=!state.canWrite;adTypeUi()}
-function adTypeUi(){const t=$("adType").value;$("adHengstF").hidden=t!=="hengst";$("adDekF").hidden=t!=="hengst"}
+  $("adSave").disabled=!adMag();adTypeUi()}
+function adTypeUi(){const t=$("adType").value;$("adHengstF").hidden=t!=="hengst";$("adDekF").hidden=t!=="hengst";adPreview()}
+const AD_PLEK={
+  kop:{pag:"Elke pagina",w:"Rechtsboven in de kop van elke pagina, naast het logo van De Fokwijzer. Eén partner tegelijk. Op de gsm valt deze plek weg."},
+  hengst:{pag:"Zoeken, bij één hengst",w:"Bij één gekozen hengst: een klein logo met Gesponsord in de zoeklijst, Gesponsord door op zijn fiche en een regel Dekt bij ... onder de stamboom."},
+  voet:{pag:"Elke pagina, onderaan",w:"Onderaan elke pagina, als kaartje met een rubriek (Titel) en je naam. Tot 6 partners naast elkaar."},
+  veiling:{pag:"Pagina Veilingen",w:"Bovenaan de pagina Veilingen. Pas zichtbaar als het onderdeel Veilingen aan staat."},
+  matches:{pag:"Pagina Beste matches",w:"Op de pagina Beste matches, boven de lijst met resultaten. Eén partner tegelijk."}};
+const AD_VB={kop:{tekst:"Dekseizoen 2027 open"},voet:{titel:"Voeders"},veiling:{titel:"Najaarsveiling, online 14 tot 21 november",tekst:"32 veulens en 6 springpaarden",knop:"Bekijk collectie"},matches:{titel:"Fokkerijkliniek",tekst:"Inseminatie, embryotransfer en drachtigheidscontrole",knop:"Afspraak maken"},hengst:{}};
+function adWire(t){const on=(z)=>z===t?" on":"";
+  const head=`<div class="adw-head"><i class="adw-logo"></i><i class="adw-tx"></i><i class="adw-kop${on("kop")}"></i></div><div class="adw-menu"><i></i><i></i><i></i><i></i></div>`;
+  let body;
+  if(t==="matches")body=`<div class="adw-col1"><i class="adw-sel"></i><i class="adw-ban on"></i><i class="adw-r"></i><i class="adw-r"></i><i class="adw-r"></i></div>`;
+  else if(t==="veiling")body=`<div class="adw-col1"><i class="adw-ban on big"></i><i class="adw-r"></i><i class="adw-r"></i><i class="adw-r"></i></div>`;
+  else body=`<div class="adw-split"><div class="adw-list"><i class="${t==="hengst"?"on":""}"></i><i></i><i></i><i></i></div><div class="adw-det"><i class="adw-badge${on("hengst")}"></i><i class="adw-card"></i><i class="adw-dek${on("hengst")}"></i></div></div>`;
+  return `<div class="adw" aria-hidden="true">${head}${body}<div class="adw-foot${on("voet")}"><i></i><i></i><i></i><i></i></div></div>`}
+function adPreviewHtml(t,p){
+  if(t==="kop")return `<div class="ad-pv-kop">${adKopHtml(p)}</div>`;
+  if(t==="voet")return `<div class="sitefoot ad-pv-foot">${adVoetHtml([p])}</div>`;
+  if(t==="veiling")return adVeilHtml(p);
+  if(t==="matches")return adMatchHtml(p);
+  const h=esc(p.hengst_naam||"Darry Lou Z");
+  return `<div class="ad-pv-h"><div class="small muted">In de zoeklijst</div><div class="ad-pv-row"><b>${h}</b> <span class="ad-badge">${adLogo(p,16,16)}<span class="ad-tag" style="padding:2px 4px">Gesponsord</span></span></div>
+    <div class="small muted" style="margin-top:8px">Op de fiche van de hengst</div><div class="ad-pv-row"><b class="det-name" style="font-size:1.1rem">${h}</b> ${adWrap(p,`<span class="ad-tag">Gesponsord door</span>${adLogo(p,20,20)}<b style="font-size:.78rem">${esc(p.naam)}</b>`,"ad-badge")}</div>
+    ${p.dekinfo?`<div class="small muted" style="margin-top:8px">Onder de stamboom</div>${adDekHtml(p)}`:""}</div>`}
+function adPreview(){const t=$("adType").value,info=AD_PLEK[t]||{};if(!$("adWire"))return;
+  $("adPlekUitleg").textContent=info.w||"";$("adWireT").textContent="Waar: "+(info.pag||"");$("adWire").innerHTML=adWire(t);
+  const vb=Object.assign({naam:"DeDilieHoeve",logo:FW_DDH,hengst_naam:"Darry Lou Z",dekinfo:"dekgeld en beschikbaarheid"},AD_VB[t]||{});
+  $("adPlekVb").innerHTML=adPreviewHtml(t,vb);
+}
 function adFill(p){adEdit=p?p.id:null;adLogoData=p&&p.logo||null;$("adType").value=p?p.type:"kop";["Naam","Url","Titel","Tekst","Knop","Van","Tot"].forEach(k=>$("ad"+k).value=p&&p[k.toLowerCase()]||"");$("adHengst").value=p&&p.hengst_naam||"";$("adDek").value=p&&p.dekinfo||"";$("adLogo").value="";$("adFormTitle").textContent=p?"Partner bewerken":"Partner toevoegen";$("adNew").hidden=!p;adTypeUi()}
 $("adType").addEventListener("change",adTypeUi);
 $("adNew").addEventListener("click",()=>adFill(null));
@@ -1017,7 +1155,8 @@ $("adSave").addEventListener("click",async()=>{const st=$("adStatus");const naam
   const t=$("adType").value;const d={type:t,naam,url,titel:$("adTitel").value.trim(),tekst:$("adTekst").value.trim(),knop:$("adKnop").value.trim(),van:$("adVan").value,tot:$("adTot").value,actief:true,bijgewerkt_op:new Date().toISOString()};
   if(t==="hengst"){const hn=$("adHengst").value.trim();const h=(state.horses||[]).find(x=>x.geslacht==="hengst"&&keyL(x.naam)===keyL(hn));if(!hn){st.className="status err";st.textContent="Kies de hengst voor dit sponsorlogo.";return}d.hengst_naam=h?h.naam:hn;d.hengst_id=h?h.id:"";d.dekinfo=$("adDek").value.trim()}
   if(adLogoData)d.logo=adLogoData;
-  try{const ref=adEdit?db.collection(P_COLL).doc(adEdit):db.collection(P_COLL).doc();await ref.set(d);st.className="status ok";st.textContent="Bewaard.";adFill(null)}catch(_){st.className="status err";st.textContent="Bewaren lukte niet."}});
+  if(!state.site&&!state.isAdmin){const cur=adEdit?(state.partners||[]).find(x=>x.id===adEdit):null;d.eigenaar_id=cur&&cur.eigenaar_id!=null?cur.eigenaar_id:state.meId}else if(adEdit){const cur=(state.partners||[]).find(x=>x.id===adEdit);if(cur&&cur.eigenaar_id!=null)d.eigenaar_id=cur.eigenaar_id}
+  try{const ref=adEdit?db.collection(P_COLL).doc(adEdit):db.collection(P_COLL).doc();await ref.set(d);st.className="status ok";st.textContent="Bewaard.";adFill(null)}catch(err){st.className="status err";st.textContent="Bewaren lukte niet"+(err&&err.message?": "+err.message:".")}});
 $("inSave").addEventListener("click",async()=>{const st=$("inStatus");const d={run_trigger:$("inRun").value.trim(),vm_trigger:$("inVm").value.trim()};
   if((d.run_trigger&&!/^trig_/.test(d.run_trigger))||(d.vm_trigger&&!/^trig_/.test(d.vm_trigger))){st.className="status err";st.textContent="Een taak-id begint met trig_.";return}
   try{await db.doc("systeem/instellingen").set(d);st.className="status ok";st.textContent="Bewaard."}catch(e){st.className="status err";st.textContent="Bewaren lukte niet."}});
@@ -1038,6 +1177,17 @@ buildPedInputs();renderAll();
   const user=await window.claude.use("user");
   let can=null;try{can=user&&user.can?await user.can("data.write"):null}catch(_){can=null}
   state.canWrite=can===true;state.canAsk=!!(user&&user.level>=1);state.dbState="ready";
+  {let cw=null;try{cw=user&&user.can?await user.can("wiki.write"):null}catch(_){cw=null}state.canWiki=state.canWrite||cw===true;try{state.meId=user&&user.id?String((await user.id())||""):""}catch(_){state.meId=""}}
+  state.site=!!(user&&typeof user.rol==="string");state.userNs=user;
+  if(state.site){state.rol=user.rol;state.isAdmin=user.rol==="beheerder";state.isPartner=!!user.partner||state.isAdmin}
+  else{ // Versie zonder eigen server: rollen staan in de collectie "leden"; de eigenaar is altijd beheerder.
+    state.platformWrite=state.canWrite;
+    try{state.isOwner=!!(user&&await user.isOwner())}catch(_){state.isOwner=false}
+    try{const me=user&&user.me?await user.me():null;state.meName=me&&me.name||""}catch(_){state.meName=""}
+    applyArtRole();
+    db.collection(LEDEN_COLL).onSnapshot(snap=>{state.leden={};snap.docs.forEach(d=>{state.leden[d.id]=d.data()});applyArtRole();renderAll()},err=>{});
+    if(state.meId&&state.platformWrite){const ref=db.collection(LEDEN_COLL).doc(state.meId);ref.get().then(d=>{const cur=d&&d.exists?d.data():null;const want={laatst:new Date().toISOString().slice(0,10)};if(!cur)want.rol=state.isOwner?"beheerder":"gebruiker";if(!cur||cur.laatst!==want.laatst)return cur?ref.update(want):ref.set(Object.assign({sinds:want.laatst},want))}).catch(()=>{})}
+  }
   db.collection(DB_COLL).onSnapshot(snap=>{const real=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}));
     state.horses=real.length?real:DEMO;state.demo=!real.length;if(state.sel&&!byId(state.sel))state.sel=null;renderAll()},
    err=>{state.dbState="none";renderAll()});

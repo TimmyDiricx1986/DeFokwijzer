@@ -87,7 +87,7 @@ app.use("/api/", (req, res, next) => {
 });
 app.use("/api/", (req, res, next) => { res.setHeader("Cache-Control", "no-store"); next(); });
 
-const actorJson = (a) => (a.userId ? { id: a.userId, naam: a.name, email: a.email, rol: a.role } : a.service ? { naam: "automatisering", rol: "beheerder" } : null);
+const actorJson = (a) => (a.userId ? { id: a.userId, naam: a.name, email: a.email, rol: a.role, aanvraag: a.aanvraag || null, partner: !!a.partner } : a.service ? { naam: "automatisering", rol: "beheerder" } : null);
 
 // ---------------------------------------------------------------- accounts
 app.get("/api/me", (req, res) => {
@@ -114,9 +114,23 @@ app.post("/api/auth/login", loginLimit, async (req, res) => {
   res.json({ ok: true });
 });
 app.post("/api/auth/logout", (req, res) => { auth.logout(req, res); res.json({ ok: true }); });
-app.post("/api/auth/password", passwordLimit, auth.need("lezer"), async (req, res) => {
+app.post("/api/auth/password", passwordLimit, auth.need("gebruiker"), async (req, res) => {
   const b = req.body || {};
   const r = await auth.changePassword(req.actor.userId, b.oud, b.nieuw);
+  if (r.fout) return res.status(400).json(r);
+  auth.startSession(res, req.actor.userId);
+  res.json({ ok: true });
+});
+app.post("/api/auth/word-paardenbeheerder", writeLimit, auth.need("gebruiker"), (req, res) => {
+  if (req.actor.service) return res.status(403).json({ fout: "Niet via automatisering." });
+  const r = auth.becomeHorseManager(req.actor);
+  if (r.fout) return res.status(400).json(r);
+  auth.startSession(res, r.id);
+  res.json({ ok: true });
+});
+app.post("/api/auth/partner", writeLimit, auth.need("gebruiker"), (req, res) => {
+  if (req.actor.service) return res.status(403).json({ fout: "Niet via automatisering." });
+  const r = auth.setPartnerFlag(req.actor, req.actor.userId, (req.body || {}).aan !== false);
   if (r.fout) return res.status(400).json(r);
   auth.startSession(res, req.actor.userId);
   res.json({ ok: true });
@@ -124,7 +138,12 @@ app.post("/api/auth/password", passwordLimit, auth.need("lezer"), async (req, re
 app.get("/api/users", auth.need("beheerder"), (req, res) => res.json(auth.listUsers()));
 app.patch("/api/users/:id", auth.need("beheerder"), (req, res) => {
   if (req.actor.service) return res.status(403).json({ fout: "Niet via automatisering." });
-  const r = auth.setRole(req.actor, parseInt(req.params.id, 10), (req.body || {}).rol);
+  const b = req.body || {};
+  const r = typeof b.partner === "boolean" && b.rol === undefined ? auth.setPartnerFlag(req.actor, parseInt(req.params.id, 10), b.partner) : auth.setRole(req.actor, parseInt(req.params.id, 10), b.rol);
+  res.status(r.fout ? 400 : 200).json(r);
+});
+app.delete("/api/users/:id/aanvraag", auth.need("beheerder"), (req, res) => {
+  const r = auth.rejectRequest(req.actor, parseInt(req.params.id, 10));
   res.status(r.fout ? 400 : 200).json(r);
 });
 app.delete("/api/users/:id", auth.need("beheerder"), (req, res) => {
@@ -161,13 +180,43 @@ app.get("/api/c/:coll", anonListLimit, (req, res) => {
   if (req.get("if-none-match") === etag) return res.status(304).end();
   res.type("application/json").send(body);
 });
+// Een partner mag de eigen contact- en facturatiegegevens lezen.
+const ownsPartner = (req, id) => { const p = store.getDoc("partners", id); return !!(p && req.actor.userId && p.data.eigenaar_id === req.actor.userId); };
 app.get("/api/c/:coll/:id", (req, res) => {
+  if (req.params.coll === "partner_admin" && req.actor.level < LEVEL.beheerder && ID_RE.test(req.params.id) && ownsPartner(req, req.params.id)) {
+    const d = store.getDoc("partner_admin", req.params.id);
+    return res.json({ id: req.params.id, data: d ? d.data : null });
+  }
   if (!guard(req, res, "read")) return;
   const d = store.getDoc(req.params.coll, req.params.id);
   res.json({ id: req.params.id, data: d ? d.data : null });
 });
-function save(req, res, id, data) {
+// Gebruikers (niveau 1) mogen bij een paard alleen de wiki-onderdelen aanpassen.
+const WIKI_FIELDS = new Set(["opmerking", "bronnen"]);
+function onlyWiki(before, after) {
+  const keys = new Set(Object.keys(before || {}).concat(Object.keys(after || {})));
+  for (const k of keys) if (!WIKI_FIELDS.has(k) && JSON.stringify((before || {})[k]) !== JSON.stringify((after || {})[k])) return false;
+  return true;
+}
+function save(req, res, id, data, cur) {
   const { coll } = req.params;
+  if (coll === "paarden" && data && typeof data === "object" && !Array.isArray(data)) {
+    if (cur && req.actor.level < LEVEL.paardenbeheerder && !onlyWiki(cur.data, data)) return res.status(403).json({ fout: "Als gebruiker kun je alleen bronnen en opmerkingen aanvullen." });
+    // Wie een paard toevoegt, wordt de eigenaar ervan; alleen een beheerder kan dat veranderen.
+    if (cur && cur.data && cur.data.eigenaar_id != null && req.actor.level < LEVEL.beheerder) data.eigenaar_id = cur.data.eigenaar_id;
+    else if (!cur && req.actor.userId && req.actor.level < LEVEL.beheerder) data.eigenaar_id = req.actor.userId;
+  }
+  // Partners (niet-beheerders) beheren alleen hun eigen partnerplekken.
+  if (coll === "partners" && req.actor.level < LEVEL.beheerder && data && typeof data === "object" && !Array.isArray(data)) {
+    if (!req.actor.partner) return res.status(403).json({ fout: "Word eerst partner (bij je account of op de pagina Partners)." });
+    if (cur && cur.data.eigenaar_id !== req.actor.userId) return res.status(403).json({ fout: "Je kunt alleen je eigen partnerplekken aanpassen." });
+    data.eigenaar_id = req.actor.userId;
+  }
+  // Een partner vult de eigen contact- en facturatiegegevens in; tarief en betaling blijven bij de beheerder.
+  if (coll === "partner_admin" && req.actor.level < LEVEL.beheerder && data && typeof data === "object" && !Array.isArray(data)) {
+    const BETAAL = ["tarief", "periode", "status", "factuur", "betaald_op", "betaald_tot", "notities"];
+    BETAAL.forEach((k) => { delete data[k]; if (cur && cur.data[k] !== undefined) data[k] = cur.data[k]; });
+  }
   const err = validDoc(coll, data);
   if (err) return res.status(400).json({ fout: err });
   store.writeDoc(coll, id, data, req.actor);
@@ -187,8 +236,9 @@ app.post("/api/c/:coll", writeLimit, (req, res) => {
 // Volledig vervangen (set). Bestaat het nog niet, dan geldt het recht om aan te maken.
 app.put("/api/c/:coll/:id", writeLimit, (req, res) => {
   const exists = !!store.getDoc(req.params.coll, req.params.id);
-  if (!guard(req, res, exists ? "update" : "create")) return;
-  save(req, res, req.params.id, incoming(req, !exists));
+  const eigenGegevens = req.params.coll === "partner_admin" && req.actor.level >= 1 && req.actor.level < LEVEL.beheerder && ID_RE.test(req.params.id) && ownsPartner(req, req.params.id);
+  if (!eigenGegevens && !guard(req, res, exists ? "update" : "create")) return;
+  save(req, res, req.params.id, incoming(req, !exists), exists ? store.getDoc(req.params.coll, req.params.id) : null);
 });
 // Velden samenvoegen (update).
 app.patch("/api/c/:coll/:id", writeLimit, (req, res) => {
@@ -197,10 +247,18 @@ app.patch("/api/c/:coll/:id", writeLimit, (req, res) => {
   if (!cur) return res.status(404).json({ fout: "Niet gevonden." });
   const patch = (req.body || {}).data;
   if (!patch || typeof patch !== "object" || Array.isArray(patch)) return res.status(400).json({ fout: "Ongeldige wijziging." });
-  save(req, res, req.params.id, Object.assign({}, cur.data, patch));
+  save(req, res, req.params.id, Object.assign({}, cur.data, patch), cur);
 });
 app.delete("/api/c/:coll/:id", writeLimit, (req, res) => {
   if (!guard(req, res, "delete")) return;
+  if (req.params.coll === "partners" && req.actor.level < LEVEL.beheerder) {
+    const cur = store.getDoc("partners", req.params.id);
+    if (cur && (!req.actor.userId || cur.data.eigenaar_id !== req.actor.userId)) return res.status(403).json({ fout: "Je kunt alleen je eigen partnerplekken verwijderen." });
+  }
+  if (req.params.coll === "paarden" && req.actor.level < LEVEL.beheerder) {
+    const cur = store.getDoc("paarden", req.params.id);
+    if (cur && (!req.actor.userId || cur.data.eigenaar_id !== req.actor.userId)) return res.status(403).json({ fout: "Je kunt alleen paarden verwijderen die je zelf toevoegde." });
+  }
   const ok = store.deleteDoc(req.params.coll, req.params.id, req.actor);
   if (ok) broadcast(req.params.coll, req.params.id);
   res.json({ ok });
@@ -221,7 +279,7 @@ app.post("/api/bulk", (req, res) => {
   res.json({ resultaat });
 });
 // Wiki-geschiedenis van een document.
-app.get("/api/history/:coll/:id", auth.need("bijdrager"), (req, res) => {
+app.get("/api/history/:coll/:id", auth.need("paardenbeheerder"), (req, res) => {
   if (!guard(req, res, "read")) return;
   // E-mailadressen van andere bijdragers niet doorgeven.
   res.json(store.history(req.params.coll, req.params.id).map((h) => Object.assign(h, { actor: String(h.actor).replace(/\s*<[^>]*>$/, "") })));
@@ -242,7 +300,7 @@ app.get("/api/stream", (req, res) => {
 });
 
 // ---------------------------------------------------------------- AI-advies (council)
-app.post("/api/ai/json", auth.need("bijdrager"), async (req, res) => {
+app.post("/api/ai/json", auth.need("paardenbeheerder"), async (req, res) => {
   const ctl = new AbortController();
   res.on("close", () => { if (!res.writableEnded) ctl.abort(); });
   try {
@@ -266,7 +324,7 @@ if (process.env.WEBHOOK_SECRET && process.env.WEBHOOK_SECRET.length >= 24) {
   console.error("Webhooks uitgeschakeld: zet WEBHOOK_SECRET (minstens 24 tekens).");
 }
 const hookLimit = rateLimit({ windowMs: 10 * 60e3, limit: 3, message: { fout: "Deze taak werd net gestart. Probeer het later opnieuw." } });
-app.post("/api/taak/:naam", hookLimit, auth.need("bijdrager"), async (req, res) => {
+app.post("/api/taak/:naam", hookLimit, auth.need("paardenbeheerder"), async (req, res) => {
   const url = HOOKS.get(req.params.naam);
   if (!url) return res.status(501).json({ fout: "Deze taak is niet ingesteld op de server.", code: "niet_ingesteld" });
   const body = JSON.stringify({ taak: req.params.naam, gestart_door: req.actor.label, tijd: store.now() });

@@ -1,13 +1,15 @@
 "use strict";
 // Rechten per collectie en controle van documenten.
-// read/create/update/delete = minimaal niveau (0 anoniem, 1 lezer, 2 bijdrager, 3 beheerder)
+// read/create/update/delete = minimaal niveau (0 lezer zonder account, 1 gebruiker, 2 paarden-beheerder, 3 beheerder)
 // Objecten zonder prototype, zodat namen als "constructor" of "__proto__" nooit als collectie gelden.
 const table = (o) => Object.freeze(Object.assign(Object.create(null), o));
 const COLLS = table({
-  paarden: { read: 0, create: 2, update: 2, delete: 3, max: 400e3 },
+  paarden: { read: 0, create: 2, update: 1, delete: 2, max: 400e3 }, // update 1: alleen wiki-velden, delete 2: alleen eigen paarden (zie index.js)
   veilingen: { read: 0, create: 3, update: 3, delete: 3, max: 3e6 },
   council: { read: 0, create: 2, update: 2, delete: 3, max: 200e3 },
-  partners: { read: 0, create: 3, update: 3, delete: 3, max: 400e3 },
+  partners: { read: 0, create: 1, update: 1, delete: 1, max: 400e3 }, // niet-beheerders: alleen als partner, alleen eigen plekken (zie index.js)
+  // Contact- en betaalgegevens van partners: alleen beheerders (nooit publiek).
+  partner_admin: { read: 3, create: 3, update: 3, delete: 3, max: 50e3 },
   aanvragen: { read: 1, create: 1, update: 2, delete: 3, max: 200e3 },
   veiling_backlog: { read: 3, create: 3, update: 3, delete: 3, max: 3e6 },
   systeem: { read: 0, create: 3, update: 3, delete: 3, max: 100e3 },

@@ -18,13 +18,26 @@ test.before(async () => {
   await new Promise((r) => server.once("listening", r));
   base = `http://127.0.0.1:${server.address().port}`;
   await auth.createUser("beheer@test.be", "Beheer", "Sterk-wachtwoord-123", "beheerder");
-  await auth.createUser("bij@test.be", "Bijdrager", "Sterk-wachtwoord-456", "bijdrager");
-  await auth.createUser("lees@test.be", "Lezer", "Sterk-wachtwoord-789", "lezer");
+  await auth.createUser("bij@test.be", "Bijdrager", "Sterk-wachtwoord-456", "paardenbeheerder");
+  await auth.createUser("lees@test.be", "Lezer", "Sterk-wachtwoord-789", "gebruiker");
 });
 test.after(() => server.close());
 
 const H = { "content-type": "application/json", "x-fokwijzer": "1" };
+// Sessies hergebruiken, zodat de tests de inlog-limiet (20 per kwartier) niet opgebruiken.
+const sessies = new Map();
 async function login(email, pw) {
+  const k = email + "\n" + pw;
+  if (sessies.has(k)) {
+    const c = sessies.get(k);
+    const m = await (await fetch(base + "/api/me", { headers: { cookie: c } })).json();
+    if (m.gebruiker) return c;
+  }
+  const c = await loginNieuw(email, pw);
+  sessies.set(k, c);
+  return c;
+}
+async function loginNieuw(email, pw) {
   const r = await fetch(base + "/api/auth/login", { method: "POST", headers: H, body: JSON.stringify({ email, password: pw }) });
   assert.equal(r.status, 200);
   return r.headers.get("set-cookie").split(";")[0];
@@ -48,11 +61,16 @@ test("lezer mag aanvragen indienen maar geen paarden schrijven", async () => {
   assert.equal((await put("/api/c/paarden/p1", { naam: "A" }, c)).status, 403);
 });
 
-test("bijdrager mag paarden schrijven, niet verwijderen of partners beheren", async () => {
+test("paarden-beheerder mag paarden schrijven, alleen eigen paarden verwijderen, geen partners beheren", async () => {
+  const cb = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  assert.equal((await put("/api/c/paarden/van-beheer", { naam: "Van beheer" }, cb)).status, 200);
   const c = await login("bij@test.be", "Sterk-wachtwoord-456");
   assert.equal((await put("/api/c/paarden/p1", { naam: "A" }, c)).status, 200);
-  assert.equal((await fetch(base + "/api/c/paarden/p1", { method: "DELETE", headers: Object.assign({ cookie: c }, H) })).status, 403);
-  assert.equal((await put("/api/c/partners/x", { naam: "B" }, c)).status, 403);
+  assert.equal((await put("/api/c/paarden/eigen", { naam: "Eigen" }, c)).status, 200);
+  assert.equal((await put("/api/c/paarden/van-beheer", { naam: "Van beheer", opmerking: "aangevuld" }, c)).status, 200, "andere paarden bewerken mag");
+  assert.equal((await fetch(base + "/api/c/paarden/van-beheer", { method: "DELETE", headers: Object.assign({ cookie: c }, H) })).status, 403, "andermans paard verwijderen mag niet");
+  assert.equal((await fetch(base + "/api/c/paarden/eigen", { method: "DELETE", headers: Object.assign({ cookie: c }, H) })).status, 200, "eigen paard verwijderen mag");
+  assert.equal((await put("/api/c/partners/x", { naam: "B" }, c)).status, 403, "geen partner");
   assert.equal((await put("/api/c/systeem/instellingen", { a: 1 }, c)).status, 403);
   assert.equal((await fetch(base + "/api/users", { headers: { cookie: c } })).status, 403);
 });
@@ -118,7 +136,7 @@ test("laatste beheerder kan zijn rol niet verliezen", async () => {
   const c = await login("beheer@test.be", "Sterk-wachtwoord-123");
   const users = await (await fetch(base + "/api/users", { headers: { cookie: c } })).json();
   const me = users.find((u) => u.email === "beheer@test.be");
-  const r = await fetch(base + "/api/users/" + me.id, { method: "PATCH", headers: Object.assign({ cookie: c }, H), body: JSON.stringify({ rol: "lezer" }) });
+  const r = await fetch(base + "/api/users/" + me.id, { method: "PATCH", headers: Object.assign({ cookie: c }, H), body: JSON.stringify({ rol: "gebruiker" }) });
   assert.equal(r.status, 400);
 });
 
@@ -198,4 +216,66 @@ test("eerste beheerder via instellingen alleen als er nog geen gebruikers zijn",
   await auth.bootstrapAdmin();
   assert.ok(!auth.listUsers().some((u) => u.email === "nieuw@test.be"), "er is al een beheerder");
   delete process.env.ADMIN_EMAIL; delete process.env.ADMIN_PASSWORD;
+});
+
+test("gebruiker mag alleen bronnen en opmerkingen van een paard aanvullen", async () => {
+  const c = await login("lees@test.be", "Sterk-wachtwoord-789");
+  const patch = (data) => fetch(base + "/api/c/paarden/p1", { method: "PATCH", headers: Object.assign({ cookie: c }, H), body: JSON.stringify({ data }) });
+  assert.equal((await patch({ opmerking: "Mooie springer" })).status, 200);
+  assert.equal((await patch({ bronnen: [{ naam: "FEI", url: "https://www.fei.org" }] })).status, 200);
+  assert.equal((await patch({ naam: "Andere naam" })).status, 403);
+  assert.equal((await put("/api/c/paarden/nieuw-van-gebruiker", { naam: "X" }, c)).status, 403, "nieuw paard toevoegen mag niet");
+});
+
+test("paarden-beheerder kies je zelf, zonder goedkeuring; gebruiker kan zelf overstappen", async () => {
+  const r = await fetch(base + "/api/auth/register", { method: "POST", headers: H, body: JSON.stringify({ email: "fokker@test.be", name: "Fokker", password: "Paarden-fokken-2026", aanvraag: "paardenbeheerder" }) });
+  assert.equal(r.status, 200);
+  const cu = r.headers.get("set-cookie").split(";")[0];
+  const me = await (await fetch(base + "/api/me", { headers: { cookie: cu } })).json();
+  assert.equal(me.gebruiker.rol, "paardenbeheerder", "meteen paarden-beheerder");
+  assert.equal((await put("/api/c/paarden/van-fokker", { naam: "Van fokker" }, cu)).status, 200);
+  const r2 = await fetch(base + "/api/auth/register", { method: "POST", headers: H, body: JSON.stringify({ email: "gewoon@test.be", name: "Gewoon", password: "Paarden-kijken-2026" }) });
+  const cg = r2.headers.get("set-cookie").split(";")[0];
+  assert.equal((await (await fetch(base + "/api/me", { headers: { cookie: cg } })).json()).gebruiker.rol, "gebruiker");
+  const up = await fetch(base + "/api/auth/word-paardenbeheerder", { method: "POST", headers: Object.assign({ cookie: cg }, H), body: "{}" });
+  assert.equal(up.status, 200);
+  const cg2 = up.headers.get("set-cookie").split(";")[0];
+  assert.equal((await (await fetch(base + "/api/me", { headers: { cookie: cg2 } })).json()).gebruiker.rol, "paardenbeheerder");
+});
+
+test("betaalgegevens van partners zijn alleen voor beheerders", async () => {
+  const cb = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  assert.equal((await put("/api/c/partner_admin/p1", { contact: "Jan", status: "gratis" }, cb)).status, 200);
+  assert.equal((await fetch(base + "/api/c/partner_admin")).status, 401, "anoniem");
+  const cp = await login("bij@test.be", "Sterk-wachtwoord-456");
+  assert.equal((await fetch(base + "/api/c/partner_admin", { headers: { cookie: cp } })).status, 403, "paarden-beheerder");
+  assert.equal((await put("/api/c/partner_admin/p1", { contact: "X" }, cp)).status, 403);
+  const r = await fetch(base + "/api/c/partner_admin", { headers: { cookie: cb } });
+  assert.equal(r.status, 200);
+});
+
+test("partner: eigen partnerplekken en eigen gegevens, niets van anderen", async () => {
+  const r = await fetch(base + "/api/auth/register", { method: "POST", headers: H, body: JSON.stringify({ email: "voeders@test.be", name: "Voeders", password: "Haver-en-hooi-2026", rol: "paardenbeheerder", partner: true }) });
+  assert.equal(r.status, 200);
+  const c = r.headers.get("set-cookie").split(";")[0];
+  const me = await (await fetch(base + "/api/me", { headers: { cookie: c } })).json();
+  assert.equal(me.gebruiker.rol, "paardenbeheerder");
+  assert.equal(me.gebruiker.partner, true);
+  assert.equal((await put("/api/c/partners/voeders1", { naam: "Voeders NV", type: "voet" }, c)).status, 200);
+  const cb = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  assert.equal((await put("/api/c/partners/van-beheer", { naam: "Ander", type: "kop" }, cb)).status, 200);
+  assert.equal((await put("/api/c/partners/van-beheer", { naam: "Gekaapt", type: "kop" }, c)).status, 403);
+  assert.equal((await fetch(base + "/api/c/partners/van-beheer", { method: "DELETE", headers: Object.assign({ cookie: c }, H) })).status, 403);
+  assert.equal((await put("/api/c/partner_admin/voeders1", { contact: "Piet", status: "betaald", tarief: 0 }, c)).status, 200);
+  const g = await (await fetch(base + "/api/c/partner_admin/voeders1", { headers: { cookie: c } })).json();
+  assert.equal(g.data.contact, "Piet");
+  assert.equal(g.data.status, undefined, "betaalstatus kan een partner niet zelf zetten");
+  assert.equal((await fetch(base + "/api/c/partner_admin/van-beheer", { headers: { cookie: c } })).status, 403);
+  assert.equal((await fetch(base + "/api/c/partners/voeders1", { method: "DELETE", headers: Object.assign({ cookie: c }, H) })).status, 200);
+  const cg = await login("lees@test.be", "Sterk-wachtwoord-789");
+  assert.equal((await put("/api/c/partners/x2", { naam: "B" }, cg)).status, 403);
+  const up = await fetch(base + "/api/auth/partner", { method: "POST", headers: Object.assign({ cookie: cg }, H), body: "{}" });
+  assert.equal(up.status, 200);
+  const cg2 = up.headers.get("set-cookie").split(";")[0];
+  assert.equal((await put("/api/c/partners/x2", { naam: "B", type: "voet" }, cg2)).status, 200);
 });
