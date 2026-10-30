@@ -34,6 +34,7 @@
     <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer" class="tab-xtra">Paarden beheren</button>
     <button role="tab" id="tab-partners" aria-selected="false" data-tab="partners" class="tab-xtra">Partners</button>
   </nav>
+  <div id="simBar" class="sim-bar" role="status" hidden></div>
   <div id="banner"></div>
 
   <!-- INFO -->
@@ -165,6 +166,7 @@
     <div id="adminAcct" class="fw-acct small"></div>
     <h2 style="margin:0 0 4px">Beheer</h2>
     <p class="small muted" style="margin:0 0 12px">Back-up, verhuizen en gebruikers van De Fokwijzer. Alleen voor beheerders.</p>
+    <div class="card" id="simCard" style="margin-bottom:12px"><h3 style="margin:0">Bekijk de site als ...</h3><p class="small muted" style="margin:6px 0 10px">Zie De Fokwijzer zoals een andere bezoeker ze ziet. Tijdens de simulatie wordt niets bewaard; je blijft gewoon beheerder en stopt met één klik.</p><div class="row sim-btns" style="gap:8px"><button class="btn ghost" type="button" data-sim="lezer">Lezer (zonder account)</button><button class="btn ghost" type="button" data-sim="gebruiker">Gebruiker</button><button class="btn ghost" type="button" data-sim="paardenbeheerder">Paarden-beheerder</button><button class="btn ghost" type="button" data-sim="partner">Partner</button><button class="btn ghost" type="button" data-sim="pbpartner">Paarden-beheerder + partner</button></div></div>
     <div id="adminExtra"></div>
     <div class="card" id="poCard" style="margin-bottom:12px"><div class="po-head"><h3 style="margin:0" id="poTitle">Partners</h3><button class="btn ghost" type="button" id="poNew">Partner toevoegen</button></div><p class="small muted" style="margin:6px 0 10px" id="poSum">Overzicht van je partners, met hun contact- en betaalgegevens. Alleen beheerders zien deze gegevens.</p><div class="fw-users-wrap" id="poList"></div></div>
     <div class="card" id="bkCard">

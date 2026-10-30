@@ -384,6 +384,15 @@
         if (al) box.appendChild(al);
         var ax = document.getElementById("adminExtra");
         if (ax && !ax.firstChild) {
+          var acard = el("div", { class: "card", style: "margin-bottom:12px" }, [el("h3", { text: "AI-advies (council)", style: "margin:0" }), el("p", { class: "small muted", style: "margin:6px 0 10px", text: m.ai ? "Er is een API-sleutel ingesteld. Test of de sleutel en het model werken." : "Er is nog geen API-sleutel ingesteld (ANTHROPIC_API_KEY in Render)." })]);
+          var ast = status();
+          if (m.ai) {
+            var ab = el("button", { class: "btn ghost", type: "button", text: "AI testen" });
+            ab.addEventListener("click", function () { ab.disabled = true; ast.className = "status"; ast.textContent = "Even testen...";
+              api("GET", "/api/ai/test").then(function (r) { ab.disabled = false; ast.className = "status " + (r.ok ? "ok" : "err"); ast.textContent = r.ok ? "AI werkt (model " + r.model + ")." : r.fout; }, function (e) { ab.disabled = false; fail(ast, e); }); });
+            acard.appendChild(ab);
+          }
+          acard.appendChild(ast); ax.appendChild(acard);
           var ucard = el("div", { class: "card", style: "margin-bottom:12px" });
           var h = el("h3", { text: "Gebruikers en rollen", style: "margin:0 0 6px" });
           ucard.appendChild(h); ax.appendChild(ucard);

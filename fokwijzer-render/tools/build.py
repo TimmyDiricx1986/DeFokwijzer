@@ -86,6 +86,9 @@ def transform(html, links=('/over.html', '/privacy.html')):
     js = rep(js, 'if(!db||!state.canWrite){st.className="status err";st.textContent="Aanvragen is hier niet mogelijk.";return}',
              'if(!db||!state.canAsk){st.className="status err";st.textContent="Log in om een paard aan te vragen.";return}')
     js = rep(js, 'finally{$("aBtn").disabled=!state.canWrite}', 'finally{$("aBtn").disabled=!state.canAsk}')
+    # Teksten van "Mijn account" in de Claude-versie (op de website niet gebruikt).
+    for old, new in [("je Claude-account", "je account"), ("je <b>Claude-account</b>", "je <b>account</b>"), ("in Claude zelf", "in je account"), ("heel Claude", "je hele account")]:
+        js = js.replace(old, new)
     # Wiki-geschiedenis per paard.
     js = rep(js, '<button class="btn danger" type="button" data-act="del" data-own=',
              '<button class="btn ghost" type="button" data-act="hist" data-id="${esc(h.id)}">Geschiedenis</button><button class="btn danger" type="button" data-act="del" data-own=')

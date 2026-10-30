@@ -300,6 +300,7 @@ app.get("/api/stream", (req, res) => {
 });
 
 // ---------------------------------------------------------------- AI-advies (council)
+app.get("/api/ai/test", auth.need("beheerder"), async (req, res) => res.json(await ai.selfTest()));
 app.post("/api/ai/json", auth.need("paardenbeheerder"), async (req, res) => {
   const ctl = new AbortController();
   res.on("close", () => { if (!res.writableEnded) ctl.abort(); });

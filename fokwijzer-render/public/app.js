@@ -297,13 +297,13 @@ function renderCouncil(s,m){const box=$("councilOut");if(!box)return;if(!s||!m){
    ${(saved||live)?`${chairCard(vz,live?(Object.keys(live.st).every(k=>live.st[k]!=="bezig")&&!vz?(live.vzSt||""):""):"")}
    <div class="xgrid">${EXPERTS.map(e=>expertCard(e,exp[e.id],live?live.st[e.id]:(exp[e.id]?"":"Geen oordeel."))).join("")}</div>`:""}`;
   const a=$("cAsk");if(a)a.onclick=()=>askCouncil(s,m,!!saved);const st=$("cStop");if(st)st.onclick=()=>{if(councilBusy&&councilBusy.ctl)councilBusy.ctl.abort()}}
-const sampleErr=(e)=>{const c=e&&e.code;return c==="not_granted"?"Log in als paarden-beheerder om de council te gebruiken.":c==="rate_limited"?"Even te veel vragen of je verbruikslimiet is bereikt. Probeer later opnieuw.":c==="sampling_disabled"?"AI-advies is niet beschikbaar op deze server.":c==="cancelled"?"Gestopt.":c==="invalid_json"?"Het antwoord was geen geldig formaat.":c==="session_expired"?"Meld je opnieuw aan.":"Geen antwoord ("+(c||"fout")+")."};
+const sampleErr=(e)=>{const c=e&&e.code;return c==="not_granted"?"Log in als paarden-beheerder om de council te gebruiken.":c==="rate_limited"?"Even te veel vragen of je verbruikslimiet is bereikt. Probeer later opnieuw.":c==="sampling_disabled"?"AI-advies is niet beschikbaar op deze server.":c==="cancelled"?"Gestopt.":c==="invalid_json"?"Het antwoord was geen geldig formaat.":c==="session_expired"?"Meld je opnieuw aan.":(e&&e.message&&!/^Fout \d+$/.test(e.message)?e.message:"Geen antwoord ("+(c||"fout")+").")};
 async function askCouncil(s,m,again){if(!sampleNs||councilBusy)return;const id=cId(s,m);const data=councilData(s,m);const ctl=new AbortController();
   state.cErr="";councilBusy={id,ctl,exp:{},st:Object.fromEntries(EXPERTS.map(e=>[e.id,"bezig"])),vz:null,vzSt:""};const rr=()=>{if(state.tab==="vergelijken")renderCouncil(byId($("cS").value),byId($("cM").value))};rr();
   const opts={signal:ctl.signal};if(again)opts.cache=false;
   await Promise.all(EXPERTS.map(e=>sampleNs.json(expertPrompt(e,data),Object.assign({},opts)).then(r=>{councilBusy.exp[e.id]=r;councilBusy.st[e.id]=""}).catch(err=>{councilBusy.st[e.id]=sampleErr(err)}).finally(rr)));
   const got=Object.keys(councilBusy.exp);
-  if(got.length<2||ctl.signal.aborted){state.cErr=ctl.signal.aborted?"Gestopt.":"Te weinig experten antwoordden. Probeer later opnieuw.";councilBusy=null;rr();return}
+  if(got.length<2||ctl.signal.aborted){const why=[...new Set(Object.values(councilBusy.st).filter(Boolean))][0];state.cErr=ctl.signal.aborted?"Gestopt.":"Te weinig experten antwoordden"+(why?": "+why.replace(/\.$/,""):"")+". Probeer later opnieuw.";councilBusy=null;rr();return}
   councilBusy.vzSt="bezig";rr();
   try{councilBusy.vz=await sampleNs.json(chairPrompt(data,councilBusy.exp),Object.assign({},opts,{modelTier:"complex"}))}catch(err){councilBusy.vzSt=sampleErr(err)}
   const doc={hengst_id:s.id,merrie_id:m.id,hengst:s.naam,merrie:m.naam,experts:councilBusy.exp,voorzitter:councilBusy.vz||null,gemaakt_op:new Date().toISOString(),veilinglots:(state.lots||[]).length,matchscore:data.matching.score};
@@ -474,11 +474,62 @@ function applyArtRole(){if(state.site)return;const mine=(state.leden||{})[state.
   state.rol=state.isOwner?"beheerder":(mine&&ROL_NAAM[mine.rol]?mine.rol:"gebruiker");
   state.isAdmin=state.rol==="beheerder";
   state.canWrite=!!state.platformWrite&&state.rol!=="gebruiker";state.canWiki=!!state.platformWrite;
-  state.isPartner=!!state.platformWrite&&(state.isAdmin||!!(mine&&mine.partner))}
+  state.isPartner=!!state.platformWrite&&(state.isAdmin||!!(mine&&mine.partner));
+  if(state.sim){state.realRole=roleSnapshot();applySimOverlay()}}
+// ---------- simulatie: de site bekijken als een andere rol (alleen voor beheerders) ----------
+const SIM={lezer:{l:"Lezer (zonder account)",rol:null,pt:false},gebruiker:{l:"Gebruiker",rol:"gebruiker",pt:false},paardenbeheerder:{l:"Paarden-beheerder",rol:"paardenbeheerder",pt:false},partner:{l:"Partner (gebruiker)",rol:"gebruiker",pt:true},pbpartner:{l:"Paarden-beheerder + partner",rol:"paardenbeheerder",pt:true}};
+let realDb=null,realSample=null,realMcp=null;
+// AI (council) en geplande taken (data-agent, veilingmeester) starten nooit tijdens een simulatie.
+const SIM_AI_BTNS='#cAsk,#vmRun,#runBtn,#lnkBtn,#aBtn,[data-ract="retry"]';
+function simAiStub(){const no=()=>Promise.reject(Object.assign(new Error("simulatie: AI en geplande taken worden niet gestart"),{code:"simulatie"}));const f=(...a)=>no();f.json=no;f.limits=()=>Promise.resolve({});return f}
+function roleSnapshot(){return{rol:state.rol,isAdmin:state.isAdmin,isPartner:state.isPartner,canWrite:state.canWrite,canWiki:state.canWiki,platformWrite:state.platformWrite}}
+function applySimOverlay(){const k=SIM[state.sim];if(!k)return;
+  state.rol=k.rol||(state.site?"anoniem":"lezer");state.isAdmin=false;state.isPartner=k.pt;
+  state.canWrite=k.rol==="paardenbeheerder";state.canWiki=!!k.rol;state.platformWrite=!!k.rol;
+  if(state.site)document.documentElement.setAttribute("data-rol",k.rol||"anoniem")}
+function wrapRef(o,over){const w={};let pr=o;const seen=new Set();while(pr&&pr!==Object.prototype){for(const key of Object.getOwnPropertyNames(pr)){if(seen.has(key)||key==="constructor")continue;seen.add(key);const v=o[key];w[key]=typeof v==="function"?v.bind(o):v}pr=Object.getPrototypeOf(pr)}return Object.assign(w,over)}
+const simBlock=()=>Promise.reject(Object.assign(new Error("simulatie: er wordt niets bewaard"),{code:"simulatie"}));
+function simDoc(d){return wrapRef(d,{set:simBlock,update:simBlock,delete:simBlock})}
+function simColl(c){return wrapRef(c,{doc:(...a)=>simDoc(c.doc(...a)),add:simBlock})}
+function simDbOf(r){return{collection:(...a)=>simColl(r.collection(...a)),doc:(...a)=>simDoc(r.doc(...a))}}
+function startSim(kind){if(!SIM[kind]||!db)return;if(!state.sim){state.realRole=roleSnapshot();realDb=db;state.realDataRol=document.documentElement.getAttribute("data-rol")}
+  if(!realSample&&!realMcp){realSample=sampleNs;realMcp=mcpNs}
+  if(sampleNs)sampleNs=simAiStub();if(mcpNs)mcpNs={callTool:()=>Promise.reject(Object.assign(new Error("simulatie: geplande taken worden niet gestart"),{code:"simulatie"}))};
+  state.sim=kind;db=simDbOf(realDb);applySimOverlay();document.documentElement.classList.add("fw-sim");renderSimBar();setTab("info");renderAll();window.scrollTo({top:0})}
+function stopSim(){if(!state.sim)return;Object.assign(state,state.realRole||{});state.sim=null;if(realDb)db=realDb;
+  if(realSample)sampleNs=realSample;if(realMcp)mcpNs=realMcp;realSample=null;realMcp=null;
+  if(state.site){if(state.realDataRol)document.documentElement.setAttribute("data-rol",state.realDataRol)}
+  document.documentElement.classList.remove("fw-sim");renderSimBar();setTab("admin");renderAll()}
+function renderSimBar(){const b=$("simBar");if(!state.sim){b.hidden=true;b.innerHTML="";return}b.hidden=false;
+  b.innerHTML=`<span><b>Simulatie</b> · je bekijkt De Fokwijzer als <b>${esc(SIM[state.sim].l)}</b>. Er wordt niets bewaard.</span><span class="row" style="gap:6px"><select id="simSel" aria-label="Andere rol">${Object.entries(SIM).map(([k,v])=>`<option value="${k}" ${k===state.sim?"selected":""}>${esc(v.l)}</option>`).join("")}</select><button class="btn" type="button" id="simStop">Stoppen, terug naar beheerder</button></span>`}
+document.addEventListener("click",e=>{const sb=e.target.closest("[data-sim]");if(sb){e.preventDefault();startSim(sb.dataset.sim);return}if(e.target.closest("#simStop")){e.preventDefault();stopSim()}});
+document.addEventListener("change",e=>{if(e.target.id==="simSel")startSim(e.target.value)});
+// Tijdens de simulatie: accountknoppen (inloggen, partner worden, ...) niet echt uitvoeren.
+window.addEventListener("click",e=>{if(!state.sim)return;const ai=e.target.closest(SIM_AI_BTNS);const t=ai||e.target.closest("[data-acct],[data-myp],.fw-hist .btn");if(!t)return;e.preventDefault();e.stopImmediatePropagation();
+  const m=document.createElement("div");m.className="sim-toast";m.textContent=ai?"Simulatie: AI en geplande taken worden niet gestart. Voor een echte bezoeker werkt deze knop wel.":"Simulatie: deze knop werkt voor een echte bezoeker, maar nu wordt niets uitgevoerd.";document.body.appendChild(m);setTimeout(()=>m.remove(),3500)},true);
 function renderWho(){if(state.site)return;if(state.dbState!=="ready"){$("artWho").innerHTML="";$("adminAcct").innerHTML="";return}const nm=state.meName||(state.isOwner?"Eigenaar":"Jij");const rl=ROL_NAAM[state.rol]||"Lezer";
   const ro=state.dbState==="ready"&&!state.platformWrite;
-  $("artWho").innerHTML=`<span class="fw-who"><b>${esc(nm)}</b> - ${ro?"Lezer":esc(rl)}${state.isPartner&&!state.isAdmin?" · Partner":""}</span>${state.isAdmin?'<button type="button" class="fw-lnk" id="adminLink">Beheer</button>':""}`;
-  $("adminAcct").innerHTML=`<span class="muted">Ingelogd als</span><span class="fw-who"><b>${esc(nm)}</b> - ${esc(rl)}</span>`}
+  const lab=state.sim?`<b>Simulatie</b> - ${esc(SIM[state.sim].l)}`:`<b>${esc(nm)}</b> - ${ro?"Lezer":esc(rl)}${state.isPartner&&!state.isAdmin?" · Partner":""}`;
+  $("artWho").innerHTML=`<span class="fw-who">${lab}</span>${state.isAdmin?'<button type="button" class="fw-lnk" id="adminLink">Beheer</button>':""}<button type="button" class="fw-lnk" data-myacct>Mijn account</button><button type="button" class="fw-lnk" data-uitlog>Uitloggen</button>`;
+  $("adminAcct").innerHTML=`<span class="muted">Ingelogd als</span><span class="fw-who">${lab}</span><button type="button" class="fw-lnk" data-myacct>Mijn account</button><button type="button" class="fw-lnk" data-uitlog>Uitloggen</button>`}
+// "Mijn account": dezelfde mogelijkheden als op de website, met je account als login.
+function openMyAccount(){const nm=state.meName||(state.isOwner?"Eigenaar":"Jij");const ro=!state.platformWrite;const rl=ro?"Lezer":(ROL_NAAM[state.rol]||"Gebruiker");
+  const d=document.createElement("dialog");d.className="detdlg";
+  const rolBtn=!ro&&state.rol==="gebruiker"?'<button class="btn" type="button" data-acct="word-pb">Word paarden-beheerder</button>':"";
+  const ptBtn=ro?"":(state.isAdmin?"":(state.isPartner?'<button class="btn ghost" type="button" data-myp="uit">Geen partner meer</button>':'<button class="btn" type="button" data-acct="word-partner">Word partner</button>'));
+  d.innerHTML=`<div class="dlg-head"><h3 style="margin:0">Mijn account</h3><button type="button" class="btn ghost" data-close>Sluiten</button></div>
+   <div class="dlg-body"><dl class="facts" style="margin:0 0 12px"><dt>Naam</dt><dd>${esc(nm)}</dd><dt>Rol</dt><dd><b>${esc(rl)}</b></dd><dt>Partner</dt><dd>${state.isPartner?"ja":"nee"}</dd><dt>Ingelogd via</dt><dd>je account</dd></dl>
+   <p class="small muted" style="margin:0 0 12px">${ro?"Je mag deze Fokwijzer alleen bekijken. Vraag de eigenaar om bewerkrechten (Kan bewerken) om bij te dragen.":"Gebruiker: bronnen en opmerkingen aanvullen. Paarden-beheerder: eigen paarden toevoegen en gegevens aanpassen. Partner: je bedrijf in de kijker zetten (voorlopig gratis)."}</p>
+   <div class="row" style="gap:8px">${rolBtn}${ptBtn}${state.isAdmin?'<button class="btn ghost" type="button" data-goadmin>Naar Beheer</button>':""}</div><div class="status" role="status" id="myStatus"></div>
+   <p class="small muted" style="margin:14px 0 0">Wachtwoord en uitloggen regel je bij je account. Op de website van De Fokwijzer log je in met een eigen e-mailadres en wachtwoord.</p></div>`;
+  document.body.appendChild(d);d.addEventListener("close",()=>d.remove());d.querySelector("[data-close]").onclick=()=>d.close();
+  d.addEventListener("click",async e=>{if(e.target.closest("[data-acct]"))setTimeout(()=>d.close(),400);if(e.target.closest("[data-goadmin]")){d.close();setTab("admin")}
+    if(e.target.closest("[data-myp]")){try{await db.collection(LEDEN_COLL).doc(state.meId).update({partner:false});d.close()}catch(err){const st=d.querySelector("#myStatus");st.className="status err";st.textContent="Lukte niet."}}});
+  d.showModal()}
+function openLogoutInfo(){const d=document.createElement("dialog");d.className="detdlg";
+  d.innerHTML=`<div class="dlg-head"><h3 style="margin:0">Uitloggen</h3><button type="button" class="btn ghost" data-close>Sluiten</button></div><div class="dlg-body"><p style="margin:0 0 10px">In deze versie ben je ingelogd met je <b>account</b>. Uitloggen doe je in je account, via je accountmenu. Daarmee meld je je af voor je hele account, niet alleen voor De Fokwijzer.</p><p class="small muted" style="margin:0">Op de website van De Fokwijzer staat hier een gewone knop Uitloggen.</p></div>`;
+  document.body.appendChild(d);d.addEventListener("close",()=>d.remove());d.querySelector("[data-close]").onclick=()=>d.close();d.showModal()}
+document.addEventListener("click",e=>{if(state.site)return;if(e.target.closest("[data-myacct]")){e.preventDefault();openMyAccount()}else if(e.target.closest("[data-uitlog]")){e.preventDefault();openLogoutInfo()}});
 async function renderLeden(){if(state.site||!state.isAdmin)return;const box=$("adminExtra");if(!box)return;
   const L=state.leden||{};const ids=Object.keys(L);let ps={};try{ps=state.userNs&&state.userNs.profiles?await state.userNs.profiles(ids):{}}catch(_){ps={}}
   const rows=ids.sort((a,b)=>String((ps[a]||{}).name||"").localeCompare(String((ps[b]||{}).name||""))).map(id=>{const d=L[id]||{};const nm=(ps[id]&&ps[id].name)||"Onbekende gebruiker";const me=id===state.meId;
@@ -1179,7 +1230,7 @@ buildPedInputs();renderAll();
   state.canWrite=can===true;state.canAsk=!!(user&&user.level>=1);state.dbState="ready";
   {let cw=null;try{cw=user&&user.can?await user.can("wiki.write"):null}catch(_){cw=null}state.canWiki=state.canWrite||cw===true;try{state.meId=user&&user.id?String((await user.id())||""):""}catch(_){state.meId=""}}
   state.site=!!(user&&typeof user.rol==="string");state.userNs=user;
-  if(state.site){state.rol=user.rol;state.isAdmin=user.rol==="beheerder";state.isPartner=!!user.partner||state.isAdmin}
+  if(state.site){state.rol=user.rol;state.isAdmin=user.rol==="beheerder";state.isPartner=!!user.partner||state.isAdmin;state.canWiki=state.canWiki;state.platformWrite=true}
   else{ // Versie zonder eigen server: rollen staan in de collectie "leden"; de eigenaar is altijd beheerder.
     state.platformWrite=state.canWrite;
     try{state.isOwner=!!(user&&await user.isOwner())}catch(_){state.isOwner=false}
