@@ -55,3 +55,25 @@ html:not([data-rol="paardenbeheerder"]):not([data-rol="beheerder"]) [data-act="e
 #adminAcct{justify-content:flex-end;margin:-34px 0 14px auto}
 @media (max-width:820px){#adminAcct{margin:0 0 12px;justify-content:flex-start}}
 .fw-partnerkeuze{border:1px solid var(--line);border-radius:10px;padding:10px}
+/* Bezoekersstatistieken (Beheer) */
+.fw-stats-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.fw-seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.fw-seg-b{font:inherit;font-size:.82rem;background:var(--surface);color:var(--fg);border:0;padding:6px 12px;cursor:pointer}
+.fw-seg-b[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink,#fff)}
+.fw-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.fw-tile{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface)}
+.fw-tile-l{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.fw-tile-v{font-size:1.7rem;font-weight:700;line-height:1.2;color:var(--fg)}
+.fw-tile-s{font-size:.78rem;color:var(--muted)}
+.fw-chart-wrap{position:relative}
+.fw-chart{width:100%;height:auto;display:block}
+.fw-bar{fill:var(--accent)}
+.fw-grid{stroke:var(--line);stroke-width:1}
+.fw-ax{font-size:11px;fill:var(--muted)}
+.fw-hit{fill:transparent;cursor:default}
+.fw-hit:hover{fill:color-mix(in srgb,var(--accent) 8%,transparent)}
+.fw-tip{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap;padding:5px 9px;border-radius:7px;background:var(--fg);color:var(--surface);font-size:.8rem;pointer-events:none}
+.fw-tbl{margin-top:8px}
+.fw-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.fw-stat-list .fw-users,.fw-tbl .fw-users{display:table!important;width:100%}
+@media (max-width:820px){.fw-tiles{grid-template-columns:1fr 1fr}.fw-stat-grid{grid-template-columns:1fr}.fw-chart-wrap{overflow-x:auto}.fw-chart{min-width:600px}.fw-tip{position:sticky;display:block;transform:none;margin-top:6px}}

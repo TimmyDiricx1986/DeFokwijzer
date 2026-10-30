@@ -126,6 +126,7 @@ function match(s,m){const w=state.w,t=state.t;const warnings=[],reasons=[],weak=
 function setTab(t){if((t==="stam"&&!FW_EXTRA.stamlijnen)||(t==="veilingen"&&!FW_EXTRA.veilingen))t="zoeken";const prevTab=state.tab;state.tab=t;document.querySelectorAll("nav.tabs button[data-tab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===t)));
   ["info","zoeken","vergelijken","matches","stam","veilingen","aanvragen","beheer","partners","admin"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab();
   // Na een tabwissel bovenaan het nieuwe onderdeel beginnen (vooral op de gsm stond je anders halverwege de pagina).
+  if(prevTab!==t)fwTrack("tab",t);
   if(prevTab!==t){const n=document.querySelector("nav.tabs");if(n&&n.getBoundingClientRect().top<0)window.scrollTo({top:Math.max(0,n.getBoundingClientRect().top+window.scrollY-8)})}}
 function renderTab(){if(state.tab==="zoeken"){renderSearch();requestAnimationFrame(fitList)}if(state.tab==="vergelijken")renderCompare();if(state.tab==="matches")renderMatches();if(state.tab==="stam")renderStam();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="aanvragen")renderAanvragen();if(state.tab==="beheer")renderBeheer();if(state.tab==="partners"){renderPartnersNote();renderAdAdmin()}if(state.tab==="admin")renderAdmin()}
 
@@ -828,6 +829,9 @@ function fokHtml(h){const f=(h.fokwaarden||[]);if(!f.length)return '<span class=
 function wffsChip(w){if(w==="N/N")return '<span class="chip good">WFFS N/N</span>';if(w==="N/WFFS")return '<span class="chip warn">WFFS-drager</span>';if(w==="WFFS/WFFS")return '<span class="chip bad">WFFS/WFFS</span>';return '<span class="chip">WFFS onbekend</span>'}
 function ocdChip(h){if(h.ocd==="vrij")return '<span class="chip good">OCD-vrij</span>';if(h.ocd==="bevinding")return `<span class="chip warn">OCD-bevinding</span>`;return '<span class="chip">OCD onbekend</span>'}
 
+// Bezoekersstatistieken (alleen op de website, zie fokwijzer-api.js): geen cookies, geen persoonsgegevens.
+function fwTrack(t,v){try{if(!state.sim&&window.__fwTrack)window.__fwTrack(t,v)}catch(_){}}
+let fwLastHorse=null;
 function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<div class="card empty det">Kies een paard in de lijst om de details te zien.</div>';return}
   const o=h.nakomelingen||{};const isDemo=String(h.id).startsWith("demo-");
   const sp=sponsorOf(h);const mk=marketHtml(h);const nb=(h.bronnen||[]).filter(x=>x&&(x.naam||x.url)).length;
@@ -982,7 +986,7 @@ $("tabMore").addEventListener("click",()=>{const n=document.querySelector("nav.t
 document.querySelector("nav.tabs").addEventListener("click",e=>{if(e.target.closest("button[data-tab]")){const n=document.querySelector("nav.tabs");n.classList.remove("open");$("tabMore").setAttribute("aria-expanded","false")}});
 document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(b)setTab(b.dataset.tab)});
 ["q","fSex","fStb","fSort"].forEach(id=>$(id).addEventListener("input",renderSearch));
-$("results").addEventListener("click",e=>{const b=e.target.closest(".item");if(!b)return;const r=$("results"),st=r.scrollTop;state.sel=b.dataset.id;state.detTab="overzicht";renderSearch();r.scrollTop=st;if(window.matchMedia("(max-width:820px)").matches)requestAnimationFrame(()=>{const d=$("detail");if(d)d.scrollIntoView({behavior:"smooth",block:"start"})})});
+$("results").addEventListener("click",e=>{const b=e.target.closest(".item");if(!b)return;const r=$("results"),st=r.scrollTop;state.sel=b.dataset.id;state.detTab="overzicht";if(state.sel!==fwLastHorse&&!String(state.sel).startsWith("demo-")){fwLastHorse=state.sel;fwTrack("paard",state.sel)}renderSearch();r.scrollTop=st;if(window.matchMedia("(max-width:820px)").matches)requestAnimationFrame(()=>{const d=$("detail");if(d)d.scrollIntoView({behavior:"smooth",block:"start"})})});
 let armTimer=null;
 $("detail").addEventListener("click",e=>{const tb=e.target.closest("[data-dtab]");if(tb){state.detTab=tb.dataset.dtab;renderDetail();return}if(e.target.closest("#detMore"))openDetDialog()});
 $("detail").addEventListener("submit",async e=>{const f=e.target.closest("form.wiki-form");if(!f)return;e.preventDefault();const h=byId(f.dataset.id);if(!h||!db)return;const st=f.querySelector(".status");const btn=f.querySelector("button[type=submit]");

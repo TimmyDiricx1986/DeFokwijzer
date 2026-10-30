@@ -279,3 +279,21 @@ test("partner: eigen partnerplekken en eigen gegevens, niets van anderen", async
   const cg2 = up.headers.get("set-cookie").split(";")[0];
   assert.equal((await put("/api/c/partners/x2", { naam: "B", type: "voet" }, cg2)).status, 200);
 });
+
+test("bezoekersstatistieken: uniek per dag, zonder beheerders, alleen leesbaar voor beheerders", async () => {
+  const ua = { "user-agent": "Mozilla/5.0 Testbrowser" };
+  const post = (body, extra) => fetch(base + "/api/stat", { method: "POST", headers: Object.assign({}, H, ua, extra || {}), body: JSON.stringify(body) });
+  assert.equal((await post({ t: "load" })).status, 204);
+  await post({ t: "load" });
+  await post({ t: "tab", v: "zoeken" });
+  await post({ t: "paard", v: "p1" });
+  await post({ t: "load" }, { "user-agent": "Googlebot/2.1" });
+  assert.equal((await fetch(base + "/api/stats")).status, 401);
+  const cb = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  await post({ t: "load" }, { cookie: cb, "user-agent": "Mozilla/5.0 Beheerder" });
+  const r = await (await fetch(base + "/api/stats?dagen=7", { headers: { cookie: cb } })).json();
+  assert.equal(r.vandaag.bezoekers, 1, "zelfde bezoeker telt één keer; bot en beheerder tellen niet");
+  assert.equal(r.vandaag.paginas, 3);
+  assert.equal(r.paarden[0].id, "p1");
+  assert.equal(r.perDag.length, 7);
+});

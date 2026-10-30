@@ -300,6 +300,17 @@ app.get("/api/stream", (req, res) => {
 });
 
 // ---------------------------------------------------------------- AI-advies (council)
+// ---------------------------------------------------------------- bezoekersstatistieken
+const stats = require("./stats");
+const statLimit = rateLimit({ windowMs: 60e3, limit: 60, standardHeaders: "draft-7", legacyHeaders: false, message: { fout: "Te veel." } });
+app.post("/api/stat", statLimit, (req, res) => {
+  const b = req.body || {};
+  stats.record(req, String(b.t || ""), b.v);
+  res.status(204).end();
+});
+app.get("/api/stats", auth.need("beheerder"), (req, res) => {
+  res.json(stats.report(req.query.dagen, (id) => { const d = store.getDoc("paarden", id); return d && d.data && d.data.naam; }));
+});
 app.get("/api/ai/test", auth.need("beheerder"), async (req, res) => res.json(await ai.selfTest()));
 app.post("/api/ai/json", auth.need("paardenbeheerder"), async (req, res) => {
   const ctl = new AbortController();

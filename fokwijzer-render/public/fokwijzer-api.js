@@ -384,6 +384,7 @@
         if (al) box.appendChild(al);
         var ax = document.getElementById("adminExtra");
         if (ax && !ax.firstChild) {
+          statsCard(ax);
           var acard = el("div", { class: "card", style: "margin-bottom:12px" }, [el("h3", { text: "AI-advies (council)", style: "margin:0" }), el("p", { class: "small muted", style: "margin:6px 0 10px", text: m.ai ? "Er is een API-sleutel ingesteld. Test of de sleutel en het model werken." : "Er is nog geen API-sleutel ingesteld (ANTHROPIC_API_KEY in Render)." })]);
           var ast = status();
           if (m.ai) {
@@ -428,6 +429,87 @@
       }
     });
   });
+  // ------------------------------------------------------------ bezoekersstatistieken
+  // Zonder cookies: de server maakt per dag een onomkeerbare code; beheerders en zoekmachines tellen niet mee.
+  window.__fwTrack = function (t, v) {
+    try { fetch("/api/stat", { method: "POST", credentials: "same-origin", keepalive: true, headers: { "content-type": "application/json", "x-fokwijzer": "1" }, body: JSON.stringify({ t: t, v: v }) }).catch(function () {}); } catch (_) {}
+  };
+  var TAB_NAAM = { info: "Info", zoeken: "Zoeken", matches: "Beste matches", vergelijken: "Vergelijken", aanvragen: "Paard aanvragen", beheer: "Paarden beheren", partners: "Partners", admin: "Beheer", stam: "Stamlijnen", veilingen: "Veilingen" };
+  var SVG = "http://www.w3.org/2000/svg";
+  function svg(tag, attrs) { var n = document.createElementNS(SVG, tag); Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); }); return n; }
+  function fmtDag(d) { var p = d.split("-"); return parseInt(p[2], 10) + "/" + parseInt(p[1], 10); }
+  function statsCard(root) {
+    var card = el("div", { class: "card fw-stats", style: "margin-bottom:12px" });
+    var head = el("div", { class: "fw-stats-head" }, [el("h3", { text: "Bezoekers", style: "margin:0" })]);
+    var per = el("div", { class: "fw-seg", role: "group", "aria-label": "Periode" });
+    var body = el("div");
+    var dagen = 30;
+    [7, 30, 90].forEach(function (d) {
+      var b = el("button", { type: "button", class: "fw-seg-b", "aria-pressed": String(d === dagen), text: d + " dagen" });
+      b.addEventListener("click", function () { dagen = d; per.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); }); load(); });
+      per.appendChild(b);
+    });
+    head.appendChild(per); card.appendChild(head); card.appendChild(body);
+    card.appendChild(el("p", { class: "small muted", style: "margin:10px 0 0", text: "Unieke bezoekers worden per dag geteld: wie op drie dagen langskomt, telt drie keer in de week. Beheerders en zoekmachines tellen niet mee. Geen cookies en geen IP-adressen; zichtbaar voor beheerders." }));
+    root.appendChild(card);
+    function tile(lab, val, sub) { return el("div", { class: "fw-tile" }, [el("div", { class: "fw-tile-l", text: lab }), el("div", { class: "fw-tile-v num", text: String(val) }), sub ? el("div", { class: "fw-tile-s", text: sub }) : null]); }
+    function chart(rows) {
+      var W = 760, H = 180, pl = 34, pr = 8, pt = 10, pb = 24;
+      var max = Math.max(4, rows.reduce(function (a, r) { return Math.max(a, r.bezoekers); }, 0));
+      var step = Math.pow(10, Math.floor(Math.log10(max))); var top = Math.ceil(max / step) * step; if (top / step < 3) { step = step / 2; }
+      var s = svg("svg", { viewBox: "0 0 " + W + " " + H, class: "fw-chart", role: "img", "aria-label": "Unieke bezoekers per dag" });
+      for (var g = 0; g <= top; g += step) {
+        var y = pt + (H - pt - pb) * (1 - g / top);
+        s.appendChild(svg("line", { x1: pl, x2: W - pr, y1: y, y2: y, class: "fw-grid" }));
+        var tl = svg("text", { x: pl - 6, y: y + 4, "text-anchor": "end", class: "fw-ax" }); tl.textContent = g; s.appendChild(tl);
+      }
+      var bw = (W - pl - pr) / rows.length, gap = Math.min(4, bw * 0.25);
+      var tip = el("div", { class: "fw-tip", hidden: "hidden" });
+      rows.forEach(function (r, i) {
+        var h = (H - pt - pb) * (r.bezoekers / top), x = pl + i * bw + gap / 2, w = Math.max(1, bw - gap), y = pt + (H - pt - pb) - h;
+        var rad = Math.min(4, w / 2);
+        if (h > 0) s.appendChild(svg("path", { class: "fw-bar", d: "M" + x + "," + (y + h) + "V" + (y + rad) + "Q" + x + "," + y + " " + (x + rad) + "," + y + "H" + (x + w - rad) + "Q" + (x + w) + "," + y + " " + (x + w) + "," + (y + rad) + "V" + (y + h) + "Z" }));
+        var hit = svg("rect", { x: pl + i * bw, y: pt, width: bw, height: H - pt - pb, class: "fw-hit" });
+        hit.addEventListener("mouseenter", function () { tip.hidden = false; tip.textContent = ""; tip.appendChild(el("b", { text: fmtDag(r.dag) })); tip.appendChild(document.createTextNode(" · " + r.bezoekers + " bezoekers · " + r.paginas + " pagina's")); tip.style.left = ((pl + i * bw + bw / 2) / W * 100) + "%"; });
+        hit.addEventListener("mouseleave", function () { tip.hidden = true; });
+        s.appendChild(hit);
+        var every = rows.length > 31 ? 14 : rows.length > 8 ? 5 : 1;
+        if ((rows.length - 1 - i) % every === 0) { var t = svg("text", { x: pl + i * bw + bw / 2, y: H - 6, "text-anchor": "middle", class: "fw-ax" }); t.textContent = fmtDag(r.dag); s.appendChild(t); }
+      });
+      return el("div", { class: "fw-chart-wrap" }, [s, tip]);
+    }
+    function table(title, rows, kop) {
+      var t = el("table", { class: "fw-users" });
+      t.appendChild(el("tr", {}, [el("th", { text: kop }), el("th", { text: "Weergaven", style: "text-align:right" })]));
+      rows.forEach(function (r) { t.appendChild(el("tr", {}, [el("td", { text: r[0] }), el("td", { text: String(r[1]), class: "num", style: "text-align:right" })])); });
+      if (!rows.length) t.appendChild(el("tr", {}, [el("td", { colspan: "2", class: "small muted", text: "Nog geen gegevens." })]));
+      return el("div", { class: "fw-stat-list" }, [el("div", { class: "label", text: title }), t]);
+    }
+    function load() {
+      body.textContent = ""; body.appendChild(el("p", { class: "small muted", text: "Laden..." }));
+      api("GET", "/api/stats?dagen=" + dagen).then(function (r) {
+        body.textContent = "";
+        body.appendChild(el("div", { class: "fw-tiles" }, [
+          tile("Vandaag", r.vandaag.bezoekers, "unieke bezoekers"),
+          tile("Laatste 7 dagen", r.week.bezoekers, "bezoekers, opgeteld per dag"),
+          tile("Laatste " + r.dagen + " dagen", r.periode.bezoekers, "bezoekers, opgeteld per dag"),
+          tile("Pagina's bekeken", r.periode.paginas, "laatste " + r.dagen + " dagen")]));
+        body.appendChild(el("div", { class: "label", style: "margin:14px 0 4px", text: "Unieke bezoekers per dag" }));
+        var cw = chart(r.perDag); body.appendChild(cw);
+        // Op de gsm: de meest recente dagen eerst in beeld (zodra de grafiek zichtbaar is).
+        if (window.ResizeObserver) { var ro = new ResizeObserver(function () { if (cw.clientWidth) { cw.scrollLeft = cw.scrollWidth; ro.disconnect(); } }); ro.observe(cw); }
+        var dt = el("details", { class: "fw-tbl" }, [el("summary", { class: "small", text: "Toon als tabel" })]);
+        var tb = el("table", { class: "fw-users" }); tb.appendChild(el("tr", {}, ["Dag", "Bezoekers", "Pagina's"].map(function (h) { return el("th", { text: h }); })));
+        r.perDag.slice().reverse().forEach(function (d) { tb.appendChild(el("tr", {}, [el("td", { text: d.dag }), el("td", { class: "num", text: String(d.bezoekers) }), el("td", { class: "num", text: String(d.paginas) })])); });
+        dt.appendChild(el("div", { class: "fw-users-wrap" }, [tb])); body.appendChild(dt);
+        body.appendChild(el("div", { class: "fw-stat-grid" }, [
+          table("Populaire onderdelen", r.onderdelen.map(function (o) { return [TAB_NAAM[o.naam] || o.naam, o.n]; }), "Onderdeel"),
+          table("Meest bekeken paarden", r.paarden.map(function (o) { return [o.naam, o.n]; }), "Paard")]));
+      }, function (e) { body.textContent = ""; var st = status(); fail(st, e); body.appendChild(st); });
+    }
+    load();
+  }
+
   function ready(fn) { if (document.readyState !== "loading") fn(); else document.addEventListener("DOMContentLoaded", fn); }
-  ready(function () { me.then(mountAccount); });
+  ready(function () { me.then(mountAccount); window.__fwTrack("load"); });
 })();
