@@ -246,7 +246,7 @@ ol.srcs li{margin:3px 0;overflow-wrap:anywhere}
 .actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 /* ---------- Stamboom in Fokwijzer-stijl ---------- */
-:root{--pg-green:#13302A;--pg-gold:#B08A5A;--pg-cream:#FAF7F1;--pg-line:#E4DCCB;--pg-cell:rgba(255,255,255,.78);--pg-wm:.07;--f-logo:"Cinzel",Georgia,serif}
+:root{--pg-green:#13302A;--pg-gold:#B08A5A;--pg-cream:#FAF7F1;--pg-line:#E4DCCB;--pg-cell:rgba(255,255,255,.78);--pg-wm:.07;--f-logo:"Spectral SC",Georgia,serif}
 :root[data-theme="dark"]{--pg-green:#8FC59B;--pg-gold:#D3B48A;--pg-cream:#232824;--pg-line:#353C36;--pg-cell:transparent;--pg-wm:.05}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg-green:#8FC59B;--pg-gold:#D3B48A;--pg-cream:#232824;--pg-line:#353C36;--pg-cell:transparent;--pg-wm:.05}}
 .pc{position:relative;display:grid;grid-template-columns:20px minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(8,minmax(17px,1fr));gap:1px 4px;overflow:hidden;flex:1;min-height:143px}
@@ -279,15 +279,16 @@ ol.srcs li{margin:3px 0;overflow-wrap:anywhere}
 .pcard-slot{margin:0;display:flex;flex-direction:column;gap:6px}
 .pcard-slot.pc-fill{flex:1;min-height:0}
 .pcard-img{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;cursor:zoom-in;flex:none}
-.pcard-img img{display:block;max-width:100%;height:auto;min-height:60px}
+.pcard-img .pc-svg{display:block;max-width:100%;min-height:60px}
+.pcard-img .pc-svg svg,.pc-prev svg{display:block;width:100%;height:auto}
 .pcard-img:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .pcard-slot figcaption{display:flex;justify-content:flex-end}
 .pcard-slot .pc-dl{font-size:.8rem;padding:3px 12px}
 dl.facts.ov-extra{grid-template-columns:max-content minmax(0,1fr);gap:1px 14px;margin:0 0 4px}
 /* uitbreidingen tijdelijk verborgen (zie FW_EXTRA) */
 #p-info .info-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#13302A,#1E4639);color:#FAF7F1;border-radius:var(--r);padding:28px 30px;margin-bottom:16px}
-#p-info .info-kick{font-family:"Cinzel",Georgia,serif;letter-spacing:.18em;text-transform:uppercase;font-size:.8rem;color:#D9BE8F}
-#p-info .info-title{font-family:"Cinzel",Georgia,serif;font-size:clamp(1.8rem,3.4vw,2.6rem);color:#FAF7F1;margin:4px 0 10px}
+#p-info .info-kick{font-family:"Spectral SC",Georgia,serif;letter-spacing:.18em;text-transform:uppercase;font-size:.8rem;color:#D9BE8F}
+#p-info .info-title{font-family:"Spectral SC",Georgia,serif;font-size:clamp(1.8rem,3.4vw,2.6rem);color:#FAF7F1;margin:4px 0 10px}
 #p-info .info-title .fok{color:#D9BE8F}
 #p-info .info-lead{max-width:68ch;font-size:1.08rem;line-height:1.55;margin:0 0 18px;color:#EDE6D8}
 #p-info .info-cta{background:#B08A5A;border-color:#B08A5A;color:#13302A;font-weight:700;padding:10px 22px;font-size:1rem}
@@ -297,7 +298,7 @@ dl.facts.ov-extra{grid-template-columns:max-content minmax(0,1fr);gap:1px 14px;m
 #p-info .info-step{position:relative;display:flex;flex-direction:column;gap:6px}
 #p-info .info-step p,#p-info .info-note p{margin:0;line-height:1.5}
 #p-info .info-step .linkbtn{margin-top:auto;align-self:flex-start;background:none;border:0;padding:6px 0 0;color:var(--accent);font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-#p-info .info-n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;font-family:"Cinzel",Georgia,serif;font-weight:600}
+#p-info .info-n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;font-family:"Spectral SC",Georgia,serif;font-weight:600}
 #p-info .info-foot{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 #p-info .info-soon{border-style:dashed;border-color:var(--gold)}
 html.fw-no-stam.fw-no-veil #p-info .info-soon{display:block}
@@ -402,7 +403,7 @@ header.top #adminLink[aria-current="page"]{text-decoration-thickness:2px}
   .ov-ped .pcard-slot figcaption{position:sticky;left:0;justify-content:flex-start}
   .ov-ped::before{content:"Veeg opzij om de hele stamboom te zien";display:block;font-size:.75rem;color:var(--muted,#777);margin-bottom:6px;position:sticky;left:0}
   .pcdlg .pc-prev{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .pcdlg .pc-prev img{min-width:760px;max-width:none}
+  .pcdlg .pc-prev svg{min-width:760px;max-width:none}
   dialog.detdlg{max-width:100vw!important;width:calc(100vw - 16px);margin:auto 8px}
   dialog.detdlg .dlg-body{max-height:78vh}
   table{font-size:.86rem}

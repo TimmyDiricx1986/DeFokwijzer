@@ -145,7 +145,7 @@ def main():
     print("Klaar: public/ opgebouwd.")
 
 
-FONTS = [("cinzel", "Cinzel", [600, 700]), ("bitter", "Bitter", [500, 600, 700]), ("source-sans-3", "Source Sans 3", [400, 600, 700]), ("ibm-plex-mono", "IBM Plex Mono", [400, 500])]
+FONTS = [("spectral-sc", "Spectral SC", [500, 600, 700]), ("bitter", "Bitter", [500, 600, 700]), ("source-sans-3", "Source Sans 3", [400, 600, 700]), ("ibm-plex-mono", "IBM Plex Mono", [400, 500])]
 RANGES = {
     "latin": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
     "latin-ext": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
@@ -153,17 +153,22 @@ RANGES = {
 
 
 def build_fonts():
-    src = ROOT / "node_modules" / "@fontsource"
-    if not src.exists():
-        fail("lettertypen ontbreken: voer eerst 'npm run fonts' uit")
+    # De lettertypen staan in src/fonts (woff2 of woff), zodat bouwen geen internet nodig heeft.
+    src = SRC / "fonts"
     out = []
     for pkg, family, weights in FONTS:
         for w in weights:
             for sub in ["latin-ext", "latin"]:
-                name = f"{pkg}-{sub}-{w}-normal.woff2"
-                shutil.copy(src / pkg / "files" / name, PUB / "fonts" / name)
+                base = f"{pkg}-{sub}-{w}-normal"
+                for ext, fmt in (("woff2", "woff2"), ("woff", "woff")):
+                    if (src / f"{base}.{ext}").exists():
+                        break
+                else:
+                    fail(f"lettertype ontbreekt in src/fonts: {base}")
+                name = f"{base}.{ext}"
+                shutil.copy(src / name, PUB / "fonts" / name)
                 out.append(f"@font-face{{font-family:'{family}';font-style:normal;font-display:swap;font-weight:{w};"
-                           f"src:url(./{name}) format('woff2');unicode-range:{RANGES[sub]}}}")
+                           f"src:url(./{name}) format('{fmt}');unicode-range:{RANGES[sub]}}}")
     (PUB / "fonts" / "fonts.css").write_text("\n".join(out) + "\n", encoding="utf-8")
 
 
