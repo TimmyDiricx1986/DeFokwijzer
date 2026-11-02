@@ -55,7 +55,7 @@ Je hebt nodig: een server (VPS) met Docker, bijvoorbeeld bij Hetzner, OVH of Com
 
 ## Bijwerken
 
-- **Nieuwe versie van de app:** zet het nieuwe HTML-bestand ergens neer en voer `npm run fonts && python3 tools/build.py pad/naar/fokwijzer-app.html` uit (op je eigen computer of de server). Daarna `docker compose up -d --build`.
+- **Nieuwe versie van de app:** zet het nieuwe HTML-bestand ergens neer en voer `python3 tools/build.py pad/naar/fokwijzer-app.html` uit (op je eigen computer of de server). De lettertypen staan in `src/fonts`, dus daarvoor is geen internet nodig. Daarna `docker compose up -d --build`.
 - **Beveiligingsupdates:** maandelijks `docker compose pull && docker compose up -d --build`, en `npm audit` voor de pakketten.
 
 ## Back-ups
@@ -91,7 +91,6 @@ Bewaar het service-token als een wachtwoord: wie het heeft, heeft beheerdersrech
 
 ```
 npm install
-npm run fonts
 COOKIE_SECURE=false node scripts/create-admin.js test@test.be "Test"
 COOKIE_SECURE=false npm start
 ```

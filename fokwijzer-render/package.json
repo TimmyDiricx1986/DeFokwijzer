@@ -13,7 +13,6 @@
     "import": "node scripts/import.js",
     "create-admin": "node scripts/create-admin.js",
     "test": "node --test test/*.test.js",
-    "fonts": "npm install --no-save --no-audit --no-fund @fontsource/bitter@5.2.8 @fontsource/source-sans-3@5.2.8 @fontsource/ibm-plex-mono@5.2.7 @fontsource/cinzel@5.2.6",
     "build": "python3 tools/build.py"
   },
   "dependencies": {
