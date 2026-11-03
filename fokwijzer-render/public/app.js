@@ -87,7 +87,6 @@ function pedInfo(h){if(!h)return{s:{},der:{}};if(_ped.src!==state.horses)_ped={s
     PED_KEYS.forEach(k=>{const q=p+k;if(q.length>3||s[q]||!a.stamboom[k])return;s[q]=a.stamboom[k];der[q]=a.naam})});
   r={s,der};_ped.map.set(h,r);return r}
 const pedOf=(h)=>pedInfo(h).s;
-const pedFrom=(h,k)=>pedInfo(h).der[k];
 function ancCount(h){const s=pedOf(h);return PED_KEYS.filter(k=>s[k]).length}
 function completeOf(h){const c=[!!h.ueln,!!(h.stamboom&&h.stamboom.v),!!(h.stamboom&&h.stamboom.m),ancCount(h)>=10,zOf(h)!=null,num(h.hoogste_niveau_cm)!=null,!!h.wffs&&h.wffs!=="onbekend",!!h.ocd&&h.ocd!=="onbekend",(h.bronnen||[]).some(b=>b&&b.naam)];return c.filter(Boolean).length/c.length*100}
 
@@ -662,13 +661,13 @@ function renderSearch(){const q=norm($("q").value),sx=$("fSex").value,sb=$("fStb
   if(!state.sel||!list.some(h=>h.id===state.sel))state.sel=list[0]?list[0].id:null;
   renderDetail()}
 
-function pedHtml(h){const s=pedOf(h);const cell=(k,cls,col,row)=>{const v=s[k],f=pedFrom(h,k);return `<div class="${cls} ${v?"":"unk"}${f?" afg":""}" style="grid-column:${col};grid-row:${row}"${f?` title="${esc("Aangevuld uit de stamboom van "+f)}"`:""}><b>${(PED_LABEL[k]||k.toUpperCase())}</b>${v?esc(v):"onbekend"}</div>`};
+function pedHtml(h){const s=pedOf(h);const cell=(k,cls,col,row)=>{const v=s[k];return `<div class="${cls} ${v?"":"unk"}" style="grid-column:${col};grid-row:${row}"><b>${(PED_LABEL[k]||k.toUpperCase())}</b>${v?esc(v):"onbekend"}</div>`};
   let out='<div class="ped">'+cell("v","g1",1,"1 / span 4")+cell("m","g1",1,"5 / span 4");
   ["vv","vm","mv","mm"].forEach((k,i)=>out+=cell(k,"g2",2,(1+i*2)+" / span 2"));
   ["vvv","vvm","vmv","vmm","mvv","mvm","mmv","mmm"].forEach((k,i)=>out+=cell(k,"g3",3,String(i+1)));
   return out+"</div>"}
 
-function pedMini(h){const s=pedOf(h);const c=(k,cls,col,row)=>{const v=s[k],f=pedFrom(h,k);return `<div class="${cls}${v?"":" unk"}${f?" afg":""}" style="grid-column:${col};grid-row:${row}" title="${esc((PED_LABEL[k]||k.toUpperCase())+": "+(v||"onbekend")+(f?" (aangevuld uit de stamboom van "+f+")":""))}"><span>${v?esc(v):"?"}</span></div>`};
+function pedMini(h){const s=pedOf(h);const c=(k,cls,col,row)=>{const v=s[k];return `<div class="${cls}${v?"":" unk"}" style="grid-column:${col};grid-row:${row}" title="${esc((PED_LABEL[k]||k.toUpperCase())+": "+(v||"onbekend"))}"><span>${v?esc(v):"?"}</span></div>`};
   let o='<div class="ped mini">'+c("v","g1",1,"1 / span 2")+c("m","g1",1,"3 / span 2");
   ["vv","vm","mv","mm"].forEach((k,i)=>o+=c(k,"g2",2,String(i+1)));
   ["vvv","vvm","vmv","vmm","mvv","mvm","mmv","mmm"].forEach((k,i)=>o+=c(k,"g3",3+(i%2),String(1+(i>>1))));
@@ -677,7 +676,7 @@ function pedMini(h){const s=pedOf(h);const c=(k,cls,col,row)=>{const v=s[k],f=pe
 const PC_G2=["vv","vm","mv","mm"],PC_G3=["vvv","vvm","vmv","vmm","mvv","mvm","mmv","mmm"];
 const pcMale=(k)=>k.slice(-1)==="v";
 function pedC(h,mode){const s=pedOf(h);
-  const cell=(k,col,row,span)=>{const v=s[k],f=pedFrom(h,k);const lab=(PED_LABEL[k]||k.toUpperCase());return `<div class="pc-b g${k.length}${f?" afg":""}" style="grid-column:${col};grid-row:${row} / span ${span}" title="${esc(lab+": "+(v||"onbekend")+(f?" (aangevuld uit de stamboom van "+f+")":""))}"><i class="${pcMale(k)?"m":"f"}" aria-label="${pcMale(k)?"hengst":"merrie"}"></i><span>${v?esc(v):'<em class="pc-unk">onbekend</em>'}</span></div>`};
+  const cell=(k,col,row,span)=>{const v=s[k];const lab=(PED_LABEL[k]||k.toUpperCase());return `<div class="pc-b g${k.length}" style="grid-column:${col};grid-row:${row} / span ${span}" title="${esc(lab+": "+(v||"onbekend"))}"><i class="${pcMale(k)?"m":"f"}" aria-label="${pcMale(k)?"hengst":"merrie"}"></i><span>${v?esc(v):'<em class="pc-unk">onbekend</em>'}</span></div>`};
   let o=`<div class="pc ${mode==="full"?"full":""}"><img class="pc-wm" src="${FW_HORSES}" alt="">`;
   const full=mode==="full";o+=`<div class="pc-side" style="grid-row:1 / span 4">${full?"Vaderzijde":"Vader"}</div><div class="pc-side" style="grid-row:5 / span 4">${full?"Moederzijde":"Moeder"}</div>`;
   o+=cell("v",2,1,4)+cell("m",2,5,4);
@@ -686,7 +685,7 @@ function pedC(h,mode){const s=pedOf(h);
   return o+`<div class="pc-rule"></div></div>`}
 function foalOf(s,m){const a=pedOf(s),b=pedOf(m);
   return {id:"__veulen",naam:s.naam+" x "+m.naam,geslacht:"virtueel veulen",stamboom:{v:s.naam,m:m.naam,vv:a.v,vm:a.m,mv:b.v,mm:b.m,vvv:a.vv,vvm:a.vm,vmv:a.mv,vmm:a.mm,mvv:b.vv,mvm:b.vm,mmv:b.mv,mmm:b.mm}}}
-function pedCHead(h){return `<div class="pc-hd"><span></span><span>Ouders</span><span>Grootouders</span><span>Overgrootouders</span></div><button type="button" class="pc-dl" data-act="card" data-id="${esc(h.id)}" title="Download de stamboomkaart als afbeelding of PDF">Stamboomkaart</button>${Object.keys(pedInfo(h).der).length?'<div class="small muted pc-afg">\u2020 Aangevuld uit de stamboom van een voorouder in De Fokwijzer (niet opgeslagen bij dit paard).</div>':""}`}
+function pedCHead(h){return `<div class="pc-hd"><span></span><span>Ouders</span><span>Grootouders</span><span>Overgrootouders</span></div><button type="button" class="pc-dl" data-act="card" data-id="${esc(h.id)}" title="Download de stamboomkaart als afbeelding of PDF">Stamboomkaart</button>`}
 
 // ---------- Downloadbare stamboomkaart (A4 liggend) ----------
 const fwImg=(src)=>new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=src});
@@ -738,7 +737,7 @@ async function drawPedCard(h,opt){
   const DISP='"Spectral SC", Georgia, serif',BODY='"Source Sans 3", system-ui, sans-serif';
   try{await Promise.all(["700 36px 'Spectral SC'","600 13px 'Spectral SC'","400 15px 'Source Sans 3'","600 15px 'Source Sans 3'","italic 400 15px 'Source Sans 3'"].map(f=>document.fonts.load(f)))}catch(_){}
   const [emb,hor]=await Promise.all([fwImg(FW_EMBLEM),fwImg(FW_HORSES)]);
-  const s=Object.assign({},pedOf(h)),afg=pedInfo(h).der;Object.keys(afg).forEach(k=>{if(s[k])s[k]+=" \u2020"});const heeftAfg=Object.keys(afg).length>0;
+  const s=pedOf(h);
   // Zelfde ontwerp op elke grootte: afstanden schalen mee met de breedte, letters zo groot als past.
   const k=W/1123,sp=(x)=>x*k;
   const pad=Math.max(12,sp(44));
@@ -822,7 +821,7 @@ async function drawPedCard(h,opt){
   c.fillStyle=GREEN;c.beginPath();c.arc(left+rad,legY-lf*.35,rad,0,Math.PI*2);c.fill();c.fillStyle=MUTED;c.fillText("hengst",left+rad*2+4,legY);
   const mx=left+rad*2+4+c.measureText("hengst").width+14;c.fillStyle=GOLD;c.beginPath();c.arc(mx+rad,legY-lf*.35,rad,0,Math.PI*2);c.fill();c.fillStyle=MUTED;c.fillText("merrie",mx+rad*2+4,legY);
   const legEnd=mx+rad*2+4+c.measureText("merrie").width;
-  if(!opt.compact&&!cmp){c.textAlign="right";c.fillText((heeftAfg?"\u2020 aangevuld via een voorouder. ":"")+"Gemaakt op "+new Date().toLocaleDateString("nl-BE")+". Controleer gegevens altijd bij het stamboek.",right,legY)}
+  if(!opt.compact&&!cmp){c.textAlign="right";c.fillText("Gemaakt op "+new Date().toLocaleDateString("nl-BE")+". Controleer gegevens altijd bij het stamboek.",right,legY)}
   c.fillStyle=GREEN;c.font=`700 ${ffs}px ${DISP}`;c.letterSpacing=lsp+"px";
   c.strokeStyle=GOLD;c.lineWidth=1;c.beginPath();const fly=footY-ffs*.35;
   if(cmp&&!two){c.textAlign="right";c.fillText(ft,right,footY);if(right-fw-12>legEnd+24){c.moveTo(legEnd+12,fly);c.lineTo(right-fw-12,fly)}}

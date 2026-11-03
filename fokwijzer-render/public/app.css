@@ -263,7 +263,6 @@ ol.srcs li{margin:3px 0;overflow-wrap:anywhere}
 .pc:not(.full) .pc-b.g3{font-size:.8rem;line-height:1.1;padding:0 8px}
 .pc:not(.full) .pc-b.g3 span{-webkit-line-clamp:1}
 .pc-unk{color:var(--muted);font-style:italic;font-weight:400;font-family:var(--f-body);font-size:.82rem}
-.ped .afg,.pc-b.afg{border-style:dashed}.pc-b.afg span::after,.ped .afg::after{content:" \2020";color:var(--muted);font-weight:400}
 .pc-rule{position:absolute;left:24px;right:0;top:50%;border-top:1.5px solid var(--pg-gold);pointer-events:none}
 .pc-hd{display:grid;grid-template-columns:20px minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr);gap:4px;font-family:var(--f-logo);font-size:.58rem;line-height:1.2;letter-spacing:.12em;text-transform:uppercase;color:var(--pg-gold);font-weight:700;margin-bottom:2px;align-items:end}
 .pc-hd-last{display:flex;justify-content:space-between;align-items:center;gap:6px}
