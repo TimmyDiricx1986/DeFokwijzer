@@ -45,7 +45,7 @@ def main():
         blok = docs[i:i+150]
         for poging in range(3):
             try:
-                res = req(site + "/api/bulk", token, {"docs": blok}); break
+                res = req(site + "/api/bulk", token, {"docs": blok})["resultaat"]; break
             except urllib.error.HTTPError as e:
                 if e.code in (401, 403): sys.exit(f"Geweigerd ({e.code}): controleer FOKWIJZER_TOKEN.")
                 if poging == 2: raise
@@ -54,7 +54,7 @@ def main():
                 if poging == 2: raise
                 time.sleep(10)
         for r in res:
-            if r.get("ok"): ok += 1
+            if isinstance(r, dict) and r.get("ok"): ok += 1
             else: fout += 1; print("FOUT", r)
     na = len(req(site + "/api/c/paarden", token))
     print(f"Klaar: {ok} opgeslagen, {fout} fouten. Nu {na} paarden op de site.")

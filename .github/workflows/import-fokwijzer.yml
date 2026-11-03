@@ -43,7 +43,11 @@ jobs:
           elif [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
             ls imports/*.json > lijst.txt
           else
-            git diff --name-only --diff-filter=AM "$BEFORE" "$GITHUB_SHA" -- 'imports/*.json' > lijst.txt
+            if git diff --name-only "$BEFORE" "$GITHUB_SHA" -- '.github/scripts/*.py' | grep -q .; then
+              ls imports/*.json > lijst.txt   # uploader gewijzigd: alles opnieuw (enkel ontbrekende paarden)
+            else
+              git diff --name-only --diff-filter=AM "$BEFORE" "$GITHUB_SHA" -- 'imports/*.json' > lijst.txt
+            fi
           fi
           cat lijst.txt
       - name: Uploaden
