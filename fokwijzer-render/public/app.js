@@ -75,7 +75,19 @@ const isCarrier=(w)=>w==="N/WFFS"||w==="WFFS/WFFS";
 function zOf(h){let s=0,w=0;(h.fokwaarden||[]).forEach(f=>{const v=num(f.waarde),g=num(f.gemiddelde),sd=num(f.sd);if(v!=null&&g!=null&&sd&&sd>0){const b=num(f.betrouwbaarheid);const r=b!=null?Math.max(.1,b/100):.5;s+=r*(v-g)/sd;w+=r}});return w?s/w:null}
 function perfOf(h){const parts=[];const cm=num(h.hoogste_niveau_cm);if(cm!=null)parts.push(clamp((cm-110)/50*100));const o=h.nakomelingen||{};const sp=num(o.sport);if(sp&&sp>0){parts.push(clamp(((num(o.m140)||0)/sp)*150+((num(o.m150)||0)/sp)*150))}return parts.length?parts.reduce((a,b)=>a+b,0)/parts.length:null}
 function healthOf(h){const w={"N/N":100,"N/WFFS":60,"WFFS/WFFS":0}[h.wffs];const o={vrij:100,bevinding:25}[h.ocd];return((w==null?50:w)+(o==null?50:o))/2}
-function ancCount(h){return PED_KEYS.filter(k=>h.stamboom&&h.stamboom[k]).length}
+// Afgeleide stamboom: lege vakken worden aangevuld uit voorouders die zelf in de database staan.
+// Dit wordt enkel berekend voor weergave en tellingen en nooit opgeslagen (h.stamboom blijft de ruwe data).
+let _ped={src:null,map:new WeakMap()};
+function pedInfo(h){if(!h)return{s:{},der:{}};if(_ped.src!==state.horses)_ped={src:state.horses,map:new WeakMap()};
+  let r=_ped.map.get(h);if(r)return r;const raw=h.stamboom||{},s={},der={};PED_KEYS.forEach(k=>{if(raw[k])s[k]=raw[k]});
+  const gj=num(h.geboortejaar);
+  for(let pass=0;pass<3;pass++)PED_KEYS.forEach(p=>{if(!s[p]||p.length>=3)return;const a=byName(s[p]);if(!a||a===h||!a.stamboom)return;
+    if(a.geslacht&&(a.geslacht==="hengst")!==(p.slice(-1)==="v"))return; // geslacht moet bij de positie passen
+    const ag=num(a.geboortejaar);if(gj!=null&&ag!=null&&ag>=gj)return; // voorouder moet ouder zijn
+    PED_KEYS.forEach(k=>{const q=p+k;if(q.length>3||s[q]||!a.stamboom[k])return;s[q]=a.stamboom[k];der[q]=a.naam})});
+  r={s,der};_ped.map.set(h,r);return r}
+const pedOf=(h)=>pedInfo(h).s;
+function ancCount(h){const s=pedOf(h);return PED_KEYS.filter(k=>s[k]).length}
 function completeOf(h){const c=[!!h.ueln,!!(h.stamboom&&h.stamboom.v),!!(h.stamboom&&h.stamboom.m),ancCount(h)>=10,zOf(h)!=null,num(h.hoogste_niveau_cm)!=null,!!h.wffs&&h.wffs!=="onbekend",!!h.ocd&&h.ocd!=="onbekend",(h.bronnen||[]).some(b=>b&&b.naam)];return c.filter(Boolean).length/c.length*100}
 
 function foalPedigree(s,m,maxLen){const ped={};
@@ -649,13 +661,13 @@ function renderSearch(){const q=norm($("q").value),sx=$("fSex").value,sb=$("fStb
   if(!state.sel||!list.some(h=>h.id===state.sel))state.sel=list[0]?list[0].id:null;
   renderDetail()}
 
-function pedHtml(h){const s=h.stamboom||{};const cell=(k,cls,col,row)=>{const v=s[k];return `<div class="${cls} ${v?"":"unk"}" style="grid-column:${col};grid-row:${row}"><b>${(PED_LABEL[k]||k.toUpperCase())}</b>${v?esc(v):"onbekend"}</div>`};
+function pedHtml(h){const s=pedOf(h);const cell=(k,cls,col,row)=>{const v=s[k];return `<div class="${cls} ${v?"":"unk"}" style="grid-column:${col};grid-row:${row}"><b>${(PED_LABEL[k]||k.toUpperCase())}</b>${v?esc(v):"onbekend"}</div>`};
   let out='<div class="ped">'+cell("v","g1",1,"1 / span 4")+cell("m","g1",1,"5 / span 4");
   ["vv","vm","mv","mm"].forEach((k,i)=>out+=cell(k,"g2",2,(1+i*2)+" / span 2"));
   ["vvv","vvm","vmv","vmm","mvv","mvm","mmv","mmm"].forEach((k,i)=>out+=cell(k,"g3",3,String(i+1)));
   return out+"</div>"}
 
-function pedMini(h){const s=h.stamboom||{};const c=(k,cls,col,row)=>{const v=s[k];return `<div class="${cls}${v?"":" unk"}" style="grid-column:${col};grid-row:${row}" title="${esc((PED_LABEL[k]||k.toUpperCase())+": "+(v||"onbekend"))}"><span>${v?esc(v):"?"}</span></div>`};
+function pedMini(h){const s=pedOf(h);const c=(k,cls,col,row)=>{const v=s[k];return `<div class="${cls}${v?"":" unk"}" style="grid-column:${col};grid-row:${row}" title="${esc((PED_LABEL[k]||k.toUpperCase())+": "+(v||"onbekend"))}"><span>${v?esc(v):"?"}</span></div>`};
   let o='<div class="ped mini">'+c("v","g1",1,"1 / span 2")+c("m","g1",1,"3 / span 2");
   ["vv","vm","mv","mm"].forEach((k,i)=>o+=c(k,"g2",2,String(i+1)));
   ["vvv","vvm","vmv","vmm","mvv","mvm","mmv","mmm"].forEach((k,i)=>o+=c(k,"g3",3+(i%2),String(1+(i>>1))));
@@ -663,7 +675,7 @@ function pedMini(h){const s=h.stamboom||{};const c=(k,cls,col,row)=>{const v=s[k
 // ---------- Stamboom in Fokwijzer-stijl (wikigids-klassiek) ----------
 const PC_G2=["vv","vm","mv","mm"],PC_G3=["vvv","vvm","vmv","vmm","mvv","mvm","mmv","mmm"];
 const pcMale=(k)=>k.slice(-1)==="v";
-function pedC(h,mode){const s=h.stamboom||{};
+function pedC(h,mode){const s=pedOf(h);
   const cell=(k,col,row,span)=>{const v=s[k];const lab=(PED_LABEL[k]||k.toUpperCase());return `<div class="pc-b g${k.length}" style="grid-column:${col};grid-row:${row} / span ${span}" title="${esc(lab+": "+(v||"onbekend"))}"><i class="${pcMale(k)?"m":"f"}" aria-label="${pcMale(k)?"hengst":"merrie"}"></i><span>${v?esc(v):'<em class="pc-unk">onbekend</em>'}</span></div>`};
   let o=`<div class="pc ${mode==="full"?"full":""}"><img class="pc-wm" src="${FW_HORSES}" alt="">`;
   const full=mode==="full";o+=`<div class="pc-side" style="grid-row:1 / span 4">${full?"Vaderzijde":"Vader"}</div><div class="pc-side" style="grid-row:5 / span 4">${full?"Moederzijde":"Moeder"}</div>`;
@@ -671,7 +683,7 @@ function pedC(h,mode){const s=h.stamboom||{};
   PC_G2.forEach((k,i)=>o+=cell(k,3,1+i*2,2));
   PC_G3.forEach((k,i)=>o+=cell(k,4,1+i,1));
   return o+`<div class="pc-rule"></div></div>`}
-function foalOf(s,m){const a=s.stamboom||{},b=m.stamboom||{};
+function foalOf(s,m){const a=pedOf(s),b=pedOf(m);
   return {id:"__veulen",naam:s.naam+" x "+m.naam,geslacht:"virtueel veulen",stamboom:{v:s.naam,m:m.naam,vv:a.v,vm:a.m,mv:b.v,mm:b.m,vvv:a.vv,vvm:a.vm,vmv:a.mv,vmm:a.mm,mvv:b.vv,mvm:b.vm,mmv:b.mv,mmm:b.mm}}}
 function pedCHead(h){return `<div class="pc-hd"><span></span><span>Ouders</span><span>Grootouders</span><span>Overgrootouders</span></div><button type="button" class="pc-dl" data-act="card" data-id="${esc(h.id)}" title="Download de stamboomkaart als afbeelding of PDF">Stamboomkaart</button>`}
 
@@ -725,7 +737,7 @@ async function drawPedCard(h,opt){
   const DISP='"Spectral SC", Georgia, serif',BODY='"Source Sans 3", system-ui, sans-serif';
   try{await Promise.all(["700 36px 'Spectral SC'","600 13px 'Spectral SC'","400 15px 'Source Sans 3'","600 15px 'Source Sans 3'","italic 400 15px 'Source Sans 3'"].map(f=>document.fonts.load(f)))}catch(_){}
   const [emb,hor]=await Promise.all([fwImg(FW_EMBLEM),fwImg(FW_HORSES)]);
-  const s=h.stamboom||{};
+  const s=pedOf(h);
   // Zelfde ontwerp op elke grootte: afstanden schalen mee met de breedte, letters zo groot als past.
   const k=W/1123,sp=(x)=>x*k;
   const pad=Math.max(12,sp(44));
@@ -838,7 +850,7 @@ async function paintPedSlots(){const my=++pcPainting;const slots=[...document.qu
         Hh=Math.max(260,Math.min(nat,Math.round(avail*1.2)));
         det.style.height=Math.max(fwDetBase,fwDetBase+(Hh-avail))+"px"}
     }
-    const key=[h.id,JSON.stringify(h.stamboom||{}),h.naam,W,Hh].join("|");const img=btn.querySelector(".pc-svg");if(img.dataset.key===key)continue;
+    const key=[h.id,JSON.stringify(pedOf(h)),h.naam,W,Hh].join("|");const img=btn.querySelector(".pc-svg");if(img.dataset.key===key)continue;
     try{const cv=await drawPedCard(h,{W,H:Hh,svg:true,compact:W<700,minPx:13});if(my!==pcPainting)return;img.innerHTML=cv.svg;img.dataset.key=key;img.style.width=W+"px";
       if(cv._lay){pcRatio=cv._lay.parEnd/cv._lay.W;if(mob){const over=cv._lay.parEnd-scr.clientWidth+4;scr.scrollLeft=over>0?Math.ceil(over):0}}}catch(_){}}
   if(typeof checkDetOverflow==="function")checkDetOverflow()}
