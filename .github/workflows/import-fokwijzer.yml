@@ -1,0 +1,55 @@
+# Uploadt nieuwe importbestanden uit imports/ naar de website (fokwijzer.onrender.com).
+# Draait enkel op de branch "imports", zodat Render de site niet opnieuw bouwt.
+# Nodig: repository-secret FOKWIJZER_TOKEN = SERVICE_TOKEN uit Render.
+name: Import naar De Fokwijzer
+on:
+  push:
+    branches: [imports]
+    paths: ["imports/*.json"]
+  workflow_dispatch:
+    inputs:
+      bestand:
+        description: "Pad van het importbestand (bv. imports/2026-11-03-voorouders.json)"
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: fokwijzer-import
+  cancel-in-progress: false
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    env:
+      FOKWIJZER_TOKEN: ${{ secrets.FOKWIJZER_TOKEN }}
+      SITE: https://fokwijzer.onrender.com
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Token aanwezig?
+        run: |
+          if [ -z "$FOKWIJZER_TOKEN" ]; then
+            echo "::error::Secret FOKWIJZER_TOKEN ontbreekt (Settings, Secrets and variables, Actions)."
+            exit 1
+          fi
+      - name: Bestanden bepalen
+        id: files
+        env:
+          INPUT_FILE: ${{ github.event.inputs.bestand }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ -n "$INPUT_FILE" ]; then
+            echo "$INPUT_FILE" > lijst.txt
+          elif [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            ls imports/*.json > lijst.txt
+          else
+            git diff --name-only --diff-filter=AM "$BEFORE" "$GITHUB_SHA" -- 'imports/*.json' > lijst.txt
+          fi
+          cat lijst.txt
+      - name: Uploaden
+        run: |
+          while read -r f; do
+            [ -f "$f" ] || continue
+            echo "== $f"
+            python3 fokwijzer-render/tools/upload.py "$SITE" "$f"
+          done < lijst.txt
