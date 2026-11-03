@@ -5,7 +5,7 @@ name: Import naar De Fokwijzer
 on:
   push:
     branches: [imports]
-    paths: ["imports/*.json"]
+    paths: ["imports/*.json", ".github/scripts/*.py"]
   workflow_dispatch:
     inputs:
       bestand:
@@ -51,5 +51,5 @@ jobs:
           while read -r f; do
             [ -f "$f" ] || continue
             echo "== $f"
-            python3 fokwijzer-render/tools/upload.py "$SITE" "$f"
+            python3 .github/scripts/upload_ontbrekend.py "$SITE" "$f"
           done < lijst.txt
