@@ -28,7 +28,10 @@ def main():
     token = os.environ["FOKWIJZER_TOKEN"]
     exp = json.load(open(path, encoding="utf-8"))
     if exp.get("formaat") != "fokwijzer-export": sys.exit("Geen Fokwijzer-export.")
-    bestaand = {d["id"] for d in req(site + "/api/c/paarden", token)}
+    lijst = req(site + "/api/c/paarden", token)
+    bestaand = {d["id"] for d in lijst}
+    if exp.get("modus") == "aanvullen":
+        return aanvullen(site, token, exp, {d["id"]: d["data"] for d in lijst})
     print(f"Op de site: {len(bestaand)} paarden.")
     docs, overgeslagen = [], 0
     for coll, items in exp["collecties"].items():
@@ -58,6 +61,42 @@ def main():
             else: fout += 1; print("FOUT", r)
     na = len(req(site + "/api/c/paarden", token))
     print(f"Klaar: {ok} opgeslagen, {fout} fouten. Nu {na} paarden op de site.")
+    if fout: sys.exit(1)
+
+
+def aanvullen(site, token, exp, opsite):
+    """Vult bestaande paarden aan: enkel lege stamboomvakken en lege velden, bronnen erbij, opmerking aangevuld.
+    Niets wat al op de site staat wordt overschreven."""
+    docs, nieuw_vak, overgeslagen = [], 0, 0
+    for id_, a in exp["collecties"].get("paarden", {}).items():
+        cur = opsite.get(id_)
+        if not isinstance(cur, dict):
+            overgeslagen += 1; continue
+        d = json.loads(json.dumps(cur)); veranderd = False
+        sb = d.get("stamboom") if isinstance(d.get("stamboom"), dict) else {}
+        for k, v in (a.get("stamboom") or {}).items():
+            if v and not sb.get(k):
+                sb[k] = v; nieuw_vak += 1; veranderd = True
+        if sb: d["stamboom"] = sb
+        for f in ("stamboek", "geboortejaar", "geslacht", "ueln", "fei_id"):
+            if a.get(f) not in (None, "") and not d.get(f):
+                d[f] = a[f]; veranderd = True
+        if not veranderd:
+            overgeslagen += 1; continue
+        urls = {b.get("url") for b in d.get("bronnen") or [] if isinstance(b, dict)}
+        d["bronnen"] = list(d.get("bronnen") or []) + [b for b in a.get("bronnen", []) if b.get("url") not in urls]
+        t = a.get("opmerking_toevoeging")
+        if t and t not in str(d.get("opmerking", "")):
+            d["opmerking"] = (str(d.get("opmerking", "")) + " " + t).strip()
+        if a.get("verrijken_weg"): d.pop("verrijken", None)
+        d["bijgewerkt"] = exp.get("datum", d.get("bijgewerkt"))
+        docs.append({"coll": "paarden", "id": id_, "data": neutralize(d)})
+    print(f"Aanvullen: {len(docs)} paarden ({nieuw_vak} stamboomvakken), {overgeslagen} overgeslagen.")
+    fout = 0
+    for i in range(0, len(docs), 150):
+        for r in req(site + "/api/bulk", token, {"docs": docs[i:i+150]})["resultaat"]:
+            if not (isinstance(r, dict) and r.get("ok")): fout += 1; print("FOUT", r)
+    print(f"Klaar: {len(docs) - fout} bijgewerkt, {fout} fouten.")
     if fout: sys.exit(1)
 
 main()

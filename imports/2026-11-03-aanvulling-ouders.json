@@ -1,0 +1,715 @@
+{
+ "formaat": "fokwijzer-export",
+ "datum": "2026-11-03",
+ "modus": "aanvullen",
+ "collecties": {
+  "paarden": {
+   "all-star-5-2003": {
+    "stamboom": {
+     "mv": "Almé Z",
+     "mvv": "Ibrahim",
+     "mvm": "Girondine",
+     "mmv": "Ramiro Z",
+     "mmm": "Wencke Z"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo All Star 5 (5 generaties)",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/89819-all-star-5/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Posities afgeleid uit de volgorde van de stamboom (v, m, vv, vm, mv, mm, enz.); bekende voorouders kwamen daarmee overeen.",
+    "verrijken_weg": false
+   },
+   "quattro-b": {
+    "stamboom": {
+     "v": "Qredo de Paulstra"
+    },
+    "stamboek": "Selle Francais",
+    "geboortejaar": 1990,
+    "bronnen": [
+     {
+      "naam": "Stamboek Cheval Suisse, stamboom Quattro B",
+      "url": "https://studbook.cheval-suisse.com/documents/11971-quattro-b-ciel-despoir-pedigree-fr.pdf",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Moeder en moedersvader waren op de pagina niet duidelijk te lezen; naam op de pagina is Quattro B (Ciel d'Espoir).",
+    "verrijken_weg": true
+   },
+   "cohinoor-vdl": {
+    "stamboom": {
+     "v": "Clinton",
+     "m": "Pia",
+     "mv": "Candy"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Posities op de pagina niet gelabeld, afgeleid uit de volgorde in de stamboom; geboortejaar niet vermeld. Afwijking: stamboek volgens bron: Hannoveraner (in record: Hannoveraan).",
+    "verrijken_weg": false
+   },
+   "flora-de-mariposa-2005": {
+    "stamboom": {
+     "mv": "Power Light"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboek Cheval Suisse, stamboom Adeline",
+      "url": "https://studbook.cheval-suisse.com/documents/18037-adeline-pedigree-fr.pdf",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Adeline (2000, BWP) staat op de pagina met Flora de Mariposa als nakomeling; Adeline is de bekende moeder, vader Power Light (1988).",
+    "verrijken_weg": false
+   },
+   "duden-ii": {
+    "stamboom": {
+     "v": "Duellant",
+     "m": "Löwenart",
+     "mv": "Der Löwe xx"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo All Star 5 (5 generaties)",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/89819-all-star-5/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Duden II (1960) staat in de stamboom van All Star 5; posities afgeleid uit de volgorde op de pagina, geboortejaren sluiten aan.",
+    "verrijken_weg": true
+   },
+   "carambole": {
+    "stamboom": {
+     "m": "Normandie VI",
+     "mv": "Concerto II"
+    },
+    "geboortejaar": 2004,
+    "bronnen": [
+     {
+      "naam": "Hippomundo Carambole",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/98603-carambole/7",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Posities afgeleid uit de volgorde op de pagina; vader Cassini I komt overeen met de bekende gegevens. Afwijking: stamboek volgens bron: Holsteiner (in record: Holst).",
+    "verrijken_weg": false
+   },
+   "idole-111": {
+    "stamboom": {
+     "m": "M. Unellie 15",
+     "mm": "J. Unellie 14"
+    },
+    "geboortejaar": 2008,
+    "bronnen": [
+     {
+      "naam": "Belgian Warmblood, Mr Idol S",
+      "url": "https://www.belgian-warmblood.com/nl/hengst/mr-idol-s",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Gegevens via de stamboom van haar zoon Mr Idol S; naam van de moeder zoals op de pagina. Moedersvader niet vermeld.",
+    "verrijken_weg": true
+   },
+   "chacco-blue-ii-2007": {
+    "stamboom": {
+     "mv": "Cincaba Rouge"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo Chacco-Blue II",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/688126-chacco-blue-ii/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Op de pagina is Naiti Rouge (2001, SF) de moeder en Cincaba Rouge (1990, SF) de moedersvader; in de database staat Cincaba Rouge als moeder. Afwijking: M volgens bron: Naiti Rouge (in record: Cincaba Rouge).",
+    "verrijken_weg": false
+   },
+   "cayado": {
+    "stamboom": {
+     "v": "Clearway",
+     "m": "Irrada",
+     "mv": "Calando I"
+    },
+    "geboortejaar": 2004,
+    "bronnen": [
+     {
+      "naam": "Hippomundo Cayado",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/363751-cayado/7",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Posities afgeleid uit de volgorde op de pagina.",
+    "verrijken_weg": true
+   },
+   "cartogran": {
+    "stamboom": {
+     "v": "Carthago Z",
+     "m": "Grand Pacific",
+     "mv": "Grand Canyon"
+    },
+    "stamboek": "Oldenburg",
+    "geboortejaar": 2000,
+    "bronnen": [
+     {
+      "naam": "Hippomundo Cartogran",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/390341-cartogran/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Posities afgeleid uit de volgorde op de pagina.",
+    "verrijken_weg": true
+   },
+   "cash": {
+    "stamboek": "Holst",
+    "geboortejaar": 1987,
+    "bronnen": [
+     {
+      "naam": "Hippomundo Spitfire V",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/880148-spitfire-v",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "parfait-van-het-schaeck": {
+    "stamboom": {
+     "v": "Comme il Faut",
+     "m": "Like a Diamond van het Schaeck",
+     "vv": "Cornet Obolensky",
+     "vm": "Ratina Z",
+     "mv": "Diamant de Semilly",
+     "mm": "Cacacha van het Schaeck",
+     "vvv": "Clinton",
+     "vvm": "Rabanna van Costersveld",
+     "vmv": "Ramiro Z",
+     "vmm": "Argentina Z",
+     "mvv": "Le Tot de Semilly",
+     "mvm": "Venise des Cresles",
+     "mmv": "Bamako de Muze",
+     "mmm": "Fortis Fortuna"
+    },
+    "stamboek": "BWP",
+    "geboortejaar": 2015,
+    "bronnen": [
+     {
+      "naam": "Hippomundo Parfait van het Schaeck",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/837808-parfait-van-het-schaeck/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "weinranke-1996": {
+    "stamboom": {
+     "mv": "Galoubet A"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "duchesse": {
+    "stamboom": {
+     "v": "Micipsa xx",
+     "m": "Etoilee"
+    },
+    "stamboek": "AA",
+    "geboortejaar": 1950,
+    "bronnen": [
+     {
+      "naam": "Hippomundo Jarnac",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/24650-jarnac/7",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "precipitation-xx": {
+    "stamboom": {
+     "mv": "Bachelor's Double"
+    },
+    "geboortejaar": 1933,
+    "bronnen": [
+     {
+      "naam": "Wikipedia Precipitation (horse)",
+      "url": "https://en.wikipedia.org/wiki/Precipitation_(horse)",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Afwijking: V volgens bron: Hurry On (in record: Hurry On xx); M volgens bron: Double Life (in record: Double Life xx).",
+    "verrijken_weg": true
+   },
+   "ampa-1942": {
+    "stamboom": {
+     "v": "Amateur"
+    },
+    "bronnen": [
+     {
+      "naam": "Horsemagazine Gotthard",
+      "url": "https://www.horsemagazine.com/thm/2010/08/gotthard/",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "phin-phin": {
+    "stamboom": {
+     "v": "Chin Chin",
+     "m": "Miss Abdullah T",
+     "vv": "Constant",
+     "vm": "Larese",
+     "mv": "Abdullah",
+     "mm": "Wienerin"
+    },
+    "stamboek": "KWPN",
+    "geboortejaar": 1992,
+    "bronnen": [
+     {
+      "naam": "Schweizer Stammbuch Phin Phin",
+      "url": "https://studbook.cheval-suisse.com/documents/11526-phin-phin-pedigree-fr.pdf",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "chacco-rouge-2006": {
+    "stamboom": {
+     "m": "Impala Rouge",
+     "mv": "Papillon Rouge",
+     "mm": "Agneta Rouge",
+     "mvv": "Jalisco B",
+     "mvm": "Verboise",
+     "mmv": "Lieu de Rampan",
+     "mmm": "Ora des Hommeaux"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "cornet-s-quaprice": {
+    "stamboom": {
+     "v": "Cornet Obolensky",
+     "m": "Quanora Z",
+     "mv": "Quaprice Z"
+    },
+    "stamboek": "Zangersheide",
+    "geboortejaar": 2016,
+    "bronnen": [
+     {
+      "naam": "Rimondo Cornet's Quaprice",
+      "url": "https://rimondo.com/en/horse-details/1134717/cornets-quaprice",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "bentley-van-de-kapel": {
+    "stamboom": {
+     "v": "Quasimodo Z"
+    },
+    "geboortejaar": 2006,
+    "bronnen": [
+     {
+      "naam": "Hippomundo Bentley van de Kapel",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/461669-bentley-van-de-kapel/7",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "ideal-de-la-loge": {
+    "stamboom": {
+     "m": "Ulenda",
+     "mv": "Joyau d'Or A"
+    },
+    "geboortejaar": 1996,
+    "bronnen": [
+     {
+      "naam": "Horsemagazine Ideal de la Loge",
+      "url": "https://www.horsemagazine.com/thm/2015/01/ideal-de-la-loge/",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "venzin-d-arsouilles-1975": {
+    "stamboom": {
+     "vv": "Monceaux xx",
+     "vm": "Symphonie",
+     "mv": "Audacieux"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo Illico d'Arsouilles",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/44696-illico-darsouilles/7",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "air-jordan-z": {
+    "stamboom": {
+     "v": "Argentinus",
+     "vv": "Argentan I",
+     "vm": "Dorle Duden II"
+    },
+    "geboortejaar": 1996,
+    "bronnen": [
+     {
+      "naam": "Superior Equine Sires Air Jordan Z",
+      "url": "https://superiorequinesires.com/air-jordan-z",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "comme-le-pere-2014": {
+    "stamboom": {
+     "m": "Completta",
+     "vv": "Cornet Obolensky",
+     "vm": "Ratina Z",
+     "mv": "Contender",
+     "mm": "Pia NE",
+     "vvv": "Clinton",
+     "vvm": "Rabanna van Costerveld",
+     "vmv": "Ramiro Z",
+     "vmm": "Argentina Z",
+     "mvv": "Calypso II",
+     "mvm": "Gofine",
+     "mmv": "Pilot",
+     "mmm": "Pink Floyd"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo Comme le Père 3",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/838752-comme-le-pere-3/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Op Hippomundo heet het paard Comme le Père 3; stamboek daar Rheinland.",
+    "verrijken_weg": false
+   },
+   "nephale-1998": {
+    "stamboom": {
+     "mv": "Capitano",
+     "mm": "Folia"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "eileen-iii-1990": {
+    "stamboom": {
+     "mv": "Cor de la Bryère"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "nathan-de-la-tour-aa-2001": {
+    "stamboom": {
+     "v": "Phosph'or"
+    },
+    "stamboek": "Halfbloed Anglo-Arabier (xo)",
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Naam op de bron is Nathan de la Tour (zonder AA); moeder niet zeker leesbaar.",
+    "verrijken_weg": false
+   },
+   "exploit-de-roulard": {
+    "stamboom": {
+     "v": "In Chala A",
+     "m": "Star de Roulard",
+     "vv": "Pot d'Or xx",
+     "vm": "Reveuse",
+     "mv": "Matador du Bois",
+     "mm": "Lanlaire",
+     "vvv": "Buisson d'Or xx",
+     "vvm": "Appo xx",
+     "vmv": "Ibrahim",
+     "vmm": "Guirlande",
+     "mvv": "Quastor",
+     "mvm": "Irene du Bois",
+     "mmv": "Et Hop",
+     "mmm": "Freluche"
+    },
+    "stamboek": "Selle Français",
+    "geboortejaar": 1992,
+    "bronnen": [
+     {
+      "naam": "Hippomundo Exploit de Roulard",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/20983-exploit-de-roulard/4",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "warrant": {
+    "stamboom": {
+     "mv": "Nimmerdor",
+     "mm": "Furanta"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo Warrant",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/48289-warrant/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "urano-de-cartigny": {
+    "stamboom": {
+     "v": "Diamant de Semilly",
+     "m": "Esperance d'Elle",
+     "vv": "Le Tot de Semilly",
+     "vm": "Venise des Cresles",
+     "mv": "Double Espoir",
+     "mm": "Pavlova des Malais",
+     "vvv": "Grand Veneur",
+     "vvm": "Venue du Tot",
+     "vmv": "Elf III",
+     "vmm": "Miss des Cresles",
+     "mvv": "Ibrahim",
+     "mvm": "Quatrieme Espoir",
+     "mmv": "Jalisco B",
+     "mmm": "Gueule d'Amour"
+    },
+    "stamboek": "Selle Français",
+    "geboortejaar": 2008,
+    "bronnen": [
+     {
+      "naam": "Hippomundo Urano de Cartigny",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/614821-urano-de-cartigny/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "cocktail-de-talma": {
+    "stamboom": {
+     "m": "Reggae de Talma",
+     "mv": "Cento Capitol I",
+     "mm": "Viola XI"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "tounusha-key-sr-z": {
+    "stamboom": {
+     "m": "Nusha vd Bisschop",
+     "vv": "Heartbreaker",
+     "vm": "Nikita",
+     "mv": "Elvis ter Putte",
+     "mm": "Evita van 't Roosakker",
+     "vvv": "Nimmerdor",
+     "vvm": "Bacarole",
+     "vmv": "Jokinal de Bornival",
+     "vmm": "Hayland-L",
+     "mvv": "Diamant de Semilly",
+     "mvm": "Ukase ter Putte",
+     "mmv": "Nabab de Reve",
+     "mmm": "Usha van 't Roosakker"
+    },
+    "stamboek": "Zangersheide",
+    "geboortejaar": 2017,
+    "bronnen": [
+     {
+      "naam": "Hippomundo Toulusha Key Sr Z",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/853400-toulusha-key-sr-z",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Op Hippomundo heet het paard Toulusha Key Sr Z.",
+    "verrijken_weg": true
+   },
+   "muguet-du-manoir": {
+    "stamboek": "Selle Français",
+    "geboortejaar": 1978,
+    "bronnen": [
+     {
+      "naam": "Dira Courcelle stamboek Cheval Suisse",
+      "url": "https://studbook.cheval-suisse.com/documents/3885-dira-courcelle-pedigree-fr.pdf",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "jariose": {
+    "stamboek": "Selle Français",
+    "geboortejaar": 1953,
+    "bronnen": [
+     {
+      "naam": "Dira Courcelle stamboek Cheval Suisse",
+      "url": "https://studbook.cheval-suisse.com/documents/3885-dira-courcelle-pedigree-fr.pdf",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "come-on": {
+    "stamboom": {
+     "v": "Cantus",
+     "m": "Sühne"
+    },
+    "stamboek": "Holsteiner",
+    "geboortejaar": 1985,
+    "bronnen": [
+     {
+      "naam": "Hippomundo stamboom Diaron OLD",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/831371-diaron-old/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "osilvis": {
+    "stamboom": {
+     "v": "Silvio II",
+     "m": "Iregina",
+     "mv": "Nimmerdor"
+    },
+    "stamboek": "KWPN",
+    "geboortejaar": 1996,
+    "bronnen": [
+     {
+      "naam": "Select Breeders Osilvis",
+      "url": "https://selectbreeders.com/stallions/3345-osilvis",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "cartoon": {
+    "stamboom": {
+     "v": "Carthago Z",
+     "m": "Peggy-Anne",
+     "mv": "Continue"
+    },
+    "stamboek": "Oldenburg",
+    "geboortejaar": 2001,
+    "bronnen": [
+     {
+      "naam": "Hippomundo stamboom Chacoon Blue",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/688468-chacoon-blue/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Op de pagina heet het paard Cartoon 21.",
+    "verrijken_weg": true
+   },
+   "j-vins-mars": {
+    "stamboek": "Selle Français",
+    "geboortejaar": 1931,
+    "bronnen": [
+     {
+      "naam": "Hippomundo stamboom Almé Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/1813-alme-z/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "528003199806047": {
+    "stamboom": {
+     "mv": "Ramiro Z",
+     "mm": "Harcona",
+     "mvv": "Raimond",
+     "mvm": "Valine",
+     "mmv": "Voltaire",
+     "mmm": "Barcona"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "foxlight-xx-1935": {
+    "stamboom": {
+     "vv": "Foxlaw",
+     "vm": "Alope",
+     "mv": "St. Just",
+     "mm": "Barka"
+    },
+    "bronnen": [
+     {
+      "naam": "Love Racing: Foxlight (FR) 1935",
+      "url": "https://loveracing.nz/Breeding/98777/Foxlight-FR-1935.aspx",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Moeder staat als Chouia geschreven, niet Chauia. Afwijking: V volgens bron: Foxhunter (in record: Foxhunter xx); M volgens bron: Chouia (in record: Chauia xx).",
+    "verrijken_weg": false
+   },
+   "flipper-d-elle-1993": {
+    "stamboom": {
+     "v": "Double Espoir"
+    },
+    "bronnen": [
+     {
+      "naam": "The Horse Magazine: Flipper d'Elle",
+      "url": "https://www.horsemagazine.com/thm/?p=1151",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Pagina noemt ook de stamboeken BWP en KWPN naast Selle Français.",
+    "verrijken_weg": false
+   },
+   "new-classic-s": {
+    "stamboom": {
+     "m": "Touch Of Class",
+     "mv": "Lux Z",
+     "mm": "Cantate Touch"
+    },
+    "stamboek": "Holst",
+    "geboortejaar": 2014,
+    "bronnen": [
+     {
+      "naam": "Hippomundo: New Classic S",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/970653-new-classic-s_",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Afwijking: V volgens bron: Nabab de Reve (in record: Nabab de Rêve).",
+    "verrijken_weg": true
+   },
+   "lavillon": {
+    "stamboom": {
+     "v": "Diamant de Semilly",
+     "m": "Anaide",
+     "vv": "Le Tot de Semilly",
+     "vm": "Venise des Cresles",
+     "mv": "Laudanum xx",
+     "mm": "Naiade IV"
+    },
+    "stamboek": "SF",
+    "geboortejaar": 1999,
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Lavillon",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/50285-lavillon/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   }
+  }
+ }
+}
