@@ -1,0 +1,59 @@
+{
+ "formaat": "fokwijzer-export",
+ "datum": "2026-11-03",
+ "modus": "aanvullen",
+ "collecties": {
+  "paarden": {
+   "ricardo": {
+    "geslacht": "hengst",
+    "opmerking_toevoeging": "Geslacht (hengst) afgeleid uit de positie in 1 stamboomkaart(en) in De Fokwijzer.",
+    "bronnen": []
+   },
+   "muguet-du-manoir": {
+    "geslacht": "hengst",
+    "opmerking_toevoeging": "Geslacht (hengst) afgeleid uit de stamboomkaarten: 9 keer als vader, 1 keer als moeder (bij Andiamo Semilly); die kaart(en) kloppen waarschijnlijk niet.",
+    "bronnen": []
+   },
+   "paloma": {
+    "geslacht": "merrie",
+    "opmerking_toevoeging": "Geslacht (merrie) afgeleid uit de positie in 1 stamboomkaart(en) in De Fokwijzer.",
+    "bronnen": []
+   },
+   "flyer": {
+    "geslacht": "merrie",
+    "opmerking_toevoeging": "Geslacht (merrie) afgeleid uit de stamboomkaarten: 9 keer als moeder, 1 keer als vader (bij Amy du Chateau Z); die kaart(en) kloppen waarschijnlijk niet.",
+    "bronnen": []
+   },
+   "le-duc": {
+    "geslacht": "hengst",
+    "opmerking_toevoeging": "Geslacht (hengst) afgeleid uit de positie in 1 stamboomkaart(en) in De Fokwijzer.",
+    "bronnen": []
+   },
+   "padua": {
+    "geslacht": "merrie",
+    "opmerking_toevoeging": "Geslacht (merrie) afgeleid uit de stamboomkaarten: 4 keer als moeder, 1 keer als vader (bij Zandor Z); die kaart(en) kloppen waarschijnlijk niet.",
+    "bronnen": []
+   },
+   "wendekreis": {
+    "geslacht": "hengst",
+    "opmerking_toevoeging": "Geslacht (hengst) afgeleid uit de stamboomkaarten: 6 keer als vader, 1 keer als moeder (bij Landino VDL); die kaart(en) kloppen waarschijnlijk niet.",
+    "bronnen": []
+   },
+   "licorne-des-forets": {
+    "geslacht": "merrie",
+    "opmerking_toevoeging": "Geslacht (merrie) afgeleid uit de stamboomkaarten: 4 keer als moeder, 1 keer als vader (bij Thiago W); die kaart(en) kloppen waarschijnlijk niet.",
+    "bronnen": []
+   },
+   "naturel": {
+    "geslacht": "hengst",
+    "opmerking_toevoeging": "Geslacht (hengst) afgeleid uit de stamboomkaarten: 4 keer als vader, 1 keer als moeder (bij Pollux de Muze Z); die kaart(en) kloppen waarschijnlijk niet.",
+    "bronnen": []
+   },
+   "domino-1976": {
+    "geslacht": "hengst",
+    "opmerking_toevoeging": "Geslacht (hengst) afgeleid uit de stamboomkaarten: 5 keer als vader, 1 keer als moeder (bij OBOS Quality 004); die kaart(en) kloppen waarschijnlijk niet.",
+    "bronnen": []
+   }
+  }
+ }
+}
