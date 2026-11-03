@@ -1,0 +1,180 @@
+{
+ "formaat": "fokwijzer-export",
+ "datum": "2026-11-03",
+ "modus": "aanvullen",
+ "collecties": {
+  "paarden": {
+   "sailing-light-xx-1949": {
+    "stamboom": {
+     "v": "Blue Peter"
+    },
+    "bronnen": [
+     {
+      "naam": "PedigreeQuery, Sailing Light",
+      "url": "https://www.pedigreequery.com/sailing+light",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Alleen de vader staat duidelijk op de pagina; de moeder is daar niet eenduidig te lezen.",
+    "verrijken_weg": false
+   },
+   "276433330689211": {
+    "stamboom": {
+     "m": "Callinda Z",
+     "mv": "Calvin Z"
+    },
+    "bronnen": [
+     {
+      "naam": "Elite Stallions, Solid Gold Z",
+      "url": "https://www.elitestallions.co.uk/stallion/Solid%20Gold%20Z",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Stamboek op de pagina is Zangersheide, de kaart noemt Oldenburger. Afwijking: stamboek volgens bron: Zangersheide (in record: Oldenburger).",
+    "verrijken_weg": false
+   },
+   "flamenco-de-semilly-1993": {
+    "stamboom": {
+     "m": "Gavotte",
+     "mv": "Vamba du Mesnil"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "king-s-bens": {
+    "stamboek": "BWP",
+    "geboortejaar": 1987,
+    "stamboom": {
+     "v": "Admiraal Z",
+     "m": "Fioca",
+     "mv": "Fürst Ferdinand",
+     "mm": "Rebecca Z"
+    },
+    "bronnen": [
+     {
+      "naam": "Swiss Studbook, King's Bens pedigree",
+      "url": "https://studbook.cheval-suisse.com/documents/17619-kings-bens-pedigree-fr.pdf",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Identiteit alleen op naam gecontroleerd (geen geboortejaar of kinderen bekend); posities afgeleid uit de opmaak van de pdf.",
+    "verrijken_weg": true
+   },
+   "edjaz-van-t-merelsnest": {
+    "stamboek": "BWP",
+    "geboortejaar": 2004,
+    "stamboom": {
+     "v": "Nabab de Reve",
+     "m": "Wendelina V't Merelsnest",
+     "vv": "Quidam de Revel",
+     "vm": "Melodie en Fa",
+     "mv": "Darco",
+     "mm": "Idjaz-C",
+     "vvv": "Jalisco B",
+     "vvm": "Dirka",
+     "vmv": "Artichaut",
+     "vmm": "Caravelle",
+     "mvv": "Lugano van la Roche",
+     "mvm": "Ocoucha",
+     "mmv": "Hedjaz",
+     "mmm": "Chiquita"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Edjaz van 't Merelsnest",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/107680-edjaz-van-t-merelsnest/7",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "wendekreis": {
+    "stamboek": "Hannoveraner",
+    "geboortejaar": 1967,
+    "geslacht": "hengst",
+    "stamboom": {
+     "v": "Ferdinand",
+     "m": "Domgöttin"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Takashi van Berkenbroeck",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/41228-takashi-van-berkenbroeck/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Ouders afgeleid uit de opmaak van de stamboompagina; Wendekreis staat daar op positie mvv.",
+    "verrijken_weg": true
+   },
+   "last-man-standing": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 2001,
+    "stamboom": {
+     "v": "Lovari",
+     "m": "Alandia",
+     "mv": "Landgraf I"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Iron Dames Arezzo Man",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/1212205-iron-dames-arezzo-man_/7",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Last Man Standing staat op deze pagina als vader van La Luna 307, moeder van Arezzo Man (2019). Vader Lovari is volgens de pagina uit 1996, wat ongewoon dicht bij 2001 ligt; controle aanbevolen.",
+    "verrijken_weg": true
+   },
+   "deichkind": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 2020,
+    "stamboom": {
+     "v": "Don VHP Z",
+     "m": "Limbus",
+     "mv": "Alcatraz"
+    },
+    "bronnen": [
+     {
+      "naam": "Holsteiner Verband, Deichkind",
+      "url": "https://www.holsteiner-verband.de/en/suche/horse/deichkind",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Geen kinderen of ouders op de kaart om de identiteit mee te toetsen; enige gevonden hengst met deze naam.",
+    "verrijken_weg": true
+   },
+   "e-like-ermitage-optimus-ws-kcx-z": {
+    "stamboom": {
+     "mv": "Bamako de Muze"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Cacacha van het Schaeck",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/379049-cacacha-van-het-schaeck",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Moedersvader is de vader van Cacacha van het Schaeck (merrie, 2008, sBs).",
+    "verrijken_weg": false
+   },
+   "candillo-z": {
+    "stamboek": "Holst",
+    "geboortejaar": 1993,
+    "stamboom": {
+     "v": "Cassini I",
+     "m": "Desy"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo Quel Homme de Hus",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/101598-quel-homme-de-hus",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Op Hippomundo vermeld als Candillo (1993, Holst), niet als Candillo Z.",
+    "verrijken_weg": true
+   }
+  }
+ }
+}
