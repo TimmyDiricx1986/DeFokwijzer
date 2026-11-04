@@ -94,6 +94,7 @@
     ", of voeg een paard toe via Paarden beheren": ", or add a horse via Manage horses",
     "Geen exacte treffer. Deze namen lijken erop:": "No exact match. These names are similar:",
     "Nog geen paarden in de database.": "No horses in the database yet.",
+    "Paarden worden geladen...": "Loading horses...",
     "Kies een paard in de lijst om de details te zien.": "Choose a horse in the list to see the details.",
     "Gesponsord": "Sponsored",
     "Gesponsord door": "Sponsored by",

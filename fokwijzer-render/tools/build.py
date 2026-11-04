@@ -99,6 +99,8 @@ def transform(html, links=('/over.html', '/privacy.html')):
     js = rep(js, 'state.dbState="none";', 'state.dbState="none";if(!state.loaded){state.horses=DEMO;state.demo=true}', count=4)
     js = rep(js, 'state.horses=real.length?real:DEMO;state.demo=!real.length;', 'state.horses=real.length?real:DEMO;state.demo=!real.length;state.loaded=true;')
     js = rep(js, '$("count").innerHTML=`', 'if(!state.loaded&&state.dbState!=="none"){$("count").innerHTML="";$("banner").innerHTML="";return}$("count").innerHTML=`')
+    js = rep(js, 'if(!list.length){$("results").innerHTML=`<div class="empty">Geen paarden gevonden.',
+             'if(!list.length&&!state.loaded&&state.dbState!=="none"){$("results").innerHTML=\'<div class="empty">Paarden worden geladen...</div>\';$("detail").innerHTML="";return}if(!list.length){$("results").innerHTML=`<div class="empty">Geen paarden gevonden.')
     # Stamboomkaart (afbeelding en PDF) in de gekozen taal.
     js = rep(js, 'c=cv.getContext("2d");c.scale(S,S)}', 'c=cv.getContext("2d");c.scale(S,S)}if(window.fwI18n)c=window.fwI18n.wrapCtx(c);')
     if re.search(r"Claude|in de chat|claude\.ai", js.replace("Claude Code Remote", "")):
@@ -158,8 +160,23 @@ def main():
 </body>
 </html>
 """
+    page = versioned(page)
     (PUB / "index.html").write_text(page, encoding="utf-8")
+    for f in ["privacy.html", "over.html", "404.html"]:
+        (PUB / f).write_text(versioned((PUB / f).read_text(encoding="utf-8")), encoding="utf-8")
     print("Klaar: public/ opgebouwd.")
+
+
+def versioned(html):
+    """Zet een versienummer (hash van de inhoud) achter scripts en stijlen: na een update laadt de browser meteen de nieuwe versie."""
+    import hashlib
+    def sub(m):
+        f = PUB / m.group(2).lstrip("/")
+        if not f.exists():
+            return m.group(0)
+        v = hashlib.sha256(f.read_bytes()).hexdigest()[:10]
+        return f'{m.group(1)}{m.group(2)}?v={v}"'
+    return re.sub(r'((?:src|href)=")(/(?:app\.js|app\.css|fokwijzer-api\.js|i18n\.js|i18n-en\.js|fonts/fonts\.css))"', sub, html)
 
 
 # Taalkeuze: vóór de pagina geladen, zodat Engelse bezoekers geen Nederlandse tekst zien flitsen.
