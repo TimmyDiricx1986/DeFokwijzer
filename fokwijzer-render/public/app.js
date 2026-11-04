@@ -732,7 +732,7 @@ function pcWrap(ctx,text,maxW,maxLines){const words=String(text).split(/\s+/);co
   return lines}
 async function drawPedCard(h,opt){
   opt=opt||{};const W=Math.max(320,Math.round(opt.W||1123)),H=Math.max(220,Math.round(opt.H||794)),S=opt.S||2;
-  let cv,c;if(opt.svg){cv={};c=new FwSvgCtx(W,H)}else{cv=document.createElement("canvas");cv.width=Math.round(W*S);cv.height=Math.round(H*S);c=cv.getContext("2d");c.scale(S,S)}
+  let cv,c;if(opt.svg){cv={};c=new FwSvgCtx(W,H)}else{cv=document.createElement("canvas");cv.width=Math.round(W*S);cv.height=Math.round(H*S);c=cv.getContext("2d");c.scale(S,S)}if(window.fwI18n)c=window.fwI18n.wrapCtx(c);
   const GREEN="#13302A",GOLD="#B08A5A",GOLD2="#D9C3A0",CREAM="#FAF7F1",LINE="#E4DCCB",INK="#1F2420",MUTED="#6B6F66";
   const DISP='"Spectral SC", Georgia, serif',BODY='"Source Sans 3", system-ui, sans-serif';
   try{await Promise.all(["700 36px 'Spectral SC'","600 13px 'Spectral SC'","400 15px 'Source Sans 3'","600 15px 'Source Sans 3'","italic 400 15px 'Source Sans 3'"].map(f=>document.fonts.load(f)))}catch(_){}

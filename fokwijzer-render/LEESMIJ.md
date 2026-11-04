@@ -53,6 +53,14 @@ Je hebt nodig: een server (VPS) met Docker, bijvoorbeeld bij Hetzner, OVH of Com
    ```
    Teksten met punthaken (zoals `<vader> x <moeder>`) worden daarbij omgezet naar ‹ › zodat ze veilig zijn.
 
+## Engelse versie
+
+De site is beschikbaar in het Nederlands en het Engels. Bezoekers kiezen met de knop **NL / EN** bovenaan; de keuze wordt in hun browser onthouden. Wie voor het eerst komt met een browser die niet in het Nederlands staat, krijgt meteen Engels. Deelbare link naar de Engelse versie: `/en` (bv. `https://fokwijzer.onrender.com/en`).
+
+- De app zelf blijft Nederlands. `src/i18n.js` vervangt in het Engels de schermtekst live door de vertaling uit `src/i18n-en.js` (ook meldingen, invulvelden en de stamboomkaart als afbeelding of PDF). De council antwoordt dan ook in het Engels.
+- Paardnamen en wat gebruikers zelf schrijven (opmerkingen, bronnen) worden niet vertaald.
+- **Nieuwe tekst in de app?** Voeg de Nederlandse zin met zijn Engelse vertaling toe in `src/i18n-en.js` en bouw opnieuw. Ontbreekt een vertaling, dan blijft die tekst gewoon Nederlands staan; er gaat niets stuk.
+
 ## Bijwerken
 
 - **Nieuwe versie van de app:** zet het nieuwe HTML-bestand ergens neer en voer `python3 tools/build.py pad/naar/fokwijzer-app.html` uit (op je eigen computer of de server). De lettertypen staan in `src/fonts`, dus daarvoor is geen internet nodig. Daarna `docker compose up -d --build`.

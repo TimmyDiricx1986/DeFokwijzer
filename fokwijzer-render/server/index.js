@@ -397,6 +397,9 @@ app.use((err, req, res, next) => {
 // ---------------------------------------------------------------- website
 const PUB = path.join(__dirname, "..", "public");
 app.use("/.well-known", express.static(path.join(PUB, ".well-known"), { dotfiles: "allow" }));
+// Engelse versie: fokwijzer.onrender.com/en (de taal wordt in de browser gekozen en onthouden)
+app.get(["/en", "/en/"], (req, res) => res.redirect(302, "/?lang=en"));
+app.get(["/nl", "/nl/"], (req, res) => res.redirect(302, "/?lang=nl"));
 app.use(express.static(PUB, {
   index: "index.html",
   dotfiles: "deny",
