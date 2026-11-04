@@ -46,7 +46,7 @@ const DEMO=[
   stamboom:{v:D("Helios"),m:D("Rosa")},wffs:"onbekend",ocd:"onbekend",bronnen:demoSrc}
 ];
 
-const state={horses:DEMO,demo:true,dbState:"loading",canWrite:false,tab:"info",sel:null,editId:null,
+const state={horses:[],demo:false,loaded:false,dbState:"loading",canWrite:false,tab:"info",sel:null,editId:null,
   w:{...DEFAULT_W},t:{...DEFAULT_T},aanvragen:[],revSel:null};
 let db=null;
 
@@ -633,7 +633,7 @@ function renderAds(){
 
 
 function renderBanner(){const n=state.horses.length;const h=state.horses.filter(x=>x.geslacht==="hengst").length;
-  $("count").innerHTML=`<span class="num">${n}</span> paarden &middot; <span class="num">${h}</span> hengsten &middot; <span class="num">${n-h}</span> merries`;
+  if(!state.loaded&&state.dbState!=="none"){$("count").innerHTML="";$("banner").innerHTML="";return}$("count").innerHTML=`<span class="num">${n}</span> paarden &middot; <span class="num">${h}</span> hengsten &middot; <span class="num">${n-h}</span> merries`;
   let msg="";
   if(state.demo){msg=`<div class="banner"><strong>Voorbeeldmodus.</strong> Je ziet fictieve paarden (gemarkeerd met "demo") zodat je kunt uittesten hoe zoeken, vergelijken en matchen werkt. Zodra je zelf een paard toevoegt of importeert, verdwijnen de voorbeelden.${state.dbState==="none"?" De gedeelde opslag is in deze weergave niet beschikbaar, dus toevoegen kan hier niet.":""}</div>`}
   $("banner").innerHTML=msg}
@@ -1338,9 +1338,9 @@ window.addEventListener("resize",fitList);
 // ---------- start ----------
 buildPedInputs();renderAll();
 (async()=>{try{
-  if(!window.claude||!window.claude.use){state.dbState="none";renderAll();return}
+  if(!window.claude||!window.claude.use){state.dbState="none";if(!state.loaded){state.horses=DEMO;state.demo=true}renderAll();return}
   db=await window.claude.use("db");
-  if(!db){state.dbState="none";renderAll();return}
+  if(!db){state.dbState="none";if(!state.loaded){state.horses=DEMO;state.demo=true}renderAll();return}
   const user=await window.claude.use("user");
   let can=null;try{can=user&&user.can?await user.can("data.write"):null}catch(_){can=null}
   state.canWrite=can===true;state.canAsk=!!(user&&user.level>=1);state.dbState="ready";
@@ -1356,8 +1356,8 @@ buildPedInputs();renderAll();
     if(state.meId&&state.platformWrite){const ref=db.collection(LEDEN_COLL).doc(state.meId);ref.get().then(d=>{const cur=d&&d.exists?d.data():null;const want={laatst:new Date().toISOString().slice(0,10)};if(!cur)want.rol=state.isOwner?"beheerder":"gebruiker";if(!cur||cur.laatst!==want.laatst)return cur?ref.update(want):ref.set(Object.assign({sinds:want.laatst},want))}).catch(()=>{})}
   }
   db.collection(DB_COLL).onSnapshot(snap=>{const real=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}));
-    state.horses=real.length?real:DEMO;state.demo=!real.length;if(state.sel&&!byId(state.sel))state.sel=null;renderAll()},
-   err=>{state.dbState="none";renderAll()});
+    state.horses=real.length?real:DEMO;state.demo=!real.length;state.loaded=true;if(state.sel&&!byId(state.sel))state.sel=null;renderAll()},
+   err=>{state.dbState="none";if(!state.loaded){state.horses=DEMO;state.demo=true}renderAll()});
   db.collection(REQ_COLL).onSnapshot(snap=>{state.aanvragen=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}));updateBadge();if(state.tab==="aanvragen")renderAanvragen()},err=>{});
   db.collection(V_COLL).onSnapshot(snap=>{state.veilingen=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}));buildLots();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="zoeken")renderDetail();if(state.tab==="vergelijken")renderCompare()},err=>{});
   db.collection(C_COLL).onSnapshot(snap=>{state.council={};snap.docs.forEach(d=>{state.council[d.id]=d.data()});if(state.tab==="vergelijken"&&!councilBusy)renderCouncil(byId($("cS").value),byId($("cM").value))},err=>{});
@@ -1369,5 +1369,5 @@ buildPedInputs();renderAll();
   db.doc("systeem/verwerking").onSnapshot(s=>{state.run=s.exists?s.data():null;if(state.tab==="aanvragen")renderRun()},err=>{});
   window.claude.use("mcp").then(m=>{mcpNs=m;mcpChecked=true;if(state.tab==="aanvragen")renderRun()}).catch(()=>{mcpChecked=true});
   renderAll();
-}catch(_){state.dbState="none";renderAll()}})();
+}catch(_){state.dbState="none";if(!state.loaded){state.horses=DEMO;state.demo=true}renderAll()}})();
 })();

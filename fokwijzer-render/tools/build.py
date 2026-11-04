@@ -93,6 +93,12 @@ def transform(html, links=('/over.html', '/privacy.html')):
     # Wiki-geschiedenis per paard.
     js = rep(js, '<button class="btn danger" type="button" data-act="del" data-own=',
              '<button class="btn ghost" type="button" data-act="hist" data-id="${esc(h.id)}">Geschiedenis</button><button class="btn danger" type="button" data-act="del" data-own=')
+    # Geen voorbeeldmodus (gele balk en demopaarden) tonen zolang de paarden nog laden;
+    # alleen als de database echt leeg is of niet bereikbaar.
+    js = rep(js, 'const state={horses:DEMO,demo:true,', 'const state={horses:[],demo:false,loaded:false,')
+    js = rep(js, 'state.dbState="none";', 'state.dbState="none";if(!state.loaded){state.horses=DEMO;state.demo=true}', count=4)
+    js = rep(js, 'state.horses=real.length?real:DEMO;state.demo=!real.length;', 'state.horses=real.length?real:DEMO;state.demo=!real.length;state.loaded=true;')
+    js = rep(js, '$("count").innerHTML=`', 'if(!state.loaded&&state.dbState!=="none"){$("count").innerHTML="";$("banner").innerHTML="";return}$("count").innerHTML=`')
     # Stamboomkaart (afbeelding en PDF) in de gekozen taal.
     js = rep(js, 'c=cv.getContext("2d");c.scale(S,S)}', 'c=cv.getContext("2d");c.scale(S,S)}if(window.fwI18n)c=window.fwI18n.wrapCtx(c);')
     if re.search(r"Claude|in de chat|claude\.ai", js.replace("Claude Code Remote", "")):
