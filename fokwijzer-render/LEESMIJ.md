@@ -77,6 +77,25 @@ Een ingelogde gebruiker zet in één aanvraag 1 tot 5 paarden (naam en eventueel
 
 Aanpassen kan in `.env` met `AANVRAAG_PER_DAG` (standaard 3) en `AANVRAAG_MAX_PAARDEN` (standaard 5).
 
+## E-mail
+
+Zodra alle paarden uit een aanvraag goedgekeurd of afgekeurd zijn, krijgt de aanvrager één mail met welke paarden online staan en welke niet. De site verstuurt via de HTTP-API van een maildienst (Render blokkeert gewone SMTP op het gratis plan). Elke mail wordt maar één keer verstuurd; mislukt het, dan probeert de site het opnieuw bij de volgende wijziging aan die aanvraag.
+
+Instellen (bij Render: je service, **Environment**):
+
+| Variabele | Waarde |
+|---|---|
+| `MAIL_PROVIDER` | `brevo` of `resend` |
+| `MAIL_API_KEY` | de API-sleutel van die dienst |
+| `MAIL_FROM` | afzender, bv. `De Fokwijzer <info@jouwdomein.be>`; dit adres moet bij de dienst geverifieerd zijn |
+| `MAIL_REPLY_TO` | optioneel: adres waarop mensen kunnen antwoorden |
+
+- **Brevo** (gratis tot 300 mails per dag): maak een account op brevo.com, voeg bij *Senders & IP* een afzender toe en bevestig die, en maak bij *SMTP & API* een API-sleutel (v3).
+- **Resend** (gratis tot 100 mails per dag): werkt alleen met een eigen domeinnaam die je verifieert met DNS-records.
+- Met een eigen domein (en de DNS-records die de dienst geeft) komen mails het best aan. Een gratis adres zoals Gmail als afzender belandt vaker in de spam.
+
+Controleren: log in als beheerder, open **Beheer** en klik bij *E-mail* op **Stuur een testmail naar mezelf**. Daar zie je ook de laatst verstuurde mails. Vul in `privacy.html` bij *E-mails* de naam van je maildienst in.
+
 ## Automatisering (veilingmeester en aanvragen verwerken)
 
 De geplande taken van vroeger werkten binnen Claude. Op de website kunnen ze via de API met een **service-token**:

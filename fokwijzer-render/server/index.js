@@ -10,6 +10,7 @@ const store = require("./store");
 const auth = require("./auth");
 const ai = require("./ai");
 const aanvragen = require("./aanvragen");
+const mail = require("./mail");
 
 const PORT = parseInt(process.env.PORT || "8080", 10);
 const PUBLIC_URL = (process.env.PUBLIC_URL || "").replace(/\/$/, "");
@@ -136,6 +137,14 @@ app.post("/api/auth/partner", writeLimit, auth.need("gebruiker"), (req, res) => 
   auth.startSession(res, req.actor.userId);
   res.json({ ok: true });
 });
+// E-mail: status en testmail voor de beheerder.
+app.get("/api/mail", auth.need("beheerder"), (req, res) => res.json(Object.assign(mail.status(), { recent: mail.recent(10) })));
+app.post("/api/mail/test", writeLimit, auth.need("beheerder"), async (req, res) => {
+  if (req.actor.service || !req.actor.email) return res.status(403).json({ fout: "Alleen voor een ingelogde beheerder." });
+  if (!mail.enabled()) return res.status(400).json({ fout: "E-mail is nog niet ingesteld. Ontbreekt: " + mail.status().ontbreekt.join(", ") + "." });
+  try { await mail.send(Object.assign({ to: req.actor.email }, mail.testMail(req.actor.name))); res.json({ ok: true, naar: req.actor.email }); }
+  catch (err) { res.status(502).json({ fout: "Versturen lukte niet: " + (err && err.message) }); }
+});
 app.get("/api/users", auth.need("beheerder"), (req, res) => res.json(auth.listUsers()));
 app.patch("/api/users/:id", auth.need("beheerder"), (req, res) => {
   if (req.actor.service) return res.status(403).json({ fout: "Niet via automatisering." });
@@ -156,7 +165,7 @@ app.delete("/api/users/:id", auth.need("beheerder"), (req, res) => {
 // ---------------------------------------------------------------- paarden aanvragen (pakket)
 // Een aanvraag bevat 1 tot AANVRAAG_MAX_PAARDEN paarden; gebruikers mogen AANVRAAG_PER_DAG aanvragen per dag doen.
 app.get("/api/aanvraag/limiet", auth.need("gebruiker"), (req, res) => {
-  res.json(Object.assign(aanvragen.limiet(req.actor), { mail: false }));
+  res.json(Object.assign(aanvragen.limiet(req.actor), { mail: mail.enabled() }));
 });
 app.post("/api/aanvraag", writeLimit, auth.need("gebruiker"), (req, res) => {
   const r = aanvragen.schoonPaarden((req.body || {}).paarden);
@@ -242,6 +251,7 @@ function save(req, res, id, data, cur) {
   if (err) return res.status(400).json({ fout: err });
   store.writeDoc(coll, id, data, req.actor);
   broadcast(coll, id);
+  if (coll === "aanvragen" && data.pakket) aanvragen.naWijziging(data.pakket);
   res.json({ ok: true, id });
 }
 // Nieuw document met een door de server gekozen id.
@@ -292,8 +302,10 @@ app.delete("/api/c/:coll/:id", writeLimit, (req, res) => {
     const cur = store.getDoc("paarden", req.params.id);
     if (cur && (!req.actor.userId || cur.data.eigenaar_id !== req.actor.userId)) return res.status(403).json({ fout: "Je kunt alleen paarden verwijderen die je zelf toevoegde." });
   }
+  const weg = req.params.coll === "aanvragen" ? store.getDoc("aanvragen", req.params.id) : null;
   const ok = store.deleteDoc(req.params.coll, req.params.id, req.actor);
   if (ok) broadcast(req.params.coll, req.params.id);
+  if (ok && weg && weg.data && weg.data.pakket) aanvragen.naWijziging(weg.data.pakket);
   res.json({ ok });
 });
 // Importeren in blokken, alleen met het service-token (bv. om een export over te zetten).
@@ -307,6 +319,7 @@ app.post("/api/bulk", (req, res) => {
     if (err) return { id: d.id, fout: err };
     store.writeDoc(d.coll, d.id, d.data, req.actor);
     broadcast(d.coll, d.id);
+    if (d.coll === "aanvragen" && d.data.pakket) aanvragen.naWijziging(d.data.pakket);
     return { id: d.id, ok: true };
   });
   res.json({ resultaat });

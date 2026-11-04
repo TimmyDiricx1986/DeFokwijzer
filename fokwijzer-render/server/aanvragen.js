@@ -4,7 +4,9 @@
 // Paarden-beheerders en beheerders zijn vrijgesteld van de daglimiet.
 const crypto = require("crypto");
 const store = require("./store");
-const { LEVEL } = require("./auth");
+const auth = require("./auth");
+const mail = require("./mail");
+const { LEVEL } = auth;
 
 const num = (v, d) => { const n = parseInt(v, 10); return Number.isFinite(n) && n > 0 ? n : d; };
 const PER_DAG = num(process.env.AANVRAAG_PER_DAG, 3);
@@ -80,4 +82,24 @@ function maakPakket(actor, paarden) {
   });
 }
 
-module.exports = { PER_DAG, MAX_PAARDEN, limiet, schoonPaarden, daglimietFout, maakPakket, vrijgesteld };
+// Zodra elk paard van een pakket goedgekeurd of afgekeurd is, krijgt de aanvrager één mail.
+const AFGEROND = new Set(["goedgekeurd", "afgekeurd"]);
+function controleerPakket(pakket) {
+  if (!pakket || !mail.enabled()) return Promise.resolve(null);
+  const docs = store.listDocs("aanvragen").filter((d) => d.data && d.data.pakket === pakket);
+  if (!docs.length || !docs.every((d) => AFGEROND.has(d.data.status))) return Promise.resolve(null);
+  const userId = docs[0].data.aanvrager_id;
+  const u = userId != null ? auth.userById(userId) : null;
+  if (!u || !u.email) return Promise.resolve(null);
+  const online = docs.filter((d) => d.data.status === "goedgekeurd").map((d) => d.data.naam);
+  const nietOnline = docs.filter((d) => d.data.status !== "goedgekeurd").map((d) => d.data.naam);
+  const m = mail.aanvraagKlaar({ naam: u.name, online, nietOnline });
+  return mail.sendOnce("pakket:" + pakket, Object.assign({ to: u.email }, m));
+}
+// Na een wijziging of verwijdering van een aanvraag: kijken of het pakket nu klaar is. Fouten stoppen de server nooit.
+function naWijziging(pakket) {
+  if (!pakket) return;
+  setImmediate(() => { controleerPakket(pakket).catch((e) => console.error("Pakketcontrole:", e && e.message)); });
+}
+
+module.exports = { PER_DAG, MAX_PAARDEN, limiet, schoonPaarden, daglimietFout, maakPakket, vrijgesteld, controleerPakket, naWijziging };

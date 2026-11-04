@@ -338,3 +338,15 @@ test("aanvraag als pakket: max 5 paarden, max 3 aanvragen per dag voor gebruiker
   for (let i = 0; i < 4; i++) assert.equal((await dien(p(1, `Beheer${i}`), b)).status, 200);
   assert.equal((await dien(p(6, "BeheerZes"), b)).status, 400);
 });
+
+test("e-mail: alleen beheerders zien de status; zonder instellingen geen testmail", async () => {
+  const l = await login("lees@test.be", "Sterk-wachtwoord-789");
+  assert.equal((await fetch(base + "/api/mail", { headers: { cookie: l } })).status, 403);
+  const b = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  const s = await (await fetch(base + "/api/mail", { headers: { cookie: b } })).json();
+  assert.equal(s.actief, false);
+  assert.ok(s.ontbreekt.includes("MAIL_API_KEY"));
+  assert.equal((await fetch(base + "/api/mail/test", { method: "POST", headers: Object.assign({}, H, { cookie: b }), body: "{}" })).status, 400);
+  const lim = await (await fetch(base + "/api/aanvraag/limiet", { headers: { cookie: l } })).json();
+  assert.equal(lim.mail, false);
+});

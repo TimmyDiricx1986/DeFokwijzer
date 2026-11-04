@@ -357,6 +357,34 @@
     if (b) { e.preventDefault(); me.then(function (m) { historyDialog(b.getAttribute("data-id"), level(m) >= 2); }); }
   });
 
+  // ------------------------------------------------------------ e-mail (beheerder)
+  var MAIL_STATUS = { verstuurd: "verstuurd", mislukt: "mislukt", bezig: "bezig" };
+  function mountMail(m) {
+    var card = document.getElementById("mailCard");
+    if (!card || level(m) < 3) return;
+    card.hidden = false;
+    var info = document.getElementById("mailInfo"), st = document.getElementById("mailStatus"), lijst = document.getElementById("mailRecent"), btn = document.getElementById("mailTest");
+    function laad() {
+      api("GET", "/api/mail").then(function (s) {
+        info.textContent = s.actief
+          ? "Ingesteld via " + s.dienst + ", afzender " + s.afzender + "."
+          : "Nog niet ingesteld. Zet bij Render (Environment) deze waarden: " + s.ontbreekt.join(", ") + ". Zie LEESMIJ, onderdeel E-mail.";
+        info.className = "small " + (s.actief ? "" : "muted");
+        btn.disabled = !s.actief;
+        lijst.textContent = "";
+        (s.recent || []).forEach(function (r) {
+          lijst.appendChild(el("li", { text: new Date(r.ts).toLocaleString("nl-BE") + " · " + r.onderwerp + " · " + r.naar + " · " + (MAIL_STATUS[r.status] || r.status) + (r.fout ? " (" + r.fout + ")" : "") }));
+        });
+      }, function (e) { info.textContent = e.message; });
+    }
+    btn.addEventListener("click", function () {
+      btn.disabled = true; st.className = "status"; st.textContent = "Bezig met versturen...";
+      api("POST", "/api/mail/test", {}).then(function (r) { st.className = "status ok"; st.textContent = "Testmail verstuurd naar " + r.naar + ". Kijk ook in je spam."; },
+        function (e) { st.className = "status err"; st.textContent = e.message; }).then(function () { btn.disabled = false; });
+    });
+    laad();
+  }
+
   // ------------------------------------------------------------ accountknoppen in de kop
   function mountAccount(m) {
     if (m.opslag && m.opslag.vast === false) {
@@ -522,5 +550,5 @@
   }
 
   function ready(fn) { if (document.readyState !== "loading") fn(); else document.addEventListener("DOMContentLoaded", fn); }
-  ready(function () { me.then(mountAccount); window.__fwTrack("load"); });
+  ready(function () { me.then(function (m) { mountAccount(m); mountMail(m); }); window.__fwTrack("load"); });
 })();
