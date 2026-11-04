@@ -6,7 +6,8 @@ Gebruik:  python3 tools/build.py <pad/naar/fokwijzer-app.html>
 - splitst HTML, CSS en JavaScript (nodig voor een strikte Content-Security-Policy);
 - vervangt Google Fonts door lokale lettertypen (geen gegevens naar derden);
 - past teksten aan die naar Claude verwezen;
-- voegt de koppeling met de server toe (fokwijzer-api.js).
+- voegt de koppeling met de server toe (fokwijzer-api.js);
+- voegt de taalkeuze Nederlands / English toe (i18n.js met de vertalingen in i18n-en.js).
 Draai dit opnieuw telkens je een nieuwe versie van de app hebt.
 """
 import pathlib
@@ -92,6 +93,8 @@ def transform(html, links=('/over.html', '/privacy.html')):
     # Wiki-geschiedenis per paard.
     js = rep(js, '<button class="btn danger" type="button" data-act="del" data-own=',
              '<button class="btn ghost" type="button" data-act="hist" data-id="${esc(h.id)}">Geschiedenis</button><button class="btn danger" type="button" data-act="del" data-own=')
+    # Stamboomkaart (afbeelding en PDF) in de gekozen taal.
+    js = rep(js, 'c=cv.getContext("2d");c.scale(S,S)}', 'c=cv.getContext("2d");c.scale(S,S)}if(window.fwI18n)c=window.fwI18n.wrapCtx(c);')
     if re.search(r"Claude|in de chat|claude\.ai", js.replace("Claude Code Remote", "")):
         left = sorted(set(re.findall(r"[^\"'`]{0,40}(?:Claude|in de chat|claude\.ai)[^\"'`]{0,40}", js.replace("Claude Code Remote", ""))))
         fail("nog verwijzingen naar Claude: " + "; ".join(left))
@@ -116,8 +119,14 @@ def main():
     (PUB / "app.js").write_text(js.strip() + "\n", encoding="utf-8")
     (PUB / "app.css").write_text(css.strip() + "\n\n/* Website */\n" + site_css, encoding="utf-8")
     shutil.copy(SRC / "fokwijzer-api.js", PUB / "fokwijzer-api.js")
-    for f in ["privacy.html", "over.html", "404.html", "robots.txt", "favicon.png"]:
+    for f in ["i18n.js", "i18n-en.js"]:
         shutil.copy(SRC / f, PUB / f)
+    for f in ["robots.txt", "favicon.png"]:
+        shutil.copy(SRC / f, PUB / f)
+    for f in ["privacy.html", "over.html", "404.html"]:
+        page = (SRC / f).read_text(encoding="utf-8")
+        page = rep(page, "</head>", I18N + "</head>")
+        (PUB / f).write_text(page, encoding="utf-8")
     (PUB / ".well-known").mkdir()
     shutil.copy(SRC / "security.txt", PUB / ".well-known" / "security.txt")
     build_fonts()
@@ -133,7 +142,9 @@ def main():
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="stylesheet" href="/app.css">
-</head>
+<link rel="alternate" hreflang="nl" href="/?lang=nl">
+<link rel="alternate" hreflang="en" href="/?lang=en">
+{I18N}</head>
 <body>
 {body}
 <script src="/fokwijzer-api.js"></script>
@@ -144,6 +155,9 @@ def main():
     (PUB / "index.html").write_text(page, encoding="utf-8")
     print("Klaar: public/ opgebouwd.")
 
+
+# Taalkeuze: vóór de pagina geladen, zodat Engelse bezoekers geen Nederlandse tekst zien flitsen.
+I18N = '<script src="/i18n-en.js"></script>\n<script src="/i18n.js"></script>\n'
 
 FONTS = [("spectral-sc", "Spectral SC", [500, 600, 700]), ("bitter", "Bitter", [500, 600, 700]), ("source-sans-3", "Source Sans 3", [400, 600, 700]), ("ibm-plex-mono", "IBM Plex Mono", [400, 500])]
 RANGES = {
