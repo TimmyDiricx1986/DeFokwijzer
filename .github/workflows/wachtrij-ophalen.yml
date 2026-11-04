@@ -1,0 +1,38 @@
+# Haalt de wachtrij met paardaanvragen van de website en zet ze op de branch "wachtrij",
+# zodat de geplande Claude-taak "Fokwijzer: aanvragen website verwerken" ze kan lezen.
+# Wordt door die taak gestart (workflow_dispatch). Nodig: repository-secret FOKWIJZER_TOKEN.
+name: Wachtrij ophalen
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fokwijzer-wachtrij
+  cancel-in-progress: false
+jobs:
+  ophalen:
+    runs-on: ubuntu-latest
+    env:
+      FOKWIJZER_TOKEN: ${{ secrets.FOKWIJZER_TOKEN }}
+      SITE: https://fokwijzer.onrender.com
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: imports
+          path: code
+      - name: Wachtrij ophalen
+        run: python3 code/.github/wachtrij/ophalen.py "$SITE" uit
+      - name: Op branch wachtrij zetten (enkel bij wijzigingen)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" wachtrij >/dev/null; then
+            git clone -q --depth 1 --branch wachtrij "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" w
+          else
+            mkdir w && cd w && git init -q -b wachtrij && git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" && cd ..
+          fi
+          mkdir -p w/wachtrij && cp uit/*.json w/wachtrij/
+          cd w && git add wachtrij
+          if git diff --cached --quiet; then echo "Niets veranderd."; exit 0; fi
+          git commit -q -m "Wachtrij $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q origin wachtrij
