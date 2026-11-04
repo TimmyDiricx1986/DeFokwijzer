@@ -405,7 +405,7 @@ function realHorses(){return state.demo?[]:state.horses}
 function existingFor(v){if(!v)return null;const id=docIdFor(v);return realHorses().find(h=>h.id===id)||realHorses().find(h=>norm(h.naam)===norm(v.naam))||null}
 function updateBadge(){const n=state.aanvragen.filter(a=>a.status==="klaar"||a.status==="niet_gevonden").length;const b=$("reqBadge");b.hidden=!n;b.textContent=n}
 function renderAanvragen(){
-  const can=!!db&&state.canAsk&&state.dbState==="ready";$("aBtn").disabled=!can;
+  const can=!!db&&state.canAsk&&state.dbState==="ready";$("aBtn").disabled=!can;if(can)loadLimiet();
   if(state.dbState==="none")$("aStatus").innerHTML='<span class="muted">Log in om een paard aan te vragen.</span>';
   const by=(a,b)=>String(b.aangevraagd_op||"").localeCompare(String(a.aangevraagd_op||""));
   const all=[...state.aanvragen].sort(by);
@@ -1117,15 +1117,53 @@ $("expBtn").addEventListener("click",async()=>{const real=state.demo?[]:state.ho
   try{await navigator.clipboard.writeText(txt);st.className="status ok";st.textContent=real.length+" paarden gekopieerd."}
   catch(_){const ta=$("expText");ta.hidden=false;ta.value=txt;ta.focus();ta.select();st.className="status";st.textContent="Kopiëren lukte niet automatisch. De tekst staat geselecteerd: gebruik Ctrl+C of Cmd+C."}});
 
-$("aForm").addEventListener("submit",async e=>{e.preventDefault();const st=$("aStatus");const naam=$("aNaam").value.trim().replace(/\s+/g," ");
-  if(!naam){st.className="status err";st.textContent="Vul de naam van een paard in.";return}
+// Een aanvraag (pakket) bevat 1 tot REQ_MAX paarden, elk met een naam en eventueel een link.
+const REQ_MAX=5;state.aRows=[{naam:"",link:""}];state.aLimiet=null;state.aLimietAt=0;
+const reqMax=()=>(state.aLimiet&&state.aLimiet.max_paarden)||REQ_MAX;
+function syncReqRows(){document.querySelectorAll("#aRows [data-row]").forEach((r,i)=>{if(!state.aRows[i])return;state.aRows[i].naam=r.querySelector(".aNaam").value;state.aRows[i].link=r.querySelector(".aLink").value})}
+function renderReqRows(focus){const n=state.aRows.length,max=reqMax();
+  $("aRows").innerHTML=state.aRows.map((r,i)=>`<div class="req-row" data-row="${i}"><span class="req-n" aria-hidden="true">${i+1}</span>`+
+    `<div class="field f-naam"><label class="label" for="aNaam${i}">Naam van paard ${i+1}</label><input class="aNaam" id="aNaam${i}" autocomplete="off" maxlength="120" placeholder="${i?"Naam van het paard":"Bv. Dominator 2000 Z"}" value="${esc(r.naam)}"></div>`+
+    `<div class="field f-link"><label class="label" for="aLink${i}">Link (optioneel)</label><input class="aLink" id="aLink${i}" autocomplete="off" inputmode="url" maxlength="500" placeholder="horsetelex.com/..." value="${esc(r.link)}"></div>`+
+    (n>1?`<button class="btn ghost req-del" type="button" data-del="${i}" aria-label="Paard ${i+1} verwijderen" title="Verwijderen">&#10005;</button>`:`<span class="req-del" aria-hidden="true"></span>`)+`</div>`).join("");
+  $("aAdd").hidden=n>=max;
+  $("aTeller").textContent=n>=max?`Maximaal ${max} paarden per aanvraag.`:`${n} van maximaal ${max} paarden`;
+  const filled=state.aRows.filter(r=>r.naam.trim()).length;$("aBtn").textContent=filled>1?`Laat ${filled} paarden opzoeken`:"Laat opzoeken";
+  if(focus!=null){const el=$("aNaam"+focus);if(el)el.focus()}}
+function renderLimiet(){const l=state.aLimiet,el=$("aLimiet");if(!el)return;
+  if(!l||l.vrijgesteld||l.resterend==null){el.textContent="";return}
+  el.textContent=l.resterend>0?`Je kunt vandaag nog ${l.resterend} aanvra${l.resterend===1?"ag":"gen"} doen.`:`Je hebt vandaag je ${l.per_dag} aanvragen gebruikt. Morgen kan het weer.`}
+function loadLimiet(force){const f=window.fokwijzerAanvraag;if(!f)return;if(!force&&Date.now()-state.aLimietAt<60000)return;state.aLimietAt=Date.now();
+  f.limiet().then(l=>{state.aLimiet=l;renderLimiet();renderReqRows()}).catch(()=>{state.aLimiet=null;renderLimiet()})}
+$("aAdd").addEventListener("click",()=>{syncReqRows();if(state.aRows.length>=reqMax())return;state.aRows.push({naam:"",link:""});renderReqRows(state.aRows.length-1)});
+$("aRows").addEventListener("click",e=>{const b=e.target.closest("[data-del]");if(!b)return;syncReqRows();state.aRows.splice(+b.dataset.del,1);if(!state.aRows.length)state.aRows.push({naam:"",link:""});renderReqRows(Math.min(+b.dataset.del,state.aRows.length-1));reqHint("")});
+$("aRows").addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches("input")){e.preventDefault();$("aForm").requestSubmit()}});
+renderReqRows();
+$("aForm").addEventListener("submit",async e=>{e.preventDefault();const st=$("aStatus");syncReqRows();
+  const rows=state.aRows.map(r=>({naam:r.naam.trim().replace(/\s+/g," "),link:r.link.trim()})).filter(r=>r.naam||r.link);
+  const fout=(t)=>{st.className="status err";st.textContent=t};
+  if(!rows.length)return fout("Vul de naam van minstens één paard in.");
+  if(rows.some(r=>!r.naam))return fout("Elk paard heeft een naam nodig, ook als je een link invult.");
+  if(rows.length>reqMax())return fout(`Je kunt maximaal ${reqMax()} paarden per aanvraag indienen.`);
+  const seen=new Set();for(const r of rows){const k=norm(r.naam);if(seen.has(k))return fout(`"${r.naam}" staat twee keer in je aanvraag.`);seen.add(k)}
   if(!db||!state.canAsk){st.className="status err";st.textContent="Log in om een paard aan te vragen.";return}
-  const dup=state.aanvragen.find(a=>norm(a.naam)===norm(naam)&&(a.status==="wachtrij"||a.status==="bezig"||a.status==="klaar"));
-  if(dup){st.className="status err";st.textContent=`"${dup.naam}" staat al in de lijst (${(STATUS[dup.status]||[dup.status])[0].toLowerCase()}).`;state.revSel=dup.id;renderAanvragen();return}
+  const dup=rows.map(r=>state.aanvragen.find(a=>norm(a.naam)===norm(r.naam)&&(a.status==="wachtrij"||a.status==="bezig"||a.status==="klaar"))).filter(Boolean);
+  if(dup.length)return fout(dup.map(d=>`"${d.naam}" staat al in de lijst (${(STATUS[d.status]||[d.status])[0].toLowerCase()})`).join(", ")+". Haal "+(dup.length>1?"die":"het")+" uit je aanvraag.");
+  if(state.aLimiet&&state.aLimiet.resterend===0)return fout(`Je hebt vandaag je ${state.aLimiet.per_dag} aanvragen gebruikt. Morgen kan het weer.`);
   $("aBtn").disabled=true;
-  try{const ref=db.collection(REQ_COLL).doc();await ref.set({naam,status:"wachtrij",aangevraagd_op:new Date().toISOString()});
-    const ex=byName(naam);st.className="status ok";st.textContent=`"${naam}" staat in de wachtrij.`+(ex&&!state.demo?" Dit paard staat al in de database: het resultaat wordt een update.":"");$("aNaam").value="";state.revSel=ref.id;renderAanvragen()}
-  catch(err){st.className="status err";st.textContent="Aanvragen lukte niet: "+(err&&err.message||"onbekende fout")}
+  try{let res=null;const send=rows.map(r=>r.link?{naam:r.naam,link:/^https?:\/\//i.test(r.link)?r.link:"https://"+r.link}:{naam:r.naam});
+    if(window.fokwijzerAanvraag)res=await window.fokwijzerAanvraag.dien(send);
+    else{const pakket=Math.random().toString(16).slice(2,14),nu=new Date().toISOString();for(const r of send)await db.collection(REQ_COLL).doc().set(Object.assign({},r,{status:"wachtrij",aangevraagd_op:nu,pakket,pakket_grootte:send.length}))}
+    const meer=rows.length>1,bekend=rows.filter(r=>byName(r.naam)&&!state.demo).map(r=>r.naam);
+    const mail=!!(state.aLimiet&&state.aLimiet.mail);
+    st.className="status";st.innerHTML=`<div class="req-done"><p><b>Bedankt voor je aanvraag!</b></p><p>Geef ons een uurtje. We gaan nu op zoek naar alle informatie rond jouw aanvraag: afstamming, prestaties en wat we verder over ${meer?"je paarden":"je paard"} vinden bij betrouwbare bronnen.</p>`+
+      `<ul>${rows.map(r=>`<li>${esc(r.naam)}</li>`).join("")}</ul>`+
+      `<p>${mail?`Je ontvangt een mail zodra ${meer?"je paarden":"je paard"} online beschikbaar ${meer?"zijn":"is"} in De Fokwijzer.`:`Zodra ${meer?"je paarden":"je paard"} klaar ${meer?"zijn":"is"}, ${meer?"verschijnen ze":"verschijnt het"} hieronder en in De Fokwijzer.`}</p>`+
+      (bekend.length?`<p class="small muted">${bekend.map(esc).join(", ")} ${bekend.length>1?"staan":"staat"} al in de database: het resultaat wordt een update.</p>`:"")+
+      (res&&res.resterend!=null?`<p class="small muted">Je kunt vandaag nog ${res.resterend} aanvra${res.resterend===1?"ag":"gen"} doen.</p>`:"")+`</div>`;
+    if(res&&state.aLimiet)state.aLimiet.resterend=res.resterend;renderLimiet();state.aLimietAt=0;
+    state.aRows=[{naam:"",link:""}];renderReqRows();reqHint("");renderAanvragen()}
+  catch(err){if(err&&err.code==="daglimiet"&&state.aLimiet){state.aLimiet.resterend=0;renderLimiet()}fout(err&&err.code==="daglimiet"?err.message:"Aanvragen lukte niet: "+(err&&err.message||"onbekende fout"))}
   finally{$("aBtn").disabled=!state.canAsk}});
 // ---------- verwerking starten ----------
 const RUN_TRIGGER="verwerking";const RUN_SERVER="Claude Code Remote";const RUN_COOLDOWN=10*60*1000;
@@ -1155,11 +1193,13 @@ $("runBtn").addEventListener("click",async()=>{if(!mcpNs||runBusy)return;runBusy
       (err&&err.message)||"Starten lukte niet.";}
   finally{runBusy=false;renderRun()}});
 
-$("aNaam").addEventListener("input",()=>{const q=$("aNaam").value.trim();const hits=closeMatches(q,realHorses());const reqs=closeMatches(q,state.aanvragen.filter(a=>a.status==="wachtrij"||a.status==="bezig"||a.status==="klaar"));
-  let h="";if(hits.length)h+=`<span class="muted">Al in de database:</span> `+hits.map(x=>`<button type="button" class="chip" data-open="${esc(x.id)}" style="border:0;cursor:pointer">${esc(x.naam)}${x.geboortejaar?" ("+esc(x.geboortejaar)+")":""}</button>`).join(" ");
+function reqHint(q,nr){const hits=closeMatches(q,realHorses());const reqs=closeMatches(q,state.aanvragen.filter(a=>a.status==="wachtrij"||a.status==="bezig"||a.status==="klaar"));
+  let h="";if(hits.length)h+=`<span class="muted">${nr?`Paard ${nr} al in de database:`:"Al in de database:"}</span> `+hits.map(x=>`<button type="button" class="chip" data-open="${esc(x.id)}" style="border:0;cursor:pointer">${esc(x.naam)}${x.geboortejaar?" ("+esc(x.geboortejaar)+")":""}</button>`).join(" ");
   if(reqs.length)h+=(h?"<br>":"")+`<span class="muted">Al aangevraagd:</span> `+reqs.map(x=>`<span class="chip">${esc(x.naam)}</span>`).join(" ");
   if(h)h+=`<br><span class="muted">Je kunt toch aanvragen: de agent zoekt ook naar varianten van de naam.</span>`;
-  $("aHint").innerHTML=h});
+  $("aHint").innerHTML=h}
+$("aRows").addEventListener("input",e=>{const row=e.target.closest("[data-row]");if(!row)return;const i=+row.dataset.row;if(state.aRows[i]){state.aRows[i].naam=row.querySelector(".aNaam").value;state.aRows[i].link=row.querySelector(".aLink").value}
+  if(e.target.matches(".aNaam")){reqHint(e.target.value.trim(),state.aRows.length>1?i+1:0);const filled=state.aRows.filter(r=>r.naam.trim()).length;$("aBtn").textContent=filled>1?`Laat ${filled} paarden opzoeken`:"Laat opzoeken"}});
 $("aHint").addEventListener("click",e=>{const b=e.target.closest("[data-open]");if(!b)return;state.sel=b.dataset.open;setTab("zoeken")});
 function nameFromUrl(u){try{const url=new URL(u);const parts=url.pathname.split("/").filter(Boolean).filter(p=>!/^\d+$/.test(p)&&!/^(horses?|pedigree|paard|hengst|stallions?|en|nl|fr|de|cheval|horse-details)$/i.test(p));let s=parts.pop()||"";s=decodeURIComponent(s).replace(/\.(html?|php|aspx?)$/i,"").replace(/,.*$/,"").replace(/[-_+]+/g," ").trim();
   if(!s||s.length<2)return"";return s.replace(/\b\w/g,c=>c.toUpperCase())}catch(_){return""}}

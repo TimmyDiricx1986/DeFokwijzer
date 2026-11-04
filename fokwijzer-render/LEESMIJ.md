@@ -71,6 +71,12 @@ Je hebt nodig: een server (VPS) met Docker, bijvoorbeeld bij Hetzner, OVH of Com
 
 Optioneel. Zet `ANTHROPIC_API_KEY` in `.env`. De sleutel blijft op de server en komt nooit in de browser. Alleen ingelogde bijdragers kunnen de council gebruiken. Er gelden limieten per uur, per dag en per gebruiker (instelbaar), zodat de kosten beheersbaar blijven. Identieke vragen komen uit een cache en kosten niets extra.
 
+## Paarden aanvragen
+
+Een ingelogde gebruiker zet in één aanvraag 1 tot 5 paarden (naam en eventueel een link) en kan 3 aanvragen per dag doen (Belgische tijd). De server controleert beide grenzen, ook bij aanvragen via de API. Paarden-beheerders en beheerders hebben geen daglimiet. Elk paard van een aanvraag krijgt hetzelfde `pakket`-nummer en het `aanvrager_id`, zodat de verwerking weet welke paarden bij elkaar horen en wie het resultaat moet krijgen.
+
+Aanpassen kan in `.env` met `AANVRAAG_PER_DAG` (standaard 3) en `AANVRAAG_MAX_PAARDEN` (standaard 5).
+
 ## Automatisering (veilingmeester en aanvragen verwerken)
 
 De geplande taken van vroeger werkten binnen Claude. Op de website kunnen ze via de API met een **service-token**:

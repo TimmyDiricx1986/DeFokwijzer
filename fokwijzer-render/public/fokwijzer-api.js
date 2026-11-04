@@ -162,6 +162,17 @@
     },
   };
 
+  // Paarden aanvragen als pakket (max. 5 paarden per aanvraag, daglimiet per gebruiker, gecontroleerd door de server).
+  window.fokwijzerAanvraag = {
+    limiet: function () {
+      return me.then(function (m) {
+        if (level(m) < 1) { var e = new Error("Log in om een paard aan te vragen."); e.code = "not_granted"; throw e; }
+        return api("GET", "/api/aanvraag/limiet");
+      });
+    },
+    dien: function (paarden) { return api("POST", "/api/aanvraag", { paarden: paarden }); },
+  };
+
   window.claude = {
     use: function (name) {
       if (name === "db") return Promise.resolve(dbNs);

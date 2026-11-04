@@ -144,11 +144,16 @@
   <section class="panel" id="p-aanvragen" role="tabpanel" aria-labelledby="tab-aanvragen" hidden>
     <div class="card">
       <form class="reqform" id="aForm" novalidate>
-        <div class="field"><label class="label" for="aNaam">Naam van het paard</label><input id="aNaam" autocomplete="off" placeholder="Bv. Dominator 2000 Z"></div>
+        <div class="req-rows" id="aRows"></div>
+        <div class="req-foot">
+          <button class="btn ghost" type="button" id="aAdd">+ Paard toevoegen</button>
+          <span class="small muted" id="aTeller"></span>
+        </div>
         <button class="btn" type="submit" id="aBtn">Laat opzoeken</button>
+        <span class="small muted" id="aLimiet"></span>
       </form>
       <div class="small" id="aHint" style="margin-top:8px"></div>
-      <p class="small muted" style="margin:10px 0 0">De data-agent zoekt afstamming, sport, gezondheid en identiteit op in de goedgekeurde bronnen en zet alles hier klaar. Jij controleert enkel en keurt goed.</p>
+      <p class="small muted" style="margin:10px 0 0">Je kunt tot 5 paarden in één aanvraag zetten. Een link naar Horsetelex of een andere site helpt om het juiste paard te vinden. De data-agent zoekt afstamming, sport, gezondheid en identiteit op in de goedgekeurde bronnen en zet alles hier klaar. Jij controleert enkel en keurt goed.</p>
       <div class="status" id="aStatus" role="status"></div>
       <div class="actions" style="margin-top:8px">
         <button class="btn" type="button" id="runBtn" disabled>Start verwerking</button>

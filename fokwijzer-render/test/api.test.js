@@ -297,3 +297,44 @@ test("bezoekersstatistieken: uniek per dag, zonder beheerders, alleen leesbaar v
   assert.equal(r.paarden[0].id, "p1");
   assert.equal(r.perDag.length, 7);
 });
+
+test("aanvraag als pakket: max 5 paarden, max 3 aanvragen per dag voor gebruikers", async () => {
+  await auth.createUser("pakket@test.be", "Pakket", "Sterk-wachtwoord-321", "gebruiker");
+  const c = await login("pakket@test.be", "Sterk-wachtwoord-321");
+  const dien = (paarden, cookie) => fetch(base + "/api/aanvraag", { method: "POST", headers: Object.assign({}, H, cookie ? { cookie } : {}), body: JSON.stringify({ paarden }) });
+  const p = (n, pre) => Array.from({ length: n }, (_, i) => ({ naam: `${pre} ${i + 1}` }));
+
+  assert.equal((await dien(p(1, "Anon"))).status, 401, "zonder account geen aanvraag");
+  assert.equal((await dien(p(6, "Zes"), c)).status, 400, "meer dan 5 paarden wordt geweigerd");
+  assert.equal((await dien([], c)).status, 400);
+  assert.equal((await dien([{ naam: "Dubbel" }, { naam: "dubbel" }], c)).status, 400);
+  assert.equal((await dien([{ naam: "X", link: "javascript:alert(1)" }], c)).status, 400);
+  assert.equal((await dien([{ naam: "<b>x</b>" }], c)).status, 400);
+
+  const eerste = await dien([{ naam: "Vijf 1", link: "horsetelex.com/horses/1" }].concat(p(4, "Vijf").slice(1)), c);
+  assert.equal(eerste.status, 200);
+  const j = await eerste.json();
+  assert.equal(j.ids.length, 5);
+  assert.equal(j.resterend, 2);
+  assert.equal((await dien(p(1, "Twee"), c)).status, 200);
+  assert.equal((await dien(p(2, "Drie"), c)).status, 200);
+  const vierde = await dien(p(1, "Vier"), c);
+  assert.equal(vierde.status, 429, "de vierde aanvraag van de dag wordt geweigerd");
+  assert.equal((await vierde.json()).code, "daglimiet");
+  assert.equal((await put("/api/c/aanvragen/omweg1", { naam: "Omweg" }, c)).status, 429, "ook niet via de algemene API");
+  const l = await (await fetch(base + "/api/aanvraag/limiet", { headers: { cookie: c } })).json();
+  assert.deepEqual([l.gebruikt, l.resterend, l.max_paarden, l.vrijgesteld], [3, 0, 5, false]);
+
+  // De documenten dragen het pakket en de aanvrager mee, met link en wachtrij-status.
+  const b = await login("bij@test.be", "Sterk-wachtwoord-456");
+  const d = await (await fetch(base + `/api/c/aanvragen/${j.ids[0]}`, { headers: { cookie: b } })).json();
+  assert.equal(d.data.status, "wachtrij");
+  assert.equal(d.data.pakket, j.pakket);
+  assert.equal(d.data.pakket_grootte, 5);
+  assert.equal(d.data.link, "https://horsetelex.com/horses/1");
+  assert.ok(d.data.aanvrager_id);
+
+  // Paarden-beheerders zijn vrijgesteld van de daglimiet, maar niet van het maximum per aanvraag.
+  for (let i = 0; i < 4; i++) assert.equal((await dien(p(1, `Beheer${i}`), b)).status, 200);
+  assert.equal((await dien(p(6, "BeheerZes"), b)).status, 400);
+});
