@@ -9,6 +9,7 @@ const { rateLimit } = require("express-rate-limit");
 const store = require("./store");
 const auth = require("./auth");
 const ai = require("./ai");
+const aanvragen = require("./aanvragen");
 
 const PORT = parseInt(process.env.PORT || "8080", 10);
 const PUBLIC_URL = (process.env.PUBLIC_URL || "").replace(/\/$/, "");
@@ -152,6 +153,26 @@ app.delete("/api/users/:id", auth.need("beheerder"), (req, res) => {
   res.status(r.fout ? 400 : 200).json(r);
 });
 
+// ---------------------------------------------------------------- paarden aanvragen (pakket)
+// Een aanvraag bevat 1 tot AANVRAAG_MAX_PAARDEN paarden; gebruikers mogen AANVRAAG_PER_DAG aanvragen per dag doen.
+app.get("/api/aanvraag/limiet", auth.need("gebruiker"), (req, res) => {
+  res.json(Object.assign(aanvragen.limiet(req.actor), { mail: false }));
+});
+app.post("/api/aanvraag", writeLimit, auth.need("gebruiker"), (req, res) => {
+  const r = aanvragen.schoonPaarden((req.body || {}).paarden);
+  if (r.fout) return res.status(400).json(r);
+  const vol = aanvragen.daglimietFout(req.actor);
+  if (vol) return res.status(429).json(vol);
+  const docs = aanvragen.maakPakket(req.actor, r.paarden);
+  for (const d of docs) {
+    const err = validDoc("aanvragen", d.data);
+    if (err) return res.status(400).json({ fout: err });
+  }
+  for (const d of docs) { store.writeDoc("aanvragen", d.id, d.data, req.actor); broadcast("aanvragen", d.id); }
+  const l = aanvragen.limiet(req.actor);
+  res.json({ ok: true, pakket: docs[0].data.pakket, ids: docs.map((d) => d.id), resterend: l.resterend });
+});
+
 // ---------------------------------------------------------------- documenten
 function guard(req, res, op) {
   const { coll } = req.params;
@@ -227,10 +248,21 @@ function save(req, res, id, data, cur) {
 // Lezers mogen alleen een eenvoudige aanvraag indienen (naam en eventueel link).
 const incoming = (req, creating) => {
   const d = (req.body || {}).data;
-  return creating && req.params.coll === "aanvragen" && req.actor.level < 2 ? readerRequest(d) : d;
+  if (!(creating && req.params.coll === "aanvragen" && req.actor.level < 2)) return d;
+  const out = readerRequest(d);
+  if (out && req.actor.userId) Object.assign(out, { aanvrager_id: req.actor.userId, pakket: crypto.randomBytes(8).toString("hex"), pakket_grootte: 1 });
+  return out;
+};
+// Losse aanvragen via de algemene API vallen onder dezelfde daglimiet.
+const daglimiet = (req, res, creating) => {
+  if (!creating || req.params.coll !== "aanvragen" || req.actor.level >= 2) return true;
+  const vol = aanvragen.daglimietFout(req.actor);
+  if (vol) { res.status(429).json(vol); return false; }
+  return true;
 };
 app.post("/api/c/:coll", writeLimit, (req, res) => {
   if (!guard(req, res, "create")) return;
+  if (!daglimiet(req, res, true)) return;
   save(req, res, crypto.randomBytes(10).toString("hex"), incoming(req, true));
 });
 // Volledig vervangen (set). Bestaat het nog niet, dan geldt het recht om aan te maken.
@@ -238,6 +270,7 @@ app.put("/api/c/:coll/:id", writeLimit, (req, res) => {
   const exists = !!store.getDoc(req.params.coll, req.params.id);
   const eigenGegevens = req.params.coll === "partner_admin" && req.actor.level >= 1 && req.actor.level < LEVEL.beheerder && ID_RE.test(req.params.id) && ownsPartner(req, req.params.id);
   if (!eigenGegevens && !guard(req, res, exists ? "update" : "create")) return;
+  if (!daglimiet(req, res, !exists)) return;
   save(req, res, req.params.id, incoming(req, !exists), exists ? store.getDoc(req.params.coll, req.params.id) : null);
 });
 // Velden samenvoegen (update).

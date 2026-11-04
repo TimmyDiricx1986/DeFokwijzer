@@ -235,6 +235,15 @@ nav.tabs button[aria-selected="true"] .count-badge{background:var(--bg);color:va
 .reqform{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
 .reqform .field{flex:1 1 260px}
 .reqform input{font-size:1.05rem;padding:10px 12px}
+.req-rows{display:flex;flex-direction:column;gap:12px;width:100%}
+.req-row{display:grid;grid-template-columns:auto minmax(0,1.4fr) minmax(0,1fr) auto;grid-template-areas:"n naam link del";gap:8px 10px;align-items:end}
+.req-row .req-n{grid-area:n;display:inline-grid;place-items:center;width:26px;height:26px;margin-bottom:9px;border-radius:999px;background:var(--sunk);color:var(--muted);font-weight:700;font-size:.82rem}
+.req-row .f-naam{grid-area:naam}.req-row .f-link{grid-area:link}
+.req-row .req-del{grid-area:del;margin-bottom:2px;min-width:40px}
+.req-foot{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;width:100%}
+.req-done{margin-top:10px;padding:12px 14px;border-radius:10px;background:var(--good-soft);color:var(--fg)}
+.req-done p{margin:4px 0}.req-done ul{margin:6px 0;padding-left:20px}
+@media (max-width:640px){.req-row{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"n naam del" ". link ."}}
 .sec-label{margin:18px 0 6px}
 sup.ref{font-family:var(--f-mono);font-size:.68rem;color:var(--accent);margin-left:2px}
 ol.srcs{margin:6px 0 0;padding-left:22px;font-size:.88rem}
