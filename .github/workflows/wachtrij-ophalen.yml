@@ -1,9 +1,12 @@
 # Haalt de wachtrij met paardaanvragen van de website en zet ze op de branch "wachtrij",
 # zodat de geplande Claude-taak "Fokwijzer: aanvragen website verwerken" ze kan lezen.
-# Wordt door die taak gestart (workflow_dispatch). Nodig: repository-secret FOKWIJZER_TOKEN.
+# Wordt door die taak gestart (workflow_dispatch, of een push van .github/wachtrij/start). Nodig: repository-secret FOKWIJZER_TOKEN.
 name: Wachtrij ophalen
 on:
   workflow_dispatch:
+  push:
+    branches: [imports]
+    paths: [".github/wachtrij/start"]
 permissions:
   contents: write
 concurrency:
