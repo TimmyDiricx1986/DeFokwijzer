@@ -195,6 +195,11 @@
     var v = node.nodeValue;
     if (!v || !HAS_LETTER.test(v) || !node.parentNode || skipEl(node.parentNode)) return;
     var r = t(v);
+    // "<b>1</b> hengsten" -> "1 stallion": enkelvoud als het getal ervoor 1 is
+    var prev = node.previousSibling;
+    if (r !== v && prev && /^\s*1\s*$/.test(prev.textContent || "")) {
+      r = r.replace(/^(\s*)(horses|stallions|mares|days|visitors|prices|fields)\b/, function (a, sp, w) { return sp + w.slice(0, -1); });
+    }
     if (r !== v) node.nodeValue = r;
   }
   function doAttrs(el) {
