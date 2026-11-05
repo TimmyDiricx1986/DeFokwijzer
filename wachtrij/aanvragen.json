@@ -1,11 +1,29 @@
 [
  {
-  "naam": "Alasca Zwartepannenhof",
+  "naam": "Alasca",
   "status": "wachtrij",
   "aangevraagd_op": "2026-11-05T21:38:48.284Z",
+  "gekozen_kandidaat": {
+   "naam": "Alasca",
+   "bron": "https://www.horsetelex.de/horses/pedigree/3286/alasca"
+  },
+  "opnieuw": true,
+  "reden": "De gebruiker koos deze kandidaat.",
+  "oorspronkelijke_naam": "Alasca Zwartepannenhof",
+  "vorige_poging": "2026-11-05T21:42:13.176Z",
+  "kandidaten": [
+   {
+    "naam": "Alasca Z",
+    "bron": "https://www.horsetelex.nl/horses/pedigree/2018464/alasca-z"
+   },
+   {
+    "naam": "Alasca",
+    "bron": "https://www.horsetelex.de/horses/pedigree/3286/alasca"
+   }
+  ],
   "pakket_grootte": 1,
   "id": "944b620904a2a19c7afc",
-  "sleutel": "944b620904a2a19c7afc|2026-11-05T21:38:48.284Z",
-  "bijlage": "niet_gedeeld"
+  "sleutel": "944b620904a2a19c7afc|2026-11-05T21:42:13.176Z",
+  "bijlage": "bijlagen/944b620904a2a19c7afc.jpg"
  }
 ]
