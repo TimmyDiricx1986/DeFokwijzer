@@ -18,6 +18,8 @@ jobs:
     env:
       FOKWIJZER_TOKEN: ${{ secrets.FOKWIJZER_TOKEN }}
       SITE: https://fokwijzer.onrender.com
+      # Afbeeldingen van aanvragers komen enkel op GitHub als de repository privé is.
+      BIJLAGEN_DELEN: ${{ github.event.repository.private }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,7 +36,8 @@ jobs:
           else
             mkdir w && cd w && git init -q -b wachtrij && git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" && cd ..
           fi
-          mkdir -p w/wachtrij && cp uit/*.json w/wachtrij/
+          # De map wordt telkens volledig vervangen, zodat afbeeldingen van verwerkte aanvragen verdwijnen.
+          rm -rf w/wachtrij && mkdir -p w/wachtrij && cp -r uit/. w/wachtrij/
           cd w && git add wachtrij
           if git diff --cached --quiet; then echo "Niets veranderd."; exit 0; fi
           git commit -q -m "Wachtrij $(date -u +%Y-%m-%dT%H:%MZ)"
