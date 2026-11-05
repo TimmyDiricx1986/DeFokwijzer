@@ -1,0 +1,56 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "aanvragen",
+ "datum": "2026-11-05",
+ "collecties": {
+  "aanvragen": {
+   "6ea2617d63ee200253d5": {
+    "status": "klaar",
+    "verwerkt_op": "2026-11-05T22:27:45+01:00",
+    "verwerkt_voor": "6ea2617d63ee200253d5|2026-11-05T21:23:53.323Z",
+    "voorstel": {
+     "naam": "Alasca Zwartepannenhof",
+     "naam_varianten": [
+      "Alasca vh Zwartepannenhof",
+      "Alasca van het Zwartepannenhof",
+      "Alasca van 't Zwartepannenhof"
+     ],
+     "geboortejaar": 2023,
+     "stamboek": "BWP",
+     "stamboom": {
+      "v": "Oscar the Homage",
+      "vv": "Quint VH Maarlo Z",
+      "vm": "Diana van het Lindehof",
+      "vmv": "Elton"
+     },
+     "wffs": "onbekend",
+     "ocd": "onbekend",
+     "bronnen": [
+      {
+       "naam": "BWP hengstenpagina Oscar the Homage (nakomelingenlijst)",
+       "url": "https://www.belgian-warmblood.com/fr/etalon/oscar-homage",
+       "datum": "2026-11-05"
+      }
+     ],
+     "herkomst": {
+      "naam": 0,
+      "geboortejaar": 0,
+      "stamboek": 0,
+      "stamboom.v": 0,
+      "stamboom.vv": 0,
+      "stamboom.vm": 0,
+      "stamboom.vmv": 0
+     },
+     "opmerking": "Enige vondst: vermelding 'ALASCA ZWARTEPANNENHOF 04-05-2023' in de (vermoedelijke) nakomelingenlijst op de BWP-pagina van Oscar the Homage. Moederlijn, geslacht en sportgegevens niet online gevonden.",
+     "record_status": "te_controleren"
+    },
+    "conflicten": [
+     "Gevonden onder de naam Alasca Zwartepannenhof (aangevraagd: Alasca zwartepannenhof)",
+     "Vader afgeleid uit de nakomelingenlijst op de BWP-site van Oscar the Homage; de tabel is niet expliciet als nakomelingen gelabeld en 04-05-2023 is vermoedelijk de geboortedatum",
+     "Moeder, geslacht en volledige stamboom niet gevonden (Hippomundo- en Horsetelex-zoekpagina's niet bereikbaar)",
+     "Niet op de site: geen paard met deze of een gelijkaardige naam in paarden.json"
+    ]
+   }
+  }
+ }
+}
