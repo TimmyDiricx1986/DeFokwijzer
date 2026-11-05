@@ -73,7 +73,7 @@
   }
   function enc(s) { if (!SEG.test(s)) throw new Error("Ongeldig id."); return encodeURIComponent(s); }
   // Wat je zonder (voldoende) login niet mag lezen, wordt niet opgevraagd. De server controleert dit ook zelf.
-  var READ = { aanvragen: 1, veiling_backlog: 3, partner_admin: 3, "systeem/instellingen": 3 };
+  var READ = { aanvragen: 1, bijlagen: 2, veiling_backlog: 3, partner_admin: 3, "systeem/instellingen": 3 };
   function readLevel(coll, id) { return READ[coll + "/" + id] || READ[coll] || 0; }
   function docSnap(id, data) { return { id: id, exists: data !== undefined, data: function () { return data; } }; }
 

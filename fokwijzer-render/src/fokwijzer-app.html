@@ -241,14 +241,27 @@ nav.tabs button[aria-selected="true"] .count-badge{background:var(--bg);color:va
 .reqform .field{flex:1 1 260px}
 .reqform input{font-size:1.05rem;padding:10px 12px}
 .req-rows{display:flex;flex-direction:column;gap:12px;width:100%}
-.req-row{display:grid;grid-template-columns:auto minmax(0,1.4fr) minmax(0,1fr) auto;grid-template-areas:"n naam link del";gap:8px 10px;align-items:end}
+.req-row{display:grid;grid-template-columns:auto minmax(0,1.4fr) minmax(0,1fr) auto;grid-template-areas:"n naam link del" ". img img .";gap:8px 10px;align-items:end}
+.req-row .f-img{grid-area:img;flex:none;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:-2px}
+.req-imgbtn{position:relative;display:inline-flex;align-items:center;gap:6px;font-size:.88rem;padding:6px 10px;min-height:36px;cursor:pointer}
+.req-imgbtn input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
+.req-imgbtn:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.req-thumb{display:inline-flex;align-items:center;gap:8px;padding:4px 6px 4px 4px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.req-thumb img{display:block;width:56px;height:42px;object-fit:cover;border-radius:5px;background:var(--sunk)}
+.req-thumb .btn{min-height:32px;padding:4px 8px}
+.req-bijlage{margin:10px 0 4px}
+.req-bijlage figure{margin:0}
+.req-bijlage button{display:block;padding:0;border:1px solid var(--line);border-radius:8px;background:var(--surface);cursor:zoom-in;max-width:100%;overflow:hidden}
+.req-bijlage img{display:block;max-width:100%;max-height:340px;height:auto}
+.req-bijlage.groot button{cursor:zoom-out}.req-bijlage.groot img{max-height:none}
+.req-bijlage figcaption{margin-top:4px}
 .req-row .req-n{grid-area:n;display:inline-grid;place-items:center;width:26px;height:26px;margin-bottom:9px;border-radius:999px;background:var(--sunk);color:var(--muted);font-weight:700;font-size:.82rem}
 .req-row .f-naam{grid-area:naam}.req-row .f-link{grid-area:link}
 .req-row .req-del{grid-area:del;margin-bottom:2px;min-width:40px}
 .req-foot{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;width:100%}
 .req-done{margin-top:10px;padding:12px 14px;border-radius:10px;background:var(--good-soft);color:var(--fg)}
 .req-done p{margin:4px 0}.req-done ul{margin:6px 0;padding-left:20px}
-@media (max-width:640px){.req-row{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"n naam del" ". link ."}}
+@media (max-width:640px){.req-row{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"n naam del" ". link ." ". img ."}}
 .sec-label{margin:18px 0 6px}
 sup.ref{font-family:var(--f-mono);font-size:.68rem;color:var(--accent);margin-left:2px}
 ol.srcs{margin:6px 0 0;padding-left:22px;font-size:.88rem}
@@ -593,7 +606,7 @@ header.top #adminLink[aria-current="page"]{text-decoration-thickness:2px}
         <span class="small muted" id="aLimiet"></span>
       </form>
       <div class="small" id="aHint" style="margin-top:8px"></div>
-      <p class="small muted" style="margin:10px 0 0">Je kunt tot 5 paarden in één aanvraag zetten. Een link naar Horsetelex of een andere site helpt om het juiste paard te vinden. De data-agent zoekt afstamming, sport, gezondheid en identiteit op in de goedgekeurde bronnen en zet alles hier klaar. Jij controleert enkel en keurt goed.</p>
+      <p class="small muted" style="margin:10px 0 0">Je kunt tot 5 paarden in één aanvraag zetten. Een link naar Horsetelex of een andere site, of een afbeelding of printscreen (bv. van een stamboom of een advertentie), helpt om het juiste paard te vinden. De data-agent zoekt afstamming, sport, gezondheid en identiteit op in de goedgekeurde bronnen en zet alles hier klaar. Jij controleert enkel en keurt goed.</p>
       <div class="status" id="aStatus" role="status"></div>
       <div class="actions" style="margin-top:8px">
         <button class="btn" type="button" id="runBtn" disabled>Start verwerking</button>
@@ -1152,7 +1165,16 @@ function renderStam(){
 }
 
 // ---------- aanvragen en review ----------
-const REQ_COLL="aanvragen";
+const REQ_COLL="aanvragen";const BIJ_COLL="bijlagen";
+// Afbeelding die de aanvrager meestuurde: apart opgeslagen, pas geladen wanneer iemand de aanvraag opent.
+state.bijlagen={};
+function bijlageHtml(a){if(!a.bijlage)return"";const b=state.bijlagen[a.id];
+  if(b===undefined){loadBijlage(a.id);return`<div class="req-bijlage"><span class="small muted">Afbeelding van de aanvrager wordt geladen...</span></div>`}
+  if(!b)return`<div class="req-bijlage"><span class="small muted">De aanvrager stuurde een afbeelding mee, maar die kan hier niet getoond worden.</span></div>`;
+  return`<div class="req-bijlage"><figure><button type="button" data-bijzoom aria-label="Afbeelding van de aanvrager vergroten of verkleinen"><img src="${esc(b)}" alt="Afbeelding die de aanvrager meestuurde bij ${esc(a.naam)}"></button><figcaption class="small muted">Afbeelding van de aanvrager. Klik om te vergroten.</figcaption></figure></div>`}
+function loadBijlage(id){if(!db){state.bijlagen[id]=null;return}const busy=loadBijlage.busy||(loadBijlage.busy={});if(busy[id])return;busy[id]=1;
+  db.collection(BIJ_COLL).doc(id).get().then(s=>{const d=s&&s.exists?s.data():null;state.bijlagen[id]=d&&typeof d.afbeelding==="string"&&/^data:image\/(png|jpeg|webp);base64,/.test(d.afbeelding)?d.afbeelding:null})
+    .catch(()=>{state.bijlagen[id]=null}).finally(()=>{delete loadBijlage.busy[id];if(state.revSel===id)renderReview()})}
 const STATUS={wachtrij:["In wachtrij",""],bezig:["Wordt opgezocht","warn"],klaar:["Klaar voor review","good"],niet_gevonden:["Niet gevonden","bad"],goedgekeurd:["Toegevoegd","good"],afgekeurd:["Afgekeurd",""]};
 const pill=(s)=>{const p=STATUS[s]||[s,""];return `<span class="chip ${p[1]}">${esc(p[0])}</span>`};
 const fmtDate=(iso)=>{if(!iso)return"";try{return new Date(iso).toLocaleString("nl-BE",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}catch(_){return""}};
@@ -1201,7 +1223,7 @@ function applyFixes(v,now){const fixed=[];const val=(id)=>{const el=$(id);return
 function renderReview(){renderReview0();requestAnimationFrame(paintPedSlots)}
 function renderReview0(){const box=$("aReview");const a=state.aanvragen.find(x=>x.id===state.revSel);
   if(!a){box.innerHTML='<div class="card empty">Kies links een aanvraag om ze te bekijken.</div>';return}
-  const head=`<div class="label">Aanvraag voor "${esc(a.naam)}" &middot; ${esc(fmtDate(a.aangevraagd_op))}</div>${a.link?`<div class="small" style="overflow-wrap:anywhere">Via link: <a href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener">${esc(a.link)}</a></div>`:""}`;
+  const head=`<div class="label">Aanvraag voor "${esc(a.naam)}" &middot; ${esc(fmtDate(a.aangevraagd_op))}</div>${a.link?`<div class="small" style="overflow-wrap:anywhere">Via link: <a href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener">${esc(a.link)}</a></div>`:""}${bijlageHtml(a)}`;
   if(a.status==="wachtrij"||a.status==="bezig"){box.innerHTML=`<div class="card">${head}<h2 style="margin-top:4px">${esc(a.naam)}</h2><p>${pill(a.status)}</p><p class="muted">${a.status==="bezig"?"De data-agent is dit paard aan het opzoeken. Het resultaat verschijnt hier vanzelf, meestal binnen 5 tot 15 minuten.":"Deze aanvraag wacht op de data-agent. Klik bovenaan op <b>Start verwerking</b>; het resultaat verschijnt hier vanzelf."}</p><div class="actions"><button class="btn danger" type="button" data-ract="cancel">Aanvraag annuleren</button><span class="status" id="rStatus" role="status"></span></div></div>`;return}
   if(a.status==="niet_gevonden"){const ks=a.kandidaten||[];box.innerHTML=`<div class="card">${head}<h2 style="margin-top:4px">${esc(a.naam)}</h2><p>${pill(a.status)}</p><p>${esc(a.agent_notitie||"De agent vond dit paard niet in de goedgekeurde bronnen.")}</p>${ks.length?`<h3>Bedoelde je misschien</h3><p class="small muted" style="margin:2px 0 8px">Kies het juiste paard; de agent zoekt het dan volledig op.</p><div class="list">${ks.map((k,i)=>`<button class="item" type="button" data-ract="pick" data-k="${i}"><span class="sex">?</span><span style="min-width:0"><span class="name">${esc(kName(k))}</span>${kInfo(k)?`<br><span class="small muted">${esc(kInfo(k))}</span>`:""}</span><span class="chip">Kies</span></button>`).join("")}</div>`:""}<div class="actions"><button class="btn ghost" type="button" data-ract="retry">Opnieuw laten zoeken</button><button class="btn danger" type="button" data-ract="reject">Sluiten</button><span class="status" id="rStatus" role="status"></span></div></div>`;return}
   const v=a.voorstel||{};const o=v.nakomelingen||{};
@@ -1880,6 +1902,8 @@ function renderReqRows(focus){const n=state.aRows.length,max=reqMax();
   $("aRows").innerHTML=state.aRows.map((r,i)=>`<div class="req-row" data-row="${i}"><span class="req-n" aria-hidden="true">${i+1}</span>`+
     `<div class="field f-naam"><label class="label" for="aNaam${i}">Naam van paard ${i+1}</label><input class="aNaam" id="aNaam${i}" autocomplete="off" maxlength="120" placeholder="${i?"Naam van het paard":"Bv. Dominator 2000 Z"}" value="${esc(r.naam)}"></div>`+
     `<div class="field f-link"><label class="label" for="aLink${i}">Link (optioneel)</label><input class="aLink" id="aLink${i}" autocomplete="off" inputmode="url" maxlength="500" placeholder="horsetelex.com/..." value="${esc(r.link)}"></div>`+
+    `<div class="f-img">${r.img?`<span class="req-thumb"><img src="${esc(r.img.data)}" alt="Afbeelding bij paard ${i+1}"><span class="small muted">Afbeelding toegevoegd</span><button class="btn ghost" type="button" data-imgdel="${i}" aria-label="Afbeelding bij paard ${i+1} verwijderen" title="Afbeelding verwijderen">&#10005;</button></span>`:
+      `<label class="btn ghost req-imgbtn"><span aria-hidden="true">&#128206;</span> Afbeelding of printscreen (optioneel)<input class="aImg" type="file" accept="image/png,image/jpeg,image/webp" data-img="${i}" aria-label="Afbeelding of printscreen toevoegen bij paard ${i+1} (optioneel)"></label><span class="small muted">of plak een printscreen met Ctrl+V</span>`}</div>`+
     (n>1?`<button class="btn ghost req-del" type="button" data-del="${i}" aria-label="Paard ${i+1} verwijderen" title="Verwijderen">&#10005;</button>`:`<span class="req-del" aria-hidden="true"></span>`)+`</div>`).join("");
   $("aAdd").hidden=n>=max;
   $("aTeller").textContent=n>=max?`Maximaal ${max} paarden per aanvraag.`:`${n} van maximaal ${max} paarden`;
@@ -1892,13 +1916,38 @@ function loadLimiet(force){const f=window.fokwijzerAanvraag;if(!f)return;if(!for
   f.limiet().then(l=>{state.aLimiet=l;renderLimiet();renderReqRows()}).catch(()=>{state.aLimiet=null;renderLimiet()})}
 $("aAdd").addEventListener("click",()=>{syncReqRows();if(state.aRows.length>=reqMax())return;state.aRows.push({naam:"",link:""});renderReqRows(state.aRows.length-1)});
 $("aRows").addEventListener("click",e=>{const b=e.target.closest("[data-del]");if(!b)return;syncReqRows();state.aRows.splice(+b.dataset.del,1);if(!state.aRows.length)state.aRows.push({naam:"",link:""});renderReqRows(Math.min(+b.dataset.del,state.aRows.length-1));reqHint("")});
-$("aRows").addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches("input")){e.preventDefault();$("aForm").requestSubmit()}});
+$("aRows").addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches("input")&&e.target.type!=="file"){e.preventDefault();$("aForm").requestSubmit()}});
+// Afbeelding of printscreen bij een paard: in de browser verkleind tot een JPG van hoogstens ongeveer 600 kB,
+// zodat ze snel verstuurd wordt. Werkt met kiezen, slepen en plakken (Ctrl+V / Cmd+V).
+const REQ_IMG_MAX=850000;
+function readAsDataUrl(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(new Error("Deze afbeelding kon niet gelezen worden."));r.readAsDataURL(file)})}
+async function prepReqImg(file){
+  if(!file||!/^image\//.test(file.type||""))throw new Error("Kies een afbeelding (PNG, JPG of WebP).");
+  if(file.size>20e6)throw new Error("Deze afbeelding is te groot (maximaal 20 MB).");
+  const src=await readAsDataUrl(file);
+  const im=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error("Deze afbeelding kon niet gelezen worden. Kies een PNG, JPG of WebP."));i.src=src});
+  let max=2000,q=.88;
+  for(let k=0;k<7;k++){const s=Math.min(1,max/Math.max(im.naturalWidth,im.naturalHeight)),w=Math.max(1,Math.round(im.naturalWidth*s)),h=Math.max(1,Math.round(im.naturalHeight*s));
+    const cv=document.createElement("canvas");cv.width=w;cv.height=h;const c=cv.getContext("2d");c.fillStyle="#fff";c.fillRect(0,0,w,h);c.imageSmoothingQuality="high";c.drawImage(im,0,0,w,h);
+    const out=cv.toDataURL("image/jpeg",q);if(out.length<=REQ_IMG_MAX)return{data:out,w,h};
+    max=Math.round(max*.82);q=Math.max(.68,q-.05)}
+  throw new Error("Deze afbeelding is te groot, ook na verkleinen.")}
+async function setReqImg(i,file){const st=$("aStatus");syncReqRows();if(!state.aRows[i])return;
+  st.className="status";st.textContent="Afbeelding wordt verwerkt...";
+  try{state.aRows[i].img=await prepReqImg(file);st.textContent="";renderReqRows()}
+  catch(err){st.className="status err";st.textContent=err.message||"Deze afbeelding kon niet gebruikt worden."}}
+$("aRows").addEventListener("change",e=>{const inp=e.target.closest("input.aImg");if(!inp||!inp.files||!inp.files[0])return;setReqImg(+inp.dataset.img,inp.files[0])});
+$("aRows").addEventListener("click",e=>{const b=e.target.closest("[data-imgdel]");if(!b)return;syncReqRows();const i=+b.dataset.imgdel;if(state.aRows[i])delete state.aRows[i].img;renderReqRows();const f=document.querySelector(`#aRows [data-row="${i}"] .aImg`);if(f)f.focus()});
+$("aRows").addEventListener("dragover",e=>{if(e.target.closest("[data-row]")&&[...(e.dataTransfer&&e.dataTransfer.types||[])].includes("Files"))e.preventDefault()});
+$("aRows").addEventListener("drop",e=>{const row=e.target.closest("[data-row]");const f=e.dataTransfer&&[...e.dataTransfer.files].find(x=>/^image\//.test(x.type));if(!row||!f)return;e.preventDefault();setReqImg(+row.dataset.row,f)});
+$("aForm").addEventListener("paste",e=>{const it=[...(e.clipboardData&&e.clipboardData.items||[])].find(x=>x.kind==="file"&&/^image\//.test(x.type));if(!it)return;const f=it.getAsFile();if(!f)return;e.preventDefault();
+  const row=e.target.closest&&e.target.closest("[data-row]");let i=row?+row.dataset.row:state.aRows.findIndex(r=>!r.img);if(i<0)i=state.aRows.length-1;setReqImg(i,f)});
 renderReqRows();
 $("aForm").addEventListener("submit",async e=>{e.preventDefault();const st=$("aStatus");syncReqRows();
-  const rows=state.aRows.map(r=>({naam:r.naam.trim().replace(/\s+/g," "),link:r.link.trim()})).filter(r=>r.naam||r.link);
+  const rows=state.aRows.map(r=>({naam:r.naam.trim().replace(/\s+/g," "),link:r.link.trim(),img:r.img})).filter(r=>r.naam||r.link||r.img);
   const fout=(t)=>{st.className="status err";st.textContent=t};
   if(!rows.length)return fout("Vul de naam van minstens één paard in.");
-  if(rows.some(r=>!r.naam))return fout("Elk paard heeft een naam nodig, ook als je een link invult.");
+  if(rows.some(r=>!r.naam))return fout("Elk paard heeft een naam nodig, ook als je een link of afbeelding toevoegt.");
   if(rows.length>reqMax())return fout(`Je kunt maximaal ${reqMax()} paarden per aanvraag indienen.`);
   const seen=new Set();for(const r of rows){const k=norm(r.naam);if(seen.has(k))return fout(`"${r.naam}" staat twee keer in je aanvraag.`);seen.add(k)}
   if(!db||!state.canWrite){st.className="status err";st.textContent="Aanvragen is hier niet mogelijk.";return}
@@ -1906,13 +1955,16 @@ $("aForm").addEventListener("submit",async e=>{e.preventDefault();const st=$("aS
   if(dup.length)return fout(dup.map(d=>`"${d.naam}" staat al in de lijst (${(STATUS[d.status]||[d.status])[0].toLowerCase()})`).join(", ")+". Haal "+(dup.length>1?"die":"het")+" uit je aanvraag.");
   if(state.aLimiet&&state.aLimiet.resterend===0)return fout(`Je hebt vandaag je ${state.aLimiet.per_dag} aanvragen gebruikt. Morgen kan het weer.`);
   $("aBtn").disabled=true;
-  try{let res=null;const send=rows.map(r=>r.link?{naam:r.naam,link:/^https?:\/\//i.test(r.link)?r.link:"https://"+r.link}:{naam:r.naam});
+  try{let res=null;const send=rows.map(r=>Object.assign({naam:r.naam},r.link?{link:/^https?:\/\//i.test(r.link)?r.link:"https://"+r.link}:{},r.img?{afbeelding:r.img.data}:{}));
     if(window.fokwijzerAanvraag)res=await window.fokwijzerAanvraag.dien(send);
-    else{const pakket=Math.random().toString(16).slice(2,14),nu=new Date().toISOString();for(const r of send)await db.collection(REQ_COLL).doc().set(Object.assign({},r,{status:"wachtrij",aangevraagd_op:nu,pakket,pakket_grootte:send.length}))}
+    else{const pakket=Math.random().toString(16).slice(2,14),nu=new Date().toISOString();
+      for(const r of send){const ref=db.collection(REQ_COLL).doc(),{afbeelding,...rest}=r;
+        if(afbeelding)await db.collection(BIJ_COLL).doc(ref.id).set({aanvraag_id:ref.id,naam:r.naam,afbeelding,aangemaakt_op:nu});
+        await ref.set(Object.assign({},rest,afbeelding?{bijlage:true}:{},{status:"wachtrij",aangevraagd_op:nu,pakket,pakket_grootte:send.length}))}}
     const meer=rows.length>1,bekend=rows.filter(r=>byName(r.naam)&&!state.demo).map(r=>r.naam);
     const mail=!!(state.aLimiet&&state.aLimiet.mail);
     st.className="status";st.innerHTML=`<div class="req-done"><p><b>Bedankt voor je aanvraag!</b></p><p>Geef ons een uurtje. We gaan nu op zoek naar alle informatie rond jouw aanvraag: afstamming, prestaties en wat we verder over ${meer?"je paarden":"je paard"} vinden bij betrouwbare bronnen.</p>`+
-      `<ul>${rows.map(r=>`<li>${esc(r.naam)}</li>`).join("")}</ul>`+
+      `<ul>${rows.map(r=>`<li>${esc(r.naam)}${r.img?` <span class="small muted">(met afbeelding)</span>`:""}</li>`).join("")}</ul>`+
       `<p>${mail?`Je ontvangt een mail zodra ${meer?"je paarden":"je paard"} online beschikbaar ${meer?"zijn":"is"} in De Fokwijzer.`:`Zodra ${meer?"je paarden":"je paard"} klaar ${meer?"zijn":"is"}, ${meer?"verschijnen ze":"verschijnt het"} hieronder en in De Fokwijzer.`}</p>`+
       (bekend.length?`<p class="small muted">${bekend.map(esc).join(", ")} ${bekend.length>1?"staan":"staat"} al in de database: het resultaat wordt een update.</p>`:"")+
       (res&&res.resterend!=null?`<p class="small muted">Je kunt vandaag nog ${res.resterend} aanvra${res.resterend===1?"ag":"gen"} doen.</p>`:"")+`</div>`;
@@ -1975,6 +2027,7 @@ $("lnkBtn").addEventListener("click",async()=>{const st=$("lnkStatus");let u=$("
 
 $("aLists").addEventListener("click",e=>{const b=e.target.closest("[data-req]");if(!b)return;state.revSel=b.dataset.req;renderAanvragen()});
 let rArm=null;
+$("aReview").addEventListener("click",e=>{const z=e.target.closest("[data-bijzoom]");if(z)z.closest(".req-bijlage").classList.toggle("groot")});
 $("aReview").addEventListener("click",async e=>{const b=e.target.closest("button[data-ract]");if(!b)return;const a=state.aanvragen.find(x=>x.id===state.revSel);if(!a)return;
   const st=$("rStatus");const act=b.dataset.ract;const reden=($("rReden")&&$("rReden").value.trim())||"";const now=new Date().toISOString();const ref=db&&db.collection(REQ_COLL).doc(a.id);
   const fail=(err)=>{if(st){st.className="status err";st.textContent="Dat lukte niet: "+(err&&err.message||"onbekende fout")}b.disabled=false};
@@ -1998,7 +2051,7 @@ $("aReview").addEventListener("click",async e=>{const b=e.target.closest("button
 
 
 // ---------- back-up en verhuizen ----------
-const BK_COLLS=["paarden","veilingen","aanvragen","council","veiling_backlog","systeem","partners","partner_admin"];
+const BK_COLLS=["paarden","veilingen","aanvragen","bijlagen","council","veiling_backlog","systeem","partners","partner_admin"];
 const bkPath=(c)=>c==="partner_admin"?paColl():c;
 let dlNs=null;
 async function readAll(c){return new Promise((res,rej)=>{let un=null;un=db.collection(c).onSnapshot(snap=>{const o={};snap.docs.forEach(d=>{o[d.id]=d.data()});try{un&&un()}catch(_){};res(o)},err=>rej(err))})}
