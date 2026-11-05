@@ -11,6 +11,7 @@ const COLLS = table({
   // Contact- en betaalgegevens van partners: alleen beheerders (nooit publiek).
   partner_admin: { read: 3, create: 3, update: 3, delete: 3, max: 50e3 },
   aanvragen: { read: 1, create: 1, update: 2, delete: 3, max: 200e3 },
+  bijlagen: { read: 2, create: 3, update: 3, delete: 3, max: 1.2e6 }, // afbeelding bij een aanvraag; aanmaken enkel via /api/aanvraag
   veiling_backlog: { read: 3, create: 3, update: 3, delete: 3, max: 3e6 },
   systeem: { read: 0, create: 3, update: 3, delete: 3, max: 100e3 },
 });
@@ -51,8 +52,9 @@ function checkValue(v, depth, where) {
   if (v === null || typeof v === "boolean") return null;
   if (typeof v === "number") return Number.isFinite(v) ? null : `${where}: ongeldig getal`;
   if (typeof v === "string") {
+    // Afbeeldingen als data-URL mogen langer zijn dan gewone tekst; de maximale grootte per collectie blijft gelden.
+    if (v.length <= 1.2e6 && /^data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/=]+$/.test(v)) return null;
     if (v.length > 200000) return `${where}: tekst te lang`;
-    if (/^data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/=]+$/.test(v)) return null;
     if (badText(v)) return `${where}: HTML of scripts zijn niet toegestaan`;
     return null;
   }

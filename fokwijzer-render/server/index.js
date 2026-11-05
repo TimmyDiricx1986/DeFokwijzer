@@ -165,10 +165,13 @@ app.post("/api/aanvraag", writeLimit, auth.need("gebruiker"), (req, res) => {
   if (vol) return res.status(429).json(vol);
   const docs = aanvragen.maakPakket(req.actor, r.paarden);
   for (const d of docs) {
-    const err = validDoc("aanvragen", d.data);
+    const err = validDoc("aanvragen", d.data) || (d.bijlage && validDoc("bijlagen", d.bijlage));
     if (err) return res.status(400).json({ fout: err });
   }
-  for (const d of docs) { store.writeDoc("aanvragen", d.id, d.data, req.actor); broadcast("aanvragen", d.id); }
+  for (const d of docs) {
+    if (d.bijlage) { store.writeDoc("bijlagen", d.id, d.bijlage, req.actor); broadcast("bijlagen", d.id); }
+    store.writeDoc("aanvragen", d.id, d.data, req.actor); broadcast("aanvragen", d.id);
+  }
   const l = aanvragen.limiet(req.actor);
   res.json({ ok: true, pakket: docs[0].data.pakket, ids: docs.map((d) => d.id), resterend: l.resterend });
 });

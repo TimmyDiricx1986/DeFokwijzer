@@ -34,6 +34,24 @@ function limiet(actor) {
   return { per_dag: PER_DAG, max_paarden: MAX_PAARDEN, gebruikt, resterend: vrij ? null : Math.max(0, PER_DAG - gebruikt), vrijgesteld: vrij };
 }
 
+// Een afbeelding of printscreen bij een paard (optioneel): enkel PNG, JPG of WebP als data-URL, en de inhoud
+// moet echt zo'n afbeelding zijn (de eerste bytes worden gecontroleerd). De browser verkleint ze vooraf.
+const IMG_RE = /^data:image\/(png|jpeg|webp);base64,([A-Za-z0-9+/]+={0,2})$/;
+const MAX_IMG = 900000; // tekens base64, ongeveer 650 kB
+function schoonAfbeelding(v, naam) {
+  if (v == null || v === "") return {};
+  if (typeof v !== "string") return { fout: `De bijlage bij "${naam}" is geen afbeelding.` };
+  if (v.length > MAX_IMG) return { fout: `De afbeelding bij "${naam}" is te groot (maximaal ongeveer 650 kB).` };
+  const m = IMG_RE.exec(v);
+  if (!m) return { fout: `De bijlage bij "${naam}" is geen PNG-, JPG- of WebP-afbeelding.` };
+  const b = Buffer.from(m[2].slice(0, 24), "base64");
+  const ok = m[1] === "png" ? b.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))
+    : m[1] === "jpeg" ? b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff
+    : b.subarray(0, 4).toString("latin1") === "RIFF" && b.subarray(8, 12).toString("latin1") === "WEBP";
+  if (!ok) return { fout: `De bijlage bij "${naam}" is geen geldige afbeelding.` };
+  return { afbeelding: v };
+}
+
 // Controleert en schoont de lijst paarden op. Geeft { paarden } of { fout }.
 function schoonPaarden(lijst) {
   if (!Array.isArray(lijst) || !lijst.length) return { fout: "Vul minstens één paard in." };
@@ -54,6 +72,9 @@ function schoonPaarden(lijst) {
       if (!ok) return { fout: `De link bij "${naam}" is geen geldige webpagina.` };
       out.link = link;
     }
+    const im = schoonAfbeelding(p.afbeelding, naam);
+    if (im.fout) return { fout: im.fout };
+    if (im.afbeelding) out.afbeelding = im.afbeelding;
     paarden.push(out);
   }
   return { paarden };
@@ -67,17 +88,20 @@ function daglimietFout(actor) {
 }
 
 // Maakt de documenten voor één pakket. better-sqlite3 werkt synchroon, dus controle en schrijven gebeuren in één stap.
+// Een afbeelding gaat in een apart document in "bijlagen" (zelfde id als de aanvraag), dat alleen
+// paarden-beheerders, beheerders en de data-agent kunnen lezen. De aanvraag zelf krijgt enkel bijlage: true.
 function maakPakket(actor, paarden) {
   const pakket = crypto.randomBytes(8).toString("hex");
   const nu = new Date().toISOString();
   return paarden.map((p) => {
     const id = crypto.randomBytes(10).toString("hex");
-    const data = Object.assign({ naam: p.naam }, p.link ? { link: p.link } : {}, {
-      status: "wachtrij", aangevraagd_op: nu, pakket, pakket_grootte: paarden.length,
-      ...(actor.userId ? { aanvrager_id: actor.userId } : {}),
+    const wie = actor.userId ? { aanvrager_id: actor.userId } : {};
+    const data = Object.assign({ naam: p.naam }, p.link ? { link: p.link } : {}, p.afbeelding ? { bijlage: true } : {}, {
+      status: "wachtrij", aangevraagd_op: nu, pakket, pakket_grootte: paarden.length, ...wie,
     });
-    return { id, data };
+    const bijlage = p.afbeelding ? Object.assign({ aanvraag_id: id, naam: p.naam, afbeelding: p.afbeelding, aangemaakt_op: nu }, wie) : null;
+    return { id, data, bijlage };
   });
 }
 
-module.exports = { PER_DAG, MAX_PAARDEN, limiet, schoonPaarden, daglimietFout, maakPakket, vrijgesteld };
+module.exports = { PER_DAG, MAX_PAARDEN, MAX_IMG, limiet, schoonPaarden, schoonAfbeelding, daglimietFout, maakPakket, vrijgesteld };

@@ -338,3 +338,24 @@ test("aanvraag als pakket: max 5 paarden, max 3 aanvragen per dag voor gebruiker
   for (let i = 0; i < 4; i++) assert.equal((await dien(p(1, `Beheer${i}`), b)).status, 200);
   assert.equal((await dien(p(6, "BeheerZes"), b)).status, 400);
 });
+
+test("aanvraag met afbeelding: alleen echte PNG/JPG/WebP, apart opgeslagen en enkel leesbaar voor paarden-beheerders", async () => {
+  await auth.createUser("foto@test.be", "Foto", "Sterk-wachtwoord-654", "gebruiker");
+  const c = await login("foto@test.be", "Sterk-wachtwoord-654");
+  const dien = (paarden) => fetch(base + "/api/aanvraag", { method: "POST", headers: Object.assign({}, H, { cookie: c }), body: JSON.stringify({ paarden }) });
+  // kleinste geldige JPEG-kop is genoeg voor de controle van de eerste bytes
+  const jpg = "data:image/jpeg;base64," + Buffer.from([0xff, 0xd8, 0xff, 0xe0, 0, 16, 0x4a, 0x46, 0x49, 0x46, 0, 1, 1, 0, 0, 1, 0, 1]).toString("base64");
+  assert.equal((await dien([{ naam: "Nep", afbeelding: "data:image/jpeg;base64," + Buffer.from("<script>").toString("base64") }])).status, 400, "geen echte afbeelding");
+  assert.equal((await dien([{ naam: "Svg", afbeelding: "data:image/svg+xml;base64,PHN2Zy8+" }])).status, 400, "geen SVG");
+  const r = await dien([{ naam: "Met foto", afbeelding: jpg }, { naam: "Zonder foto" }]);
+  assert.equal(r.status, 200);
+  const j = await r.json();
+  const b = await login("bij@test.be", "Sterk-wachtwoord-456");
+  const a = await (await fetch(base + `/api/c/aanvragen/${j.ids[0]}`, { headers: { cookie: b } })).json();
+  assert.equal(a.data.bijlage, true);
+  assert.equal(a.data.afbeelding, undefined, "de afbeelding zit niet in de aanvraag zelf");
+  const bij = await (await fetch(base + `/api/c/bijlagen/${j.ids[0]}`, { headers: { cookie: b } })).json();
+  assert.equal(bij.data.afbeelding, jpg);
+  assert.equal((await fetch(base + `/api/c/bijlagen/${j.ids[0]}`, { headers: { cookie: c } })).status, 403, "een gewone gebruiker kan bijlagen niet lezen");
+  assert.equal((await put(`/api/c/bijlagen/zelf`, { afbeelding: jpg }, c)).status, 403, "en kan ze niet rechtstreeks aanmaken");
+});

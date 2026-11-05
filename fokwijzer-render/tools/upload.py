@@ -15,7 +15,7 @@ import time
 import urllib.error
 import urllib.request
 
-ALLOWED = {"paarden", "veilingen", "aanvragen", "council", "veiling_backlog", "systeem", "partners"}
+ALLOWED = {"paarden", "veilingen", "aanvragen", "bijlagen", "council", "veiling_backlog", "systeem", "partners"}
 ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.\-]{0,159}$")
 MAX_BATCH_BYTES = 2_000_000
 
