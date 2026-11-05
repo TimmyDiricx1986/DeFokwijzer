@@ -1,0 +1,60 @@
+{
+  "formaat": "fokwijzer-export",
+  "modus": "aanvragen",
+  "datum": "2026-11-05",
+  "collecties": {
+    "aanvragen": {
+      "944b620904a2a19c7afc": {
+        "status": "klaar",
+        "verwerkt_op": "2026-11-05T22:50:24+01:00",
+        "verwerkt_voor": "944b620904a2a19c7afc|2026-11-05T21:42:13.176Z",
+        "voorstel": {
+          "naam": "Alasca Zwartepannenhof",
+          "naam_varianten": [
+            "Alasca"
+          ],
+          "geboortejaar": 2023,
+          "stamboek": "BWP",
+          "stamboom": {
+            "v": "Oscar the Homage",
+            "vv": "Quint vh Maarlo Z",
+            "vmv": "Elton"
+          },
+          "wffs": "onbekend",
+          "ocd": "onbekend",
+          "bronnen": [
+            {
+              "naam": "BWP, hengstenpagina Oscar the Homage (nakomelingenlijst)",
+              "url": "https://www.belgian-warmblood.com/fr/etalon/oscar-homage",
+              "datum": "2026-11-05"
+            },
+            {
+              "naam": "Afbeelding van gebruiker",
+              "url": "",
+              "datum": "2026-11-05"
+            }
+          ],
+          "herkomst": {
+            "naam": 0,
+            "geboortejaar": 0,
+            "stamboek": 0,
+            "stamboom.v": 0,
+            "stamboom.vv": 0,
+            "stamboom.vmv": 0
+          },
+          "opmerking": "Jong paard (geboren 04-05-2023), nog geen sportresultaten gevonden. Oscar the Homage staat al op de site (id 056002w00314699).",
+          "record_status": "te_controleren"
+        },
+        "conflicten": [
+          "Aangevraagd als 'Alasca'; de afbeelding van de gebruiker toont het BWP-certificaat van Alasca Zwartepannenhof.",
+          "Paard staat nog niet op de site.",
+          "Enkel op de afbeelding van de gebruiker: geboortedatum 04-05-2023 (online bevestigd door BWP), UELN 056002W00338901, transponder aanwezig.",
+          "Enkel op de afbeelding van de gebruiker: moeder Inchallah Zwartepannenhof (BWP), moedersvader Kashmir van Schuttershof, mm Pamina vh Zwartepannenhof, mvv Nabab de Rêve, mvm Fines van Kameren, mmv Quat'Sous, mmm Hilwe Epona.",
+          "Enkel op de afbeelding van de gebruiker: vm Diana van het Lindehof, vvv Quidam de Revel, vvm Selien, vmm Voblesse.",
+          "Geslacht niet vermeld op de afbeelding en niet online gevonden.",
+          "Hippomundo en Horsetelex waren in deze run niet leesbaar; bevestiging van de moederlijn daar nog nakijken."
+        ]
+      }
+    }
+  }
+}
