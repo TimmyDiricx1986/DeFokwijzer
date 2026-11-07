@@ -1169,6 +1169,80 @@ async function setReqImg(i,file){const st=$("aStatus");syncReqRows();if(!state.a
   try{state.aRows[i].img=await prepReqImg(file);st.textContent="";renderReqRows()}
   catch(err){st.className="status err";st.textContent=err.message||"Deze afbeelding kon niet gebruikt worden."}}
 $("aRows").addEventListener("change",e=>{const inp=e.target.closest("input.aImg");if(!inp||!inp.files||!inp.files[0])return;setReqImg(+inp.dataset.img,inp.files[0])});
+// ---------- Beheer: stamboom uit een afbeelding lezen (test) ----------
+// Elke afbeelding gaat naar de server (AI met beeld), het resultaat wordt getoond als Fokwijzer-stamboom.
+// Namen van voorouders worden vergeleken met de paarden op de site; bestaat het paard, dan geldt de schrijfwijze van de site.
+const SA_LBL={v:"Vader",m:"Moeder",vv:"Vader van vader",vm:"Moeder van vader",mv:"Moedersvader",mm:"Moeder van moeder",vvv:"V-V-V",vvm:"V-V-M",vmv:"V-M-V",vmm:"V-M-M",mvv:"M-V-V",mvm:"M-V-M",mmv:"M-M-V",mmm:"M-M-M"};
+const saState={n:0,items:[]};
+let _saIdx=null;
+function saIndex(){if(_saIdx&&_saIdx.src===state.horses)return _saIdx;const hor=new Map(),anc=new Map();
+  const strip=(n)=>String(n||"").replace(/\s+(z|vdl|ps|tn|old|stx|hn|sih|ask|frh|xx)$/i,"").replace(/^(vdl|gk|h&m|gl events|mom'?s)\s+/i,"");
+  const put=(m,k,v)=>{if(k&&!m.has(k))m.set(k,v)};
+  for(const h of state.horses){put(hor,norm(h.naam),h);(h.naam_varianten||[]).forEach(x=>put(hor,norm(x),h))}
+  for(const h of state.horses){if(h.naam)put(hor,norm(strip(h.naam)),h)}
+  for(const h of state.horses){const sb=h.stamboom||{};PED_KEYS.forEach(k=>{if(sb[k])put(anc,norm(sb[k]),sb[k])})}
+  _saIdx={src:state.horses,hor,anc,strip};return _saIdx}
+function saMatch(name){if(!name)return null;const I=saIndex();const k=norm(name);
+  let h=I.hor.get(k)||I.hor.get(norm(I.strip(name)));if(h)return{naam:h.naam,id:h.id,geslacht:h.geslacht,soort:"paard"};
+  const a=I.anc.get(k);if(a)return{naam:a,soort:"voorouder"};return null}
+async function saRead(item){const st=$("saStatus");
+  if(!window.fokwijzerAanvraag||!window.fokwijzerAanvraag.leesStamboom){item.fout="Dit werkt enkel op de website, met AI ingesteld op de server.";renderSa();return}
+  item.bezig=true;item.fout="";renderSa();
+  try{item.res=await window.fokwijzerAanvraag.leesStamboom(item.img.data,!$("saFresh").checked)}
+  catch(e){item.fout=e.message||"Het lezen lukte niet."}
+  item.bezig=false;renderSa();const open=saState.items.filter(x=>x.bezig).length;st.className="status";st.textContent=open?`Nog ${open} afbeelding(en) bezig...`:""}
+async function saAdd(files){const st=$("saStatus");const list=[...files].filter(f=>/^image\//.test(f.type||""));
+  if(!list.length){st.className="status err";st.textContent="Kies een afbeelding (PNG, JPG of WebP).";return}
+  if(list.length>6){st.className="status err";st.textContent="Kies hoogstens 6 afbeeldingen tegelijk.";return}
+  st.className="status";st.textContent="Afbeeldingen worden verwerkt...";
+  for(const f of list){const item={nr:++saState.n,bestand:f.name||"printscreen",img:null};
+    try{item.img=await prepReqImg(f)}catch(e){item.fout=e.message}
+    saState.items.unshift(item);if(item.img)saRead(item)}
+  renderSa()}
+function saVoorstel(item){const r=item.res||{},p=r.paard||{},sb={},aangepast={};
+  PED_KEYS.forEach(k=>{const v=(r.stamboom||{})[k];if(!v)return;const m=saMatch(v);if(m&&m.naam!==v)aangepast[k]={gelezen:v,site:m.naam};sb[k]=m?m.naam:v});
+  const pm=saMatch(p.naam);
+  const v=Object.assign({},p.naam?{naam:p.naam}:{},p.geslacht&&p.geslacht!=="ruin"?{geslacht:p.geslacht}:{},p.geboortejaar?{geboortejaar:p.geboortejaar}:{},p.stamboek?{stamboek:p.stamboek}:{},p.ueln?{ueln:p.ueln}:{},p.fei_id?{fei_id:p.fei_id}:{},{stamboom:sb});
+  return{v,aangepast,pm}}
+function saItemHtml(item){
+  const head=`<div class="sa-head">${item.img?`<img class="sa-thumb" src="${esc(item.img.data)}" alt="Afbeelding ${item.nr}" data-sazoom>`:""}<div style="flex:1;min-width:200px"><b>${item.nr}. ${esc(item.bestand)}</b>`;
+  if(item.bezig)return head+`<div class="small muted" style="margin-top:6px">Wordt gelezen... (dit duurt meestal 10 tot 40 seconden)</div></div></div>`;
+  if(item.fout||!item.res)return head+`<div class="status err" style="margin-top:6px">${esc(item.fout||"Geen resultaat.")}</div>${item.img?`<button class="btn ghost" type="button" data-saretry="${item.nr}" style="margin-top:6px">Opnieuw proberen</button>`:""}</div></div>`;
+  const r=item.res,p=r.paard||{},{v,aangepast,pm}=saVoorstel(item),uns=new Set(r.onzeker||[]),n=Object.keys(v.stamboom).length;
+  const meta=[r.documenttype,r.layout,r.taal&&("taal "+r.taal),r._model,r._duur_ms?Math.round(r._duur_ms/1000)+" s":"",r._uit_cache?"uit het geheugen":""].filter(Boolean).map(esc).join(" &middot; ");
+  const info=[p.geslacht,p.geboortedatum||p.geboortejaar,p.stamboek,p.kleur].filter(Boolean).map(esc).join(", ");
+  const warn=[];
+  if(r.gevonden===false)warn.push("Geen stamboom gevonden op deze afbeelding.");
+  if(p.ueln_gelezen)warn.push(`UELN gelezen als "${p.ueln_gelezen}", maar dat is geen 15 tekens; niet overgenomen.`);
+  if(pm)warn.push(`Dit paard staat al op de site als "${pm.naam}".`);
+  PED_KEYS.forEach(k=>{const m=saMatch(v.stamboom[k]);if(m&&m.geslacht&&((/v$/.test(k)&&m.geslacht==="merrie")||(/m$/.test(k)&&m.geslacht==="hengst")))warn.push(`${SA_LBL[k]}: "${m.naam}" staat op de site als ${m.geslacht}. Mogelijk verkeerde plaats in het schema.`)});
+  const rows=PED_KEYS.map(k=>{const val=(r.stamboom||{})[k],m=val?saMatch(val):null,a=aangepast[k],det=(r.details||{})[k],zg=(r.zoals_gelezen||{})[k];
+    return `<tr class="${uns.has(k)?"unsure":""}"><td class="mono">${k.toUpperCase()}</td><td>${esc(SA_LBL[k])}</td><td>${val?esc(val):'<span class="muted">leeg</span>'}${zg&&zg!==val?`<div class="small muted">op de afbeelding: ${esc(zg)}</div>`:""}${det?`<div class="small muted">${esc(det)}</div>`:""}</td><td>${m?`<span class="chip good" title="${m.soort==="paard"?"Staat als paard op de site":"Komt voor in een stamboom op de site"}">${a?esc(a.site):"zelfde"}</span>`:val?'<span class="chip">nieuw</span>':""}${uns.has(k)?' <span class="chip warn">onzeker</span>':""}</td></tr>`}).join("");
+  const exp={naam:v.naam,voorstel:v,gelezen:r};
+  const h=Object.assign({},v,{id:"__sa"+item.nr,naam:v.naam||("Afbeelding "+item.nr)});
+  return head+`<div style="margin-top:4px">${p.naam?`<span style="font-size:1.05rem;font-weight:600">${esc(p.naam)}</span>`:'<span class="muted">naam niet gelezen</span>'}${info?` <span class="small muted">(${info})</span>`:""}${p.ueln?` <span class="mono small">${esc(p.ueln)}</span>`:""}</div>
+    <div class="small muted" style="margin-top:2px">${meta} &middot; ${n} van 14 posities</div>
+    ${warn.length?`<ul class="small" style="margin:6px 0 0;padding-left:18px">${warn.map(w=>`<li>${esc(w)}</li>`).join("")}</ul>`:""}
+    ${r.opmerking?`<p class="small muted" style="margin:6px 0 0"><b>Opmerking van de AI:</b> ${esc(r.opmerking)}</p>`:""}
+    <div class="row" style="gap:6px;margin-top:8px"><button class="btn ghost" type="button" data-saretry="${item.nr}">Opnieuw lezen</button><button class="btn ghost" type="button" data-sacopy="${item.nr}">Kopieer JSON</button><button class="btn ghost" type="button" data-sadel="${item.nr}">Verwijderen</button></div>
+    </div></div>
+    <div class="sa-grid"><div class="pc-wrap">${pedCardSlot(h)}</div>
+    <div><div class="tablewrap"><table class="sa-tab"><thead><tr><th></th><th>Positie</th><th>Gelezen</th><th>Op de site</th></tr></thead><tbody>${rows}</tbody></table></div></div></div>
+    <details style="margin-top:8px"><summary class="small">JSON (voorstel in Fokwijzer-formaat en wat de AI las)</summary><textarea class="sa-json" readonly data-sajson="${item.nr}">${esc(JSON.stringify(exp,null,2))}</textarea></details>`}
+function renderSa(){const box=$("saRes");if(!box)return;box.innerHTML=saState.items.map(it=>`<div class="sa-item" data-sa="${it.nr}">${saItemHtml(it)}</div>`).join("");requestAnimationFrame(()=>paintPedSlots())}
+(function(){const drop=$("saDrop");if(!drop)return;
+  $("saFile").addEventListener("change",e=>{if(e.target.files&&e.target.files.length)saAdd(e.target.files);e.target.value=""});
+  drop.addEventListener("dragover",e=>{e.preventDefault();drop.classList.add("over")});
+  drop.addEventListener("dragleave",()=>drop.classList.remove("over"));
+  drop.addEventListener("drop",e=>{e.preventDefault();drop.classList.remove("over");if(e.dataTransfer&&e.dataTransfer.files.length)saAdd(e.dataTransfer.files)});
+  document.addEventListener("paste",e=>{if(state.tab!=="admin")return;const fs=[...((e.clipboardData&&e.clipboardData.files)||[])].filter(f=>/^image\//.test(f.type));if(fs.length){e.preventDefault();saAdd(fs)}});
+  $("saRes").addEventListener("click",e=>{const t=e.target;const it=(a)=>saState.items.find(x=>x.nr===+t.closest("["+a+"]").getAttribute(a));
+    if(t.closest("[data-sazoom]")){t.classList.toggle("big");return}
+    if(t.closest("[data-saretry]")){const x=it("data-saretry");if(x&&x.img)saRead(x);return}
+    if(t.closest("[data-sadel]")){const x=it("data-sadel");saState.items=saState.items.filter(y=>y!==x);renderSa();return}
+    if(t.closest("[data-sacopy]")){const nr=t.closest("[data-sacopy]").getAttribute("data-sacopy"),ta=document.querySelector(`[data-sajson="${nr}"]`);if(!ta)return;
+      const ok=()=>{t.textContent="Gekopieerd";setTimeout(()=>{t.textContent="Kopieer JSON"},1500)};
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(ta.value).then(ok,()=>{ta.closest("details").open=true;ta.select()});else{ta.closest("details").open=true;ta.select()}}})})();
 $("aRows").addEventListener("click",e=>{const b=e.target.closest("[data-imgdel]");if(!b)return;syncReqRows();const i=+b.dataset.imgdel;if(state.aRows[i])delete state.aRows[i].img;renderReqRows();const f=document.querySelector(`#aRows [data-row="${i}"] .aImg`);if(f)f.focus()});
 $("aRows").addEventListener("dragover",e=>{if(e.target.closest("[data-row]")&&[...(e.dataTransfer&&e.dataTransfer.types||[])].includes("Files"))e.preventDefault()});
 $("aRows").addEventListener("drop",e=>{const row=e.target.closest("[data-row]");const f=e.dataTransfer&&[...e.dataTransfer.files].find(x=>/^image\//.test(x.type));if(!row||!f)return;e.preventDefault();setReqImg(+row.dataset.row,f)});

@@ -171,6 +171,10 @@
       });
     },
     dien: function (paarden) { return api("POST", "/api/aanvraag", { paarden: paarden }); },
+    // Beheer: een stamboom van een afbeelding laten lezen (enkel paarden-beheerders en beheerders).
+    leesStamboom: function (afbeelding, cache) {
+      return api("POST", "/api/ai/stamboom-afbeelding", { afbeelding: afbeelding, cache: cache !== false }).then(function (j) { return j.resultaat; });
+    },
   };
 
   window.claude = {
