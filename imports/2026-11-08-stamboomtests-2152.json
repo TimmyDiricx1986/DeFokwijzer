@@ -1,0 +1,70 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "stamboomtests",
+ "datum": "2026-11-08",
+ "collecties": {
+  "stamboomtests": {
+   "a74f67322ace39c4b501": {
+    "status": "klaar",
+    "verwerkt_op": "2026-11-08T20:52:22Z",
+    "verwerkt_voor": "a74f67322ace39c4b501|2026-11-08T20:50:51.152Z",
+    "resultaat": {
+     "gevonden": true,
+     "documenttype": "paspoort",
+     "taal": "nl",
+     "layout": "liggend, zoötechnisch certificaat BWP (sectie V), 4 generaties, vaderskant boven, moederskant onder",
+     "paard": {
+      "naam": "Alasca Zwartepannenhof",
+      "geboortejaar": 2023,
+      "geboortedatum": "2023-05-04",
+      "stamboek": "BWP",
+      "ueln": "056002W00338901"
+     },
+     "stamboom": {
+      "v": "Oscar the Homage",
+      "m": "Inchallah Zwartepannenhof",
+      "vv": "Quint vh Maarlo Z",
+      "vm": "Diana van het Lindehof",
+      "mv": "Kashmir van Schuttershof",
+      "mm": "Pamina vh Zwartepannenhof",
+      "vvv": "Quidam de Revel",
+      "vvm": "Selien",
+      "vmv": "Elton",
+      "vmm": "Voblesse",
+      "mvv": "Nabab de Rêve",
+      "mvm": "Fines van Kameren",
+      "mmv": "Quat'sous",
+      "mmm": "Hilwe Epona"
+     },
+     "details": {
+      "v": "056002W00314699 / 2404 HGT ELITE G-LABEL",
+      "m": "056002W00266982 / VB",
+      "vv": "Z55636210, 999999Z55636210 / 2273 / HGT G-LABEL",
+      "vm": "056002W00221874 / VB",
+      "mv": "056007000K28286 / VRS",
+      "mm": "056002W00126891 / VB",
+      "vvv": "25000182604507R / VRH",
+      "vvm": "056002W00149887 / ST",
+      "vmv": "86.7746, 999999W00132936 / VRS",
+      "vmm": "056002W00177932 / VB",
+      "mvv": "056002W00139797 / VRS, W-106995",
+      "mvm": "F-23399, 056007000F23399 / VRM",
+      "mmv": "82569545T, 999999W00105179 / VRH, 82 569 545 T",
+      "mmm": "056002W00071172 / VB"
+     },
+     "zoals_gelezen": {
+      "naam": "ALASCA ZWARTEPANNENHOF",
+      "vv": "QUINT VH MAARLO Z",
+      "mvv": "NABAB DE REVE",
+      "mm": "PAMINA VH ZWARTEPANNENHOF PAMINA VH ZWARTEPANNENHOF",
+      "mmv": "QUAT'SOUS"
+     },
+     "onzeker": [
+      "paard.geslacht"
+     ],
+     "opmerking": "Geslacht staat niet op deze pagina. Geboorteland België. Nabab de Rêve geschreven zoals op de site (paspoort: NABAB DE REVE). De naam van Pamina vh Zwartepannenhof staat twee keer gedrukt. Op de site staat bij Oscar the Homage als moedersvader Virtual Village Elton III, het paspoort vermeldt Elton (86.7746); niet als hetzelfde paard aangenomen. Ook de 4de generatie staat op het certificaat (o.a. Jalisco B, Landetto, Jasper 33, Darco, Quidam de Revel, Tenor Manciais, Kayack, Major de la Cour), maar enkel 3 generaties overgenomen. Chipnummer en fokkergegevens niet overgenomen."
+    }
+   }
+  }
+ }
+}
