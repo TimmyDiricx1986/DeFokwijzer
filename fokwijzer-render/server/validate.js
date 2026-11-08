@@ -12,6 +12,8 @@ const COLLS = table({
   partner_admin: { read: 3, create: 3, update: 3, delete: 3, max: 50e3 },
   aanvragen: { read: 1, create: 1, update: 2, delete: 3, max: 200e3 },
   bijlagen: { read: 2, create: 3, update: 3, delete: 3, max: 1.2e6 }, // afbeelding bij een aanvraag; aanmaken enkel via /api/aanvraag
+  // Testen van het lezen van stambomen op afbeeldingen (Beheer); de afbeelding staat in "bijlagen" als st-<id>.
+  stamboomtests: { read: 2, create: 3, update: 3, delete: 3, max: 200e3 },
   veiling_backlog: { read: 3, create: 3, update: 3, delete: 3, max: 3e6 },
   systeem: { read: 0, create: 3, update: 3, delete: 3, max: 100e3 },
 });
