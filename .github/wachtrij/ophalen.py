@@ -2,6 +2,7 @@
 """Haalt de wachtrij met paardaanvragen en een lijst van de paarden op van de website,
 voor de geplande Claude-taak die de aanvragen verwerkt. Schrijft naar de map die als argument gegeven wordt:
   aanvragen.json  - aanvragen met status "wachtrij" (zonder wie ze aanvroeg)
+  stamboomtests.json - stamboomtests (Beheer) met status "wachtrij"; afbeelding in bijlagen/st-<id>.<ext>
   paarden.json    - id, naam, naamvarianten, geboortejaar, geslacht en ouders van elk paard
   bijlagen/<id>.jpg|png|webp - afbeelding of printscreen die de aanvrager meestuurde, ENKEL als de
                     repository privé is (BIJLAGEN_DELEN=true). Is ze openbaar, dan blijven de afbeeldingen
@@ -25,7 +26,7 @@ def get(url, token):
                 return json.loads(resp.read())
         except urllib.error.HTTPError as e:
             if e.code in (401, 403): sys.exit(f"Geweigerd ({e.code}): controleer FOKWIJZER_TOKEN.")
-            if poging == 3: raise
+            if e.code == 404 or poging == 3: raise
         except urllib.error.URLError:
             if poging == 3: raise
         time.sleep(15)  # Render-site kan nog aan het opstarten zijn
@@ -58,6 +59,33 @@ def main():
                     print(f"Afbeelding bij {d['id']} niet opgehaald: {e}")
         aanvragen.append(x)
     aanvragen.sort(key=lambda x: x.get("aangevraagd_op") or "")
+    # Stamboomtests (Beheer): afbeeldingen waarvan enkel de stamboom gelezen moet worden.
+    tests = []
+    try:
+        lijst = get(site + "/api/c/stamboomtests", token) or []
+    except Exception as e:  # oude serverversie zonder deze collectie
+        print(f"Stamboomtests niet opgehaald: {e}"); lijst = []
+    for d in lijst:
+        t = d.get("data") or {}
+        if t.get("status") != "wachtrij": continue
+        x = {k: t[k] for k in ("bestand", "aangemaakt_op", "opnieuw_op", "feedback", "vorig_resultaat") if k in t}
+        x["id"] = d["id"]
+        x["sleutel"] = d["id"] + "|" + str(t.get("opnieuw_op") or t.get("aangemaakt_op") or "")
+        x["bijlage"] = "niet_gedeeld"
+        if delen:
+            try:
+                b = (get(site + "/api/c/bijlagen/st-" + d["id"], token) or {}).get("data") or {}
+                m = IMG_RE.match(b.get("afbeelding") or "")
+                if m:
+                    os.makedirs(os.path.join(uit, "bijlagen"), exist_ok=True)
+                    naam = "st-" + d["id"] + "." + EXT[m.group(1)]
+                    with open(os.path.join(uit, "bijlagen", naam), "wb") as f:
+                        f.write(base64.b64decode(m.group(2)))
+                    x["bijlage"] = "bijlagen/" + naam
+            except Exception as e:
+                print(f"Afbeelding bij stamboomtest {d['id']} niet opgehaald: {e}")
+        tests.append(x)
+    tests.sort(key=lambda x: x.get("opnieuw_op") or x.get("aangemaakt_op") or "")
     paarden = []
     for d in get(site + "/api/c/paarden", token):
         p = d.get("data") or {}
@@ -67,10 +95,13 @@ def main():
     paarden.sort(key=lambda x: x["id"])
     with open(os.path.join(uit, "aanvragen.json"), "w", encoding="utf-8") as f:
         json.dump(aanvragen, f, ensure_ascii=False, indent=1)
+    with open(os.path.join(uit, "stamboomtests.json"), "w", encoding="utf-8") as f:
+        json.dump(tests, f, ensure_ascii=False, indent=1)
     with open(os.path.join(uit, "paarden.json"), "w", encoding="utf-8") as f:
         json.dump(paarden, f, ensure_ascii=False, separators=(",", ":"))
     met = sum(1 for a in aanvragen if a.get("bijlage", "").startswith("bijlagen/"))
     print(f"Wachtrij: {len(aanvragen)} aanvragen ({met} met afbeelding). Paarden op de site: {len(paarden)}."
+          + f" Stamboomtests in de wachtrij: {len(tests)}."
           + ("" if delen else " Afbeeldingen worden niet gedeeld: de repository is openbaar."))
 
 if __name__ == "__main__":

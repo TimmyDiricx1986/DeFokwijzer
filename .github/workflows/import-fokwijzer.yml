@@ -57,6 +57,7 @@ jobs:
             echo "== $f"
             case "$f" in
               *-aanvragen-*) python3 .github/wachtrij/resultaat_uploaden.py "$SITE" "$f" ;;
+              *-stamboomtests-*) python3 .github/wachtrij/resultaat_uploaden.py "$SITE" "$f" ;;
               *) python3 .github/scripts/upload_ontbrekend.py "$SITE" "$f" ;;
             esac
           done < lijst.txt

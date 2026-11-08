@@ -38,6 +38,8 @@ def main():
     site, path = sys.argv[1].rstrip("/"), sys.argv[2]
     token = os.environ["FOKWIJZER_TOKEN"]
     exp = json.load(open(path, encoding="utf-8"))
+    if exp.get("formaat") == "fokwijzer-export" and exp.get("modus") == "stamboomtests":
+        return stamboomtests(site, token, exp)
     if exp.get("formaat") != "fokwijzer-export" or exp.get("modus") != "aanvragen": sys.exit("Geen resultaatbestand voor aanvragen.")
     ok = overgeslagen = fout = 0
     for id_, r in (exp.get("collecties", {}).get("aanvragen") or {}).items():
@@ -52,6 +54,28 @@ def main():
         patch = neutralize({k: v for k, v in r.items() if k in VELDEN})
         res = req("PATCH", f"{site}/api/c/aanvragen/{id_}", token, {"data": patch})
         if res and res.get("ok"): ok += 1; print(f"  {id_}: {cur.get('naam')} -> {r['status']}")
+        else: fout += 1; print(f"  {id_}: fout {res}")
+    print(f"Klaar: {ok} bijgewerkt, {overgeslagen} overgeslagen, {fout} fouten.")
+    if fout: sys.exit(1)
+
+# Stamboomtests (Beheer): enkel het gelezen resultaat terugzetten, zolang de test nog in de wachtrij staat
+# met dezelfde sleutel (id|opnieuw_op of aangemaakt_op). Vorig resultaat en feedback worden dan opgeruimd.
+ST_STATUSSEN = {"klaar", "mislukt"}
+def stamboomtests(site, token, exp):
+    ok = overgeslagen = fout = 0
+    for id_, r in (exp.get("collecties", {}).get("stamboomtests") or {}).items():
+        if not ID_RE.match(id_) or not isinstance(r, dict) or r.get("status") not in ST_STATUSSEN:
+            print(f"  {id_}: ongeldig resultaat"); fout += 1; continue
+        cur = req("GET", f"{site}/api/c/stamboomtests/{id_}", token).get("data")
+        if not cur:
+            print(f"  {id_}: test bestaat niet meer"); overgeslagen += 1; continue
+        sleutel = id_ + "|" + str(cur.get("opnieuw_op") or cur.get("aangemaakt_op") or "")
+        if cur.get("status") != "wachtrij" or r.get("verwerkt_voor") != sleutel:
+            print(f"  {id_}: intussen gewijzigd, niet overschreven"); overgeslagen += 1; continue
+        nieuw = {k: v for k, v in cur.items() if k in ("bestand", "aangemaakt_op", "opnieuw_op", "feedback", "bijlage")}
+        nieuw.update(neutralize({k: v for k, v in r.items() if k in ("status", "verwerkt_op", "verwerkt_voor", "resultaat", "fout")}))
+        res = req("PUT", f"{site}/api/c/stamboomtests/{id_}", token, {"data": nieuw})
+        if res and res.get("ok"): ok += 1; print(f"  {id_}: {cur.get('bestand')} -> {r['status']}")
         else: fout += 1; print(f"  {id_}: fout {res}")
     print(f"Klaar: {ok} bijgewerkt, {overgeslagen} overgeslagen, {fout} fouten.")
     if fout: sys.exit(1)
