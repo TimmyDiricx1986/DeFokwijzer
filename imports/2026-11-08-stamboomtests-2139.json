@@ -1,0 +1,15 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "stamboomtests",
+ "datum": "2026-11-08",
+ "collecties": {
+  "stamboomtests": {
+   "5d1af3518e1edf222bcf": {
+    "status": "mislukt",
+    "verwerkt_op": "2026-11-08T20:39:49Z",
+    "verwerkt_voor": "5d1af3518e1edf222bcf|2026-11-08T19:15:15.586Z",
+    "fout": "Afbeelding niet beschikbaar. De GitHub-repository is openbaar, dus de afbeelding wordt niet via de wachtrij gedeeld."
+   }
+  }
+ }
+}
