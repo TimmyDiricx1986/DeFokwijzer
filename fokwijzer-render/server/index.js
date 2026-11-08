@@ -388,6 +388,28 @@ app.post("/api/taak/:naam", hookLimit, auth.need("paardenbeheerder"), async (req
   }
 });
 
+// ---------------------------------------------------------------- beveiligde downloadlinks voor bijlagen
+// De workflow "Wachtrij ophalen" vraagt met het service-token links aan voor de afbeeldingen in de
+// wachtrij; de geplande Claude-taak downloadt ze zonder token. Elke link is ondertekend, kort geldig en
+// werkt maar 1 keer (zie server/downloadlink.js).
+const downloadlink = require("./downloadlink");
+app.post("/api/downloadlinks", (req, res) => {
+  if (!req.actor.service) return res.status(403).json({ fout: "Alleen met het service-token." });
+  const ids = (req.body || {}).ids;
+  if (!Array.isArray(ids) || ids.length < 1 || ids.length > 200) return res.status(400).json({ fout: "Stuur 1 tot 200 ids." });
+  const r = downloadlink.maak(ids);
+  if (!r) return res.status(501).json({ fout: "Geen SERVICE_TOKEN ingesteld." });
+  res.json(r);
+});
+const downloadLimit = rateLimit({ windowMs: 60e3, limit: 60, standardHeaders: "draft-7", legacyHeaders: false, message: { fout: "Te veel verzoeken. Wacht even." } });
+app.get("/api/download/:id", downloadLimit, (req, res) => {
+  const r = downloadlink.haal(req.params.id, req.query || {});
+  if (r.fout) return res.status(r.status).json({ fout: r.fout });
+  res.setHeader("Cache-Control", "no-store");
+  res.setHeader("Content-Disposition", "attachment");
+  res.type(r.type).send(r.buffer);
+});
+
 app.use("/api/", (req, res) => res.status(404).json({ fout: "Niet gevonden." }));
 // Foutafhandeling zonder interne details te tonen.
 app.use((err, req, res, next) => {
