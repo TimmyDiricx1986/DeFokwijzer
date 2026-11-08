@@ -362,23 +362,6 @@ app.post("/api/ai/json", auth.need("paardenbeheerder"), async (req, res) => {
   }
 });
 
-// Stamboom uit een afbeelding (paspoort, certificaat, printscreen): om het lezen van afbeeldingen te testen en te verfijnen.
-app.post("/api/ai/stamboom-afbeelding", auth.need("paardenbeheerder"), async (req, res) => {
-  const ctl = new AbortController();
-  res.on("close", () => { if (!res.writableEnded) ctl.abort(); });
-  try {
-    const b = req.body || {};
-    const im = aanvragen.schoonAfbeelding(b.afbeelding, "deze test");
-    if (im.fout || !im.afbeelding) return res.status(400).json({ fout: im.fout || "Kies een afbeelding." });
-    const out = await ai.stamboomUitAfbeelding(req.actor, im.afbeelding, { cache: b.cache !== false }, ctl.signal);
-    res.json({ ok: true, resultaat: out });
-  } catch (e) {
-    if (e instanceof ai.AiError) return res.status(e.status).json({ fout: e.message, code: e.code });
-    console.error("[ai stamboom]", e);
-    res.status(500).json({ fout: "Onverwachte fout.", code: "upstream" });
-  }
-});
-
 // ---------------------------------------------------------------- geplande taken starten (webhooks)
 // Webhooks werken alleen met een geheim, zodat de ontvanger kan controleren dat de oproep echt is.
 const HOOKS = new Map();

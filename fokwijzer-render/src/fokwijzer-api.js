@@ -73,7 +73,7 @@
   }
   function enc(s) { if (!SEG.test(s)) throw new Error("Ongeldig id."); return encodeURIComponent(s); }
   // Wat je zonder (voldoende) login niet mag lezen, wordt niet opgevraagd. De server controleert dit ook zelf.
-  var READ = { aanvragen: 1, bijlagen: 2, veiling_backlog: 3, partner_admin: 3, "systeem/instellingen": 3 };
+  var READ = { aanvragen: 1, bijlagen: 2, stamboomtests: 2, veiling_backlog: 3, partner_admin: 3, "systeem/instellingen": 3 };
   function readLevel(coll, id) { return READ[coll + "/" + id] || READ[coll] || 0; }
   function docSnap(id, data) { return { id: id, exists: data !== undefined, data: function () { return data; } }; }
 
@@ -171,10 +171,6 @@
       });
     },
     dien: function (paarden) { return api("POST", "/api/aanvraag", { paarden: paarden }); },
-    // Beheer: een stamboom van een afbeelding laten lezen (enkel paarden-beheerders en beheerders).
-    leesStamboom: function (afbeelding, cache) {
-      return api("POST", "/api/ai/stamboom-afbeelding", { afbeelding: afbeelding, cache: cache !== false }).then(function (j) { return j.resultaat; });
-    },
   };
 
   window.claude = {

@@ -609,7 +609,7 @@ function renderPartnersNote(){const ready=state.dbState==="ready";const adm=!!st
   else if(!state.site&&!state.platformWrite)n='<div class="banner"><strong>Alleen lezen.</strong> Je mag deze Fokwijzer bekijken maar niet bewerken. Vraag de eigenaar om bewerkrechten als je partner wilt worden.</div>';
   else n=`<div class="card pb-cta"><h3 style="margin:0">Word partner</h3><p style="margin:6px 0 12px">${uitleg} Je account blijft verder hetzelfde.</p><div class="row"><button class="btn" type="button" data-acct="word-partner">Word partner</button></div><div class="status" role="status" id="ptStatus"></div></div>`;
   $("partnersNote").innerHTML=n;$("adCard").style.display=adm||pt?"":"none"}
-function renderAdmin(){renderLeden();renderPartnerOverview();const al=$("adminLink");if(al)al.setAttribute("aria-current",state.tab==="admin"?"page":"false")}
+function renderAdmin(){renderLeden();renderPartnerOverview();renderSa();const al=$("adminLink");if(al)al.setAttribute("aria-current",state.tab==="admin"?"page":"false")}
 function renderAll(){const adm=state.site?state.isAdmin:(state.dbState==="ready"?!!state.isAdmin:true);document.documentElement.classList.toggle("fw-ro",!adm);if(!adm&&state.tab==="admin")state.tab="info";renderWho();renderBanner();fillSelects();renderTab();renderAds()}
 const P_COLL="partners";
 // Tijdelijk logo voor de voorbeeldpartner; vervang door het echte logo van DeDilieHoeve.
@@ -1170,10 +1170,12 @@ async function setReqImg(i,file){const st=$("aStatus");syncReqRows();if(!state.a
   catch(err){st.className="status err";st.textContent=err.message||"Deze afbeelding kon niet gebruikt worden."}}
 $("aRows").addEventListener("change",e=>{const inp=e.target.closest("input.aImg");if(!inp||!inp.files||!inp.files[0])return;setReqImg(+inp.dataset.img,inp.files[0])});
 // ---------- Beheer: stamboom uit een afbeelding lezen (test) ----------
-// Elke afbeelding gaat naar de server (AI met beeld), het resultaat wordt getoond als Fokwijzer-stamboom.
+// Zonder API-sleutel: de afbeelding gaat in de wachtrij ("stamboomtests", afbeelding apart in "bijlagen" als st-<id>).
+// De geplande taak "Fokwijzer: stamboom uit afbeelding" leest ze en zet het resultaat terug; de pagina toont het meteen.
 // Namen van voorouders worden vergeleken met de paarden op de site; bestaat het paard, dan geldt de schrijfwijze van de site.
+const ST_COLL="stamboomtests";
 const SA_LBL={v:"Vader",m:"Moeder",vv:"Vader van vader",vm:"Moeder van vader",mv:"Moedersvader",mm:"Moeder van moeder",vvv:"V-V-V",vvm:"V-V-M",vmv:"V-M-V",vmm:"V-M-M",mvv:"M-V-V",mvm:"M-V-M",mmv:"M-M-V",mmm:"M-M-M"};
-const saState={n:0,items:[]};
+const saState={docs:[],img:{},sub:null,err:"",bezig:0};
 let _saIdx=null;
 function saIndex(){if(_saIdx&&_saIdx.src===state.horses)return _saIdx;const hor=new Map(),anc=new Map();
   const strip=(n)=>String(n||"").replace(/\s+(z|vdl|ps|tn|old|stx|hn|sih|ask|frh|xx)$/i,"").replace(/^(vdl|gk|h&m|gl events|mom'?s)\s+/i,"");
@@ -1185,62 +1187,79 @@ function saIndex(){if(_saIdx&&_saIdx.src===state.horses)return _saIdx;const hor=
 function saMatch(name){if(!name)return null;const I=saIndex();const k=norm(name);
   let h=I.hor.get(k)||I.hor.get(norm(I.strip(name)));if(h)return{naam:h.naam,id:h.id,geslacht:h.geslacht,soort:"paard"};
   const a=I.anc.get(k);if(a)return{naam:a,soort:"voorouder"};return null}
-async function saRead(item){const st=$("saStatus");
-  if(!window.fokwijzerAanvraag||!window.fokwijzerAanvraag.leesStamboom){item.fout="Dit werkt enkel op de website, met AI ingesteld op de server.";renderSa();return}
-  item.bezig=true;item.fout="";renderSa();
-  try{item.res=await window.fokwijzerAanvraag.leesStamboom(item.img.data,!$("saFresh").checked)}
-  catch(e){item.fout=e.message||"Het lezen lukte niet."}
-  item.bezig=false;renderSa();const open=saState.items.filter(x=>x.bezig).length;st.className="status";st.textContent=open?`Nog ${open} afbeelding(en) bezig...`:""}
+function saListen(){if(saState.sub||!db||!state.isAdmin)return;
+  try{saState.sub=db.collection(ST_COLL).onSnapshot(snap=>{saState.docs=snap.docs.map(d=>Object.assign({id:d.id},d.data())).sort((x,y)=>String(y.aangemaakt_op||"").localeCompare(String(x.aangemaakt_op||"")));saState.err="";if(state.tab==="admin")renderSa()},
+    err=>{saState.err=err&&err.message||"Kon de tests niet laden.";if(state.tab==="admin")renderSa()})}catch(e){saState.err=e.message}}
+function saLoadImg(id){if(id in saState.img||!db)return;saState.img[id]=null;
+  db.collection(BIJ_COLL).doc("st-"+id).get().then(s=>{const d=s&&s.exists?s.data():null;saState.img[id]=d&&typeof d.afbeelding==="string"&&/^data:image\/(png|jpeg|webp);base64,/.test(d.afbeelding)?d.afbeelding:"";const im=document.querySelector(`[data-sa="${id}"] .sa-thumb`);if(im&&saState.img[id])im.src=saState.img[id]},()=>{saState.img[id]=""})}
 async function saAdd(files){const st=$("saStatus");const list=[...files].filter(f=>/^image\//.test(f.type||""));
+  if(!db||!state.isAdmin){st.className="status err";st.textContent="Log in als beheerder.";return}
   if(!list.length){st.className="status err";st.textContent="Kies een afbeelding (PNG, JPG of WebP).";return}
-  if(list.length>6){st.className="status err";st.textContent="Kies hoogstens 6 afbeeldingen tegelijk.";return}
-  st.className="status";st.textContent="Afbeeldingen worden verwerkt...";
-  for(const f of list){const item={nr:++saState.n,bestand:f.name||"printscreen",img:null};
-    try{item.img=await prepReqImg(f)}catch(e){item.fout=e.message}
-    saState.items.unshift(item);if(item.img)saRead(item)}
-  renderSa()}
-function saVoorstel(item){const r=item.res||{},p=r.paard||{},sb={},aangepast={};
+  if(list.length>10){st.className="status err";st.textContent="Kies hoogstens 10 afbeeldingen tegelijk.";return}
+  st.className="status";st.textContent="Afbeeldingen worden in de wachtrij gezet...";let ok=0;const fouten=[];
+  for(const f of list){try{const img=await prepReqImg(f);const ref=db.collection(ST_COLL).doc(),nu=new Date().toISOString(),bestand=String(f.name||"printscreen").slice(0,120);
+      await db.collection(BIJ_COLL).doc("st-"+ref.id).set({stamboomtest_id:ref.id,naam:bestand,afbeelding:img.data,aangemaakt_op:nu});
+      saState.img[ref.id]=img.data;
+      await ref.set({bestand,status:"wachtrij",aangemaakt_op:nu,bijlage:true});ok++}
+    catch(e){fouten.push((f.name||"afbeelding")+": "+(e.message||"mislukt"))}}
+  st.className="status"+(fouten.length?" err":" ok");
+  st.textContent=(ok?`${ok} afbeelding(en) in de wachtrij. Start nu de taak "Fokwijzer: stamboom uit afbeelding"; het resultaat verschijnt hier vanzelf.`:"")+(fouten.length?" Niet gelukt: "+fouten.join("; "):"")}
+function saVoorstel(r){const p=r.paard||{},sb={},aangepast={};
   PED_KEYS.forEach(k=>{const v=(r.stamboom||{})[k];if(!v)return;const m=saMatch(v);if(m&&m.naam!==v)aangepast[k]={gelezen:v,site:m.naam};sb[k]=m?m.naam:v});
   const pm=saMatch(p.naam);
-  const v=Object.assign({},p.naam?{naam:p.naam}:{},p.geslacht&&p.geslacht!=="ruin"?{geslacht:p.geslacht}:{},p.geboortejaar?{geboortejaar:p.geboortejaar}:{},p.stamboek?{stamboek:p.stamboek}:{},p.ueln?{ueln:p.ueln}:{},p.fei_id?{fei_id:p.fei_id}:{},{stamboom:sb});
+  const v=Object.assign({},p.naam?{naam:p.naam}:{},p.geslacht==="hengst"||p.geslacht==="merrie"?{geslacht:p.geslacht}:{},p.geboortejaar?{geboortejaar:p.geboortejaar}:{},p.stamboek?{stamboek:p.stamboek}:{},p.ueln&&String(p.ueln).length===15?{ueln:p.ueln}:{},p.fei_id?{fei_id:p.fei_id}:{},{stamboom:sb});
   return{v,aangepast,pm}}
-function saItemHtml(item){
-  const head=`<div class="sa-head">${item.img?`<img class="sa-thumb" src="${esc(item.img.data)}" alt="Afbeelding ${item.nr}" data-sazoom>`:""}<div style="flex:1;min-width:200px"><b>${item.nr}. ${esc(item.bestand)}</b>`;
-  if(item.bezig)return head+`<div class="small muted" style="margin-top:6px">Wordt gelezen... (dit duurt meestal 10 tot 40 seconden)</div></div></div>`;
-  if(item.fout||!item.res)return head+`<div class="status err" style="margin-top:6px">${esc(item.fout||"Geen resultaat.")}</div>${item.img?`<button class="btn ghost" type="button" data-saretry="${item.nr}" style="margin-top:6px">Opnieuw proberen</button>`:""}</div></div>`;
-  const r=item.res,p=r.paard||{},{v,aangepast,pm}=saVoorstel(item),uns=new Set(r.onzeker||[]),n=Object.keys(v.stamboom).length;
-  const meta=[r.documenttype,r.layout,r.taal&&("taal "+r.taal),r._model,r._duur_ms?Math.round(r._duur_ms/1000)+" s":"",r._uit_cache?"uit het geheugen":""].filter(Boolean).map(esc).join(" &middot; ");
+const fmtT=(t)=>{const d=new Date(t);return isNaN(d)?"":d.toLocaleString("nl-BE",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})};
+function saItemHtml(t){saLoadImg(t.id);const src=saState.img[t.id];
+  const head=`<div class="sa-head"><img class="sa-thumb" ${src?`src="${esc(src)}"`:""} alt="Afbeelding ${esc(t.bestand)}" data-sazoom><div style="flex:1;min-width:200px"><b>${esc(t.bestand||"afbeelding")}</b> <span class="small muted">${esc(fmtT(t.aangemaakt_op))}</span>`;
+  const knoppen=(extra)=>`<div class="row" style="gap:6px;margin-top:8px">${extra||""}<button class="btn ghost" type="button" data-sadel="${esc(t.id)}">Verwijderen</button></div>`;
+  if(t.status!=="klaar"||!t.resultaat){
+    const msg=t.status==="mislukt"?`<div class="status err" style="margin-top:6px">${esc(t.fout||"Het lezen lukte niet.")}</div>`:`<div style="margin-top:6px"><span class="chip warn">In de wachtrij</span> <span class="small muted">Start de taak "Fokwijzer: stamboom uit afbeelding".</span></div>`;
+    return head+msg+(t.feedback?`<p class="small muted" style="margin:6px 0 0"><b>Jouw feedback:</b> ${esc(t.feedback)}</p>`:"")+knoppen(t.status==="mislukt"?`<button class="btn ghost" type="button" data-saretry="${esc(t.id)}">Opnieuw laten lezen</button>`:"")+`</div></div>`}
+  const r=t.resultaat,p=r.paard||{},{v,aangepast,pm}=saVoorstel(r),uns=new Set(r.onzeker||[]),n=Object.keys(v.stamboom).length;
+  const meta=[r.documenttype,r.layout,r.taal&&("taal "+r.taal),t.verwerkt_op&&("gelezen "+fmtT(t.verwerkt_op))].filter(Boolean).map(esc).join(" &middot; ");
   const info=[p.geslacht,p.geboortedatum||p.geboortejaar,p.stamboek,p.kleur].filter(Boolean).map(esc).join(", ");
   const warn=[];
   if(r.gevonden===false)warn.push("Geen stamboom gevonden op deze afbeelding.");
-  if(p.ueln_gelezen)warn.push(`UELN gelezen als "${p.ueln_gelezen}", maar dat is geen 15 tekens; niet overgenomen.`);
+  if(p.ueln&&String(p.ueln).length!==15)warn.push(`UELN gelezen als "${p.ueln}", maar dat is geen 15 tekens; niet overgenomen.`);
   if(pm)warn.push(`Dit paard staat al op de site als "${pm.naam}".`);
   PED_KEYS.forEach(k=>{const m=saMatch(v.stamboom[k]);if(m&&m.geslacht&&((/v$/.test(k)&&m.geslacht==="merrie")||(/m$/.test(k)&&m.geslacht==="hengst")))warn.push(`${SA_LBL[k]}: "${m.naam}" staat op de site als ${m.geslacht}. Mogelijk verkeerde plaats in het schema.`)});
   const rows=PED_KEYS.map(k=>{const val=(r.stamboom||{})[k],m=val?saMatch(val):null,a=aangepast[k],det=(r.details||{})[k],zg=(r.zoals_gelezen||{})[k];
     return `<tr class="${uns.has(k)?"unsure":""}"><td class="mono">${k.toUpperCase()}</td><td>${esc(SA_LBL[k])}</td><td>${val?esc(val):'<span class="muted">leeg</span>'}${zg&&zg!==val?`<div class="small muted">op de afbeelding: ${esc(zg)}</div>`:""}${det?`<div class="small muted">${esc(det)}</div>`:""}</td><td>${m?`<span class="chip good" title="${m.soort==="paard"?"Staat als paard op de site":"Komt voor in een stamboom op de site"}">${a?esc(a.site):"zelfde"}</span>`:val?'<span class="chip">nieuw</span>':""}${uns.has(k)?' <span class="chip warn">onzeker</span>':""}</td></tr>`}).join("");
-  const exp={naam:v.naam,voorstel:v,gelezen:r};
-  const h=Object.assign({},v,{id:"__sa"+item.nr,naam:v.naam||("Afbeelding "+item.nr)});
-  return head+`<div style="margin-top:4px">${p.naam?`<span style="font-size:1.05rem;font-weight:600">${esc(p.naam)}</span>`:'<span class="muted">naam niet gelezen</span>'}${info?` <span class="small muted">(${info})</span>`:""}${p.ueln?` <span class="mono small">${esc(p.ueln)}</span>`:""}</div>
-    <div class="small muted" style="margin-top:2px">${meta} &middot; ${n} van 14 posities</div>
+  const exp={bestand:t.bestand,voorstel:v,gelezen:r};
+  const h=Object.assign({},v,{id:"__sa"+t.id,naam:v.naam||t.bestand||"Afbeelding"});
+  return head+`<div style="margin-top:4px">${p.naam?`<span style="font-size:1.05rem;font-weight:600">${esc(p.naam)}</span>`:'<span class="muted">naam niet gelezen</span>'}${info?` <span class="small muted">(${info})</span>`:""}${v.ueln?` <span class="mono small">${esc(v.ueln)}</span>`:""}</div>
+    <div class="small muted" style="margin-top:2px">${meta}${meta?" &middot; ":""}${n} van 14 posities</div>
     ${warn.length?`<ul class="small" style="margin:6px 0 0;padding-left:18px">${warn.map(w=>`<li>${esc(w)}</li>`).join("")}</ul>`:""}
-    ${r.opmerking?`<p class="small muted" style="margin:6px 0 0"><b>Opmerking van de AI:</b> ${esc(r.opmerking)}</p>`:""}
-    <div class="row" style="gap:6px;margin-top:8px"><button class="btn ghost" type="button" data-saretry="${item.nr}">Opnieuw lezen</button><button class="btn ghost" type="button" data-sacopy="${item.nr}">Kopieer JSON</button><button class="btn ghost" type="button" data-sadel="${item.nr}">Verwijderen</button></div>
+    ${r.opmerking?`<p class="small muted" style="margin:6px 0 0"><b>Opmerking van de agent:</b> ${esc(r.opmerking)}</p>`:""}
+    ${t.feedback?`<p class="small muted" style="margin:6px 0 0"><b>Jouw feedback bij de vorige lezing:</b> ${esc(t.feedback)}</p>`:""}
+    ${knoppen(`<button class="btn ghost" type="button" data-sacopy="${esc(t.id)}">Kopieer JSON</button>`)}
     </div></div>
     <div class="sa-grid"><div class="pc-wrap">${pedCardSlot(h)}</div>
     <div><div class="tablewrap"><table class="sa-tab"><thead><tr><th></th><th>Positie</th><th>Gelezen</th><th>Op de site</th></tr></thead><tbody>${rows}</tbody></table></div></div></div>
-    <details style="margin-top:8px"><summary class="small">JSON (voorstel in Fokwijzer-formaat en wat de AI las)</summary><textarea class="sa-json" readonly data-sajson="${item.nr}">${esc(JSON.stringify(exp,null,2))}</textarea></details>`}
-function renderSa(){const box=$("saRes");if(!box)return;box.innerHTML=saState.items.map(it=>`<div class="sa-item" data-sa="${it.nr}">${saItemHtml(it)}</div>`).join("");requestAnimationFrame(()=>paintPedSlots())}
+    <div class="row" style="gap:6px;margin-top:8px;align-items:flex-end"><div class="field grow"><label class="label" for="saFb-${esc(t.id)}">Klopt er iets niet? Zeg wat (bv. "MV en MM zijn omgewisseld") en laat opnieuw lezen</label><input id="saFb-${esc(t.id)}" maxlength="500" placeholder="Wat ging er fout?"></div><button class="btn ghost" type="button" data-saretry="${esc(t.id)}">Opnieuw laten lezen</button></div>
+    <details style="margin-top:8px"><summary class="small">JSON (voorstel in Fokwijzer-formaat en wat de agent las)</summary><textarea class="sa-json" readonly data-sajson="${esc(t.id)}">${esc(JSON.stringify(exp,null,2))}</textarea></details>`}
+function renderSa(){const box=$("saRes");if(!box)return;saListen();
+  const open=saState.docs.filter(t=>t.status==="wachtrij").length;
+  box.innerHTML=(saState.err?`<div class="status err">${esc(saState.err)}</div>`:"")+(open?`<p class="small" style="margin:10px 0 0"><span class="chip warn">${open} in de wachtrij</span></p>`:"")+
+    saState.docs.map(t=>`<div class="sa-item" data-sa="${esc(t.id)}">${saItemHtml(t)}</div>`).join("");
+  requestAnimationFrame(()=>paintPedSlots())}
 (function(){const drop=$("saDrop");if(!drop)return;
   $("saFile").addEventListener("change",e=>{if(e.target.files&&e.target.files.length)saAdd(e.target.files);e.target.value=""});
   drop.addEventListener("dragover",e=>{e.preventDefault();drop.classList.add("over")});
   drop.addEventListener("dragleave",()=>drop.classList.remove("over"));
   drop.addEventListener("drop",e=>{e.preventDefault();drop.classList.remove("over");if(e.dataTransfer&&e.dataTransfer.files.length)saAdd(e.dataTransfer.files)});
   document.addEventListener("paste",e=>{if(state.tab!=="admin")return;const fs=[...((e.clipboardData&&e.clipboardData.files)||[])].filter(f=>/^image\//.test(f.type));if(fs.length){e.preventDefault();saAdd(fs)}});
-  $("saRes").addEventListener("click",e=>{const t=e.target;const it=(a)=>saState.items.find(x=>x.nr===+t.closest("["+a+"]").getAttribute(a));
+  $("saRes").addEventListener("click",async e=>{const t=e.target;const doc=(a)=>{const id=t.closest("["+a+"]").getAttribute(a);return saState.docs.find(x=>x.id===id)};const st=$("saStatus");
     if(t.closest("[data-sazoom]")){t.classList.toggle("big");return}
-    if(t.closest("[data-saretry]")){const x=it("data-saretry");if(x&&x.img)saRead(x);return}
-    if(t.closest("[data-sadel]")){const x=it("data-sadel");saState.items=saState.items.filter(y=>y!==x);renderSa();return}
-    if(t.closest("[data-sacopy]")){const nr=t.closest("[data-sacopy]").getAttribute("data-sacopy"),ta=document.querySelector(`[data-sajson="${nr}"]`);if(!ta)return;
+    if(t.closest("[data-saretry]")){const x=doc("data-saretry");if(!x)return;const fb=($("saFb-"+x.id)||{}).value||"";
+      const nu=new Date().toISOString(),d={bestand:x.bestand,status:"wachtrij",aangemaakt_op:x.aangemaakt_op,bijlage:true,opnieuw_op:nu};
+      if(fb.trim())d.feedback=fb.trim().slice(0,500);else if(x.feedback)d.feedback=x.feedback;
+      if(x.resultaat)d.vorig_resultaat=x.resultaat;
+      try{await db.collection(ST_COLL).doc(x.id).set(d);st.className="status ok";st.textContent=`"${x.bestand}" staat opnieuw in de wachtrij. Start de taak opnieuw.`}catch(err){st.className="status err";st.textContent=err.message}return}
+    if(t.closest("[data-sadel]")){const x=doc("data-sadel");if(!x||!confirm(`"${x.bestand}" verwijderen?`))return;
+      try{await db.collection(ST_COLL).doc(x.id).delete();await db.collection(BIJ_COLL).doc("st-"+x.id).delete().catch(()=>{})}catch(err){st.className="status err";st.textContent=err.message}return}
+    if(t.closest("[data-sacopy]")){const id=t.closest("[data-sacopy]").getAttribute("data-sacopy"),ta=document.querySelector(`[data-sajson="${id}"]`);if(!ta)return;
       const ok=()=>{t.textContent="Gekopieerd";setTimeout(()=>{t.textContent="Kopieer JSON"},1500)};
       if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(ta.value).then(ok,()=>{ta.closest("details").open=true;ta.select()});else{ta.closest("details").open=true;ta.select()}}})})();
 $("aRows").addEventListener("click",e=>{const b=e.target.closest("[data-imgdel]");if(!b)return;syncReqRows();const i=+b.dataset.imgdel;if(state.aRows[i])delete state.aRows[i].img;renderReqRows();const f=document.querySelector(`#aRows [data-row="${i}"] .aImg`);if(f)f.focus()});
