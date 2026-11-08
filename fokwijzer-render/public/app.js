@@ -1020,11 +1020,11 @@ function warnHtml(r){return r.warnings.length?'<div class="chips" style="margin-
 const p1=(f)=>(f*100).toLocaleString("nl-BE",{maximumFractionDigits:1})+"%";
 function bloodHtml(b){const parts=[["xx","volbloed (xx)"],["ox","Arabisch volbloed (ox)"],["aa","Anglo-Arabier (AA)"]].filter(([k])=>b[k]>=.0005);
   return parts.length?parts.map(([k,l])=>`<span><span class="num" style="font-weight:600">${p1(b[k])}</span> ${l}</span>`).join('<span class="muted" aria-hidden="true"> · </span>'):'<span class="muted">geen volbloed in de bekende stamboom</span>'}
-function coiHtml(c){const Fp=c.F*100,lvl=Fp>=state.t.max?"bad":Fp>=KWPN_COI?"warn":"good";
+function coiHtml(c,titel){const Fp=c.F*100,lvl=Fp>=state.t.max?"bad":Fp>=KWPN_COI?"warn":"good";
   const row=(e)=>`<tr><th scope="row">${esc(e.naam)}</th><td class="num">${e.gv.join(", ")} x ${e.gm.join(", ")}</td><td class="num">${e.paden.length}</td><td class="num">${e.bijdrage<.00005?"&lt;0,01%":pct(e.bijdrage)}</td></tr>`;
   const head='<thead><tr><th>Voorouder</th><th>Generatie (vader x moeder)</th><th>Paden</th><th>Bijdrage</th></tr></thead>';
   const top=c.common.slice(0,12),rest=c.common.slice(12);
-  return `<h3 style="margin-top:16px">Inteelt van het veulen</h3>
+  return `<h3 style="margin-top:16px">${titel||"Inteelt van het veulen"}</h3>
     <p style="margin:4px 0"><span class="num" style="font-weight:600;font-size:1.3em">${pct(c.F)}</span> <span class="chip ${lvl}">${Fp>=KWPN_COI?"boven":"onder"} het KWPN-advies van ${fn(KWPN_COI)}%</span></p>
     <p class="small muted" style="margin:2px 0 8px">(Wright, ${c.gens} generaties, ${c.known} van ${c.total} voorouders bekend)</p>
     ${c.full<c.gens?`<p class="small muted" style="margin:0 0 8px">Volledig bekend tot generatie ${c.full}. Voorouders die ontbreken kunnen inteelt verbergen, dus het echte percentage kan hoger liggen.</p>`:""}
@@ -1032,23 +1032,25 @@ function coiHtml(c){const Fp=c.F*100,lvl=Fp>=state.t.max?"bad":Fp>=KWPN_COI?"war
       ${rest.length?`<details style="margin-top:6px"><summary class="small">Nog ${rest.length} voorouders met een kleinere bijdrage</summary><div class="tablewrap" style="margin-top:6px"><table class="coi-tab">${head}<tbody>${rest.map(row).join("")}</tbody></table></div></details>`:""}
       <p class="small muted" style="margin:6px 0 0">Generatie 1 zijn de ouders, 2 de grootouders, enzovoort. "4 x 5" betekent dat de voorouder in de 4de generatie langs vaderskant en in de 5de langs moederskant staat.</p>`
      :'<p class="small muted" style="margin:0">Geen gemeenschappelijke voorouders gevonden in de bekende stamboom.</p>'}`}
-function foalFactsHtml(s,m){const vl=[s.naam].concat(lineOf(s,"v")),ml=[m.naam].concat(lineOf(m,"m"));
+function foalFactsHtml(s,m,kinId,stamId){kinId=kinId||"fkKin";if(stamId===undefined)stamId=m.id;const vl=[s.naam].concat(lineOf(s,"v")),ml=[m.naam].concat(lineOf(m,"m"));
   const rh=byName(ml[ml.length-1]),st=rh?stamOf(rh):"";const chain=(a)=>a.map(esc).join(' <span class="muted" aria-hidden="true">›</span> ');
   return `<div class="foal-facts">
     <div><div class="label">Bloedpercentage</div><div>${bloodHtml(foalBlood(s,m))}</div><div class="small muted">Aandeel volbloed in de bekende stamboom, tot ${COI_GEN} generaties.</div></div>
-    <div><div class="label">Verwantschap met de populatie</div><div id="fkKin"><span class="small muted">Wordt berekend...</span></div></div>
+    <div><div class="label">Verwantschap met de populatie</div><div id="${esc(kinId)}"><span class="small muted">Wordt berekend...</span></div></div>
     <div><div class="label">Vaderlijn</div><div class="small">${chain(vl)}</div></div>
-    <div><div class="label">Moederlijn</div><div class="small">${chain(ml)}${st?` <span class="chip">stam ${esc(st)}</span>`:""}</div>${FW_EXTRA.stamlijnen?`<button type="button" class="btn ghost" data-stamvan="${esc(m.id)}" style="margin-top:6px;padding:4px 10px;font-size:13px">Bekijk de stamlijn</button>`:""}</div>
+    <div><div class="label">Moederlijn</div><div class="small">${chain(ml)}${st?` <span class="chip">stam ${esc(st)}</span>`:""}</div>${FW_EXTRA.stamlijnen&&stamId?`<button type="button" class="btn ghost" data-stamvan="${esc(stamId)}" style="margin-top:6px;padding:4px 10px;font-size:13px">Bekijk de stamlijn</button>`:""}</div>
   </div>`}
 // De verwantschap vraagt honderden berekeningen: na het tonen van de pagina, en bewaard per combinatie.
-function fillFoalKin(s,m){const P=population();P.foal=P.foal||new Map();const key=s.id+"|"+m.id;
-  const show=(r)=>{const e=$("fkKin");if(!e||$("cS").value!==s.id||$("cM").value!==m.id)return;
+// Toont de verwantschap in vak elId; geldig() zegt of het vak nog bij dezelfde ouders hoort.
+function kinVak(elId,s,m,key,geldig){const P=population();P.foal=P.foal||new Map();
+  const show=(r)=>{const e=$(elId);if(!e||!geldig())return;
     if(!r){e.innerHTML='<span class="small muted">Te weinig paarden met een bekende stamboom om dit te berekenen.</span>';return}
     const rel=r.mean?r.kin/r.mean:null,lab=rel==null?null:rel<.85?["unieker dan gemiddeld","good"]:rel>1.15?["meer verwant dan gemiddeld","warn"]:["ongeveer gemiddeld",""];
     e.innerHTML=`<span class="num" style="font-weight:600">${pct(r.kin)}</span> ${lab?`<span class="chip ${lab[1]}">${lab[0]}</span>`:""}
       <div class="small muted">Gemiddelde verwantschap met ${r.n} paarden uit de database, geboren in de laatste 20 jaar${r.mean!=null?` (onderling gemiddeld ${pct(r.mean)})`:""}. Zoveel inteelt krijgt een veulen gemiddeld als je dit paard later met een van hen kruist: lager is unieker. Berekend over ${KIN_GEN} generaties.</div>`};
   if(P.foal.has(key)){show(P.foal.get(key));return}
-  setTimeout(()=>{if($("cS").value!==s.id||$("cM").value!==m.id)return;const r=foalKin(s,m);P.foal.set(key,r);show(r)},30)}
+  setTimeout(()=>{if(!geldig())return;const r=foalKin(s,m);P.foal.set(key,r);show(r)},30)}
+function fillFoalKin(s,m){kinVak("fkKin",s,m,s.id+"|"+m.id,()=>$("cS").value===s.id&&$("cM").value===m.id)}
 
 function renderCompare(){const s=byId($("cS").value),m=byId($("cM").value);
   if(!s||!m){$("cmpOut").innerHTML='<div class="card empty">Kies een hengst en een merrie om ze naast elkaar te zetten.</div>';renderCouncil(null,null);return}
@@ -1300,6 +1302,17 @@ async function saAdd(files){const st=$("saStatus");const list=[...files].filter(
     catch(e){fouten.push((f.name||"afbeelding")+": "+(e.message||"mislukt"))}}
   st.className="status"+(fouten.length?" err":" ok");
   st.textContent=(ok?`${ok} afbeelding(en) in de wachtrij. Start nu de taak "Fokwijzer: stamboom uit afbeelding"; het resultaat verschijnt hier vanzelf.`:"")+(fouten.length?" Niet gelukt: "+fouten.join("; "):"")}
+// Ouders van een gelezen stamboom als (tijdelijke) paarden: wat op de afbeelding staat gaat voor,
+// de rest komt uit het record op de site als dat bestaat.
+function saParent(sb,side){const n=sb[side];if(!n)return null;const rec=byName(n),st={};
+  PED_KEYS.forEach(k=>{if(k.length<=2&&sb[side+k])st[k]=sb[side+k]});
+  return{id:"__sap"+side,naam:n,geslacht:side==="v"?"hengst":"merrie",stamboom:Object.assign({},rec&&rec.stamboom||{},st)}}
+function saAfstHtml(t,v){const sb=v.stamboom||{},s=saParent(sb,"v"),m=saParent(sb,"m");if(!s||!m)return"";
+  const c=coi(s,m),dam=byName(m.naam),kinId="saKin-"+t.id,key="sa|"+t.id+"|"+(t.verwerkt_op||"");
+  setTimeout(()=>kinVak(kinId,s,m,key,()=>!!$(kinId)),0);
+  return `<details class="card sa-afst" style="margin-top:10px" open><summary><b>Afstamming</b> <span class="small muted">inteelt ${pct(c.F)} &middot; ${p1(foalBlood(s,m).xx)} volbloed</span></summary>
+    <p class="small muted" style="margin:6px 0 0">Berekend uit de gelezen stamboom, aangevuld met de stambomen op de site.</p>
+    ${foalFactsHtml(s,m,kinId,dam?dam.id:"")}${coiHtml(c,"Inteelt van dit paard")}</details>`}
 function saVoorstel(r){const p=r.paard||{},sb={},aangepast={};
   PED_KEYS.forEach(k=>{const v=(r.stamboom||{})[k];if(!v)return;const m=saMatch(v);if(m&&m.naam!==v)aangepast[k]={gelezen:v,site:m.naam};sb[k]=m?m.naam:v});
   const pm=saMatch(p.naam);
@@ -1333,6 +1346,7 @@ function saItemHtml(t){saLoadImg(t.id);const src=saState.img[t.id];
     </div></div>
     <div class="sa-grid"><div class="pc-wrap">${pedCardSlot(h)}</div>
     <div><div class="tablewrap"><table class="sa-tab"><thead><tr><th></th><th>Positie</th><th>Gelezen</th><th>Op de site</th></tr></thead><tbody>${rows}</tbody></table></div></div></div>
+    ${saAfstHtml(t,v)}
     <div class="row" style="gap:6px;margin-top:8px;align-items:flex-end"><div class="field grow"><label class="label" for="saFb-${esc(t.id)}">Klopt er iets niet? Zeg wat (bv. "MV en MM zijn omgewisseld") en laat opnieuw lezen</label><input id="saFb-${esc(t.id)}" maxlength="500" placeholder="Wat ging er fout?"></div><button class="btn ghost" type="button" data-saretry="${esc(t.id)}">Opnieuw laten lezen</button></div>
     <details style="margin-top:8px"><summary class="small">JSON (voorstel in Fokwijzer-formaat en wat de agent las)</summary><textarea class="sa-json" readonly data-sajson="${esc(t.id)}">${esc(JSON.stringify(exp,null,2))}</textarea></details>`}
 function renderSa(){const box=$("saRes");if(!box)return;saListen();
