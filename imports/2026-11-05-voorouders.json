@@ -1,0 +1,325 @@
+{
+ "formaat": "fokwijzer-export",
+ "datum": "2026-11-05",
+ "collecties": {
+  "paarden": {
+   "276321210174990": {
+    "naam": "Lancer III",
+    "naam_varianten": [
+     "Falkenhof's Lancer"
+    ],
+    "geslacht": "hengst",
+    "geboortejaar": 1990,
+    "stamboek": "Holsteiner",
+    "ueln": "276321210174990",
+    "stokmaat_cm": 168,
+    "stamboom": {
+     "v": "Landgraf I",
+     "m": "Inula",
+     "vv": "Ladykiller xx",
+     "vm": "Warthburg",
+     "mv": "Fantus",
+     "mm": "Nachtblume"
+    },
+    "bronnen": [
+     {
+      "naam": "Rimondo, Lancer III (Falkenhof's Lancer)",
+      "url": "https://www.rimondo.com/en/horse-details/296873/lancer-iiilancer-iii",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Sportnaam Falkenhof's Lancer. Moeder op de bron ook als Hinula vermeld.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05"
+   },
+   "courville-xx": {
+    "naam": "Courville xx",
+    "geslacht": "hengst",
+    "stamboom": {
+     "v": "Fair Trial xx",
+     "m": "Plouvien xx"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Renville, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05",
+    "verrijken": true
+   },
+   "godavari-xx": {
+    "naam": "Godavari xx",
+    "geslacht": "hengst",
+    "stamboom": {
+     "v": "Parole Board xx",
+     "m": "Gruschowka xx"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Contara, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05",
+    "verrijken": true
+   },
+   "grosso-z-1983": {
+    "naam": "Grosso Z",
+    "geslacht": "hengst",
+    "geboortejaar": 1983,
+    "stamboek": "Hannoveraner",
+    "stokmaat_cm": 168,
+    "stamboom": {
+     "v": "Goliath II Z",
+     "m": "Füchsin",
+     "vv": "Graf Gotthard Z",
+     "vm": "Heureka Z",
+     "mv": "Furioso II",
+     "mm": "Lissabon"
+    },
+    "bronnen": [
+     {
+      "naam": "HW Farm, Grosso Z",
+      "url": "https://hwfarm.com/Stallions/urls/grosso_z.htm",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Bron is een dekstationpagina (lagere betrouwbaarheid); stokmaat circa 168 cm.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05"
+   },
+   "cyrus": {
+    "naam": "Cyrus",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Almé Z, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05",
+    "verrijken": true
+   },
+   "tin-rod-xx": {
+    "naam": "Tin Rod xx",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Felici, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "status": "enkel_kaarten",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05",
+    "verrijken": true
+   },
+   "coriander-1982": {
+    "naam": "Coriander",
+    "geslacht": "hengst",
+    "geboortejaar": 1982,
+    "stamboek": "Holsteiner",
+    "stamboom": {
+     "v": "Coriolan",
+     "m": "Primadonna",
+     "vv": "Calypso II",
+     "vm": "Inderin",
+     "mv": "Constant",
+     "mm": "Ilka 3"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Coupe de Coeur",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/28557-coupe-de-coeur/6",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Alleen naam, jaar en stamboek uit de stamboom van Coupe de Coeur; ouders volgens kaarten.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05"
+   },
+   "foerster": {
+    "naam": "Förster",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Duellfest, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "status": "enkel_kaarten",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05",
+    "verrijken": true
+   },
+   "forstweihe": {
+    "naam": "Forstweihe",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Duellfest, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "status": "enkel_kaarten",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05",
+    "verrijken": true
+   },
+   "cicero-z-van-paemel-2000": {
+    "naam": "Cicero Z van Paemel",
+    "geslacht": "hengst",
+    "geboortejaar": 2000,
+    "stamboek": "Zangersheide",
+    "stamboom": {
+     "v": "Carthago",
+     "m": "Rendez-Vous van Paemel",
+     "vv": "Capitol I",
+     "vm": "Perra",
+     "mv": "Randel Z",
+     "mm": "Granie"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Cicero Z van Paemel",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/49835",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Op de kaart staat vader als Carthago Z; Hippomundo noemt Carthago (Holst, 1987). Grootouders door Hippomundo afgeleid uit de stamboomstructuur.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05"
+   },
+   "futurist-i": {
+    "naam": "Futurist I",
+    "geslacht": "hengst",
+    "stamboom": {
+     "v": "Flak",
+     "m": "Christinchen"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Frustra II, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05",
+    "verrijken": true
+   },
+   "chaccos-lued": {
+    "naam": "Chaccos-Lüd",
+    "naam_varianten": [
+     "Chaccos-Lued"
+    ],
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Chacco-Blue",
+     "m": "Lancley",
+     "vv": "Chambertin",
+     "vm": "MoM's Contara",
+     "mv": "Falkenhof's Lancer",
+     "mm": "Pia Power N"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Conthalou, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden. m: ook Lanclei I",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05",
+    "verrijken": true
+   },
+   "kimberly-iii": {
+    "naam": "Kimberly III",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Contender",
+     "m": "Option"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Dinken, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "status": "enkel_kaarten",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05",
+    "verrijken": true
+   },
+   "chicago-i-z-1999": {
+    "naam": "Chicago I Z",
+    "geslacht": "hengst",
+    "geboortejaar": 1999,
+    "stamboek": "Zangersheide",
+    "stamboom": {
+     "v": "Caretano Z",
+     "m": "Calipa Z"
+    },
+    "bronnen": [
+     {
+      "naam": "Poolse stamboekdatabase PZHK, Chicago I Z",
+      "url": "https://baza.pzhk.pl/en/horse/id/736605.html",
+      "datum": "2026-11-05"
+     }
+    ],
+    "opmerking": "Fokvergunning Z502899. Grootouders volgens bron: Caretino, Caletto II (vaderskant) en Cor de la Bryere, Ratina Z (moederskant); volgorde per positie niet zeker, daarom niet ingevuld.",
+    "naam_varianten": [
+     "Chicago I"
+    ],
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-05"
+   }
+  },
+  "systeem": {
+   "voorouders": {
+    "laatste_run": "2026-11-05T12:00:00+01:00",
+    "kandidaten_totaal": 2877,
+    "toegevoegd": 14,
+    "met_online_bron": 5,
+    "enkel_uit_kaarten": 9,
+    "alias": 0,
+    "nog_te_doen": 2863,
+    "samenvatting": "Vierde run: 14 nieuwe paarden toegevoegd met record_status te_controleren (5 met online bron, 9 enkel uit kaarten). Van de 100 geselecteerde kandidaten werden er 86 niet opgezocht omdat de zoekresultaten geen bruikbare snippets gaven; zij volgen in een volgende run."
+   }
+  }
+ }
+}

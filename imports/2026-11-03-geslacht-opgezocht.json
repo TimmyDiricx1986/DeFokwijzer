@@ -1,0 +1,147 @@
+{
+ "formaat": "fokwijzer-export",
+ "datum": "2026-11-03",
+ "modus": "aanvullen",
+ "collecties": {
+  "paarden": {
+   "pia-bb": {
+    "geslacht": "merrie",
+    "stamboom": {},
+    "bronnen": [
+     {
+      "naam": "Holsteiner Verband, lot Körung en Elite-Reitpferdeauktion 2025 (lot 122)",
+      "url": "https://holsteiner-verband.de/en/vermarktung/news/55-holsteiner-koerung-und-eliteauktion-das-lot-der-reitpferde-ist-online",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "jalisca-2022": {
+    "geslacht": "merrie",
+    "stamboom": {},
+    "bronnen": [
+     {
+      "naam": "Holsteiner Verband, Frühjahrsauktion 2025 lotpagina Jalisca",
+      "url": "https://holsteiner.auction/auctions/holsteiner-fruehjahrsauktion-2025/jalisca",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Geboren 6 april 2022.",
+    "verrijken_weg": false
+   },
+   "david-will-2018": {
+    "geslacht": "merrie",
+    "stamboom": {},
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Bron noemt haar Stolzenberg/Compliment-Tochter; zevenjarig Bundeschampion.",
+    "verrijken_weg": true
+   },
+   "nashira-dlh-2023": {
+    "stamboek": "Selle Français",
+    "geslacht": "merrie",
+    "stamboom": {},
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Catalogus: jument gris SF, 3 jaar.",
+    "verrijken_weg": true
+   },
+   "total-unique-2020": {
+    "geslacht": "hengst",
+    "stamboom": {},
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Nieuwsbron noemt hem colt van Tobago Z; ruin niet uitgesloten.",
+    "verrijken_weg": false
+   },
+   "made-in-des-forets": {
+    "geslacht": "hengst",
+    "stamboom": {},
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Bron noemt hem 'fils' (mannelijk); hengst of ruin niet vermeld.",
+    "verrijken_weg": true
+   },
+   "chuck": {
+    "geslacht": "hengst",
+    "stamboom": {},
+    "bronnen": [
+     {
+      "naam": "Holsteiner Verband, 55. Holsteiner Körung und Eliteauktion, lot Reitpferde",
+      "url": "https://holsteiner-verband.de/en/vermarktung/news/55-holsteiner-koerung-und-eliteauktion-das-lot-der-reitpferde-ist-online",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Ruin.",
+    "verrijken_weg": false
+   },
+   "ninkasi-dlh-2023": {
+    "geslacht": "hengst",
+    "stamboom": {},
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Volgens de veilingcatalogus mannelijk (mâle), lot 22.",
+    "verrijken_weg": true
+   },
+   "charakterdame": {
+    "geslacht": "merrie",
+    "stamboom": {},
+    "bronnen": [
+     {
+      "naam": "Holsteiner Frühjahrsauktion 2025, Charakterdame E",
+      "url": "https://holsteiner.auction/auctions/holsteiner-fruehjahrsauktion-2025/charakterdame-e",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Afwijking: stamboek volgens bron: Holsteiner (in record: Holsteiner Verband).",
+    "verrijken_weg": false
+   },
+   "austin": {
+    "geboortejaar": 2021,
+    "geslacht": "hengst",
+    "stamboom": {},
+    "bronnen": [
+     {
+      "naam": "Holsteiner Frühjahrsauktion 2025, Austin",
+      "url": "https://holsteiner.auction/auctions/holsteiner-fruehjahrsauktion-2025/austin",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Ruin.",
+    "verrijken_weg": true
+   },
+   "conthalido-2023": {
+    "geslacht": "hengst",
+    "stamboom": {},
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Vermeld als zoon van Conthargos/Calido, drie jaar oud; hengst of ruin niet gespecificeerd.",
+    "verrijken_weg": true
+   },
+   "four-seasons-s-sa-z": {
+    "geboortejaar": 2021,
+    "geslacht": "hengst",
+    "stamboom": {},
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Ruin.",
+    "verrijken_weg": true
+   },
+   "diamond": {
+    "geboortejaar": 2022,
+    "geslacht": "hengst",
+    "stamboom": {},
+    "bronnen": [
+     {
+      "naam": "Holsteiner Frühjahrsauktion 2025, lot Diamond",
+      "url": "https://holsteiner.auction/auctions/holsteiner-fruehjahrsauktion-2025/diamond",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Ruin.",
+    "verrijken_weg": true
+   },
+   "276431319836020": {
+    "geslacht": "merrie",
+    "stamboom": {},
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Vermeld als dochter van United Touch S, zesjarig.",
+    "verrijken_weg": false
+   }
+  }
+ }
+}

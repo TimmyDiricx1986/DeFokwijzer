@@ -1,0 +1,158 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "aanvragen",
+ "datum": "2026-11-04",
+ "collecties": {
+  "aanvragen": {
+   "5517e827a1433d64e09a": {
+    "status": "klaar",
+    "verwerkt_op": "2026-11-04T11:55:39+01:00",
+    "verwerkt_voor": "5517e827a1433d64e09a|2026-11-04T10:33:21.903Z",
+    "voorstel": {
+     "naam": "J-Nius V.V. Z",
+     "naam_varianten": [
+      "J-Nius",
+      "J-nius Z",
+      "J-Nius VV Z"
+     ],
+     "geslacht": "hengst",
+     "geboortejaar": 2019,
+     "stamboek": "Zangersheide",
+     "ueln": "056015Z55279019",
+     "stokmaat_cm": 168,
+     "stamboom": {
+      "v": "Little Indian",
+      "m": "U-Toppie V.V. Z",
+      "vv": "Startrek",
+      "vm": "Charlene",
+      "mv": "Ugano Sitte",
+      "mm": "N-Ergie V.V.",
+      "vvv": "Quick Star",
+      "vvm": "Grafin",
+      "vmv": "Limbo",
+      "vmm": "Bonnie",
+      "mvv": "Clinton",
+      "mvm": "Ialta Sitte",
+      "mmv": "Chacco-Blue",
+      "mmm": "Ligie"
+     },
+     "wffs": "N/N",
+     "ocd": "onbekend",
+     "bronnen": [
+      {
+       "naam": "Horsetelex stamboompagina (link van gebruiker), niet leesbaar",
+       "url": "https://www.horsetelex.nl/horses/pedigree/2066358/j-nius-v-v-z",
+       "datum": "2026-11-04"
+      },
+      {
+       "naam": "Zangersheide hengstenpagina J-Nius V.V. Z",
+       "url": "https://www.zangersheide.com/en/stallions/j-nius-v-v-z",
+       "datum": "2026-11-04"
+      },
+      {
+       "naam": "Zwitsers stamboek, stamboom Little Indian",
+       "url": "https://studbook.cheval-suisse.com/documents/21100-little-indian-pedigree-fr.pdf",
+       "datum": "2026-11-04"
+      },
+      {
+       "naam": "Zwitsers stamboek, stamboom Startrek",
+       "url": "https://studbook.cheval-suisse.com/documents/21102-startrek-pedigree-fr.pdf",
+       "datum": "2026-11-04"
+      },
+      {
+       "naam": "ClipMyHorse.TV paardprofiel",
+       "url": "https://www.clipmyhorse.tv/en_EU/horse/a9aa52a9-7e93-4371-baf5-e222e53c18cb",
+       "datum": "2026-11-04"
+      },
+      {
+       "naam": "WellGrove Breeders",
+       "url": "https://wellgrovebreeders.com/options/j-nius-z/",
+       "datum": "2026-11-04"
+      }
+     ],
+     "herkomst": {
+      "naam": [
+       1,
+       4
+      ],
+      "geslacht": 4,
+      "geboortejaar": [
+       1,
+       4,
+       5
+      ],
+      "stamboek": [
+       1,
+       4
+      ],
+      "ueln": 1,
+      "stokmaat_cm": 1,
+      "wffs": [
+       1,
+       5
+      ],
+      "stamboom.v": [
+       1,
+       2,
+       4
+      ],
+      "stamboom.m": 4,
+      "stamboom.vv": [
+       1,
+       2,
+       3
+      ],
+      "stamboom.vm": [
+       1,
+       2
+      ],
+      "stamboom.mv": [
+       1,
+       4
+      ],
+      "stamboom.mm": 4,
+      "stamboom.vvv": [
+       1,
+       3,
+       4
+      ],
+      "stamboom.vvm": [
+       1,
+       3
+      ],
+      "stamboom.vmv": [
+       1,
+       2,
+       4
+      ],
+      "stamboom.vmm": [
+       1,
+       2
+      ],
+      "stamboom.mvv": 1,
+      "stamboom.mvm": 1,
+      "stamboom.mmv": [
+       1,
+       4
+      ],
+      "stamboom.mmm": [
+       1,
+       4,
+       5
+      ]
+     },
+     "opmerking": "Leopard-gekleurde hengst, geboren 22-05-2019. Geen eigen sportresultaten gevonden. Moeder U-Toppie V.V. Z overleed kort na zijn geboorte (ClipMyHorse). Grootmoeder N-Ergie V.V. sprong 1.35 m.",
+     "record_status": "te_controleren"
+    },
+    "conflicten": [
+     "Paard staat al op de site (id 056015z55279019). Nieuw: volledige stamboom van 14 posities, UELN, stokmaat 168 cm, WFFS-vrij, stamboek.",
+     "Gevonden onder de naam J-Nius V.V. Z (aangevraagd: J-nius Z).",
+     "Link van gebruiker (Horsetelex) kon niet gelezen worden; Horsetelex, Hippomundo, Rimondo en sporthorse-data gaven een fout.",
+     "Stokmaat: Zangersheide 168 cm, ClipMyHorse 167 cm; Zangersheide (stamboek) gevolgd.",
+     "ClipMyHorse noemt Little Indian ook 'officieel Just in Time'; niet bevestigd door het Zwitsers stamboek.",
+     "Clinton en Ialta Sitte (ouders van Ugano Sitte) enkel uit het stamboomblok van Zangersheide, positie niet eenduidig gelezen; komt overeen met de site."
+    ]
+   }
+  }
+ }
+}

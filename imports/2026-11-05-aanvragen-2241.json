@@ -1,0 +1,25 @@
+{
+  "formaat": "fokwijzer-export",
+  "modus": "aanvragen",
+  "datum": "2026-11-05",
+  "collecties": {
+    "aanvragen": {
+      "944b620904a2a19c7afc": {
+        "status": "niet_gevonden",
+        "verwerkt_op": "2026-11-05T22:41:02+01:00",
+        "verwerkt_voor": "944b620904a2a19c7afc|2026-11-05T21:38:48.284Z",
+        "agent_notitie": "Geen paard met de naam Alasca Zwartepannenhof (ook niet als Alaska, v/h of vh Zwartepannenhof) gevonden in zoekresultaten. Hippomundo- en Horsetelex-pagina's waren in deze run niet leesbaar. Andere paarden van fokkerij Zwartepannenhof bestaan wel (bv. Whisky v/h Zwartepannenhof, Missy vh Zwartepannenhof, Kiara Zwartepannenhof). De afbeelding van de aanvrager kwam niet mee (repository openbaar). Graag een link, geboortejaar of ouders opgeven. Op de site staat geen paard met deze naam.",
+        "kandidaten": [
+          {
+            "naam": "Alasca Z",
+            "bron": "https://www.horsetelex.nl/horses/pedigree/2018464/alasca-z"
+          },
+          {
+            "naam": "Alasca",
+            "bron": "https://www.horsetelex.de/horses/pedigree/3286/alasca"
+          }
+        ]
+      }
+    }
+  }
+}

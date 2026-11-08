@@ -1,0 +1,3704 @@
+[
+{
+"kaartpaard": "Palina",
+"kandidaten": [
+{
+"doc_id": "palina",
+"naam": "Palina",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Clarcon",
+"v": "Zuccero"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Palina",
+"stamboom": {
+"mv": "Clarcon",
+"v": "Zuccero"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot 125 in de Holsteiner Elite-Reitpferdeauktion Elmshorn (11-12-2025), afstamming Zuccero x Clarcon, verkocht voor 25.000 euro naar Zweden. Geslacht en geboortejaar niet vermeld in de resultatenlijst. Niet nagegaan of deze Zuccero dezelfde is als 'Zuccero HV' uit de bestaande namen.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Ofelia Enghøj",
+"kandidaten": [
+{
+"doc_id": "ofelia-enghj",
+"naam": "Ofelia Enghøj",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Uriko",
+"v": "Charaktervoll"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Ofelia Enghøj",
+"stamboom": {
+"mv": "Uriko",
+"v": "Charaktervoll"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 106, zuschlag 49.000 EUR.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Leopold Levi",
+"kandidaten": [
+{
+"doc_id": "leopold-levi",
+"naam": "Leopold Levi",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Leopold Levi",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht, geboortejaar en afstamming niet vermeld in de prijslijst.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Olina",
+"kandidaten": [
+{
+"doc_id": "olina",
+"naam": "Olina",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Dinken",
+"v": "Cornet Obolensky"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Olina",
+"stamboom": {
+"mv": "Dinken",
+"v": "Cornet Obolensky"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 112, zuschlag 38.500 EUR (koper Colombia).",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Thiago MR",
+"kandidaten": [
+{
+"doc_id": "thiago-mr",
+"naam": "Thiago MR",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Vagabond de la Pomme",
+"v": "Tobago Z"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Thiago MR",
+"stamboom": {
+"mv": "Vagabond de la Pomme",
+"v": "Tobago Z"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf (prijslijst)",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot 63; geslacht en geboortejaar niet vermeld.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Olana N",
+"kandidaten": [
+{
+"doc_id": "olana-n",
+"naam": "Olana N",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Caretino",
+"v": "Crack"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Olana N",
+"stamboom": {
+"mv": "Caretino",
+"v": "Crack"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Elite-Reitpferdeauktion Elmshorn 11/12/2025 (resultatenlijst)",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geboortejaar niet vermeld in de resultatenlijst; vermoedelijk jong rijpaard (3 tot 5 jaar), niet bevestigd.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Jolly Rock Queen HJD",
+"kandidaten": [
+{
+"doc_id": "jolly-rock-queen-hjd-2019",
+"naam": "Jolly Rock Queen HJD",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2019,
+"stamboek": null,
+"stamboom_bekend": {
+"v": "Untouchable"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://equnews.nl/article/showjumping/850000-euro-voor-zevenjarige-jolly-rock-queen-hjd"
+],
+"record": {
+"naam": "Jolly Rock Queen HJD",
+"stamboom": {
+"v": "Untouchable"
+},
+"geboortejaar": 2019,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Equnews (Tops International Auction 2026)",
+"url": "https://equnews.nl/article/showjumping/850000-euro-voor-zevenjarige-jolly-rock-queen-hjd"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Zevenjarige, geveild voor 850.000 euro; geslacht niet vermeld (naam 'Queen' doet merrie vermoeden, niet bevestigd), daarom weggelaten. Moeder en moedersvader onbekend.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Airforce",
+"kandidaten": [
+{
+"doc_id": "airforce",
+"naam": "Airforce",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Vdl Zirocco Blue",
+"v": "Airplane"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Airforce",
+"stamboom": {
+"mv": "Vdl Zirocco Blue",
+"v": "Airplane"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf (prijslijst)",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot 57; geslacht en geboortejaar niet vermeld in de prijslijst. Verrijkingspoging 18-10-2026: niets gevonden (Horsetelex toont geen Airforce v. Airplane).",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Ancelotti 3",
+"kandidaten": [
+{
+"doc_id": "ancelotti-3-2020",
+"naam": "Ancelotti 3",
+"naam_varianten": [
+"Ancelotti"
+],
+"geslacht": null,
+"geboortejaar": 2020,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"m": "D-Catalania",
+"mv": "Calido",
+"v": "All Star 5"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/pedigree/2662340/ancelotti-3",
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Ancelotti 3",
+"stamboom": {
+"m": "D-Catalania",
+"mv": "Calido",
+"v": "All Star 5"
+},
+"stamboek": "Holsteiner",
+"geboortejaar": 2020,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Horsetelex Ancelotti 3",
+"url": "https://www.horsetelex.com/horses/pedigree/2662340/ancelotti-3"
+},
+{
+"datum": "2026-10-18",
+"naam": "39. Holsteiner Frühjahrsauktion Elmshorn, resultatenlijst",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Horsetelex: Ancelotti 3, 2020, Holsteiner Verband, All Star 5 x D-Catalania (Calido); past bij het veilinglot All Star x Calido I. Officiële schrijfwijze met volgnummer '3' volgens Horsetelex. Geslacht niet gevonden."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Utopia",
+"kandidaten": [
+{
+"doc_id": "utopia",
+"naam": "Utopia",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"m": "Vonia D",
+"mm": "Lonia D",
+"mv": "Camillus",
+"v": "Abgar xx",
+"vm": "Karadja xx",
+"vv": "Abernant xx"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "stamboom (voorouders)",
+"bron_urls": [
+"https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+"https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+"https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b"
+],
+"record": {
+"naam": "Utopia",
+"stamboom": {
+"m": "Vonia D",
+"mm": "Lonia D",
+"mv": "Camillus",
+"v": "Abgar xx",
+"vm": "Karadja xx",
+"vv": "Abernant xx"
+},
+"bronnen": [
+{
+"datum": "2026-11-02",
+"naam": "Stamboom van Manhattan, De Fokwijzer",
+"url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b"
+},
+{
+"datum": "2026-11-02",
+"naam": "Stamboom van Proud Vittoria, De Fokwijzer",
+"url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b"
+},
+{
+"datum": "2026-11-02",
+"naam": "Stamboom van Cavalier, De Fokwijzer",
+"url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b"
+}
+],
+"opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden. Geslacht tegenstrijdig in stamboomkaarten (als vader en als moeder vermeld); niet ingevuld. Kaarten tonen verschillende namen op positie v: Abgar xx, Andiamo Z; gekozen: Abgar xx.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Color Lady",
+"kandidaten": [
+{
+"doc_id": "color-lady",
+"naam": "Color Lady",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Cassini I",
+"v": "Casall"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Color Lady",
+"stamboom": {
+"mv": "Cassini I",
+"v": "Casall"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Holsteiner Verband, Ergebnisliste 39. Frühjahrsauktion Elmshorn 2025",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot op de 39. Holsteiner Frühjahrsauktion Elmshorn (29-03-2025), v. Casall x mv. Cassini I; geboortejaar en geslacht niet in de lotgegevens. Mogelijk dezelfde als een ehorses-advertentie van een 3-jarige Holsteiner merrie in Klein Nordende, maar die pagina was niet meer beschikbaar; niet bevestigd. Verrijkingspoging 19-10-2026: niets gevonden.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Che Guevara Dacora",
+"kandidaten": [
+{
+"doc_id": "276431316403820",
+"naam": "Che Guevara Dacora",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2020,
+"stamboek": "Hannoveraner Verband",
+"stamboom_bekend": {
+"m": "Cosimone",
+"mv": "Cornet's Stern",
+"v": "Central Park"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/search?name=Che+Guevara+Dacora",
+"https://www.hannoveraner.com/app/uploads/2026/01/PM-10-2025-Verdener-Auktion-im-April-Ergebnis.pdf"
+],
+"record": {
+"naam": "Che Guevara Dacora",
+"stamboom": {
+"m": "Cosimone",
+"mv": "Cornet's Stern",
+"v": "Central Park"
+},
+"stamboek": "Hannoveraner Verband",
+"geboortejaar": 2020,
+"ueln": "276431316403820",
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Horsetelex zoekresultaat",
+"url": "https://www.horsetelex.com/horses/search?name=Che+Guevara+Dacora"
+},
+{
+"datum": "2026-10-17",
+"naam": "Hannoveraner Verband persbericht Verdener Auktion april 2025",
+"url": "https://www.hannoveraner.com/app/uploads/2026/01/PM-10-2025-Verdener-Auktion-im-April-Ergebnis.pdf"
+}
+],
+"opmerking": "Horsetelex vermeldt levensnummer DE431316403820; UELN afgeleid als 276431316403820 (DE = 276), te controleren. Geslacht nergens vermeld, daarom weggelaten. Fokker Dr. Corinna Kröly (Wedemark); geveild als springpaard op de Verdener Auktion april 2025 voor 20.000 euro. Identiteit past bij veilinggegevens (vader Central Park, moedersvader Cornet's Stern)."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Pia BB",
+"kandidaten": [
+{
+"doc_id": "pia-bb",
+"naam": "Pia BB",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Casall",
+"v": "Keaton I"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Pia BB",
+"stamboom": {
+"mv": "Casall",
+"v": "Keaton I"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Elite-Reitpferdeauktion Elmshorn 11/12/2025 (resultatenlijst)",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geboortejaar niet vermeld in de resultatenlijst; vermoedelijk jong rijpaard (3 tot 5 jaar), niet bevestigd.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Chuck",
+"kandidaten": [
+{
+"doc_id": "chuck",
+"naam": "Chuck",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2021,
+"stamboek": "Holsteiner Verband",
+"stamboom_bekend": {
+"mv": "Claudio",
+"v": "Cahil"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf",
+"https://www.horsetelex.com/horses/pedigree/2737612/chuck"
+],
+"record": {
+"naam": "Chuck",
+"stamboom": {
+"mv": "Claudio",
+"v": "Cahil"
+},
+"stamboek": "Holsteiner Verband",
+"geboortejaar": 2021,
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+},
+{
+"datum": "2026-10-19",
+"naam": "Horsetelex zoekresultaten 'Chuck'",
+"url": "https://www.horsetelex.com/horses/pedigree/2737612/chuck"
+}
+],
+"opmerking": "Horsetelex (zoekresultatenlijst): Chuck, geboren 2021, Holsteiner Verband, v. Cahil, mv. Claudio; komt overeen met de veilingdata (Holsteiner Elite-Reitpferdeauktion 11/12/2025, lot 102, zuschlag 175.000 EUR). Geslacht en moeder niet zichtbaar in de resultatenlijst; detailpagina niet geraadpleegd."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "First Charming",
+"kandidaten": [
+{
+"doc_id": "first-charming",
+"naam": "First Charming",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Cornet Obolensky",
+"v": "Stakkato Gold"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "First Charming",
+"stamboom": {
+"mv": "Cornet Obolensky",
+"v": "Stakkato Gold"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht onbekend in prijslijst.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Jalisca",
+"kandidaten": [
+{
+"doc_id": "jalisca-2022",
+"naam": "Jalisca",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2022,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"m": "F-Cayadina S",
+"mv": "Cayado",
+"v": "Jasper"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/search?name=Jalisca",
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Jalisca",
+"stamboom": {
+"m": "F-Cayadina S",
+"mv": "Cayado",
+"v": "Jasper"
+},
+"stamboek": "Holsteiner",
+"geboortejaar": 2022,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Horsetelex zoekresultaten",
+"url": "https://www.horsetelex.com/horses/search?name=Jalisca"
+},
+{
+"datum": "2026-10-18",
+"naam": "39. Holsteiner Frühjahrsauktion Elmshorn, resultatenlijst",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Horsetelex vermeldt een Holsteiner Jalisca (2022) v. Jasper uit F-Cayadina S v. Cayado, wat exact past bij het lot (Jasper x Cayado). Geslacht staat niet op de bron (naam wijst op merrie, niet bevestigd)."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Cornatie",
+"kandidaten": [
+{
+"doc_id": "cornatie",
+"naam": "Cornatie",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "MW Chap I",
+"v": "Cornato"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Cornatie",
+"stamboom": {
+"mv": "MW Chap I",
+"v": "Cornato"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar niet vermeld in de prijslijst (catalogusnr. 61). Verrijkingspoging 19-10-2026: niets gevonden.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Castlefield Olympia",
+"kandidaten": [
+{
+"doc_id": "castlefield-olympia",
+"naam": "Castlefield Olympia",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2019,
+"stamboek": "Oldenburg International",
+"stamboom_bekend": {
+"m": "London's Bella",
+"mv": "Glock's London",
+"v": "Chacoon Blue"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://equnews.nl/article/showjumping/850000-euro-voor-zevenjarige-jolly-rock-queen-hjd",
+"https://www.horsetelex.com/horses/pedigree/2897594/castlefield-olympia"
+],
+"record": {
+"naam": "Castlefield Olympia",
+"stamboom": {
+"m": "London's Bella",
+"mv": "Glock's London",
+"v": "Chacoon Blue"
+},
+"stamboek": "Oldenburg International",
+"geboortejaar": 2019,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Equnews (veiling Tops International Auction 2026)",
+"url": "https://equnews.nl/article/showjumping/850000-euro-voor-zevenjarige-jolly-rock-queen-hjd"
+},
+{
+"datum": "2026-10-19",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/pedigree/2897594/castlefield-olympia"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht, geboortejaar en moederlijn onbekend; Horsetelex gaf een 429. Verrijking 19-10-2026: Horsetelex: Castlefield Olympia, geboren 2019, OS (Oldenburg International), v. Chacoon Blue uit London's Bella (mv Glock's London); enige treffer met deze naam en vader. Geslacht niet vermeld."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Kaline de la Maison",
+"kandidaten": [
+{
+"doc_id": "kaline-de-la-maison-2020",
+"naam": "Kaline de la Maison",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2020,
+"stamboek": "Selle Français",
+"stamboom_bekend": {
+"m": "Rose de la Poulinière",
+"mv": "Kéops du Vinnebus",
+"v": "Contendro I"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/pedigree/2586286/kaline-de-la-maison"
+],
+"record": {
+"naam": "Kaline de la Maison",
+"stamboom": {
+"m": "Rose de la Poulinière",
+"mv": "Kéops du Vinnebus",
+"v": "Contendro I"
+},
+"stamboek": "Selle Français",
+"geboortejaar": 2020,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/pedigree/2586286/kaline-de-la-maison"
+}
+],
+"opmerking": "Afstamming (Contendro I x Kéops du Vinnebus) komt overeen met de veiling (vader daar als Contendro geschreven). Geslacht niet vermeld in Horsetelex en niet in de veilingdata, daarom weggelaten."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Contivo",
+"kandidaten": [
+{
+"doc_id": "contivo",
+"naam": "Contivo",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Cassito",
+"v": "Conthalou"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Contivo",
+"stamboom": {
+"mv": "Cassito",
+"v": "Conthalou"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar niet vermeld in de prijslijst (lot sportpaard). Verrijkingspoging 19-10-2026: niets gevonden.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Shakira M",
+"kandidaten": [
+{
+"doc_id": "shakira-m",
+"naam": "Shakira M",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": "Zangersheide",
+"stamboom_bekend": {
+"mv": "Mylord Carthago",
+"v": "Conthargos"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://grandprix.info/fr/156817/Les-Ventes-Elite-Fences-confirment-leur-belle-dynamique/"
+],
+"record": {
+"naam": "Shakira M",
+"stamboom": {
+"mv": "Mylord Carthago",
+"v": "Conthargos"
+},
+"stamboek": "Zangersheide",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Grand Prix - Ventes Elite Fences 2026",
+"url": "https://grandprix.info/fr/156817/Les-Ventes-Elite-Fences-confirment-leur-belle-dynamique/"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar niet vermeld in de veilingdata (geslacht daarom weggelaten). Stamboek Z volgens het veilingverslag. Horsetelex gaf een 429 en werd niet meer gebruikt.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "David Will",
+"kandidaten": [
+{
+"doc_id": "david-will-2018",
+"naam": "David Will",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2018,
+"stamboek": "Hannoveraner",
+"stamboom_bekend": {
+"mv": "Compliment",
+"v": "Stolzenberg"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.hannoveraner.com/app/uploads/2026/01/PM-36-2025-High-Level-Auktion_Ergebnis.pdf"
+],
+"record": {
+"naam": "David Will",
+"stamboom": {
+"mv": "Compliment",
+"v": "Stolzenberg"
+},
+"stamboek": "Hannoveraner",
+"geboortejaar": 2018,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Verdener High Level Auktion (Herbst)",
+"url": "https://www.hannoveraner.com/app/uploads/2026/01/PM-36-2025-High-Level-Auktion_Ergebnis.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht niet bevestigd door een bron, daarom weggelaten. Moeder niet vermeld in de veilingdata.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Ninkasi DLH",
+"kandidaten": [
+{
+"doc_id": "ninkasi-dlh-2023",
+"naam": "Ninkasi DLH",
+"naam_varianten": [
+"NINKASI DLH"
+],
+"geslacht": null,
+"geboortejaar": 2023,
+"stamboek": null,
+"stamboom_bekend": {
+"m": "Jolygirl de la Hayette",
+"mv": "Ogrion des Champs",
+"v": "Freud de Kreisker"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.fencesweb.com/impression-catalogue.html?i=151"
+],
+"record": {
+"naam": "Ninkasi DLH",
+"stamboom": {
+"m": "Jolygirl de la Hayette",
+"mv": "Ogrion des Champs",
+"v": "Freud de Kreisker"
+},
+"geboortejaar": 2023,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Fences Web - Vente du Haras DLH 2026",
+"url": "https://www.fencesweb.com/impression-catalogue.html?i=151"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht niet bevestigd door een bron en daarom weggelaten (catalogusdata vermelden hengst). Moeder in catalogus: Jolygirl Dela Hayette SF.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Conthalido",
+"kandidaten": [
+{
+"doc_id": "conthalido-2023",
+"naam": "Conthalido",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2023,
+"stamboek": "Hannoveraner Verband",
+"stamboom_bekend": {
+"m": "Calina",
+"mv": "Calido",
+"v": "Conthargos"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/search?name=Conthalido",
+"https://westfalenpferde.de/en/westphalia-news/article/n/80000-euro-fuer-dynamic-dream-sohn-start-ins-westfaelische-auktionsjahr-2026/"
+],
+"record": {
+"naam": "Conthalido",
+"stamboom": {
+"m": "Calina",
+"mv": "Calido",
+"v": "Conthargos"
+},
+"stamboek": "Hannoveraner Verband",
+"geboortejaar": 2023,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/search?name=Conthalido"
+},
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Winter-Auktion",
+"url": "https://westfalenpferde.de/en/westphalia-news/article/n/80000-euro-fuer-dynamic-dream-sohn-start-ins-westfaelische-auktionsjahr-2026/"
+}
+],
+"opmerking": "Horsetelex vermeldt twee Conthalido's: 2020 (Conthargos x Costa Rico, moedersvader Conthargos) en 2023 (Conthargos x Calina, moedersvader Calido). Alleen de 2023-versie past bij de veiling (moedersvader Calido). Geslacht en UELN niet vermeld. Verrijkingspoging 19-10-2026: niets gevonden.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Crysanth",
+"kandidaten": [
+{
+"doc_id": "crysanth",
+"naam": "Crysanth",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "L'Ami",
+"v": "Cellestial"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Crysanth",
+"stamboom": {
+"mv": "L'Ami",
+"v": "Cellestial"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar niet vermeld in de prijslijst (lot sportpaard).",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Charakterdame E",
+"kandidaten": [
+{
+"doc_id": "charakterdame",
+"naam": "Charakterdame E",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2022,
+"stamboek": "Holsteiner Verband",
+"stamboom_bekend": {
+"mv": "Cancara",
+"v": "Charaktervoll"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf",
+"https://www.horsetelex.com/horses/pedigree/2605857/charakterdame-e"
+],
+"record": {
+"naam": "Charakterdame E",
+"stamboom": {
+"mv": "Cancara",
+"v": "Charaktervoll"
+},
+"stamboek": "Holsteiner Verband",
+"geboortejaar": 2022,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Holsteiner Verband, Ergebnisliste 39. Frühjahrsauktion Elmshorn 2025",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+},
+{
+"datum": "2026-10-19",
+"naam": "Horsetelex: Charakterdame E",
+"url": "https://www.horsetelex.com/horses/pedigree/2605857/charakterdame-e"
+}
+],
+"opmerking": "Lot op de 39. Holsteiner Frühjahrsauktion Elmshorn (29-03-2025), v. Charaktervoll x mv. Cancara. Horsetelex (zoekresultaat) toont 'Charakterdame E', 2022, v. Charaktervoll x mv. Cancara, Holsteiner Verband; vader en moedersvader passen, daarom als officiële naam overgenomen (het achtervoegsel E ontbreekt in de veilinglijst). Het daar getoonde levensnummer DE421000249122 telt geen 15 tekens en is niet als UELN overgenomen. Geslacht niet vermeld op de zoekpagina; naam wijst op een merrie."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Orit",
+"kandidaten": [
+{
+"doc_id": "orit",
+"naam": "Orit",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"mv": "Lordanos",
+"v": "Casall"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Orit",
+"stamboom": {
+"mv": "Lordanos",
+"v": "Casall"
+},
+"stamboek": "Holsteiner",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "39. Holsteiner Frühjahrsauktion Elmshorn, resultatenlijst",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht onbekend en daarom weggelaten; stamboek Holsteiner afgeleid uit de veiling van de Holsteiner Verband.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Nashira DLH",
+"kandidaten": [
+{
+"doc_id": "nashira-dlh-2023",
+"naam": "Nashira DLH",
+"naam_varianten": [
+"NASHIRA DLH"
+],
+"geslacht": null,
+"geboortejaar": 2023,
+"stamboek": null,
+"stamboom_bekend": {
+"m": "Flagada des Champs",
+"mv": "Ogrion des Champs",
+"v": "Conthargos"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.fencesweb.com/impression-catalogue.html?i=151"
+],
+"record": {
+"naam": "Nashira DLH",
+"stamboom": {
+"m": "Flagada des Champs",
+"mv": "Ogrion des Champs",
+"v": "Conthargos"
+},
+"geboortejaar": 2023,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Fences Web - Vente du Haras DLH 2026",
+"url": "https://www.fencesweb.com/impression-catalogue.html?i=151"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht niet bevestigd door een bron en daarom weggelaten (catalogusdata vermelden merrie).",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Chico",
+"kandidaten": [
+{
+"doc_id": "chico",
+"naam": "Chico",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Quintero",
+"v": "Crack"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Chico",
+"stamboom": {
+"mv": "Quintero",
+"v": "Crack"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Holsteiner Verband, Ergebnisliste 39. Frühjahrsauktion Elmshorn 2025",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot op de 39. Holsteiner Frühjahrsauktion Elmshorn (29-03-2025), v. Crack x mv. Quintero; geboortejaar en geslacht niet in de lotgegevens. Verrijkingspoging 19-10-2026: niets gevonden (geen stamboompagina gevonden.)",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Pretty Girl",
+"kandidaten": [
+{
+"doc_id": "pretty-girl",
+"naam": "Pretty Girl",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Leovisto",
+"v": "For Carsten"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Pretty Girl",
+"stamboom": {
+"mv": "Leovisto",
+"v": "For Carsten"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Elite-Reitpferdeauktion Elmshorn 11/12/2025 (resultatenlijst)",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geboortejaar niet vermeld in de resultatenlijst; vermoedelijk jong rijpaard (3 tot 5 jaar), niet bevestigd.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Livingston",
+"kandidaten": [
+{
+"doc_id": "livingston",
+"naam": "Livingston",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"mv": "Cornet Obolensky",
+"v": "Livello"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Livingston",
+"stamboom": {
+"mv": "Cornet Obolensky",
+"v": "Livello"
+},
+"stamboek": "Holsteiner",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Holsteiner Verband, Ergebnisliste 39. Frühjahrsauktion Elmshorn",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot 112 (Livello x Cornet Obolensky), 17.000 euro, land Kolumbien. Geslacht en geboortejaar niet vermeld.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Crack and Carry",
+"kandidaten": [
+{
+"doc_id": "crack-and-carry",
+"naam": "Crack and Carry",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"mv": "Cash and Carry",
+"v": "Crack"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Crack and Carry",
+"stamboom": {
+"mv": "Cash and Carry",
+"v": "Crack"
+},
+"stamboek": "Holsteiner",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "39. Holsteiner Frühjahrsauktion Elmshorn, resultatenlijst",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar onbekend.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Papagena",
+"kandidaten": [
+{
+"doc_id": "papagena",
+"naam": "Papagena",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Unlimited",
+"v": "Chinchero"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Papagena",
+"stamboom": {
+"mv": "Unlimited",
+"v": "Chinchero"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 110, zuschlag 18.000 EUR.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Hulapalu",
+"kandidaten": [
+{
+"doc_id": "hulapalu",
+"naam": "Hulapalu",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "White Quidams Rubin",
+"v": "Hickstead"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Hulapalu",
+"stamboom": {
+"mv": "White Quidams Rubin",
+"v": "Hickstead"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht onbekend in prijslijst.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Aureon",
+"kandidaten": [
+{
+"doc_id": "aureon",
+"naam": "Aureon",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Cornet's Prinz",
+"v": "Armison"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://grandprix.info/fr/156817/Les-Ventes-Elite-Fences-confirment-leur-belle-dynamique/"
+],
+"record": {
+"naam": "Aureon",
+"stamboom": {
+"mv": "Cornet's Prinz",
+"v": "Armison"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "GrandPrix.info - Fences Ventes Elite 2026",
+"url": "https://grandprix.info/fr/156817/Les-Ventes-Elite-Fences-confirment-leur-belle-dynamique/"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Bron vermeldt enkel 'Aureon (OS, Armison x Cornet's Prinz)'; geslacht en geboortejaar onbekend, stamboek vermoedelijk Oldenburg Springpferde (OS). Verkocht voor meer dan 60.000 euro. Verrijkingspoging 19-10-2026: niets gevonden.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Airborne H Z",
+"kandidaten": [
+{
+"doc_id": "airborne-h-z-2019",
+"naam": "Airborne H Z",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2019,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Scendix",
+"v": "Airforce SBK Z"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://equnews.nl/article/showjumping/850000-euro-voor-zevenjarige-jolly-rock-queen-hjd",
+"https://www.horsetelex.com/horses/pedigree/2686262/airborne-h-z"
+],
+"record": {
+"naam": "Airborne H Z",
+"stamboom": {
+"mv": "Scendix",
+"v": "Airforce SBK Z"
+},
+"geboortejaar": 2019,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Equnews, Tops International Auction 2026",
+"url": "https://equnews.nl/article/showjumping/850000-euro-voor-zevenjarige-jolly-rock-queen-hjd"
+},
+{
+"datum": "2026-10-18",
+"naam": "Horsetelex - Airborne H Z",
+"url": "https://www.horsetelex.com/horses/pedigree/2686262/airborne-h-z"
+}
+],
+"opmerking": "Horsetelex kent Airborne H Z, geboren 2019, v. Airforce SBK Z, mv. Scendix; past bij de veilinggegevens. Geslacht ook daar niet vermeld. Stamboompagina zelf niet opgehaald, dus geen verdere voorouders, UELN of FEI ID."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Up to Trouble D'Ive",
+"kandidaten": [
+{
+"doc_id": "up-to-trouble-d-ive",
+"naam": "Up to Trouble D'Ive",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"m": "Fun For 2 D'Ive Z",
+"mm": "My True Blue D'Ive Z",
+"mmm": "True Star D'Ive",
+"mmv": "Mr. Blue",
+"mv": "For Pleasure",
+"mvm": "Gigantin",
+"mvv": "Furioso II",
+"v": "Pegase van 't Ruytershof",
+"vm": "Gianthina van 't Ruytershof",
+"vmm": "Diamanthina v/h Ruytershof",
+"vmv": "Cartani",
+"vv": "Comme il Faut",
+"vvm": "Ratina Z",
+"vvv": "Cornet Obolensky"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.365-auctions.com/en/auctions/the-sport-freejump-collection-iv/up-to-trouble-d-ive"
+],
+"record": {
+"naam": "Up to Trouble D'Ive",
+"stamboom": {
+"m": "Fun For 2 D'Ive Z",
+"mm": "My True Blue D'Ive Z",
+"mmm": "True Star D'Ive",
+"mmv": "Mr. Blue",
+"mv": "For Pleasure",
+"mvm": "Gigantin",
+"mvv": "Furioso II",
+"v": "Pegase van 't Ruytershof",
+"vm": "Gianthina van 't Ruytershof",
+"vmm": "Diamanthina v/h Ruytershof",
+"vmv": "Cartani",
+"vv": "Comme il Faut",
+"vvm": "Ratina Z",
+"vvv": "Cornet Obolensky"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "365-auctions: The Sport & Freejump Collection IV",
+"url": "https://www.365-auctions.com/en/auctions/the-sport-freejump-collection-iv/up-to-trouble-d-ive"
+}
+],
+"opmerking": "Enkel veilingcatalogus (lotpagina). Geslacht vermeld als 'Unborn': waarschijnlijk een ongeboren veulen/embryo, dus geslacht en geboortejaar onbekend (de vermelde stokmaat 172 cm en kleur donkerbruin horen dan vermoedelijk bij de moeder). Stamboomposities afgeleid uit de volgorde van de ongelabelde voorouderlijst (moederlijn begint bij Fun For 2 D'Ive Z, met For Pleasure als moedersvader, wat klopt met de veilinggegevens); controle aanbevolen.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Noblesse",
+"kandidaten": [
+{
+"doc_id": "noblesse",
+"naam": "Noblesse",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Calido I",
+"v": "Diarado"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Noblesse",
+"stamboom": {
+"mv": "Calido I",
+"v": "Diarado"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Elite-Reitpferdeauktion Elmshorn 11/12/2025 (resultatenlijst)",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geboortejaar niet vermeld in de resultatenlijst; vermoedelijk jong rijpaard (3 tot 5 jaar), niet bevestigd.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Bonita",
+"kandidaten": [
+{
+"doc_id": "bonita",
+"naam": "Bonita",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Cellestial",
+"v": "Benthen's Balou"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Bonita",
+"stamboom": {
+"mv": "Cellestial",
+"v": "Benthen's Balou"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar niet vermeld in de prijslijst (lot sportpaard). Generieke naam. Verrijkingspoging 19-10-2026: niets gevonden.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Total Unique",
+"kandidaten": [
+{
+"doc_id": "total-unique-2020",
+"naam": "Total Unique",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2020,
+"stamboek": "Hannoveraner Verband",
+"stamboom_bekend": {
+"m": "Very Important",
+"mv": "Vigo d'Arsouilles",
+"v": "Tobago Z"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/search?name=Total Unique",
+"https://reitturniere.de/news/04102026-total-unique-avanciert-zur-preisspitze-vechta"
+],
+"record": {
+"naam": "Total Unique",
+"stamboom": {
+"m": "Very Important",
+"mv": "Vigo d'Arsouilles",
+"v": "Tobago Z"
+},
+"stamboek": "Hannoveraner Verband",
+"geboortejaar": 2020,
+"bronnen": [
+{
+"datum": "2026-10-19",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/search?name=Total Unique"
+},
+{
+"datum": "2026-10-19",
+"naam": "Reitturniere.de (veilingbericht Vechta)",
+"url": "https://reitturniere.de/news/04102026-total-unique-avanciert-zur-preisspitze-vechta"
+}
+],
+"opmerking": "Horsetelex: Total Unique (2020, Hannoveraner) v. Tobago Z uit Very Important v. Vigo d'Arsouilles, past bij de veilinggegevens (Oldenburger Herbst-Elite-Auktion). Geslacht niet vermeld in de bronnen. UELN op Horsetelex (DE431316735020) telt geen 15 tekens en is weggelaten."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Miramar Mail",
+"kandidaten": [
+{
+"doc_id": "miramar-mail",
+"naam": "Miramar Mail",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"m": "Hanisha Mail",
+"mv": "Diamant de Semilly",
+"v": "Mylord Carthago"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://grandprix.info/fr/111802/Les-trenteseptiemes-ventes-Elite-Fences-sachevent-en-fanfare-a-BoisleRoi/"
+],
+"record": {
+"naam": "Miramar Mail",
+"stamboom": {
+"m": "Hanisha Mail",
+"mv": "Diamant de Semilly",
+"v": "Mylord Carthago"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Grand Prix (Fences Ventes Élite 2025)",
+"url": "https://grandprix.info/fr/111802/Les-trenteseptiemes-ventes-Elite-Fences-sachevent-en-fanfare-a-BoisleRoi/"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar onbekend in de veilinggegevens; Horsetelex gaf een 429.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Four Seasons's SA Z",
+"kandidaten": [
+{
+"doc_id": "four-seasons-s-sa-z",
+"naam": "Four Seasons's SA Z",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Acord II",
+"v": "For Pleasure"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.365-auctions.com/en/auctions/the-sport-freejump-collection-iv"
+],
+"record": {
+"naam": "Four Seasons's SA Z",
+"stamboom": {
+"mv": "Acord II",
+"v": "For Pleasure"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "365-auctions: The Sport & Freejump Collection IV",
+"url": "https://www.365-auctions.com/en/auctions/the-sport-freejump-collection-iv"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Een ClipMyHorse-advertentie 'Four Season's SA Z' bestaat maar kon niet gelezen worden. Geslacht in de veiling onbekend.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Quinsky Guy",
+"kandidaten": [
+{
+"doc_id": "quinsky-guy",
+"naam": "Quinsky Guy",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Quintender",
+"v": "Cornet Obolensky"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Quinsky Guy",
+"stamboom": {
+"mv": "Quintender",
+"v": "Cornet Obolensky"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht onbekend in prijslijst.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Austin",
+"kandidaten": [
+{
+"doc_id": "austin",
+"naam": "Austin",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"mv": "Chin Champ",
+"v": "Amber"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Austin",
+"stamboom": {
+"mv": "Chin Champ",
+"v": "Amber"
+},
+"stamboek": "Holsteiner",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "39. Holsteiner Frühjahrsauktion Elmshorn, resultatenlijst",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht onbekend en daarom weggelaten; stamboek Holsteiner afgeleid uit de veiling van de Holsteiner Verband. Verrijkingspoging 19-10-2026: niets gevonden.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Virtuos",
+"kandidaten": [
+{
+"doc_id": "virtuos",
+"naam": "Virtuos",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Diarado",
+"v": "Vingino"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Virtuos",
+"stamboom": {
+"mv": "Diarado",
+"v": "Vingino"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar niet vermeld in de prijslijst (catalogusnr. 69).",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Malone",
+"kandidaten": [
+{
+"doc_id": "malone",
+"naam": "Malone",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "VDL Stakkato",
+"v": "VDL Impressive"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Malone",
+"stamboom": {
+"mv": "VDL Stakkato",
+"v": "VDL Impressive"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf (prijslijst)",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot 53, vader en moedersvader uit de prijslijst (VDL Impressive x VDL Stakkato); geslacht en geboortejaar niet vermeld in de prijslijst. Generieke naam, identiteit niet bevestigd.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Wovita van het Bildeken",
+"kandidaten": [
+{
+"doc_id": "wovita-van-het-bildeken",
+"naam": "Wovita van het Bildeken",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Chacoon Blue",
+"v": "United Touch S"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.spring-reiter.de/en/?p=86809"
+],
+"record": {
+"naam": "Wovita van het Bildeken",
+"stamboom": {
+"mv": "Chacoon Blue",
+"v": "United Touch S"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Horse Auction Belgium (Sentower Park)",
+"url": "https://www.spring-reiter.de/en/?p=86809"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar onbekend.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Qasicello",
+"kandidaten": [
+{
+"doc_id": "qasicello",
+"naam": "Qasicello",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Diamant de Semilly",
+"v": "Qatar (BEL) Z"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Qasicello",
+"stamboom": {
+"mv": "Diamant de Semilly",
+"v": "Qatar (BEL) Z"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar niet vermeld in de prijslijst (catalogusnr. 67). In de PDF-tekst staat de 'Z' los tussen vader en moedersvader; aangenomen als 'Qatar (BEL) Z'.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Carlo",
+"kandidaten": [
+{
+"doc_id": "carlo",
+"naam": "Carlo",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Con Air",
+"v": "Christian's Chacco"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Carlo",
+"stamboom": {
+"mv": "Con Air",
+"v": "Christian's Chacco"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 111, zuschlag 32.000 EUR. Niet hetzelfde paard als Carlos Z (2001, v. Carthago): andere naam, vader en leeftijd. Verrijkingspoging 19-10-2026: niets gevonden (Zoekopdracht gaf geen pagina over dit paard; Horsetelex gaf HTTP 429.)",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Lascar Proosthof",
+"kandidaten": [
+{
+"doc_id": "lascar-proosthof-2019",
+"naam": "Lascar Proosthof",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2019,
+"stamboek": "AES",
+"stamboom_bekend": {
+"m": "Oruna Z",
+"mv": "Ovatio",
+"v": "Lector van den Bisschop"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/pedigree/2086090/lascar-proosthof",
+"https://www.365-auctions.com/en/auctions/the-sport-freejump-collection-iv"
+],
+"record": {
+"naam": "Lascar Proosthof",
+"stamboom": {
+"m": "Oruna Z",
+"mv": "Ovatio",
+"v": "Lector van den Bisschop"
+},
+"stamboek": "AES",
+"geboortejaar": 2019,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/pedigree/2086090/lascar-proosthof"
+},
+{
+"datum": "2026-10-18",
+"naam": "365-auctions: The Sport & Freejump Collection IV",
+"url": "https://www.365-auctions.com/en/auctions/the-sport-freejump-collection-iv"
+}
+],
+"opmerking": "Horsetelex: Anglo European Studbook, 2019, Lector van den Bisschop x Oruna Z (Ovatio). Past bij de veilinggegevens. Geslacht niet vermeld (veiling: onbekend)."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Calistro",
+"kandidaten": [
+{
+"doc_id": "calistro",
+"naam": "Calistro",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Diarado",
+"v": "Conthargos"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Calistro",
+"stamboom": {
+"mv": "Diarado",
+"v": "Conthargos"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Holsteiner Verband, Ergebnisliste 39. Frühjahrsauktion Elmshorn 2025",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot op de 39. Holsteiner Frühjahrsauktion Elmshorn (29-03-2025), v. Conthargos x mv. Diarado; geboortejaar en geslacht niet in de lotgegevens. Verrijkingspoging 19-10-2026: niets gevonden (websearch zonder bron die dit lot identificeert; Horsetelex gaf HTTP 429.)",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Cullinan M",
+"kandidaten": [
+{
+"doc_id": "cullinan-m",
+"naam": "Cullinan M",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Quintero",
+"v": "Cash and Carry"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Cullinan M",
+"stamboom": {
+"mv": "Quintero",
+"v": "Cash and Carry"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 104, zuschlag 24.500 EUR (koper Colombia).",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Dynamexx",
+"kandidaten": [
+{
+"doc_id": "dynamexx-2022",
+"naam": "Dynamexx",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2022,
+"stamboek": null,
+"stamboom_bekend": {
+"m": "Karthaga",
+"mv": "Numero Uno",
+"v": "Diamant de Semilly"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/pedigree/2637664/dynamexx",
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Dynamexx",
+"stamboom": {
+"m": "Karthaga",
+"mv": "Numero Uno",
+"v": "Diamant de Semilly"
+},
+"geboortejaar": 2022,
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/pedigree/2637664/dynamexx"
+},
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Elite-Reitpferdeauktion Elmshorn 11/12/2025 (resultatenlijst)",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Gegevens uit Horsetelex-zoekresultaten (v. Diamant de Semilly uit Karthaga v. Numero Uno), past bij de veiling; volledige stamboompagina niet geraadpleegd. Geslacht niet vermeld in de bron."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Titus",
+"kandidaten": [
+{
+"doc_id": "titus",
+"naam": "Titus",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Chaman",
+"v": "Tangelo van de Zuuthoeve"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Titus",
+"stamboom": {
+"mv": "Chaman",
+"v": "Tangelo van de Zuuthoeve"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar niet vermeld in de prijslijst (lot sportpaard). Generieke naam; in veiling vader geschreven als VL Tangelo vd Zuuthoeve.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "For You N",
+"kandidaten": [
+{
+"doc_id": "for-you-n-2021",
+"naam": "For You N",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2021,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"m": "Westkueste N",
+"mv": "Quadrigo",
+"v": "For Treasure VDL"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/search?name=For You N",
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "For You N",
+"stamboom": {
+"m": "Westkueste N",
+"mv": "Quadrigo",
+"v": "For Treasure VDL"
+},
+"stamboek": "Holsteiner",
+"geboortejaar": 2021,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Horsetelex zoekresultaten",
+"url": "https://www.horsetelex.com/horses/search?name=For You N"
+},
+{
+"datum": "2026-10-18",
+"naam": "39. Holsteiner Frühjahrsauktion Elmshorn, resultatenlijst",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Horsetelex vermeldt For You N (2021, Holsteiner) v. For Treasure VDL uit Westkueste N v. Quadrigo; past bij het lot (For Treasure x Quadrigo). Geslacht niet op de bron."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Pan Am",
+"kandidaten": [
+{
+"doc_id": "pan-am",
+"naam": "Pan Am",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Quebec",
+"v": "Diego de Semilly"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Pan Am",
+"stamboom": {
+"mv": "Quebec",
+"v": "Diego de Semilly"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Holsteiner Verband, Ergebnisliste 39. Frühjahrsauktion Elmshorn 2025",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot op de 39. Holsteiner Frühjahrsauktion Elmshorn (29-03-2025), v. Diego de Semilly x mv. Quebec; geboortejaar en geslacht niet in de lotgegevens.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "No Limit",
+"kandidaten": [
+{
+"doc_id": "no-limit",
+"naam": "No Limit",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Calido I",
+"v": "Cornet's Quaprice"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "No Limit",
+"stamboom": {
+"mv": "Calido I",
+"v": "Cornet's Quaprice"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 113, niet verkocht (zurück). Vader in de veiling geschreven als 'Cornet`s Quaprice'.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Dod'oz",
+"kandidaten": [
+{
+"doc_id": "dod-oz",
+"naam": "Dod'oz",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Nabab de Rêve",
+"v": "Dominator 2000 Z"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://grandprix.info/fr/111285/La-Deauville-Classic-Auction-etablit-de-nouveaux-records-pour-lagence-Fences/"
+],
+"record": {
+"naam": "Dod'oz",
+"stamboom": {
+"mv": "Nabab de Rêve",
+"v": "Dominator 2000 Z"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Grand Prix, Fences Deauville Classic Auction 2025",
+"url": "https://grandprix.info/fr/111285/La-Deauville-Classic-Auction-etablit-de-nouveaux-records-pour-lagence-Fences/"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar onbekend in de veiling.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Ultimas",
+"kandidaten": [
+{
+"doc_id": "ultimas",
+"naam": "Ultimas",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"mv": "Cassini I",
+"v": "Untouchable"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Ultimas",
+"stamboom": {
+"mv": "Cassini I",
+"v": "Untouchable"
+},
+"stamboek": "Holsteiner",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Holsteiner Verband, Ergebnisliste 39. Frühjahrsauktion Elmshorn",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot 116 (Untouchable x Cassini I), 19.000 euro, land Italien. Geslacht en geboortejaar niet vermeld.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Diamond",
+"kandidaten": [
+{
+"doc_id": "diamond",
+"naam": "Diamond",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Kannan",
+"v": "Diarado"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Diamond",
+"stamboom": {
+"mv": "Kannan",
+"v": "Diarado"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Holsteiner Verband, Ergebnisliste 39. Frühjahrsauktion Elmshorn 2025",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot op de 39. Holsteiner Frühjahrsauktion Elmshorn (29-03-2025), v. Diarado x mv. Kannan; geboortejaar en geslacht niet in de lotgegevens. Een zoekresultaat toonde een ehorses-advertentie van een 3-jarige Holsteiner ruin (167 cm, zwartbruin) in Klein Nordende bij deze afstamming, maar de pagina was niet meer beschikbaar; identiteit en geslacht niet bevestigd.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Musiala",
+"kandidaten": [
+{
+"doc_id": "musiala",
+"naam": "Musiala",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"mv": "Con Air",
+"v": "Million Dollar"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Musiala",
+"stamboom": {
+"mv": "Con Air",
+"v": "Million Dollar"
+},
+"stamboek": "Holsteiner",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "39. Holsteiner Frühjahrsauktion Elmshorn, resultatenlijst",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden (Horsetelex gaf een 429). Geslacht onbekend en daarom weggelaten; stamboek Holsteiner afgeleid uit de veiling van de Holsteiner Verband.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Thilly van het Lindehof",
+"kandidaten": [
+{
+"doc_id": "thilly-van-het-lindehof",
+"naam": "Thilly van het Lindehof",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "De Flor 111 Z",
+"v": "Amadeo van 't Vossenhof Z"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://grandprix.info/fr/111285/La-Deauville-Classic-Auction-etablit-de-nouveaux-records-pour-lagence-Fences/"
+],
+"record": {
+"naam": "Thilly van het Lindehof",
+"stamboom": {
+"mv": "De Flor 111 Z",
+"v": "Amadeo van 't Vossenhof Z"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Grand Prix (veiling Fences Deauville)",
+"url": "https://grandprix.info/fr/111285/La-Deauville-Classic-Auction-etablit-de-nouveaux-records-pour-lagence-Fences/"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar onbekend in de veilinggegevens; Horsetelex gaf een 429.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "United Georgia",
+"kandidaten": [
+{
+"doc_id": "276431319836020",
+"naam": "United Georgia",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2020,
+"stamboek": "Hannoveraner Verband",
+"stamboom_bekend": {
+"m": "Glamour I",
+"mv": "Dinken",
+"v": "United Touch S"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/search?name=United Georgia",
+"https://westfalenpferde.de/en/westphalia-news/article/n/80000-euro-fuer-dynamic-dream-sohn-start-ins-westfaelische-auktionsjahr-2026/"
+],
+"record": {
+"naam": "United Georgia",
+"stamboom": {
+"m": "Glamour I",
+"mv": "Dinken",
+"v": "United Touch S"
+},
+"stamboek": "Hannoveraner Verband",
+"geboortejaar": 2020,
+"ueln": "276431319836020",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/search?name=United Georgia"
+},
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Winter-Auktion",
+"url": "https://westfalenpferde.de/en/westphalia-news/article/n/80000-euro-fuer-dynamic-dream-sohn-start-ins-westfaelische-auktionsjahr-2026/"
+}
+],
+"opmerking": "Horsetelex: Hannoveraner Verband 2020, United Touch S x Glamour I (Dinken); past bij de veiling (vader United Touch S, moedersvader Dinken). Geslacht niet vermeld in de bron."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Kingsley",
+"kandidaten": [
+{
+"doc_id": "kingsley",
+"naam": "Kingsley",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Diarado",
+"v": "Kingsroad"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Kingsley",
+"stamboom": {
+"mv": "Diarado",
+"v": "Kingsroad"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf (prijslijst)",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot 59; geslacht en geboortejaar niet vermeld.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Die Catrin",
+"kandidaten": [
+{
+"doc_id": "die-catrin",
+"naam": "Die Catrin",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Uriko",
+"v": "C&M Darkness"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Die Catrin",
+"stamboom": {
+"mv": "Uriko",
+"v": "C&M Darkness"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 101, zuschlag 32.500 EUR.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Chezzato D",
+"kandidaten": [
+{
+"doc_id": "chezzato-d",
+"naam": "Chezzato D",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Calato",
+"v": "Chezarro"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Chezzato D",
+"stamboom": {
+"mv": "Calato",
+"v": "Chezarro"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 107, zuschlag 24.000 EUR. Moedersvader staat als 'Calato' in de veiling; niet zeker of dit 'Calato Z' uit de bestaande namenlijst is, daarom ongewijzigd gelaten. Verrijkingspoging 19-10-2026: niets gevonden (geen stamboompagina gevonden.)",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Nayla",
+"kandidaten": [
+{
+"doc_id": "nayla",
+"naam": "Nayla",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Nekton",
+"v": "Shot Gun"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Nayla",
+"stamboom": {
+"mv": "Nekton",
+"v": "Shot Gun"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Elite-Reitpferdeauktion Elmshorn 11/12/2025 (resultatenlijst)",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geboortejaar niet vermeld in de resultatenlijst; vermoedelijk jong rijpaard (3 tot 5 jaar), niet bevestigd.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Peppa Pink S",
+"kandidaten": [
+{
+"doc_id": "peppa-pink-s-2022",
+"naam": "Peppa Pink S",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2022,
+"stamboek": null,
+"stamboom_bekend": {
+"m": "Brandy",
+"mv": "Contender",
+"v": "Diamant de Semilly"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/pedigree/2684257/peppa-pink-s",
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Peppa Pink S",
+"stamboom": {
+"m": "Brandy",
+"mv": "Contender",
+"v": "Diamant de Semilly"
+},
+"geboortejaar": 2022,
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/pedigree/2684257/peppa-pink-s"
+},
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Elite-Reitpferdeauktion Elmshorn 11/12/2025 (resultatenlijst)",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Gegevens uit Horsetelex-zoekresultaten (v. Diamant de Semilly uit Brandy v. Contender), past bij de veiling; volledige stamboompagina niet geraadpleegd. Geslacht niet vermeld in de bron."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Novastar Z",
+"kandidaten": [
+{
+"doc_id": "novastar-z-2023",
+"naam": "Novastar Z",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2023,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Baloubet du Rouet",
+"v": "New Pleasure VDL"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.365-auctions.com/en/auctions/the-sport-freejump-collection-iv"
+],
+"record": {
+"naam": "Novastar Z",
+"stamboom": {
+"mv": "Baloubet du Rouet",
+"v": "New Pleasure VDL"
+},
+"geboortejaar": 2023,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "365-auctions: The Sport & Freejump Collection IV",
+"url": "https://www.365-auctions.com/en/auctions/the-sport-freejump-collection-iv"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht niet vermeld in catalogus. Horsetelex gaf een 429 (rate limit).",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Toulouse de Regor",
+"kandidaten": [
+{
+"doc_id": "toulouse-de-regor-2023",
+"naam": "Toulouse de Regor",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2023,
+"stamboek": "KWPN",
+"stamboom_bekend": {
+"m": "Zita",
+"mv": "Lupicor",
+"v": "Mr. Cornet de Regor"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/search?name=Toulouse%20de%20Regor",
+"https://equnews.com/article/promo/paardenveilingonline-starts-2026-strong-83-sold-young-horses-up-to-eur28000"
+],
+"record": {
+"naam": "Toulouse de Regor",
+"stamboom": {
+"m": "Zita",
+"mv": "Lupicor",
+"v": "Mr. Cornet de Regor"
+},
+"stamboek": "KWPN",
+"geboortejaar": 2023,
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Horsetelex (zoekresultaat)",
+"url": "https://www.horsetelex.com/horses/search?name=Toulouse%20de%20Regor"
+},
+{
+"datum": "2026-10-17",
+"naam": "Paardenveilingonline voorjaarsveiling maart 2026 (Equnews)",
+"url": "https://equnews.com/article/promo/paardenveilingonline-starts-2026-strong-83-sold-young-horses-up-to-eur28000"
+}
+],
+"opmerking": "Horsetelex: 2023, KWPN, Mr. Cornet de Regor uit Zita (Lupicor), past bij de veiling. Geslacht onbekend (niet vermeld in veiling of bron)."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Monty du Barquet",
+"kandidaten": [
+{
+"doc_id": "monty-du-barquet-2022",
+"naam": "Monty du Barquet",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2022,
+"stamboek": "Selle Français",
+"stamboom_bekend": {
+"m": "Kinette DW",
+"mv": "Baloubet du Rouet",
+"v": "Chacoon Blue"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/pedigree/2715030/monty-du-barquet"
+],
+"record": {
+"naam": "Monty du Barquet",
+"stamboom": {
+"m": "Kinette DW",
+"mv": "Baloubet du Rouet",
+"v": "Chacoon Blue"
+},
+"stamboek": "Selle Français",
+"geboortejaar": 2022,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/pedigree/2715030/monty-du-barquet"
+}
+],
+"opmerking": "Afstamming komt exact overeen met de veiling. Geslacht niet vermeld in Horsetelex en niet in de veilingdata, daarom weggelaten."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Chinero",
+"kandidaten": [
+{
+"doc_id": "chinero",
+"naam": "Chinero",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Diamant de Semilly",
+"v": "Chinchero"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Chinero",
+"stamboom": {
+"mv": "Diamant de Semilly",
+"v": "Chinchero"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 109, zuschlag 25.000 EUR. Verrijkingspoging 19-10-2026: niets gevonden. Twee zoekopdrachten zonder resultaat; Horsetelex gaf HTTP 429.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Made in des Forêts",
+"kandidaten": [
+{
+"doc_id": "made-in-des-forets",
+"naam": "Made in des Forêts",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"m": "Haïcha des Forêts",
+"mv": "Balou du Rouet",
+"v": "Check In"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://grandprix.info/fr/111802/Les-trenteseptiemes-ventes-Elite-Fences-sachevent-en-fanfare-a-BoisleRoi/"
+],
+"record": {
+"naam": "Made in des Forêts",
+"stamboom": {
+"m": "Haïcha des Forêts",
+"mv": "Balou du Rouet",
+"v": "Check In"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Grand Prix (Fences Ventes Élite 2025)",
+"url": "https://grandprix.info/fr/111802/Les-trenteseptiemes-ventes-Elite-Fences-sachevent-en-fanfare-a-BoisleRoi/"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar onbekend in de veilinggegevens; Horsetelex gaf een 429.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Olgalinchen",
+"kandidaten": [
+{
+"doc_id": "olgalinchen",
+"naam": "Olgalinchen",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Casall",
+"v": "Chacoon Blue"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Olgalinchen",
+"stamboom": {
+"mv": "Casall",
+"v": "Chacoon Blue"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 105, zuschlag 58.000 EUR. In de resultatenlijst staat de vader als 'Blue Chacoon Blue' (tikfout).",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Pour L'Amour Pippa",
+"kandidaten": [
+{
+"doc_id": "pour-l-amour-pippa",
+"naam": "Pour L'Amour Pippa",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Cardento",
+"v": "Chinchero"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Pour L'Amour Pippa",
+"stamboom": {
+"mv": "Cardento",
+"v": "Chinchero"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Verband, Ergebnisliste Elite-Reitpferdeauktion 11.12.2025",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Jong rijpaard uit de Holsteiner Elite-Reitpferdeauktion van 11/12/2025 (geboortejaar en geslacht niet vermeld in de resultatenlijst; vermoedelijk 3 tot 5 jaar oud). Moeder niet vermeld. Lot 108, zuschlag 41.000 EUR. Moedersvader 'Cardento' is vermoedelijk 'Cardento 933' uit de bestaande namenlijst; niet bevestigd door een bron.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Kuna de Püpp",
+"kandidaten": [
+{
+"doc_id": "kuna-de-pupp",
+"naam": "Kuna de Püpp",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Quote",
+"v": "Kanndarco"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Kuna de Püpp",
+"stamboom": {
+"mv": "Quote",
+"v": "Kanndarco"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf (prijslijst)",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot 68; geslacht en geboortejaar niet vermeld.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Rambo",
+"kandidaten": [
+{
+"doc_id": "rambo",
+"naam": "Rambo",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Ginus",
+"v": "Highway TN"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://equnews.com/article/promo/paardenveilingonline-starts-2026-strong-83-sold-young-horses-up-to-eur28000"
+],
+"record": {
+"naam": "Rambo",
+"stamboom": {
+"mv": "Ginus",
+"v": "Highway TN"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Paardenveilingonline voorjaarsveiling maart 2026 (Equnews)",
+"url": "https://equnews.com/article/promo/paardenveilingonline-starts-2026-strong-83-sold-young-horses-up-to-eur28000"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Horsetelex gaf een 429 (niet geraadpleegd). Vader genoteerd als Highway TN; mogelijk dezelfde als Highway TN N.O.P. in de database, niet bevestigd. Geslacht onbekend.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Très-Chic",
+"kandidaten": [
+{
+"doc_id": "tres-chic",
+"naam": "Très-Chic",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Quattro B",
+"v": "Qupido H"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://grandprix.info/fr/156817/Les-Ventes-Elite-Fences-confirment-leur-belle-dynamique/"
+],
+"record": {
+"naam": "Très-Chic",
+"stamboom": {
+"mv": "Quattro B",
+"v": "Qupido H"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Grand Prix (Fences Ventes Élite 2026)",
+"url": "https://grandprix.info/fr/156817/Les-Ventes-Elite-Fences-confirment-leur-belle-dynamique/"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar niet vermeld in de veilingdata; geslacht daarom weggelaten. Horsetelex toont meerdere paarden 'Tres Chic', geen enkele met vader Qupido H.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Maverick",
+"kandidaten": [
+{
+"doc_id": "maverick",
+"naam": "Maverick",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"mv": "Larimar",
+"v": "Million Dollar"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Maverick",
+"stamboom": {
+"mv": "Larimar",
+"v": "Million Dollar"
+},
+"stamboek": "Holsteiner",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "39. Holsteiner Frühjahrsauktion Elmshorn, resultatenlijst",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar onbekend.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Venton",
+"kandidaten": [
+{
+"doc_id": "venton",
+"naam": "Venton",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"mv": "Colman",
+"v": "Vingino"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Venton",
+"stamboom": {
+"mv": "Colman",
+"v": "Vingino"
+},
+"stamboek": "Holsteiner",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Holsteiner Verband, Ergebnisliste 39. Frühjahrsauktion Elmshorn",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot 15 (Vingino x Colman), 19.500 euro, land Deutschland. Geslacht en geboortejaar niet vermeld.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Halleujah",
+"kandidaten": [
+{
+"doc_id": "halleujah",
+"naam": "Halleujah",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": "Holsteiner",
+"stamboom_bekend": {
+"mv": "Cassini I",
+"v": "Hardrock Z"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+],
+"record": {
+"naam": "Halleujah",
+"stamboom": {
+"mv": "Cassini I",
+"v": "Hardrock Z"
+},
+"stamboek": "Holsteiner",
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Holsteiner Verband, Ergebnisliste 39. Frühjahrsauktion Elmshorn",
+"url": "https://holsteiner-verband.de/dokumente/vermarktung/Ergebnisliste-FAK-29.03.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Lot 10 (Hardrock x Cassini I), 20.000 euro, land Kolumbien. Geslacht en geboortejaar niet vermeld in de resultatenlijst.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Nielsen",
+"kandidaten": [
+{
+"doc_id": "nielsen-2019",
+"naam": "Nielsen",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2019,
+"stamboek": null,
+"stamboom_bekend": {
+"m": "H-Charlie",
+"mv": "Cardento 933",
+"v": "Diamant de Semilly"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/pedigree/2737636/nielsen",
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Nielsen",
+"stamboom": {
+"m": "H-Charlie",
+"mv": "Cardento 933",
+"v": "Diamant de Semilly"
+},
+"geboortejaar": 2019,
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/pedigree/2737636/nielsen"
+},
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Elite-Reitpferdeauktion Elmshorn 11/12/2025 (resultatenlijst)",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Gegevens uit Horsetelex-zoekresultaten (enige Nielsen v. Diamant de Semilly uit een Cardento-merrie); volledige stamboompagina niet geraadpleegd. Geboortejaar 2019, dus 6 jaar op de veiling (ouder dan het gebruikelijke 3 tot 5 jaar). Geslacht niet vermeld in de bron. Moedersvader Cardento aangenomen als Cardento 933."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Best Memory",
+"kandidaten": [
+{
+"doc_id": "best-memory-2021",
+"naam": "Best Memory",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": 2021,
+"stamboek": "Westfalen",
+"stamboom_bekend": {
+"m": "Cassandra",
+"mv": "Cornet Obolensky",
+"v": "Big Star"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.horsetelex.com/horses/pedigree/2256998/best-memory",
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Best Memory",
+"stamboom": {
+"m": "Cassandra",
+"mv": "Cornet Obolensky",
+"v": "Big Star"
+},
+"stamboek": "Westfalen",
+"geboortejaar": 2021,
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Horsetelex",
+"url": "https://www.horsetelex.com/horses/pedigree/2256998/best-memory"
+},
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion 2026 (prijslijst)",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Identiteit past bij veilinggegevens (v. Big Star, mv. Cornet Obolensky). Geslacht niet vermeld in de bronnen (veiling: onbekend), daarom weggelaten."
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Dintender MJ",
+"kandidaten": [
+{
+"doc_id": "dintender-mj",
+"naam": "Dintender MJ",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Contender",
+"v": "Dinken"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+],
+"record": {
+"naam": "Dintender MJ",
+"stamboom": {
+"mv": "Contender",
+"v": "Dinken"
+},
+"bronnen": [
+{
+"datum": "2026-10-17",
+"naam": "Holsteiner Elite-Reitpferdeauktion Elmshorn 11/12/2025 (resultatenlijst)",
+"url": "https://www.holsteiner-verband.de/dokumente/hengste/Körung/Ergebnisliste_Elite-Reitpferdeauktion_11.12.2025.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geboortejaar niet vermeld in de resultatenlijst; vermoedelijk jong rijpaard (3 tot 5 jaar), niet bevestigd.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+},
+{
+"kaartpaard": "Helga",
+"kandidaten": [
+{
+"doc_id": "helga",
+"naam": "Helga",
+"naam_varianten": [],
+"geslacht": null,
+"geboortejaar": null,
+"stamboek": null,
+"stamboom_bekend": {
+"mv": "Lyjanero",
+"v": "High Level"
+},
+"ontbreekt": [
+"geslacht"
+],
+"herkomst": "veiling (veilingmeester)",
+"bron_urls": [
+"https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+],
+"record": {
+"naam": "Helga",
+"stamboom": {
+"mv": "Lyjanero",
+"v": "High Level"
+},
+"bronnen": [
+{
+"datum": "2026-10-18",
+"naam": "Westfälische Herbst-Auktion (Reitpferde und Youngster, OnLive) Münster-Handorf",
+"url": "https://westfalenpferde.de/fileadmin/PDF_02/Vermarktung/Reitpferde-Auktion/2026_10_Herbst-Auktion_Preisliste.pdf"
+}
+],
+"opmerking": "Alleen gegevens uit veilingcatalogus; geen andere bron gevonden. Geslacht en geboortejaar niet vermeld in de prijslijst (catalogusnr. 54, 26.500 euro); naam suggereert merrie maar niet bevestigd.",
+"verrijken": true
+},
+"versie": 1
+}
+]
+}
+]

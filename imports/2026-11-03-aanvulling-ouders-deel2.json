@@ -1,0 +1,877 @@
+{
+ "formaat": "fokwijzer-export",
+ "datum": "2026-11-03",
+ "modus": "aanvullen",
+ "collecties": {
+  "paarden": {
+   "cottage-son-xx-1944": {
+    "stamboom": {
+     "vv": "Son-in-Law",
+     "vm": "Tryst",
+     "mv": "Cottage",
+     "mm": "Wait"
+    },
+    "bronnen": [
+     {
+      "naam": "PZHK database, Cottage Son",
+      "url": "https://baza.pzhk.pl/en/horse/id/218138.html",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Afwijking: V volgens bron: Young Lover (in record: Young Lover xx); M volgens bron: Wait Not (in record: Wait Not xx).",
+    "verrijken_weg": false
+   },
+   "grande": {
+    "stamboek": "Hannoveraner",
+    "geboortejaar": 1958,
+    "stamboom": {
+     "vv": "Goldfisch II",
+     "vm": "Flussspat",
+     "mv": "Duellant",
+     "mm": "Försterfarm",
+     "vvv": "Goldammer II",
+     "vvm": "Flugamme",
+     "vmv": "Flugfeuer I",
+     "vmm": "Neafenda",
+     "mvv": "Dolman",
+     "mvm": "Forstweihe",
+     "mmv": "Förster",
+     "mmm": "Jourene"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Grannus",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/1767-grannus/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "frutana": {
+    "stamboek": "Hannoveraner",
+    "geboortejaar": 1958,
+    "stamboom": {
+     "vv": "Futurist I",
+     "vm": "Talwiese",
+     "mv": "Athener",
+     "mm": "Atlasdame",
+     "vvv": "Flak",
+     "vvm": "Christinchen",
+     "vmv": "Tanera",
+     "vmm": "Fliegenfängerin",
+     "mmv": "Amateur I",
+     "mmm": "Ameline"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Grannus",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/1767-grannus/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "limbo": {
+    "stamboek": "KWPN",
+    "geboortejaar": 1993,
+    "stamboom": {
+     "v": "Concorde",
+     "m": "Hira",
+     "vv": "Voltaire",
+     "vm": "Flyer",
+     "mv": "Rivaal",
+     "mm": "Bira",
+     "vvv": "Furioso II",
+     "vvm": "Gogo Möve",
+     "vmv": "Marco Polo",
+     "vmm": "Klaske",
+     "mvv": "Persian Path xx",
+     "mvm": "Mireille Sijgje",
+     "mmv": "Samber",
+     "mmm": "Vira"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Copabella Visage",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/65930-copabella-visage_/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "latano-i": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 1985,
+    "stamboom": {
+     "v": "Landgraf I",
+     "m": "Sanka",
+     "vv": "Ladykiller xx",
+     "vm": "Warthburg",
+     "mv": "Capitano",
+     "mm": "Anke",
+     "vvv": "Sailing Light xx",
+     "vvm": "Lone Beech xx",
+     "vmv": "Aldato",
+     "vmm": "Schneenelke",
+     "mvv": "Corporal",
+     "mvm": "Retina",
+     "mmv": "Attila",
+     "mmm": "Stradella"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Copabella Visage",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/65930-copabella-visage_/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "quito-van-den-aard": {
+    "stamboek": "BWP",
+    "geboortejaar": 2016,
+    "stamboom": {
+     "v": "Le Blue Diamond van 't Ruytershof",
+     "m": "Chanel van de Aard Z",
+     "vv": "Plot Blue",
+     "vm": "Diamanthina v/h Ruytershof",
+     "mv": "Coriano Z",
+     "mm": "Allegria van den Aard",
+     "vvv": "Mr. Blue",
+     "vvm": "Ilotte",
+     "vmv": "Diamant de Semilly",
+     "vmm": "Carthina Z",
+     "mvv": "Corrado I",
+     "mvm": "Option",
+     "mmv": "Burggraaf",
+     "mmm": "Quintana van den Aard"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Quito van den Aard",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/817037-quito-van-den-aard/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "cicero-z": {
+    "stamboek": "Zangersheide",
+    "geboortejaar": 2000,
+    "stamboom": {
+     "v": "Carthago Z",
+     "m": "Rendez-Vous van Paemel",
+     "vv": "Capitol I",
+     "vm": "Perra",
+     "mv": "Randel Z",
+     "mm": "Granie",
+     "vvv": "Capitano",
+     "vvm": "Folia",
+     "vmv": "Calando I",
+     "vmm": "Kerrin",
+     "mvv": "Ramiro Z",
+     "mvm": "Alaric Z",
+     "mmv": "Graphit",
+     "mmm": "Goldlady"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Armison",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/712826-armison_/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "commander-hk-z": {
+    "stamboek": "Zangersheide",
+    "stamboom": {
+     "mv": "Emerald",
+     "mvv": "Diamant de Semilly",
+     "mvm": "Carthina Z"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Commander HK Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/737522-commander-hk-z/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "van-gogh-2002": {
+    "stamboom": {
+     "m": "Movera",
+     "mv": "Bernstein",
+     "mm": "Govera",
+     "mvv": "Ramiro Z",
+     "mvm": "Alicante Z",
+     "mmv": "Burggraaf",
+     "mmm": "Vera"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Van Gogh",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/38972-van-gogh/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "clinton-ii": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 1994,
+    "stamboom": {
+     "v": "Carolus I",
+     "m": "Lorettchen",
+     "mv": "Calypso II"
+    },
+    "bronnen": [
+     {
+      "naam": "Horsescout, Clinton II",
+      "url": "https://www.horsescout.com/stallions-at-stud/profile/1361",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "echo-des-forets-ii-1992": {
+    "stamboom": {
+     "mv": "Uriel",
+     "mm": "Danaide"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "roccossifred": {
+    "stamboek": "Selle Français",
+    "geboortejaar": 2005,
+    "stamboom": {
+     "v": "Limbo",
+     "m": "Blinten",
+     "vv": "Concorde",
+     "vm": "Hira",
+     "mv": "Clinton",
+     "mm": "Tensive Queen"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Amy du Chateau Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/1108314-amy-du-chateau-z_/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "nekton": {
+    "geboortejaar": 2000,
+    "stamboom": {},
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom met Nekton als vader",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/45851-nekton/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "ramourai-1994": {
+    "stamboom": {
+     "mv": "Latano I",
+     "mm": "Livia",
+     "mvv": "Landgraf I",
+     "mvm": "Sanka",
+     "mmv": "Lord",
+     "mmm": "Fippe"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Bijou Orai",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/60816-bijou-orai/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Afwijking: stamboek volgens bron: BWP (in record: BWP (Belgisch Warmbloedpaard)).",
+    "verrijken_weg": false
+   },
+   "gemini-cl-xx-2008": {
+    "stamboom": {
+     "v": "Goodtwist"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "sparkling-jw-van-de-moerhoeve-2018": {
+    "stamboom": {
+     "v": "Ceira d'Ick"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "sicambre-xx": {
+    "geboortejaar": 1948,
+    "stamboom": {
+     "vv": "Prince Rose",
+     "mv": "Rialto"
+    },
+    "bronnen": [
+     {
+      "naam": "Wikipedia, Sicambre",
+      "url": "https://en.wikipedia.org/wiki/Sicambre",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Afwijking: V volgens bron: Prince Bio (in record: Prince Bio xx); M volgens bron: Sif (in record: Sif xx).",
+    "verrijken_weg": true
+   },
+   "charlie-la-loi-z": {
+    "stamboek": "Z",
+    "geboortejaar": 2015,
+    "stamboom": {
+     "v": "Scuderia 1918 Casago",
+     "m": "Upswing",
+     "vv": "Casall ASK",
+     "vm": "Larthago",
+     "mv": "Hors la Loi II",
+     "mm": "Marthago",
+     "vvv": "Caretino",
+     "vvm": "Kira XVII",
+     "vmv": "Carthago Z",
+     "vmm": "Daisy IV",
+     "mvv": "Papillon Rouge",
+     "mvm": "Ariane du Plessis II",
+     "mmv": "Carthago Z",
+     "mmm": "Aline"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Charlie la Loi Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/695758-charlie-la-loi-z/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "cachas": {
+    "stamboek": "Holst",
+    "geboortejaar": 2004,
+    "stamboom": {
+     "v": "Caretino",
+     "m": "Pericula",
+     "vv": "Caletto II",
+     "vm": "Isidor",
+     "mv": "Corrado I",
+     "mm": "Hera XXII",
+     "vvv": "Cor de la Bryère",
+     "vvm": "Deka",
+     "vmv": "Metellus",
+     "vmm": "Corbala",
+     "mvv": "Cor de la Bryère",
+     "mvm": "Soleil",
+     "mmv": "Lord",
+     "mmm": "Zara XVII"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Cachas",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/77743-cachas/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "l-arc-de-triomphe": {
+    "stamboek": "Old",
+    "geboortejaar": 1999,
+    "stamboom": {
+     "v": "Landor S",
+     "m": "Präludium",
+     "vv": "Landadel",
+     "vm": "Fureida 2",
+     "mv": "Pilot",
+     "mm": "Gybsi"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, L'Arc de Triomphe",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/76367-larc-de-triomphe",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "tornedo-fcs": {
+    "stamboom": {
+     "v": "Darco"
+    },
+    "bronnen": [
+     {
+      "naam": "StallionAI, Tornado FCS",
+      "url": "https://www.stallionai.co.uk/animals/stallion/tornado-fcs",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Schrijfwijze op de bronpagina is Tornado FCS. Enkel de vader is vermeld; geboortejaar niet bekend.",
+    "verrijken_weg": true
+   },
+   "varihoka-du-temple-2009": {
+    "stamboom": {
+     "m": "Narihoka d'Halong",
+     "vv": "Quidam de Revel",
+     "vm": "Fille d'Espoir",
+     "mv": "Kannan",
+     "mm": "Fyllis Marine",
+     "vvv": "Jalisco B",
+     "vvm": "Dirka",
+     "vmv": "Plein d'Espoir IV",
+     "vmm": "Orange de Norville",
+     "mvv": "Voltaire",
+     "mvm": "Cemeta",
+     "mmv": "Laeken",
+     "mmm": "Quine de Mai"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Varihoka du Temple",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/687451-varihoka-du-temple_/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Afwijking: stamboek volgens bron: SF (in record: Selle Français).",
+    "verrijken_weg": false
+   },
+   "toetankhamon-de-muze": {
+    "stamboek": "BWP",
+    "geboortejaar": 2019,
+    "stamboom": {
+     "v": "Kasanova de la Pomme",
+     "m": "Vigo's Flip de Muze Z",
+     "mv": "Vigo d'Arsouilles"
+    },
+    "bronnen": [
+     {
+      "naam": "Belgian Warmblood, Toetankhamon de Muze",
+      "url": "https://www.belgian-warmblood.com/en/node/8013",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "ramazotti-tb": {
+    "stamboek": "BWP",
+    "geboortejaar": 2017,
+    "stamboom": {
+     "v": "Lavallino ter Klomp",
+     "m": "Amaris",
+     "vv": "Clearway",
+     "vm": "Senorita",
+     "mv": "Lys de Darmen",
+     "mm": "Jetra",
+     "vvv": "Capitol I",
+     "vvm": "Wodka II",
+     "vmv": "Coriano Z",
+     "vmm": "Baltic",
+     "mvv": "Et Hop",
+     "mvm": "Darmen",
+     "mmv": "Etretat",
+     "mmm": "Lily"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Ramazotti TB",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/877936-ramazotti-tb_/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "km-chalcedon": {
+    "stamboom": {
+     "mv": "Raphael"
+    },
+    "bronnen": [
+     {
+      "naam": "VDL Stud, KM Chalcedon Calido I x Raphael",
+      "url": "https://www.vdlstud.com/en/paarden/KM-Chalcedon-Calido-I-x-Raphael/",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Raphael als moedersvader volgt uit de titel (vader x moedersvader) van de dekstationpagina; geboortejaar niet vermeld.",
+    "verrijken_weg": false
+   },
+   "der-loewe-xx": {
+    "stamboek": "TB",
+    "geboortejaar": 1944,
+    "stamboom": {
+     "v": "Wahnfried xx",
+     "m": "Lehnsherrin xx",
+     "vv": "Flamboyant xx",
+     "vm": "Winnica xx",
+     "mv": "Herold xx",
+     "mm": "Lapsis Electrix xx"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Der Löwe xx",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/1173-der-lowe-xx_/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "ofarim": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 1977,
+    "stamboom": {
+     "v": "Rasputin",
+     "m": "Holle",
+     "vv": "Tin Rod xx",
+     "vm": "Ute",
+     "mv": "Ramiro Z",
+     "mm": "Marion"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Ofarim",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/9990-ofarim",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "kobalt-vdl": {
+    "stamboek": "KWPN",
+    "stamboom": {
+     "mv": "Calido I"
+    },
+    "bronnen": [
+     {
+      "naam": "VDL Stud, Kobalt VDL",
+      "url": "https://vdlstud.com/en/paarden/Kobalt-VDL-Modesto-x-Calido-I",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Moedersvader Calido I afgeleid uit de titel 'Kobalt VDL Modesto x Calido I'; de paginatekst noemt geen posities.",
+    "verrijken_weg": true
+   },
+   "courage-11": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 1990,
+    "stamboom": {
+     "v": "Capitol I",
+     "m": "Vamara",
+     "vv": "Capitano",
+     "vm": "Folia",
+     "mv": "Maximus",
+     "mm": "Vase"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Courage II",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/38180-courage-ii/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): In de bron geschreven als Courage II (Calypso Song), hier Courage 11.",
+    "verrijken_weg": true
+   },
+   "ohra-1977": {
+    "stamboom": {
+     "mv": "Raimond"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Urte I",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/16046-urte-i_",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Raimond (1960) is vader van Brikscha, de moeder van Ohra; de paginatekst geeft geen expliciete posities.",
+    "verrijken_weg": false
+   },
+   "sandro-boy-1993": {
+    "stamboek": "Oldenburg",
+    "stamboom": {
+     "v": "Sandro Z"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Fantomas de Muze",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/329937",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Moeder Wiadora (1989) komt overeen met de bekende stamboom.",
+    "verrijken_weg": false
+   },
+   "gancio-van-t-smisveld-z": {
+    "geboortejaar": 2017,
+    "stamboom": {
+     "v": "Gino H",
+     "m": "Louise van het Dalemhof",
+     "vv": "Calvino Z",
+     "vm": "Jomara",
+     "mv": "Nabab de Reve",
+     "mm": "Gancia de Muze"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Gancio van't Smisveld Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/826042-gancio-vant-smisveld-z/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Naam in de bron: Gancio van't Smisveld Z.",
+    "verrijken_weg": true
+   },
+   "vittorio": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 2002,
+    "stamboom": {
+     "v": "Calippo 12",
+     "m": "Ma Belle",
+     "vv": "Concerto II",
+     "vm": "Gunda IV",
+     "mv": "Martel xx",
+     "mm": "Beauty I"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Vittorio",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/38980-vittorio/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Grootouders door de lezer van de pagina als ouders van Calippo 12 en Ma Belle benoemd.",
+    "verrijken_weg": true
+   },
+   "lux": {
+    "geboortejaar": 1988,
+    "stamboom": {
+     "v": "Lord Calando",
+     "m": "Apocalypte Z",
+     "vv": "Lord",
+     "vm": "Perra",
+     "mv": "Ahorn Z",
+     "mm": "Sanntona"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Touch Of Class",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/389712-touch-ofclass",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Op de bron heet het paard Lux Z.",
+    "verrijken_weg": true
+   },
+   "monoline": {
+    "stamboom": {
+     "mv": "Marabu II",
+     "mm": "Jossa"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Calvino Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/68303-calvino-z/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "caletto-ii-1976": {
+    "stamboom": {
+     "m": "Deka",
+     "mv": "Consul"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Calvino Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/68303-calvino-z/5",
+      "datum": "2026-11-03"
+     },
+     {
+      "naam": "Hippomundo: Caesario",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/81139-caesario_/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Hippomundo geeft geboortejaar 1978, bekend is 1976.",
+    "verrijken_weg": false
+   },
+   "metellus": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 1968,
+    "stamboom": {},
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Caesario",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/81139-caesario_/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Enkel geboortejaar en stamboek; ouders niet gevonden.",
+    "verrijken_weg": true
+   },
+   "corbala": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 1966,
+    "stamboom": {},
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Caesario",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/81139-caesario_/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Enkel geboortejaar en stamboek; ouders niet gevonden.",
+    "verrijken_weg": true
+   },
+   "esquina-van-klapscheut": {
+    "stamboek": "BWP",
+    "geboortejaar": 2004,
+    "stamboom": {
+     "m": "Blendy van Klapscheut",
+     "mv": "Ahorn Z",
+     "mm": "Uriana van Klapscheut",
+     "mvv": "Almé Z",
+     "mvm": "Heureka Z",
+     "mmv": "Heartbreaker",
+     "mmm": "Elandra"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Esquina van Klapscheut",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/318934-esquina-van-klapscheut/5",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Posities afgeleid uit de paginavolgorde.",
+    "verrijken_weg": false
+   },
+   "clear-heart-2015": {
+    "stamboom": {
+     "mv": "Heartbreaker",
+     "mm": "Audi's Reflection",
+     "mvv": "Nimmerdor",
+     "mvm": "Bacarole",
+     "mmv": "Monaco",
+     "mmm": "Larnike"
+    },
+    "bronnen": [],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": false
+   },
+   "lausanne-jps": {
+    "stamboom": {
+     "mv": "Lux Z",
+     "mvv": "Lord Calando",
+     "mvm": "Apocalypte Z"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Touch Of Class",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/389712-touch-ofclass",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "duplexx": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 2016,
+    "stamboom": {
+     "v": "Diarado",
+     "m": "Malve I",
+     "vv": "Diamant de Semilly",
+     "vm": "Roxette I",
+     "mv": "Heraldik",
+     "mm": "Fafnia"
+    },
+    "bronnen": [
+     {
+      "naam": "Canadian Warmbloods: Duplexx",
+      "url": "https://canadianwarmbloods.com/?p=7521",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Identiteit enkel op naam gecontroleerd; geen kind of geboortejaar bekend.",
+    "verrijken_weg": true
+   },
+   "marlon-xx": {
+    "stamboek": "TB",
+    "geboortejaar": 1958,
+    "stamboom": {
+     "mv": "Fairford xx"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Catoki",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/49494-catoki/7",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): zie bronnen.",
+    "verrijken_weg": true
+   },
+   "caesario": {
+    "stamboek": "Holsteiner",
+    "geboortejaar": 1997,
+    "stamboom": {
+     "v": "Caretino",
+     "m": "Valentina II",
+     "mv": "Metellus",
+     "mm": "Corbala"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Caesario",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/81139-caesario_/6",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Positie van grootouders afgeleid uit de paginavolgorde.",
+    "verrijken_weg": true
+   },
+   "electra-van-t-roosakker": {
+    "stamboek": "BWP",
+    "geboortejaar": 2004,
+    "stamboom": {
+     "m": "Atoucha van 't Roosakker"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo: Picobello van 't Roosakker",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/813528-picobello-vant-roosakker_/7",
+      "datum": "2026-11-03"
+     }
+    ],
+    "opmerking_toevoeging": "Aangevuld op 2026-11-03 (ontbrekende ouders): Moeder gevonden via de stamboom van een kleinkind; vader van de moeder niet vermeld.",
+    "verrijken_weg": true
+   }
+  }
+ }
+}

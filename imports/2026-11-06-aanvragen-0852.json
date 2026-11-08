@@ -1,0 +1,142 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "aanvragen",
+ "datum": "2026-11-06",
+ "collecties": {
+  "aanvragen": {
+   "944b620904a2a19c7afc": {
+    "status": "klaar",
+    "verwerkt_op": "2026-11-06T08:52:54+01:00",
+    "verwerkt_voor": "944b620904a2a19c7afc|2026-11-06T07:39:53.947Z",
+    "voorstel": {
+     "naam": "Alasca",
+     "naam_varianten": [
+      "Holstein 5739 Alasca"
+     ],
+     "geslacht": "hengst",
+     "geboortejaar": 1985,
+     "stamboek": "Holstein",
+     "stamboom": {
+      "v": "Ahorn Z",
+      "m": "Roemerin",
+      "vv": "Almé Z",
+      "vm": "Heureka Z",
+      "mv": "Calypso II",
+      "mm": "Inderin",
+      "vvv": "Ibrahim",
+      "vvm": "Girondine",
+      "vmv": "Ganeff",
+      "vmm": "Nobida",
+      "mvv": "Cor de la Bryère",
+      "mvm": "Tabelle",
+      "mmv": "Capitano",
+      "mmm": "Ungarin"
+     },
+     "wffs": "onbekend",
+     "ocd": "onbekend",
+     "bronnen": [
+      {
+       "naam": "Hippomundo, stamboom Alasca (1985, Holst)",
+       "url": "https://www.hippomundo.com/en/pedigree/genealogy/38231-alasca",
+       "datum": "2026-11-06"
+      },
+      {
+       "naam": "PZHK-databank, ALASCA (hol., geb. 10-05-1985)",
+       "url": "https://baza.pzhk.pl/en/horse/id/52562.html",
+       "datum": "2026-11-06"
+      },
+      {
+       "naam": "Horsetelex, gekozen kandidaat (niet leesbaar in deze run)",
+       "url": "https://www.horsetelex.de/horses/pedigree/3286/alasca",
+       "datum": "2026-11-06"
+      }
+     ],
+     "herkomst": {
+      "naam": [
+       0,
+       1
+      ],
+      "naam_varianten": 0,
+      "geslacht": [
+       0,
+       1
+      ],
+      "geboortejaar": [
+       0,
+       1
+      ],
+      "stamboek": [
+       0,
+       1
+      ],
+      "stamboom.v": [
+       0,
+       1
+      ],
+      "stamboom.m": [
+       0,
+       1
+      ],
+      "stamboom.vv": [
+       0,
+       1
+      ],
+      "stamboom.vm": [
+       0,
+       1
+      ],
+      "stamboom.mv": [
+       0,
+       1
+      ],
+      "stamboom.mm": [
+       0,
+       1
+      ],
+      "stamboom.vvv": [
+       0,
+       1
+      ],
+      "stamboom.vvm": [
+       0,
+       1
+      ],
+      "stamboom.vmv": [
+       0,
+       1
+      ],
+      "stamboom.vmm": [
+       0,
+       1
+      ],
+      "stamboom.mvv": [
+       0,
+       1
+      ],
+      "stamboom.mvm": [
+       0,
+       1
+      ],
+      "stamboom.mmv": [
+       0,
+       1
+      ],
+      "stamboom.mmm": [
+       0,
+       1
+      ]
+     },
+     "opmerking": "Schimmelhengst, Holsteiner, geboren 10-05-1985, v. Ahorn Z uit Roemerin v. Calypso II. Verwerkt volgens de gekozen kandidaat van de gebruiker. Geen UELN, FEI-ID, sport- of nakomelingencijfers gevonden.",
+     "record_status": "te_controleren"
+    },
+    "conflicten": [
+     "Opgelet: de meegestuurde afbeelding is het BWP-certificaat van een ander paard, Alasca Zwartepannenhof (2023, v. Oscar the Homage, UELN 056002W00338901), oorspronkelijk aangevraagd. Dat paard werd al voorgesteld in de import van 2026-11-05 22:50. Deze verwerking volgt de gekozen kandidaat (Holsteiner Alasca 1985); kijk na welk paard de aanvrager bedoelt.",
+     "Opnieuw aangevraagd zonder reden.",
+     "Voorouders Ahorn Z, Almé Z, Heureka Z, Calypso II, Ibrahim, Girondine, Ganeff, Nobida, Cor de la Bryère, Tabelle en Capitano staan al op de site; schrijfwijze overgenomen.",
+     "Alasca zelf staat nog niet op de site (enkel Alaska II en Laska III, andere paarden).",
+     "Niet te verwarren met Alasca Z (Hippomundo 893520), de andere kandidaat."
+    ]
+   }
+  }
+ }
+}
