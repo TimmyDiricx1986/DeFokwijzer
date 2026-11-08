@@ -359,3 +359,30 @@ test("aanvraag met afbeelding: alleen echte PNG/JPG/WebP, apart opgeslagen en en
   assert.equal((await fetch(base + `/api/c/bijlagen/${j.ids[0]}`, { headers: { cookie: c } })).status, 403, "een gewone gebruiker kan bijlagen niet lezen");
   assert.equal((await put(`/api/c/bijlagen/zelf`, { afbeelding: jpg }, c)).status, 403, "en kan ze niet rechtstreeks aanmaken");
 });
+
+test("downloadlink voor een bijlage: alleen aan te maken met het service-token, ondertekend en maar 1 keer bruikbaar", async () => {
+  const S = { "content-type": "application/json", authorization: "Bearer " + "t".repeat(40) };
+  const jpgBytes = Buffer.from([0xff, 0xd8, 0xff, 0xe0, 0, 16, 0x4a, 0x46, 0x49, 0x46, 0, 1, 1, 0, 0, 1, 0, 1]);
+  const jpg = "data:image/jpeg;base64," + jpgBytes.toString("base64");
+  assert.equal((await fetch(base + "/api/c/bijlagen/st-dl1", { method: "PUT", headers: S, body: JSON.stringify({ data: { afbeelding: jpg } }) })).status, 200);
+  const vraag = (ids, h) => fetch(base + "/api/downloadlinks", { method: "POST", headers: h, body: JSON.stringify({ ids }) });
+  const b = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  assert.equal((await vraag(["st-dl1"], Object.assign({}, H, { cookie: b }))).status, 403, "ook een beheerder via de browser niet");
+  const r = await vraag(["st-dl1", "bestaat-niet", "../x"], S);
+  assert.equal(r.status, 200);
+  const j = await r.json();
+  assert.deepEqual(Object.keys(j.links), ["st-dl1"], "enkel bestaande bijlagen met een afbeelding");
+  const link = j.links["st-dl1"];
+  const vals = link.replace(/sig=[^&]+/, "sig=" + "A".repeat(43));
+  assert.equal((await fetch(base + vals)).status, 404, "vervalste handtekening");
+  const ander = link.replace("/st-dl1?", "/st-dl2?");
+  assert.equal((await fetch(base + ander)).status, 404, "link geldt enkel voor die bijlage");
+  const later = link.replace(/exp=\d+/, (m) => "exp=" + (parseInt(m.slice(4), 10) + 3600));
+  assert.equal((await fetch(base + later)).status, 404, "vervaltijd niet aan te passen");
+  const d = await fetch(base + link);
+  assert.equal(d.status, 200);
+  assert.equal(d.headers.get("content-type"), "image/jpeg");
+  assert.equal(d.headers.get("cache-control"), "no-store");
+  assert.deepEqual(Buffer.from(await d.arrayBuffer()), jpgBytes);
+  assert.equal((await fetch(base + link)).status, 410, "tweede keer geweigerd");
+});

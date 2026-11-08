@@ -28,6 +28,7 @@ Dit document beschrijft wat er beveiligd is, hoe het getest werd en wat je zelf 
 - Maximaal 8 live verbindingen per IP-adres. Maximale grootte per document en per verzoek.
 - AI-advies: alleen voor bijdragers, met limieten per uur, per dag en per gebruiker. De API-sleutel staat alleen op de server.
 - Webhooks werken alleen met een ondertekening (WEBHOOK_SECRET).
+- Afbeeldingen bij aanvragen en stamboomtests komen niet op de openbare GitHub-repository. De geplande taak downloadt ze via een downloadlink die enkel met het service-token aangemaakt wordt, ondertekend is (HMAC), voor 1 bijlage geldt, na 30 minuten vervalt (DOWNLOADLINK_MINUTEN) en maar 1 keer werkt.
 
 **Server en gegevens**
 - De app draait in Docker als gewone gebruiker, met een alleen-lezen bestandssysteem, zonder extra rechten en met een geheugenlimiet. Alleen Caddy (HTTPS) is van buitenaf bereikbaar.
