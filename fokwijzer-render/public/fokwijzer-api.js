@@ -6,7 +6,7 @@
   var LEVEL = { anoniem: 0, gebruiker: 1, paardenbeheerder: 2, beheerder: 3, lezer: 1, bijdrager: 2 };
   var ROL_LABEL = { gebruiker: "Gebruiker", paardenbeheerder: "Paarden-beheerder", beheerder: "Beheerder", lezer: "Gebruiker", bijdrager: "Paarden-beheerder" };
   var ROL_UITLEG = {
-    lezer: "Lezer: zoeken, stambomen bekijken en vergelijken. Daarvoor heb je geen account nodig.",
+    lezer: "Lezer: zoeken, stambomen en virtuele veulens bekijken. Daarvoor heb je geen account nodig.",
     gebruiker: "Gebruiker: vult de wiki aan met bronnen en opmerkingen en kan paarden aanvragen.",
     paardenbeheerder: "Paarden-beheerder: voegt paarden toe, beheert zijn eigen paarden en kan gegevens van andere paarden aanpassen.",
     beheerder: "Beheerder: beheert de hele site, gebruikers, partners en back-ups."
@@ -445,7 +445,7 @@
   window.__fwTrack = function (t, v) {
     try { fetch("/api/stat", { method: "POST", credentials: "same-origin", keepalive: true, headers: { "content-type": "application/json", "x-fokwijzer": "1" }, body: JSON.stringify({ t: t, v: v }) }).catch(function () {}); } catch (_) {}
   };
-  var TAB_NAAM = { info: "Info", zoeken: "Zoeken", matches: "Beste matches", vergelijken: "Vergelijken", aanvragen: "Paard aanvragen", beheer: "Paarden beheren", partners: "Partners", admin: "Beheer", stam: "Stamlijnen", veilingen: "Veilingen" };
+  var TAB_NAAM = { info: "Info", zoeken: "Zoeken", matches: "Beste matches", vergelijken: "Virtueel veulen", aanvragen: "Paard aanvragen", beheer: "Paarden beheren", partners: "Partners", admin: "Beheer", stam: "Stamlijnen", veilingen: "Veilingen" };
   var SVG = "http://www.w3.org/2000/svg";
   function svg(tag, attrs) { var n = document.createElementNS(SVG, tag); Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); }); return n; }
   function fmtDag(d) { var p = d.split("-"); return parseInt(p[2], 10) + "/" + parseInt(p[1], 10); }

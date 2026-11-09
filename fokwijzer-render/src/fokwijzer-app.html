@@ -507,7 +507,7 @@ header.top #adminLink[aria-current="page"]{text-decoration-thickness:2px}
     <button role="tab" id="tab-zoeken" aria-selected="false" data-tab="zoeken">Zoeken</button>
     <button role="tab" id="tab-matches" aria-selected="false" data-tab="matches">Beste matches</button>
     <button type="button" class="tab-more" id="tabMore" aria-expanded="false" aria-label="Meer onderdelen"><span class="tm-txt">Meer </span><span aria-hidden="true">&#9662;</span></button>
-    <button role="tab" id="tab-vergelijken" aria-selected="false" data-tab="vergelijken" class="tab-xtra">Vergelijken</button>
+    <button role="tab" id="tab-vergelijken" aria-selected="false" data-tab="vergelijken" class="tab-xtra">Virtueel veulen</button>
     <button role="tab" id="tab-stam" aria-selected="false" data-tab="stam" class="tab-xtra">Stamlijnen</button>
     <button role="tab" id="tab-veilingen" aria-selected="false" data-tab="veilingen" class="tab-xtra">Veilingen</button>
     <button role="tab" id="tab-aanvragen" aria-selected="false" data-tab="aanvragen" class="tab-xtra">Paard aanvragen <span class="count-badge" id="reqBadge" hidden></span></button>
@@ -528,7 +528,7 @@ header.top #adminLink[aria-current="page"]{text-decoration-thickness:2px}
     <div class="info-grid">
       <div class="card info-step"><span class="info-n">1</span><h3>Zoeken</h3><p>Zoek op naam, UELN, vader of moeder. Klik een paard aan voor zijn stamboomkaart, gegevens, bronnen en opmerkingen. De stamboomkaart download je als afbeelding of PDF.</p><button class="linkbtn" type="button" data-goto="zoeken">Naar Zoeken</button></div>
       <div class="card info-step"><span class="info-n">2</span><h3>Beste matches</h3><p>Kies je merrie en krijg de hengsten die het best scoren op fokwaarden, prestaties, inteelt en gezondheid.</p><button class="linkbtn" type="button" data-goto="matches">Naar Beste matches</button></div>
-      <div class="card info-step"><span class="info-n">3</span><h3>Vergelijken</h3><p>Zet een hengst en een merrie naast elkaar en bekijk het virtuele veulen: verwachte sterktes, inteelt en aandachtspunten.</p><button class="linkbtn" type="button" data-goto="vergelijken">Naar Vergelijken</button></div>
+      <div class="card info-step"><span class="info-n">3</span><h3>Virtueel veulen</h3><p>Zet een hengst en een merrie naast elkaar en bekijk het virtuele veulen: verwachte sterktes, inteelt en aandachtspunten.</p><button class="linkbtn" type="button" data-goto="vergelijken">Naar Virtueel veulen</button></div>
       <div class="card info-step"><span class="info-n">4</span><h3>Bijdragen</h3><p><b>Lezen</b> kan zonder account. Met een account als <b>gebruiker</b> vul je bronnen en opmerkingen aan en vraag je paarden aan. Een <b>paarden-beheerder</b> voegt zijn eigen paarden toe en past gegevens aan. Gegevens met het label <i>Te controleren</i> zijn nog niet nagekeken.</p><button class="linkbtn" type="button" data-goto="aanvragen">Paard aanvragen</button></div>
     </div>
     <div class="info-foot">
@@ -1511,7 +1511,7 @@ function renderAds(){
 function renderBanner(){const n=state.horses.length;const h=state.horses.filter(x=>x.geslacht==="hengst").length;
   $("count").innerHTML=`<span class="num">${n}</span> paarden &middot; <span class="num">${h}</span> hengsten &middot; <span class="num">${n-h}</span> merries`;
   let msg="";
-  if(state.demo){msg=`<div class="banner"><strong>Voorbeeldmodus.</strong> Je ziet fictieve paarden (gemarkeerd met "demo") zodat je kunt uittesten hoe zoeken, vergelijken en matchen werkt. Zodra je zelf een paard toevoegt of importeert, verdwijnen de voorbeelden.${state.dbState==="none"?" De gedeelde opslag is in deze weergave niet beschikbaar, dus toevoegen kan hier niet.":""}</div>`}
+  if(state.demo){msg=`<div class="banner"><strong>Voorbeeldmodus.</strong> Je ziet fictieve paarden (gemarkeerd met "demo") zodat je kunt uittesten hoe zoeken, het virtuele veulen en matchen werken. Zodra je zelf een paard toevoegt of importeert, verdwijnen de voorbeelden.${state.dbState==="none"?" De gedeelde opslag is in deze weergave niet beschikbaar, dus toevoegen kan hier niet.":""}</div>`}
   $("banner").innerHTML=msg}
 
 function stamboeken(){return[...new Set(state.horses.map(h=>h.stamboek).filter(Boolean))].sort()}
@@ -1808,7 +1808,7 @@ function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<d
    <div class="det-body${t==="overzicht"?" ov":""}">${body}</div><button type="button" class="btn ghost det-more" id="detMore" hidden>Toon alles</button>${sp&&sp.dekinfo?adDekHtml(sp):""}
    <div class="det-foot">
     <button class="btn" type="button" data-act="matches" data-id="${esc(h.id)}">Beste matches</button>
-    <button class="btn ghost" type="button" data-act="compare" data-id="${esc(h.id)}">Vergelijk</button>
+    <button class="btn ghost" type="button" data-act="compare" data-id="${esc(h.id)}">Virtueel veulen</button>
     <button class="btn ghost" type="button" data-act="stam" data-id="${esc(h.id)}">Stamlijn</button>
     ${state.canWrite&&!isDemo?`<button class="btn ghost" type="button" data-act="edit" data-id="${esc(h.id)}">Bewerken</button>${state.isAdmin||state.site||(state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId)?`<button class="btn danger" type="button" data-act="del" data-own="${state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId?1:0}" data-id="${esc(h.id)}">Verwijderen</button>`:""}`:""}
    </div><div class="status" id="detStatus" role="status"></div></div>`;
