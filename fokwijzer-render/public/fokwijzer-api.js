@@ -414,7 +414,7 @@
         }
       }
       box.appendChild(pwBtn()); box.appendChild(outBtn());
-      if (acc) { acc.appendChild(el("span", { class: "small muted", text: "Ingelogd als" })); acc.appendChild(who()); acc.appendChild(pwBtn()); acc.appendChild(outBtn()); }
+      if (acc) { acc.appendChild(el("span", { class: "muted", text: "Ingelogd als" })); acc.appendChild(who()); acc.appendChild(pwBtn()); acc.appendChild(outBtn()); }
     } else {
       inBtns(box);
       if (acc) inBtns(acc);
