@@ -934,6 +934,7 @@
     [/^Demo: klein fragment sprong$/, "Demo: small jump fragment"],
     [/^Demo-index ([A-Z])( \d{4})?$/, "Demo index $1$2"],
     [/^\(betr\. (\d+%)\)$/, "(rel. $1)"],
+    [/^Berekend uit de stamboom van (.+), aangevuld met de stambomen van de voorouders op de site\.$/, "Calculated from the pedigree of $1, supplemented with the pedigrees of the ancestors on the site."],
     [/^\(Wright, (\d+) generaties, (\d+) van (\d+) voorouders bekend\)$/, "(Wright, $1 generations, $2 of $3 ancestors known)"],
     [/^stamboom \((\d+) van 14 voorouders\)$/, "pedigree ($1 of 14 ancestors)"],
     [/^(\d+) van maximaal (\d+) paarden$/, "$1 of max. $2 horses"],

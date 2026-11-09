@@ -975,10 +975,15 @@ let fwLastHorse=null;
 function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<div class="card empty det">Kies een paard in de lijst om de details te zien.</div>';return}
   const o=h.nakomelingen||{};const isDemo=String(h.id).startsWith("demo-");
   const sp=sponsorOf(h);const mk=marketHtml(h);const nb=(h.bronnen||[]).filter(x=>x&&(x.naam||x.url)).length;
-  const tabs=[["overzicht","Overzicht"],["gegevens","Gegevens"]].concat(mk&&FW_EXTRA.veilingen?[["veilingen","Veilingen"]]:[]).concat([["bronnen","Bronnen ("+nb+")"]]).concat(h.opmerking?[["opmerkingen","Opmerkingen"]]:[]);
+  const af=afstOuders(h);
+  const tabs=[["overzicht","Overzicht"]].concat(af?[["afstamming","Afstamming"]]:[]).concat([["gegevens","Gegevens"]]).concat(mk&&FW_EXTRA.veilingen?[["veilingen","Veilingen"]]:[]).concat([["bronnen","Bronnen ("+nb+")"]]).concat(h.opmerking?[["opmerkingen","Opmerkingen"]]:[]);
   if(!tabs.some(t=>t[0]===state.detTab))state.detTab="overzicht";
   const t=state.detTab;let body="";
   if(t==="overzicht")body=`<div class="ov-ped" aria-label="Stamboom">${pedCardSlot(h,"pc-fill")}</div>`;
+  else if(t==="afstamming"){const c=coi(af.s,af.m),dam=byName(af.m.naam);
+    body=`<p class="small muted" style="margin:0 0 4px">Berekend uit de stamboom van ${esc(h.naam)}, aangevuld met de stambomen van de voorouders op de site.</p>
+    ${foalFactsHtml(af.s,af.m,"detKin",dam?dam.id:"")}${coiHtml(c,"Inteelt van dit paard")}`;
+    const key="det|"+h.id;setTimeout(()=>kinVak("detKin",af.s,af.m,key,()=>state.sel===h.id&&state.detTab==="afstamming"&&!!$("detKin")),0)}
   else if(t==="gegevens")body=`<dl class="facts two">
     <dt>Stamboek</dt><dd class="wide">${esc(h.stamboek||"onbekend")}</dd>
     <dt>UELN</dt><dd class="mono">${esc(h.ueln||"onbekend")}</dd><dt>FEI-ID</dt><dd class="mono">${esc(h.fei_id||"onbekend")}</dd>
@@ -1003,6 +1008,15 @@ function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<d
     ${state.canWrite&&!isDemo?`<button class="btn ghost" type="button" data-act="edit" data-id="${esc(h.id)}">Bewerken</button>${state.isAdmin||state.site||(state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId)?`<button class="btn ghost" type="button" data-act="hist" data-id="${esc(h.id)}">Geschiedenis</button><button class="btn danger" type="button" data-act="del" data-own="${state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId?1:0}" data-id="${esc(h.id)}">Verwijderen</button>`:""}`:""}
    </div><div class="status" id="detStatus" role="status"></div></div>`;
   requestAnimationFrame(()=>{checkDetOverflow();paintPedSlots()})}
+// Afstamming van een paard: zijn ouders als paarden, met wat in zijn eigen stamboom staat (gaat voor)
+// aangevuld met het record van de ouder op de site. Per paard bewaard zolang de database niet verandert.
+let _afst={src:null,map:new WeakMap()};
+function afstOuders(h){const sb=h&&h.stamboom||{};if(!pedId(sb.v)||!pedId(sb.m))return null;
+  if(_afst.src!==state.horses)_afst={src:state.horses,map:new WeakMap()};
+  let r=_afst.map.get(h);if(r&&r.v===sb.v&&r.mn===sb.m)return r;
+  const par=(side)=>{const n=sb[side],rec=byName(n),st={};PED_KEYS.forEach(k=>{if(k.length<=2&&sb[side+k])st[k]=sb[side+k]});
+    return{id:"__afst"+side+"|"+h.id,naam:n,geslacht:side==="v"?"hengst":"merrie",stamboom:Object.assign({},rec&&rec.stamboom||{},st)}};
+  r={s:par("v"),m:par("m"),v:sb.v,mn:sb.m};_afst.map.set(h,r);return r}
 function checkDetOverflow(){const b=document.querySelector(".det-body"),m=$("detMore");if(!b||!m)return;b.classList.remove("cut");m.hidden=true;
   if(window.matchMedia("(max-width:820px)").matches)return;
   if(b.scrollHeight-b.clientHeight>2){b.classList.add("cut");m.hidden=false}}
