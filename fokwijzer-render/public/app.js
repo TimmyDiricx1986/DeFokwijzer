@@ -706,7 +706,7 @@ function renderAds(){
 function renderBanner(){const n=state.horses.length;const h=state.horses.filter(x=>x.geslacht==="hengst").length;
   if(!state.loaded&&state.dbState!=="none"){$("count").innerHTML="";$("banner").innerHTML="";return}$("count").innerHTML=`<span class="num">${n}</span> paarden &middot; <span class="num">${h}</span> hengsten &middot; <span class="num">${n-h}</span> merries`;
   let msg="";
-  if(state.demo){msg=`<div class="banner"><strong>Voorbeeldmodus.</strong> Je ziet fictieve paarden (gemarkeerd met "demo") zodat je kunt uittesten hoe zoeken, vergelijken en matchen werkt. Zodra je zelf een paard toevoegt of importeert, verdwijnen de voorbeelden.${state.dbState==="none"?" De gedeelde opslag is in deze weergave niet beschikbaar, dus toevoegen kan hier niet.":""}</div>`}
+  if(state.demo){msg=`<div class="banner"><strong>Voorbeeldmodus.</strong> Je ziet fictieve paarden (gemarkeerd met "demo") zodat je kunt uittesten hoe zoeken, het virtuele veulen en matchen werken. Zodra je zelf een paard toevoegt of importeert, verdwijnen de voorbeelden.${state.dbState==="none"?" De gedeelde opslag is in deze weergave niet beschikbaar, dus toevoegen kan hier niet.":""}</div>`}
   $("banner").innerHTML=msg}
 
 function stamboeken(){return[...new Set(state.horses.map(h=>h.stamboek).filter(Boolean))].sort()}
@@ -1003,7 +1003,7 @@ function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<d
    <div class="det-body${t==="overzicht"?" ov":""}">${body}</div><button type="button" class="btn ghost det-more" id="detMore" hidden>Toon alles</button>${sp&&sp.dekinfo?adDekHtml(sp):""}
    <div class="det-foot">
     <button class="btn" type="button" data-act="matches" data-id="${esc(h.id)}">Beste matches</button>
-    <button class="btn ghost" type="button" data-act="compare" data-id="${esc(h.id)}">Vergelijk</button>
+    <button class="btn ghost" type="button" data-act="compare" data-id="${esc(h.id)}">Virtueel veulen</button>
     <button class="btn ghost" type="button" data-act="stam" data-id="${esc(h.id)}">Stamlijn</button>
     ${state.canWrite&&!isDemo?`<button class="btn ghost" type="button" data-act="edit" data-id="${esc(h.id)}">Bewerken</button>${state.isAdmin||state.site||(state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId)?`<button class="btn ghost" type="button" data-act="hist" data-id="${esc(h.id)}">Geschiedenis</button><button class="btn danger" type="button" data-act="del" data-own="${state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId?1:0}" data-id="${esc(h.id)}">Verwijderen</button>`:""}`:""}
    </div><div class="status" id="detStatus" role="status"></div></div>`;
