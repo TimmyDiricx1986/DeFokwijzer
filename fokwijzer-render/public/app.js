@@ -1273,7 +1273,7 @@ $("aRows").addEventListener("change",e=>{const inp=e.target.closest("input.aImg"
 // Namen van voorouders worden vergeleken met de paarden op de site; bestaat het paard, dan geldt de schrijfwijze van de site.
 const ST_COLL="stamboomtests";
 const SA_LBL={v:"Vader",m:"Moeder",vv:"Vader van vader",vm:"Moeder van vader",mv:"Moedersvader",mm:"Moeder van moeder",vvv:"V-V-V",vvm:"V-V-M",vmv:"V-M-V",vmm:"V-M-M",mvv:"M-V-V",mvm:"M-V-M",mmv:"M-M-V",mmm:"M-M-M"};
-const saState={docs:[],img:{},sub:null,err:"",bezig:0};
+const saState={docs:[],img:{},sub:null,err:"",bezig:0,open:new Set()};
 let _saIdx=null;
 function saIndex(){if(_saIdx&&_saIdx.src===state.horses)return _saIdx;const hor=new Map(),anc=new Map();
   const strip=(n)=>String(n||"").replace(/\s+(z|vdl|ps|tn|old|stx|hn|sih|ask|frh|xx)$/i,"").replace(/^(vdl|gk|h&m|gl events|mom'?s)\s+/i,"");
@@ -1333,8 +1333,8 @@ function saItemHtml(t){saLoadImg(t.id);const src=saState.img[t.id];
   if(p.ueln&&String(p.ueln).length!==15)warn.push(`UELN gelezen als "${p.ueln}", maar dat is geen 15 tekens; niet overgenomen.`);
   if(pm)warn.push(`Dit paard staat al op de site als "${pm.naam}".`);
   PED_KEYS.forEach(k=>{const m=saMatch(v.stamboom[k]);if(m&&m.geslacht&&((/v$/.test(k)&&m.geslacht==="merrie")||(/m$/.test(k)&&m.geslacht==="hengst")))warn.push(`${SA_LBL[k]}: "${m.naam}" staat op de site als ${m.geslacht}. Mogelijk verkeerde plaats in het schema.`)});
-  const rows=PED_KEYS.map(k=>{const val=(r.stamboom||{})[k],m=val?saMatch(val):null,a=aangepast[k],det=(r.details||{})[k],zg=(r.zoals_gelezen||{})[k];
-    return `<tr class="${uns.has(k)?"unsure":""}"><td class="mono">${k.toUpperCase()}</td><td>${esc(SA_LBL[k])}</td><td>${val?esc(val):'<span class="muted">leeg</span>'}${zg&&zg!==val?`<div class="small muted">op de afbeelding: ${esc(zg)}</div>`:""}${det?`<div class="small muted">${esc(det)}</div>`:""}</td><td>${m?`<span class="chip good" title="${m.soort==="paard"?"Staat als paard op de site":"Komt voor in een stamboom op de site"}">${a?esc(a.site):"zelfde"}</span>`:val?'<span class="chip">nieuw</span>':""}${uns.has(k)?' <span class="chip warn">onzeker</span>':""}</td></tr>`}).join("");
+  const rows=PED_KEYS.map(k=>{const val=v.stamboom[k],det=(r.details||{})[k],zg=(r.zoals_gelezen||{})[k],raw=(r.stamboom||{})[k];
+    return `<tr class="${uns.has(k)?"unsure":""}"><td class="sa-pos"><span class="mono">${k.toUpperCase()}</span> <span class="muted">${esc(SA_LBL[k])}</span></td><td>${val?`<b>${esc(val)}</b>`:'<span class="muted">leeg</span>'}${uns.has(k)?' <span class="chip warn">onzeker</span>':""}${zg&&norm(zg)!==norm(raw)?`<div class="sa-sub">op de afbeelding: ${esc(zg)}</div>`:""}${det?`<div class="sa-sub">${esc(det)}</div>`:""}</td></tr>`}).join("");
   const exp={bestand:t.bestand,voorstel:v,gelezen:r};
   const h=Object.assign({},v,{id:"__sa"+t.id,naam:v.naam||t.bestand||"Afbeelding"});
   return head+`<div style="margin-top:4px">${p.naam?`<span style="font-size:1.05rem;font-weight:600">${esc(p.naam)}</span>`:'<span class="muted">naam niet gelezen</span>'}${info?` <span class="small muted">(${info})</span>`:""}${v.ueln?` <span class="mono small">${esc(v.ueln)}</span>`:""}</div>
@@ -1345,11 +1345,12 @@ function saItemHtml(t){saLoadImg(t.id);const src=saState.img[t.id];
     ${knoppen(`<button class="btn ghost" type="button" data-sacopy="${esc(t.id)}">Kopieer JSON</button>`)}
     </div></div>
     <div class="sa-grid"><div class="pc-wrap">${pedCardSlot(h)}</div>
-    <div><div class="tablewrap"><table class="sa-tab"><thead><tr><th></th><th>Positie</th><th>Gelezen</th><th>Op de site</th></tr></thead><tbody>${rows}</tbody></table></div></div></div>
+    <details class="sa-fold" data-safold="${esc(t.id)}"${saState.open.has(t.id)?" open":""}><summary class="small"><b>Gelezen posities</b> <span class="muted">${n} van 14${uns.size?` &middot; ${uns.size} onzeker`:""}</span></summary><div class="tablewrap"><table class="sa-tab"><thead><tr><th>Positie</th><th>Gelezen</th></tr></thead><tbody>${rows}</tbody></table></div></details></div>
     ${saAfstHtml(t,v)}
     <div class="row" style="gap:6px;margin-top:8px;align-items:flex-end"><div class="field grow"><label class="label" for="saFb-${esc(t.id)}">Klopt er iets niet? Zeg wat (bv. "MV en MM zijn omgewisseld") en laat opnieuw lezen</label><input id="saFb-${esc(t.id)}" maxlength="500" placeholder="Wat ging er fout?"></div><button class="btn ghost" type="button" data-saretry="${esc(t.id)}">Opnieuw laten lezen</button></div>
     <details style="margin-top:8px"><summary class="small">JSON (voorstel in Fokwijzer-formaat en wat de agent las)</summary><textarea class="sa-json" readonly data-sajson="${esc(t.id)}">${esc(JSON.stringify(exp,null,2))}</textarea></details>`}
 function renderSa(){const box=$("saRes");if(!box)return;saListen();
+  if(!box._saFold){box._saFold=1;box.addEventListener("toggle",e=>{const d=e.target;if(d&&d.dataset&&d.dataset.safold){d.open?saState.open.add(d.dataset.safold):saState.open.delete(d.dataset.safold)}},true)}
   const open=saState.docs.filter(t=>t.status==="wachtrij").length;
   box.innerHTML=(saState.err?`<div class="status err">${esc(saState.err)}</div>`:"")+(open?`<p class="small" style="margin:10px 0 0"><span class="chip warn">${open} in de wachtrij</span></p>`:"")+
     saState.docs.map(t=>`<div class="sa-item" data-sa="${esc(t.id)}">${saItemHtml(t)}</div>`).join("");
