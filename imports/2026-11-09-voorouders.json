@@ -1,0 +1,1808 @@
+{
+ "formaat": "fokwijzer-export",
+ "datum": "2026-11-09",
+ "collecties": {
+  "paarden": {
+   "egerlaender": {
+    "naam": "Egerlaender",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Codex One Z, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "giness": {
+    "naam": "Giness",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Codex One Z, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "gluecksstern": {
+    "naam": "Gluecksstern",
+    "geslacht": "hengst",
+    "stamboek": "Hannoveraan",
+    "bronnen": [
+     {
+      "naam": "Sporthorse-data, Glueckspilz",
+      "url": "https://sporthorse-data.com/pedigree/glueckspilz-3",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Vader van Glueckspilz (1987); geboortejaar niet vermeld op de bron.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "poesie-1973": {
+    "naam": "Poesie",
+    "geslacht": "merrie",
+    "geboortejaar": 1973,
+    "stamboek": "Hannoveraan",
+    "stamboom": {
+     "v": "Perfekt I"
+    },
+    "bronnen": [
+     {
+      "naam": "Sporthorse-data, Glueckspilz",
+      "url": "https://sporthorse-data.com/pedigree/glueckspilz-3",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Moeder van Glueckspilz (1987); vader Perfekt I (Hannoveraan) volgens de bron.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "abendschicht": {
+    "naam": "Abendschicht",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Erlenfee, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "erbonkel": {
+    "naam": "Erbonkel",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Erlenfee, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "bandonia": {
+    "naam": "Bandonia",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Lorettchen, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "royal-wash-xx": {
+    "naam": "Royal Wash xx",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Lorettchen, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "cicerone": {
+    "naam": "Cicerone",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Matador, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "matrose": {
+    "naam": "Matrose",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Matador, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "ernest": {
+    "naam": "Ernest",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Odessa, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "selma": {
+    "naam": "Selma",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Odessa, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "manuela-1956": {
+    "naam": "Manuela",
+    "geslacht": "merrie",
+    "geboortejaar": 1956,
+    "stamboek": "AAC",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Bebe du Chateau",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/83212-bebe-du-chateau",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Moeder van Ballerine III (1967). Hippomundo plaatst Ballerine III als moeder van Javotte D, de kaart geeft een positie lager; bij verschil geldt Hippomundo.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "radieuse-1961": {
+    "naam": "Radieuse",
+    "geslacht": "merrie",
+    "geboortejaar": 1961,
+    "stamboek": "SF",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Bebe du Chateau",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/83212-bebe-du-chateau",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Moeder van Cor de Chasse (1968, SF).",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "son-in-law-xx": {
+    "naam": "Son-in-Law xx",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Tanagra, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "st-prisca-xx": {
+    "naam": "St. Prisca xx",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Tanagra, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "ustina-sitte-2004": {
+    "naam": "Ustina Sitte",
+    "geslacht": "merrie",
+    "geboortejaar": 2004,
+    "stamboek": "sBs",
+    "stamboom": {
+     "v": "Clinton",
+     "m": "Riviera-Sitte",
+     "mv": "Corrado I",
+     "mm": "Urte I"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Ustina Sitte",
+      "url": "https://www.hippomundo.com/pedigree/performance/94204-ustina-sitte",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Vader Clinton (1993, Holst) en moeder Riviera Sitte (2001, sBs) komen overeen met de kaart. Relatie met Dayton Sitte niet op de pagina bevestigd.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "weinstern": {
+    "naam": "Weinstern",
+    "geslacht": "hengst",
+    "stamboom": {
+     "v": "Weingau",
+     "m": "Feldfeder"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Acarla, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "adora-sitte": {
+    "naam": "Adora Sitte",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Argentinus",
+     "m": "Casta Sitte Z"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Quartaro Sitte, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "doteusi": {
+    "naam": "Doteusi",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Hayland-L, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "flottenmanoever": {
+    "naam": "Flottenmanöver",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Don Carlos, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "gudrun": {
+    "naam": "Gudrun",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Voltaire",
+     "m": "Adriana",
+     "vv": "Furioso II",
+     "vm": "Gogo Möve",
+     "mv": "Le Mexico",
+     "mm": "Sunia"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Minne I, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "jenny-2-1975": {
+    "naam": "Jenny 2",
+    "geslacht": "merrie",
+    "geboortejaar": 1975,
+    "stamboek": "Oldenburg",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Cajandra Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/556756-cajandra-z/5",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Jenny 2 (1975, Old). Relatie met Jandra (1987) is op de pagina niet expliciet gelabeld; positie niet bevestigd.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "n-y-touche-pas-c": {
+    "naam": "N'Y Touche Pas C",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Fury de la Cense, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "nalwine": {
+    "naam": "Nalwine",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Promesse, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "negetti": {
+    "naam": "Negetti",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Notaris",
+     "m": "A.Fairlady"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Cegetti Z, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "normandie-vi": {
+    "naam": "Normandie VI",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Concerto II",
+     "m": "Havanna XV"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Carambole, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "odrina-1977": {
+    "naam": "Odrina",
+    "geslacht": "merrie",
+    "geboortejaar": 1977,
+    "stamboek": "Holsteiner",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Larthago",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/49669-larthago",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Moeder van Daisy IV (1989, Holst), grootmoeder van Larthago.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "omentine": {
+    "naam": "Omentine",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Andiamo Z, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "opulente-c": {
+    "naam": "Opulente C",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Gaby de la Cense, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "oruna": {
+    "naam": "Oruna",
+    "naam_varianten": [
+     "Oruna Z"
+    ],
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Ovatio"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Acobata, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "otasja-1973": {
+    "naam": "Otasja",
+    "geslacht": "merrie",
+    "geboortejaar": 1973,
+    "stamboek": "KWPN",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Calvados Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/33572-calvados-z/6",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Moeder van Astara (1982, KWPN). Positie volgens kaart wijkt een generatie af van Hippomundo; Hippomundo geldt.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "parole-board-xx": {
+    "naam": "Parole Board xx",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Contara, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "patience": {
+    "naam": "Patience",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Granie, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "peggy-anne": {
+    "naam": "Peggy Anne",
+    "naam_varianten": [
+     "Peggy-Anne"
+    ],
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Continue"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Chacoon Blue, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "pinocchio": {
+    "naam": "Pinocchio",
+    "geslacht": "hengst",
+    "stamboom": {
+     "v": "Pilot",
+     "m": "Arnika"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Pia Power N, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "poet-xx": {
+    "naam": "Poet xx",
+    "geslacht": "hengst",
+    "stamboom": {
+     "v": "Janitor xx"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Flyer, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "primo-des-bruyeres": {
+    "naam": "Primo des Bruyeres",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "VDL Stud, Jus de Pommes",
+      "url": "https://vdlstud.com/en/paarden/Jus-de-Pommes-Primo-des-Bruyeres-x-Garitchou",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Vader van Jus de Pommes (1986, BWP); geboortejaar en stamboek niet vermeld op de bron.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "quinta-1970": {
+    "naam": "Quinta",
+    "geslacht": "merrie",
+    "geboortejaar": 1970,
+    "stamboek": "BWP",
+    "stamboom": {
+     "v": "Audacieux"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, Illico d'Arsouilles",
+      "url": "https://www.hippomundo.com/pedigree/performance/44696-illico-darsouilles",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Moeder van Venzin d'Arsouilles (1975, BWP); vader Audacieux (1966, SF).",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "rappel": {
+    "naam": "Rappel",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Heinzelmann",
+     "m": "Kandare"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Folia, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "reizvolle": {
+    "naam": "Reizvolle",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Felicitas, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "ricarda": {
+    "naam": "Ricarda",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Wodka II, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "rosanne-van-de-withoeve": {
+    "naam": "Rosanne van de Withoeve",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Major de la Cour",
+     "m": "Hawai vd Padenborre"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van MoM's Goya, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "rozieta": {
+    "naam": "Rozieta",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Goudsmid",
+     "m": "Katelijntje"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Kannan, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "sanka": {
+    "naam": "Sanka",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Capitano",
+     "m": "Anke",
+     "vv": "Corporal",
+     "vm": "Retina",
+     "mv": "Attila",
+     "mm": "Stradella"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Latano I, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "sarjolijn": {
+    "naam": "Sarjolijn",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Heartbreaker"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Josinaa, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "secret-love-wonderland": {
+    "naam": "Secret Love Wonderland",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Libero H",
+     "m": "Priscilla"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Nikka vd Bisschop, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "silja": {
+    "naam": "Silja",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Woermann",
+     "m": "Willy"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Rayana de la Ferme des Leus, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "sintha": {
+    "naam": "Sintha",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Scendro, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "sorgenbrecher-xx": {
+    "naam": "Sorgenbrecher xx",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Larese, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "karamont": {
+    "naam": "Karamont",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Koridon, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "poutzi": {
+    "naam": "Poutzi",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Koridon, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "schelle": {
+    "naam": "Schelle",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Dorette, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "porte-bonheur-1937": {
+    "naam": "Porte Bonheur",
+    "geslacht": "hengst",
+    "geboortejaar": 1937,
+    "stamboek": "SF",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Almé Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/548682-alma-z_/6",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Jaar en stamboek volgens Hippomundo; geslacht volgens positie op de stamboomkaart (hengst).",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "querqueville-1938": {
+    "naam": "Querqueville",
+    "geslacht": "merrie",
+    "geboortejaar": 1938,
+    "stamboek": "SF",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Almé Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/548682-alma-z_/6",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Jaar en stamboek volgens Hippomundo; geslacht volgens positie op de stamboomkaart (merrie).",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "no-go-xx-1934": {
+    "naam": "No Go xx",
+    "geslacht": "merrie",
+    "geboortejaar": 1934,
+    "stamboek": "TB",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Almé Z",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/548682-alma-z_/6",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Jaar en stamboek volgens Hippomundo; geslacht volgens positie op de stamboomkaart (merrie).",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "celeva-1984": {
+    "naam": "Celeva",
+    "geslacht": "merrie",
+    "geboortejaar": 1984,
+    "stamboek": "KWPN",
+    "stamboom": {
+     "v": "Nimmerdor",
+     "m": "Oleva"
+    },
+    "bronnen": [
+     {
+      "naam": "Swiss Studbook, stamboom Celeva",
+      "url": "https://studbook.cheval-suisse.com/documents/20674-celeva-pedigree-fr.pdf",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Vader Nimmerdor (1972) en moeder Oleva (1973) volgens stamboekdocument.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "landwind-ii-b": {
+    "naam": "Landwind II B",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Leva II, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "corleograf-1992": {
+    "naam": "Corleograf",
+    "geslacht": "hengst",
+    "geboortejaar": 1992,
+    "stamboek": "Holst",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Dieu-Merci van T&L Z",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/98989-dieu-merci-van-tl-z",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Positie bepaald uit volgorde op de pagina; past bij de kaart.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "defilee-1989": {
+    "naam": "Defilee",
+    "geslacht": "merrie",
+    "geboortejaar": 1989,
+    "stamboek": "Holst",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Dieu-Merci van T&L Z",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/98989-dieu-merci-van-tl-z",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Positie bepaald uit volgorde op de pagina; past bij de kaart.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "fontana-1978": {
+    "naam": "Fontana",
+    "geslacht": "merrie",
+    "geboortejaar": 1978,
+    "stamboek": "Oldenburger",
+    "stamboom": {
+     "v": "Goldpilz",
+     "m": "Starlet"
+    },
+    "bronnen": [
+     {
+      "naam": "Swiss Studbook, stamboom Fontirell",
+      "url": "https://studbook.cheval-suisse.com/documents/5574-fontirell-pedigree-fr.pdf",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Ouders volgens afgeplatte tekst van het stamboekdocument; posities licht onzeker.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "grundstein-1975": {
+    "naam": "Grundstein",
+    "geslacht": "hengst",
+    "geboortejaar": 1975,
+    "stamboek": "Hannoveraan",
+    "stamboom": {
+     "v": "Graphit"
+    },
+    "bronnen": [
+     {
+      "naam": "Swiss Studbook, stamboom Fontirell",
+      "url": "https://studbook.cheval-suisse.com/documents/5574-fontirell-pedigree-fr.pdf",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Vader Graphit (1964) volgens afgeplatte tekst van het stamboekdocument; moeder niet vermeld.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "nicaella": {
+    "naam": "Nicaella",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Bel Avenir, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "perle-de-norval": {
+    "naam": "Perle de Norval",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Rantzau xx",
+     "m": "Hautesse"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Badine, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "ecuyer-i": {
+    "naam": "Ecuyer I",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Nika du Nevada, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "mardochee-1941": {
+    "naam": "Mardochee",
+    "geslacht": "hengst",
+    "geboortejaar": 1941,
+    "stamboek": "AA",
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Jarnac",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/24650-jarnac/6",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Jaar en stamboek volgens Hippomundo; ouders niet vermeld op de pagina.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "winzerin": {
+    "naam": "Winzerin",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Weinstern",
+     "m": "Czardasfuerstin"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Mandoline, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "abendglueck": {
+    "naam": "Abendglück",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Dominik, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "alicante-z-1978": {
+    "naam": "Alicante Z",
+    "naam_varianten": [
+     "Alicante"
+    ],
+    "geslacht": "merrie",
+    "geboortejaar": 1978,
+    "stamboek": "Hann",
+    "stamboom": {
+     "v": "Akzent II",
+     "m": "Wiesenelfe",
+     "vv": "Absatz",
+     "vm": "Wega",
+     "mv": "Wiesenbaum xx",
+     "mm": "Feldeiche"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom De Niro",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/16539-de-niro_/5",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Ook vermeld als Alicante 7 en Alicante B. Ouders op de pagina komen overeen met de kaarten (Akzent II, Wiesenelfe).",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "frostluft": {
+    "naam": "Frostluft",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Fromund",
+     "m": "Altenburgerin"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Forstlady, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "herietta": {
+    "naam": "Herietta",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Maibirke, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "fabiolis": {
+    "naam": "Fabiolis",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Landlady, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "mamba": {
+    "naam": "Mamba",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Karina, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "navarette": {
+    "naam": "Navarette",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Tresor, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "nachtblume": {
+    "naam": "Nachtblume",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Matador",
+     "m": "Dornrose"
+    },
+    "bronnen": [
+     {
+      "naam": "Superior Equine Sires, Lancer III",
+      "url": "https://www.superiorequinesires.com/lancer-iii/",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Ouders afgeleid uit de volgorde van een niet gelabelde stamboomtabel; geen jaren of stamboek vermeld. Verkoopbron, dus onzeker.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "nordika-ii-1998": {
+    "naam": "Nordika II",
+    "geslacht": "merrie",
+    "geboortejaar": 1998,
+    "stamboek": "Holst",
+    "stamboom": {
+     "v": "Concerto II",
+     "m": "Ilona XIII"
+    },
+    "bronnen": [
+     {
+      "naam": "BWP, stamboom Sunday JM",
+      "url": "https://www.belgian-warmblood.com/sites/default/files/2021-05/37%20Sunday%20JM.pdf",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Ouders komen overeen met de kaarten. Dochter Unschuld is volgens de bron van 2004; de invoer noemt voor een kind van Nordika II 1960, dat lijkt een foutief jaar.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "odina-iii": {
+    "naam": "Odina III",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Coriano",
+     "m": "H- Cabida",
+     "vv": "Corrado I"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Chopin VA, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "oita": {
+    "naam": "Oita",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Cidre Mousseux xx",
+     "m": "Raita II"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Ifrane, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "osyris": {
+    "naam": "Osyris",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Ultimate xx",
+     "m": "Victoire"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Elf III, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "patras": {
+    "naam": "Patras",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Pygmalion, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "optima": {
+    "naam": "Optima",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Furth, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "p-cinderella": {
+    "naam": "P-Cinderella",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Celina, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "passe-1974": {
+    "naam": "Passe",
+    "geslacht": "merrie",
+    "geboortejaar": 1974,
+    "stamboek": "KWPN",
+    "stamboom": {
+     "v": "Erdball xx",
+     "m": "Garona"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo, stamboom Barones",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/108783-barones",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Vader Erdball xx (1956, TB), moeder Garona (1965, KWPN). Komt overeen met de kaarten.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "pergola": {
+    "naam": "Pergola",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Galoubet A"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Weinranke, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "praeludium": {
+    "naam": "Praeludium",
+    "naam_varianten": [
+     "Präludium"
+    ],
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Pilot",
+     "m": "Gybsi"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van L'Arc de Triomphe, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "que-je-suis-bel": {
+    "naam": "Que Je Suis Bel",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Lord Orange",
+     "m": "Komedie"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Dame de Ranville, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "plouvien-xx": {
+    "naam": "Plouvien xx",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Courville xx, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "relique": {
+    "naam": "Relique",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "LAURIER THYM",
+     "m": "HISTOIRE"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Venue du Tot, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "riquette": {
+    "naam": "Riquette",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Lurioso, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "rosenquarz": {
+    "naam": "Rosenquarz",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Lord",
+     "m": "Faukasien",
+     "vv": "Ladykiller xx",
+     "vm": "Viola",
+     "mv": "Marlon xx",
+     "mm": "Leonore"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Colman, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "santa-fee": {
+    "naam": "Santa Fee",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "San Fernando",
+     "m": "Wildbeere xx",
+     "vv": "Arthy",
+     "vm": "Sylvana",
+     "mv": "Vierzehnender xx",
+     "mm": "Wildkirsche xx"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Ilotte, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "schoening": {
+    "naam": "Schöning",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Simple Red, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "sefane": {
+    "naam": "Sefane",
+    "geslacht": "merrie",
+    "stamboom": {
+     "v": "Lucky Boy xx",
+     "m": "Ilexa"
+    },
+    "bronnen": [
+     {
+      "naam": "Stamboom van Beach Boy, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "silver-matal-xx": {
+    "naam": "Silver Matal xx",
+    "geslacht": "hengst",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Silbersee, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "steingilde": {
+    "naam": "Steingilde",
+    "geslacht": "merrie",
+    "bronnen": [
+     {
+      "naam": "Stamboom van Gottilde, De Fokwijzer",
+      "url": "https://claude.ai/artifact/CVqG2d9fxwj3NkcQJQGx8b",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Alleen gegevens uit stamboomkaarten in De Fokwijzer; geen andere bron gevonden.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09",
+    "verrijken": true
+   },
+   "rapsodie-c-1994": {
+    "naam": "Rapsodie C",
+    "geslacht": "merrie",
+    "geboortejaar": 1994,
+    "stamboek": "BWP",
+    "stamboom": {
+     "v": "Feinschnitt I van de Richter",
+     "m": "Orchidee"
+    },
+    "bronnen": [
+     {
+      "naam": "Swiss Studbook, stamboom Whoopie C",
+      "url": "https://studbook.cheval-suisse.com/documents/21229-whoopie-c-pedigree-fr.pdf",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Vader Feinschnitt I van de Richter (1974, Hann), moeder Orchidee (1991, BWP). Komt overeen met de kaarten. Bron is geen officieel document.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "sir-gallahad-1920": {
+    "naam": "Sir Gallahad",
+    "geslacht": "hengst",
+    "geboortejaar": 1920,
+    "stamboek": "Volbloed",
+    "stamboom": {
+     "v": "Teddy",
+     "m": "Plucky Liege"
+    },
+    "bronnen": [
+     {
+      "naam": "Wikipedia, Sir Gallahad",
+      "url": "https://en.wikipedia.org/wiki/Sir_Gallahad",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Franse volbloed. De pagina noemt Black Devil xx niet, dus de band met de kaart is niet bevestigd; het jaar past wel bij de generatie.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   },
+   "sandro-hit-1993": {
+    "naam": "Sandro Hit",
+    "geslacht": "hengst",
+    "geboortejaar": 1993,
+    "stamboek": "Oldenburg",
+    "stamboom": {
+     "v": "Sandro Song",
+     "m": "Loretta",
+     "vv": "Sandro",
+     "vm": "Antenne II",
+     "mv": "Ramino",
+     "mm": "Lassie"
+    },
+    "bronnen": [
+     {
+      "naam": "Wikipedia, Sandro Hit",
+      "url": "https://en.wikipedia.org/wiki/Sandro_Hit",
+      "datum": "2026-11-09"
+     }
+    ],
+    "opmerking": "Ouders komen overeen met de afgeleide stamboom. De pagina noemt San Sebastian niet; de band met de kaart is niet bevestigd.",
+    "record_status": "te_controleren",
+    "herkomst": "stamboom (voorouders)",
+    "bijgewerkt": "2026-11-09"
+   }
+  },
+  "systeem": {
+   "voorouders": {
+    "laatste_run": "2026-11-09T12:00:00+01:00",
+    "kandidaten_totaal": 2692,
+    "toegevoegd": 98,
+    "met_online_bron": 26,
+    "enkel_uit_kaarten": 72,
+    "alias": 2,
+    "nog_te_doen": 2592,
+    "samenvatting": "Achtste run: 98 nieuwe voorouders toegevoegd met record_status te_controleren (26 met online bron, 72 enkel uit kaarten, gemarkeerd om te verrijken). Twee aliassen herkend: Ramzes (Ramzes AA) en Orange Peel (Orange Peel xx)."
+   }
+  }
+ }
+}
