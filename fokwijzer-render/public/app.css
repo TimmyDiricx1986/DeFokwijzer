@@ -419,6 +419,11 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .hc-score{font-size:1.25rem;font-weight:700}
 .hc-vv{padding:5px 10px;font-size:.85rem}
 .count-badge[hidden]{display:none!important}
+.stal-titel{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;margin:0 0 12px}
+.stal-naam-h{font-size:1.5rem;margin-top:2px;overflow-wrap:anywhere}
+.stal-naam-h .muted{font-weight:400;font-size:1.1rem}
+.stal-naam-form[hidden]{display:none}
+.stal-naam-form{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;margin:0 0 14px}.stal-naam-form .field{flex:1 1 260px}
 .stal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:820px){.stal-grid{grid-template-columns:1fr}}
 .stal-add{position:relative;display:flex;flex-direction:column;gap:4px}

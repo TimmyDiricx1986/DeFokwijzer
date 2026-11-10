@@ -330,6 +330,7 @@
       var d = (r[0] && r[0].data) || {}, naam = {};
       (r[1] || []).forEach(function (p) { naam[p.id] = (p.data && p.data.naam) || p.id; });
       st.textContent = "";
+      if (d.naam) box.appendChild(el("h3", { text: d.naam, style: "margin:0" }));
       var leeg = !(d.hengsten || []).length && !(d.merries || []).length && !(d.veulens || []).length;
       if (leeg) { st.textContent = "Deze stal is nog leeg."; return; }
       function blok(titel, items) {

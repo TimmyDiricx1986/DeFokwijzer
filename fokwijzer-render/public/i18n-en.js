@@ -116,6 +116,11 @@
     "Jouw Fokwijzer": "Your Fokwijzer",
     // ------------------------------------------------------------ werkplek: mijn stal en mijn veulens
     "Mijn stal": "My stable",
+    "Geef je stal een naam": "Give your stable a name",
+    "Naam geven": "Give it a name",
+    "Naam aanpassen": "Change name",
+    "Naam van je stal": "Name of your stable",
+    "bv. Stoeterij De Linde": "e.g. De Linde Stud",
     "Stal": "Stable",
     "Deze stal is nog leeg.": "This stable is still empty.",
     "Virtuele veulens": "Virtual foals",
