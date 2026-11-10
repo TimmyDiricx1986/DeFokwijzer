@@ -19,11 +19,13 @@ const DEMO=[
  {id:"demo-astor",naam:D("Astor"),geslacht:"hengst",geboortejaar:2012,stamboek:"Demo-stamboek",ueln:"DEMO00000000001",stokmaat_cm:170,
   stamboom:{v:D("Helios"),m:D("Lyra"),vv:D("Corvus"),vm:D("Mira"),mv:D("Talon"),mm:D("Vega"),vvv:D("Rigel"),vvm:D("Nova"),vmv:D("Sirius"),vmm:D("Ada"),mvv:D("Castor"),mvm:D("Iris"),mmv:D("Pollux"),mmm:D("Selma")},
   hoogste_niveau_cm:160,niveau_label:"Demo: internationaal 1m60",nakomelingen:{sport:120,m140:30,m150:12},
-  fokwaarden:[{systeem:"Demo-index A",waarde:108,gemiddelde:100,sd:4,jaar:2026,betrouwbaarheid:90}],wffs:"N/N",ocd:"vrij",bronnen:demoSrc},
+  fokwaarden:[{systeem:"Demo-index A",waarde:108,gemiddelde:100,sd:4,jaar:2026,betrouwbaarheid:90}],wffs:"N/N",ocd:"vrij",bronnen:demoSrc,
+  dek:{dekgeld:"€ 1.500 + € 750 bij drachtige merrie",sperma:["vers","diepvries"],beschikbaar:"beschikbaar",seizoen:"2027",station:"Demo-hengstenstation",url:"https://example.com"}},
  {id:"demo-bravour",naam:D("Bravour"),geslacht:"hengst",geboortejaar:2014,stamboek:"Demo-stamboek",ueln:"DEMO00000000002",stokmaat_cm:168,
   stamboom:{v:D("Orion"),m:D("Fleur"),vv:D("Rigel"),vm:D("Juno"),mv:D("Atlas"),mm:D("Dora"),vvv:D("Altair"),vvm:D("Bella"),vmv:D("Kepler"),vmm:D("Luna"),mvv:D("Zeno"),mvm:D("Hera"),mmv:D("Pollux"),mmm:D("Greta")},
   hoogste_niveau_cm:155,niveau_label:"Demo: internationaal 1m55",nakomelingen:{sport:60,m140:14,m150:4},
-  fokwaarden:[{systeem:"Demo-index B",waarde:125,gemiddelde:100,sd:20,jaar:2026,betrouwbaarheid:80}],wffs:"N/N",ocd:"onbekend",bronnen:demoSrc},
+  fokwaarden:[{systeem:"Demo-index B",waarde:125,gemiddelde:100,sd:20,jaar:2026,betrouwbaarheid:80}],wffs:"N/N",ocd:"onbekend",bronnen:demoSrc,
+  dek:{dekgeld:"€ 950",sperma:["diepvries"],beschikbaar:"beperkt",toelichting:"Demo: enkel diepvries, beperkte voorraad",station:"Demo-stoeterij"}},
  {id:"demo-cassius",naam:D("Cassius"),geslacht:"hengst",geboortejaar:2015,stamboek:"Demo-stamboek",ueln:"DEMO00000000003",stokmaat_cm:166,
   stamboom:{v:D("Talon"),m:D("Nadia"),vv:D("Castor"),vm:D("Iris"),mv:D("Kepler"),mm:D("Rosa"),vvv:D("Altair"),vvm:D("Wilma"),mvv:D("Zeno"),mvm:D("Ada")},
   hoogste_niveau_cm:150,niveau_label:"Demo: nationaal 1m50",nakomelingen:{sport:40,m140:8,m150:2},
@@ -197,11 +199,11 @@ function match(s,m){const w=state.w,t=state.t;const warnings=[],reasons=[],weak=
 
 // ---------- rendering ----------
 function setTab(t){if((t==="stam"&&!FW_EXTRA.stamlijnen)||(t==="veilingen"&&!FW_EXTRA.veilingen))t="zoeken";const prevTab=state.tab;state.tab=t;document.querySelectorAll("nav.tabs button[data-tab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===t)));
-  ["info","zoeken","vergelijken","matches","stam","veilingen","aanvragen","beheer","partners","admin"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab();
+  ["info","zoeken","vergelijken","hengsten","matches","stam","veilingen","aanvragen","beheer","partners","admin"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab();
   // Na een tabwissel bovenaan het nieuwe onderdeel beginnen (vooral op de gsm stond je anders halverwege de pagina).
   if(prevTab!==t)fwTrack("tab",t);
   if(prevTab!==t){const n=document.querySelector("nav.tabs");if(n&&n.getBoundingClientRect().top<0)window.scrollTo({top:Math.max(0,n.getBoundingClientRect().top+window.scrollY-8)})}}
-function renderTab(){if(state.tab==="zoeken"){renderSearch();requestAnimationFrame(fitList)}if(state.tab==="vergelijken")renderCompare();if(state.tab==="matches")renderMatches();if(state.tab==="stam")renderStam();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="aanvragen")renderAanvragen();if(state.tab==="beheer")renderBeheer();if(state.tab==="partners"){renderPartnersNote();renderAdAdmin()}if(state.tab==="admin")renderAdmin()}
+function renderTab(){if(state.tab==="zoeken"){renderSearch();requestAnimationFrame(fitList)}if(state.tab==="vergelijken")renderCompare();if(state.tab==="hengsten")renderHengsten();if(state.tab==="matches")renderMatches();if(state.tab==="stam")renderStam();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="aanvragen")renderAanvragen();if(state.tab==="beheer")renderBeheer();if(state.tab==="partners"){renderPartnersNote();renderAdAdmin()}if(state.tab==="admin")renderAdmin()}
 
 // ---------- veilingen (veilingmeester) ----------
 const V_COLL="veilingen",C_COLL="council";
@@ -716,6 +718,9 @@ function fillSelects(){const fs=$("fStb"),cur=fs.value;fs.innerHTML='<option val
   const cs=$("cS").value,cm=$("cM").value,mf=$("mFor").value;
   $("cS").innerHTML=opt(sorted.filter(h=>h.geslacht==="hengst"&&!h.ruin),cs,"Kies een hengst");
   $("cM").innerHTML=opt(sorted.filter(h=>h.geslacht==="merrie"),cm,"Kies een merrie");
+  {const st=sorted.filter(h=>h.geslacht==="hengst"&&!h.ruin),hv=[0,1,2,3].map(i=>$("hc"+i).value),hm=$("hcM").value;
+   [0,1,2,3].forEach(i=>{$("hc"+i).innerHTML=opt(st,hv[i],i<2?"Kies een hengst":"Kies een hengst (optioneel)")});
+   $("hcM").innerHTML=opt(sorted.filter(h=>h.geslacht==="merrie"),hm,"Geen merrie")}
   $("mFor").innerHTML=opt(sorted,mf,"Kies een hengst of merrie");
   if(state.demo){if(!$("cS").value&&byId("demo-astor"))$("cS").value="demo-astor";if(!$("cM").value&&byId("demo-aria"))$("cM").value="demo-aria";if(!$("mFor").value&&byId("demo-aria"))$("mFor").value="demo-aria"}}
 
@@ -928,19 +933,23 @@ async function paintPedSlots(){const my=++pcPainting;const slots=[...document.qu
 let pcResizeT=null;window.addEventListener("resize",()=>{clearTimeout(pcResizeT);pcResizeT=setTimeout(paintPedSlots,200)});
 // Eenvoudige PDF (A4 liggend) met de kaart als afbeelding
 // Verliesvrij (Flate) op hoge resolutie: geen JPEG-ruis rond de letters.
-async function pdfFromCanvas(cv){const enc=new TextEncoder();let img,filter="/FlateDecode";
-  try{const px=cv.getContext("2d").getImageData(0,0,cv.width,cv.height).data;const rgb=new Uint8Array(cv.width*cv.height*3);for(let i=0,j=0;i<px.length;i+=4){rgb[j++]=px[i];rgb[j++]=px[i+1];rgb[j++]=px[i+2]}
-    img=new Uint8Array(await new Response(new Blob([rgb]).stream().pipeThrough(new CompressionStream("deflate"))).arrayBuffer())}
-  catch(_){filter="/DCTDecode";const jpg=atob(cv.toDataURL("image/jpeg",.97).split(",")[1]);img=new Uint8Array(jpg.length);for(let i=0;i<jpg.length;i++)img[i]=jpg.charCodeAt(i)}
+async function pdfFromCanvas(cv){return pdfFromPages([{cv,w:842,h:595}])}
+// PDF met één of meer pagina's; elke pagina is een canvas (w en h in punten: A4 = 595 x 842).
+async function pdfImg(cv){try{const px=cv.getContext("2d").getImageData(0,0,cv.width,cv.height).data;const rgb=new Uint8Array(cv.width*cv.height*3);for(let i=0,j=0;i<px.length;i+=4){rgb[j++]=px[i];rgb[j++]=px[i+1];rgb[j++]=px[i+2]}
+    return{img:new Uint8Array(await new Response(new Blob([rgb]).stream().pipeThrough(new CompressionStream("deflate"))).arrayBuffer()),filter:"/FlateDecode"}}
+  catch(_){const jpg=atob(cv.toDataURL("image/jpeg",.97).split(",")[1]);const img=new Uint8Array(jpg.length);for(let i=0;i<jpg.length;i++)img[i]=jpg.charCodeAt(i);return{img,filter:"/DCTDecode"}}}
+async function pdfFromPages(pages){const enc=new TextEncoder();
   const parts=[],offs=[];let len=0;const put=(x)=>{const b=typeof x==="string"?enc.encode(x):x;parts.push(b);len+=b.length};const obj=(n,body)=>{offs[n]=len;put(n+" 0 obj\n");body();put("\nendobj\n")};
+  const N=pages.length,last=2+3*N;
   put("%PDF-1.4\n");
   obj(1,()=>put("<< /Type /Catalog /Pages 2 0 R >>"));
-  obj(2,()=>put("<< /Type /Pages /Kids [3 0 R] /Count 1 >>"));
-  obj(3,()=>put("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /XObject << /Im0 5 0 R >> >> /Contents 4 0 R >>"));
-  const cs="q 842 0 0 595 0 0 cm /Im0 Do Q";obj(4,()=>put(`<< /Length ${cs.length} >>\nstream\n${cs}\nendstream`));
-  obj(5,()=>{put(`<< /Type /XObject /Subtype /Image /Width ${cv.width} /Height ${cv.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter ${filter} /Length ${img.length} >>\nstream\n`);put(img);put("\nendstream")});
-  const xref=len;put("xref\n0 6\n0000000000 65535 f \n");for(let n=1;n<=5;n++)put(String(offs[n]).padStart(10,"0")+" 00000 n \n");
-  put(`trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`);
+  obj(2,()=>put(`<< /Type /Pages /Kids [${pages.map((_,i)=>(3+3*i)+" 0 R").join(" ")}] /Count ${N} >>`));
+  for(let i=0;i<N;i++){const pg=pages[i],w=+pg.w.toFixed(2),h=+pg.h.toFixed(2),po=3+3*i;const {img,filter}=await pdfImg(pg.cv);
+    obj(po,()=>put(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${w} ${h}] /Resources << /XObject << /Im0 ${po+2} 0 R >> >> /Contents ${po+1} 0 R >>`));
+    const cs=`q ${w} 0 0 ${h} 0 0 cm /Im0 Do Q`;obj(po+1,()=>put(`<< /Length ${cs.length} >>\nstream\n${cs}\nendstream`));
+    obj(po+2,()=>{put(`<< /Type /XObject /Subtype /Image /Width ${pg.cv.width} /Height ${pg.cv.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter ${filter} /Length ${img.length} >>\nstream\n`);put(img);put("\nendstream")})}
+  const xref=len;put(`xref\n0 ${last+1}\n0000000000 65535 f \n`);for(let n=1;n<=last;n++)put(String(offs[n]).padStart(10,"0")+" 00000 n \n");
+  put(`trailer\n<< /Size ${last+1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`);
   return new Blob(parts,{type:"application/pdf"})}
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest('[data-act="card"]');if(b){e.preventDefault();e.stopPropagation();openPedCard(b.dataset.id)}},true);
 async function openPedCard(id){const h=pcObjs[id]||(id==="__veulen"?state.cmpFoal:byId(id));if(!h)return;
@@ -962,6 +971,134 @@ async function openPedCard(id){const h=pcObjs[id]||(id==="__veulen"?state.cmpFoa
       await dlNs.save({filename:base+"."+b.dataset.dl,data:blob});st.className="status ok";st.textContent="Klaar."}
     catch(err){const c=err&&err.code;st.className="status err";st.textContent=c==="declined"?"Download geannuleerd.":"Downloaden lukte niet."}})}
 
+// ---------- fokadvies als PDF-rapport ----------
+// A4 staand: advies, het veulen, de ouders, dekinfo, council en bronnen; daarna de stamboomkaart van het veulen (A4 liggend).
+const fwT=(x)=>window.fwI18n&&window.fwI18n.t?window.fwI18n.t(x):x;
+async function fokRapport(s,m){
+  const mob=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent));
+  const S=mob?2.4:3.2,W=794,H=1123,M=58,CW=W-2*M,BOT=H-70;
+  const GREEN="#13302A",GOLD="#B08A5A",LINE="#E4DCCB",INK="#1F2420",MUTED="#6B6F66",SUNK="#F6F1E8",C={good:"#3E6B35",warn:"#855A10",bad:"#A33A2C"};
+  const DISP='"Spectral SC", Georgia, serif',BODY='"Source Sans 3", system-ui, sans-serif';
+  try{await Promise.all(["700 30px 'Spectral SC'","600 13px 'Spectral SC'","400 13px 'Source Sans 3'","600 13px 'Source Sans 3'","700 13px 'Source Sans 3'"].map(f=>document.fonts.load(f)))}catch(_){}
+  const emb=await fwImg(FW_EMBLEM);const r=match(s,m),T=(x)=>fwT(String(x==null?"":x));
+  const pages=[];let c,y=M;
+  const font=(w,sz,f)=>{c.font=`${w} ${sz}px ${f||BODY}`};
+  const newPage=()=>{const cv=document.createElement("canvas");cv.width=Math.round(W*S);cv.height=Math.round(H*S);c=cv.getContext("2d");c.scale(S,S);c.fillStyle="#fff";c.fillRect(0,0,W,H);pages.push({cv,w:595.28,h:841.89,c});
+    y=M;if(pages.length>1){font(700,10,DISP);c.fillStyle=GREEN;c.letterSpacing="1.5px";c.fillText(T("De Fokwijzer")+"  ·  "+T("Fokadvies").toUpperCase(),M,y);c.letterSpacing="0px";
+      font(400,10);c.fillStyle=MUTED;c.textAlign="right";c.fillText(s.naam+" x "+m.naam,W-M,y);c.textAlign="left";y+=10;c.fillStyle=GOLD;c.fillRect(M,y,CW,1);y+=22}};
+  const room=(h)=>{if(y+h>BOT)newPage()};
+  const lines=(txt,w)=>pcWrap(c,T(txt),w,999);
+  const para=(txt,o={})=>{const sz=o.size||11.5,lh=sz*(o.lh||1.42),x=o.x||M,w=o.w||CW;font(o.weight||400,sz,o.font);const ls=lines(txt,w);
+    for(const l of ls){room(lh);c.fillStyle=o.color||INK;c.fillText(l,x,y+sz);y+=lh}y+=o.gap==null?4:o.gap};
+  const label=(txt,o={})=>{room(26);font(600,9.5);c.fillStyle=o.color||MUTED;c.letterSpacing="1.2px";c.fillText(T(txt).toUpperCase(),o.x||M,y+9.5);c.letterSpacing="0px";y+=16};
+  const heading=(txt)=>{room(60);y+=12;font(700,16,DISP);c.fillStyle=GREEN;c.fillText(T(txt),M,y+16);y+=24;c.fillStyle=LINE;c.fillRect(M,y,CW,1);y+=10};
+  const bullets=(arr,color)=>{for(const x of arr){font(400,11.5);const ls=lines(x,CW-16);room(16*ls.length);c.fillStyle=color||GOLD;c.beginPath();c.arc(M+4,y+7.5,2.3,0,7);c.fill();
+      ls.forEach(l=>{c.fillStyle=INK;c.fillText(l,M+16,y+11.5);y+=16.3})}y+=4};
+  // tabel: kolommen [{w,label}], rijen = arrays met tekst; de eerste kolom is vet en grijs
+  const table=(cols,rows,o={})=>{const pad=6,sz=o.size||10.5,lh=sz*1.38;const xs=[];let x=M;cols.forEach(k=>{xs.push(x);x+=k.w});
+    const head=()=>{if(!cols.some(k=>k.label))return;font(700,sz);c.fillStyle=GREEN;cols.forEach((k,i)=>{if(k.label)c.fillText(T(k.label),xs[i]+pad,y+sz+2)});y+=lh+6;c.fillStyle=GOLD;c.fillRect(M,y-2,CW,1);y+=2};
+    room(lh*2+14);head();
+    for(const row of rows){const cell=row.map((t,i)=>{font(i===0?600:400,sz);return String(t==null||t===""?(i?"–":""):t).split("\n").flatMap(p=>lines(p,cols[i].w-2*pad))});const hh=Math.max(...cell.map(a=>a.length))*lh+pad*1.4;
+      if(y+hh>BOT){newPage();head()}
+      cell.forEach((ls,i)=>{font(i===0?600:400,sz);c.fillStyle=i===0?MUTED:INK;ls.forEach((l,j)=>c.fillText(l,xs[i]+pad,y+pad*.7+sz+j*lh))});
+      y+=hh;c.fillStyle=LINE;c.fillRect(M,y,CW,.8);y+=1}y+=10};
+  newPage();
+  // ---- kop
+  const eh=62,ew=eh/(emb.height/emb.width);c.drawImage(emb,M,y-4,ew,eh);
+  const tx=M+ew+14;font(700,22,DISP);c.fillStyle=GREEN;c.letterSpacing="2px";c.fillText("DE FOKWIJZER",tx,y+24);
+  font(600,8.5,DISP);c.fillStyle=GOLD;c.letterSpacing="1.6px";c.fillText(T("Een wikigids voor en door paardenfokkers").toUpperCase(),tx,y+40);c.letterSpacing="0px";
+  c.textAlign="right";font(700,13,DISP);c.fillStyle=GREEN;c.letterSpacing="1.5px";c.fillText(T("Fokadvies").toUpperCase(),W-M,y+22);c.letterSpacing="0px";
+  font(400,10);c.fillStyle=MUTED;c.fillText(T(dagTxt(new Date().toISOString())),W-M,y+38);c.textAlign="left";
+  y+=eh+6;c.fillStyle=GOLD;c.fillRect(M,y,CW,1.5);y+=24;
+  // ---- titel
+  label("Virtueel veulen");
+  let tsz=28;font(700,tsz,DISP);const title=s.naam+" x "+m.naam;while(c.measureText(title).width>CW&&tsz>15){tsz--;font(700,tsz,DISP)}
+  c.fillStyle=GREEN;c.fillText(title,M,y+tsz*.8);y+=tsz*.8+12;
+  const par=(h)=>[h.stamboom&&h.stamboom.v,h.stamboom&&h.stamboom.mv].map(x=>x||"?").join(" x ");
+  para(`${T("Hengst")}: ${s.naam} (${par(s)})   ·   ${T("Merrie")}: ${m.naam} (${par(m)})`,{size:11,color:MUTED,gap:14});
+  // ---- score
+  {const bh=150;room(bh+10);const y0=y;c.fillStyle=SUNK;c.beginPath();c.roundRect(M,y0,CW,bh,10);c.fill();
+   const lx=M+22;y=y0+18;label("Score van de combinatie",{x:lx});
+   font(700,54,BODY);c.fillStyle=GREEN;const sc=r.excluded?"–":String(Math.round(r.total));c.fillText(sc,lx,y0+92);const sw=c.measureText(sc).width;
+   font(400,15);c.fillStyle=MUTED;c.fillText("/ 100",lx+sw+8,y0+92);
+   font(600,11);c.fillStyle=r.excluded?C.bad:INK;c.fillText(r.excluded?T("Uitgesloten"):T("Betrouwbaarheid "+r.conf),lx,y0+120);
+   const lab={gen:"Genetische indexen",perf:"Prestaties en nakomelingen",coi:"Inteelt",health:"Gezondheid",data:"Datavolledigheid"};
+   const bx=M+CW*.42,bw=CW*.58-22;let by=y0+26;
+   Object.keys(lab).forEach(k=>{const v=r.comps[k];font(400,10.5);c.fillStyle=INK;c.fillText(T(lab[k]),bx,by+10);
+     const tx0=bx+bw*.47,tw=bw*.42;c.fillStyle="#E6DFD2";c.beginPath();c.roundRect(tx0,by+3,tw,7,3.5);c.fill();
+     if(v!=null){c.fillStyle=GOLD;c.beginPath();c.roundRect(tx0,by+3,Math.max(4,tw*v/100),7,3.5);c.fill()}
+     font(600,10.5);c.textAlign="right";c.fillStyle=INK;c.fillText(v==null?T("geen"):String(Math.round(v)),bx+bw,by+10);c.textAlign="left";by+=22});
+   y=y0+bh+14}
+  if(r.warnings.length){label("Waarschuwingen");r.warnings.forEach(w=>para(w.t,{size:11,weight:600,color:C[w.lvl]||C.warn,gap:2}));y+=6}
+  if(r.reasons.length){heading("Sterke punten");bullets(r.reasons,C.good)}
+  if(r.weak.length){heading("Aandachtspunten");bullets(r.weak,C.warn)}
+  // ---- het veulen
+  heading("Het veulen");
+  {const cf=r.coi,Fp=cf.F*100;const vl=[s.naam].concat(lineOf(s,"v")),ml=[m.naam].concat(lineOf(m,"m"));const rh=byName(ml[ml.length-1]),st=rh?stamOf(rh):"";
+   const P=population();P.foal=P.foal||new Map();const key=s.id+"|"+m.id;if(!P.foal.has(key))P.foal.set(key,foalKin(s,m));const kr=P.foal.get(key);
+   const b=foalBlood(s,m),bl=[["xx","volbloed (xx)"],["ox","Arabisch volbloed (ox)"],["aa","Anglo-Arabier (AA)"]].filter(([k])=>b[k]>=.0005).map(([k,l])=>p1(b[k])+" "+T(l)).join(", ")||T("geen volbloed in de bekende stamboom");
+   table([{w:150},{w:CW-150}],[
+     [T("Inteelt"),pct(cf.F)+"  ·  "+T(`${Fp>=KWPN_COI?"boven":"onder"} het KWPN-advies van ${fn(KWPN_COI)}%`)+"\n"+T(`(Wright, ${cf.gens} generaties, ${cf.known} van ${cf.total} voorouders bekend)`)],
+     [T("Bloedpercentage"),bl],
+     [T("Verwantschap met de populatie"),kr?pct(kr.kin)+(kr.mean?"  ·  "+T(kr.kin/kr.mean<.85?"unieker dan gemiddeld":kr.kin/kr.mean>1.15?"meer verwant dan gemiddeld":"ongeveer gemiddeld"):""):T("Te weinig paarden met een bekende stamboom om dit te berekenen.")],
+     [T("Vaderlijn"),vl.join(" › ")],
+     [T("Moederlijn"),ml.join(" › ")+(st?"  ("+T("stam")+" "+st+")":"")]]);
+   if(cf.common.length){label("Voorouders die langs vaders- en moederskant voorkomen");
+     table([{w:CW*.4,label:"Voorouder"},{w:CW*.3,label:"Generatie (vader x moeder)"},{w:CW*.12,label:"Paden"},{w:CW*.18,label:"Bijdrage"}],
+       cf.common.slice(0,10).map(e=>[e.naam,e.gv.join(", ")+" x "+e.gm.join(", "),String(e.paden.length),e.bijdrage<.00005?"<0,01%":pct(e.bijdrage)]))}
+   else para("Geen gemeenschappelijke voorouders gevonden in de bekende stamboom.",{size:10.5,color:MUTED})}
+  // ---- de ouders
+  heading("De ouders");
+  {const o=(h)=>h.nakomelingen||{};const nk=(h)=>num(o(h).sport)!=null?`${o(h).sport} / ${o(h).m140||0} / ${o(h).m150||0}`:T("onbekend");
+   const fk=(h)=>(h.fokwaarden||[]).map(f=>{const v=num(f.waarde),g=num(f.gemiddelde),sd=num(f.sd);const z=(v!=null&&g!=null&&sd)?(v-g)/sd:null;return `${f.waarde} ${f.systeem}${f.jaar?" "+f.jaar:""}${z!=null?" ("+fz(z)+" SD)":""}`}).join("\n")||T("onbekend");
+   const gz=(h)=>[h.wffs&&h.wffs!=="onbekend"?"WFFS "+h.wffs:T("WFFS onbekend"),h.ocd==="vrij"?T("OCD-vrij"):h.ocd==="bevinding"?T("OCD-bevinding"):T("OCD onbekend")].join(", ");
+   const u=(x)=>x==null||x===""?T("onbekend"):String(x);
+   const rows=[["Stamboek",u(s.stamboek),u(m.stamboek)],["Geboortejaar",u(s.geboortejaar),u(m.geboortejaar)],["Vader",u(s.stamboom&&s.stamboom.v),u(m.stamboom&&m.stamboom.v)],["Moedersvader",u(s.stamboom&&s.stamboom.mv),u(m.stamboom&&m.stamboom.mv)],
+     ["Stokmaat",num(s.stokmaat_cm)!=null?s.stokmaat_cm+" cm":T("onbekend"),num(m.stokmaat_cm)!=null?m.stokmaat_cm+" cm":T("onbekend")],["Hoogste niveau",T(fmtH(s.hoogste_niveau_cm)),T(fmtH(m.hoogste_niveau_cm))],
+     ["Nakomelingen (sport / 1m40+ / 1m50+)",nk(s),nk(m)],["Fokwaarden",fk(s),fk(m)],["Gezondheid",gz(s),gz(m)],["Datavolledigheid",Math.round(completeOf(s))+"%",Math.round(completeOf(m))+"%"]];
+   const lw=150,cw=(CW-lw)/2;
+   // tekst met regeleinden: per regel apart afbreken
+   const t2=rows.map(([l,a,b])=>[T(l),a,b]);
+   {const pad=6,sz=10.5,lh=sz*1.38;const xs=[M,M+lw,M+lw+cw],ws=[lw,cw,cw];
+    const head=()=>{font(700,11,DISP);c.fillStyle=GREEN;c.fillText(s.naam,xs[1]+pad,y+12);c.fillText(m.naam,xs[2]+pad,y+12);y+=20;c.fillStyle=GOLD;c.fillRect(M,y,CW,1);y+=3};
+    room(60);head();
+    for(const row of t2){const cell=row.map((t,i)=>{font(i===0?600:400,sz);return String(t).split("\n").flatMap(p=>pcWrap(c,p,ws[i]-2*pad,999))});const hh=Math.max(...cell.map(a=>a.length))*lh+pad*1.4;
+      if(y+hh>BOT){newPage();head()}
+      cell.forEach((ls,i)=>{font(i===0?600:400,sz);c.fillStyle=i===0?MUTED:INK;ls.forEach((l,j)=>c.fillText(l,xs[i]+pad,y+pad*.7+sz+j*lh))});y+=hh;c.fillStyle=LINE;c.fillRect(M,y,CW,.8);y+=1}y+=10}}
+  // ---- dekinfo
+  {const d=dekOf(s);heading("Dekinfo van "+s.naam);
+   if(dekLeeg(d))para("Nog geen dekinfo bekend voor deze hengst.",{size:10.5,color:MUTED});
+   else{table([{w:150},{w:CW-150}],[[T("Dekgeld"),d.dekgeld||T("onbekend")],[T("Sperma"),spermaTxt(d).map(T).join(", ")||T("onbekend")],
+      [T("Beschikbaarheid"),[beschikTxt(d)&&T(beschikTxt(d)),d.seizoen&&T("dekseizoen")+" "+d.seizoen,d.toelichting].filter(Boolean).join("  ·  ")||T("onbekend")],
+      [T("Station"),[d.station,okUrl(d.url)?d.url.trim():""].filter(Boolean).join("\n")||T("onbekend")]].map(([a,b])=>[a,String(b).replace(/\n/g," · ")]));
+     para("Controleer dekgeld en beschikbaarheid altijd bij het station.",{size:10,color:MUTED})}}
+  // ---- council (als er een advies bewaard is)
+  {const sv=(state.council||{})[cId(s,m)],v=sv&&sv.voorzitter;if(v){heading("Advies van de council");
+    para(`${T("Eindscore")}: ${v.eindscore!=null?v.eindscore:"?"} / 10${v.advies?"  ·  "+T(v.advies):""}`,{weight:600});
+    if(v.samenvatting)para(v.samenvatting,{size:11});
+    const pz=v.prijszetting||{};if(pz.richtprijs!=null||pz.veulen_min!=null)para(`${T("Richtprijs")}: ${euro(pz.richtprijs)}  ·  ${T("Veulen")}: ${euro(pz.veulen_min)} – ${euro(pz.veulen_max)}`,{size:11});
+    if(v.volgende_stappen&&v.volgende_stappen.length){label("Volgende stappen");bullets(v.volgende_stappen)}
+    if(sv.gemaakt_op)para(T("Advies van")+" "+T(dagTxt(sv.gemaakt_op)),{size:9.5,color:MUTED})}}
+  // ---- bronnen en voorbehoud
+  heading("Bronnen");
+  for(const h of [s,m]){const b=(h.bronnen||[]).filter(x=>x&&(x.naam||x.url));label(h.naam);
+    if(!b.length)para("Geen bron",{size:10.5,color:MUTED});else b.slice(0,8).forEach(x=>para([x.naam,x.url,x.datum&&"("+x.datum+")"].filter(Boolean).join("  ·  "),{size:10,gap:1}));y+=4}
+  y+=6;para("Deze score is een hulpmiddel en vervangt geen advies van stamboek, dierenarts of fokker.",{size:10,color:MUTED,gap:2});
+  para("Gegevens uit de database van De Fokwijzer. Controleer ze altijd bij het stamboek.",{size:10,color:MUTED});
+  // ---- voet op elke staande pagina
+  const N=pages.length;pages.forEach((pg,i)=>{c=pg.c;c.fillStyle=GOLD;c.fillRect(M,H-48,CW,.8);font(600,8.5,DISP);c.fillStyle=GREEN;c.letterSpacing="1.4px";
+    c.fillText("DE FOKWIJZER  ·  "+T("Een wikigids voor en door paardenfokkers").toUpperCase(),M,H-32);c.letterSpacing="0px";
+    font(400,9.5);c.fillStyle=MUTED;c.textAlign="right";c.fillText(T(`Pagina ${i+1} van ${N+1}`),W-M,H-32);c.textAlign="left"});
+  // ---- stamboomkaart van het veulen (A4 liggend)
+  const card=await drawPedCard(foalOf(s,m),{S:mob?3:4});pages.push({cv:card,w:841.89,h:595.28});
+  return pdfFromPages(pages)}
+async function downloadRapport(s,m,st){
+  try{if(!dlNs){dlNs=await window.claude.use("downloads")}
+    if(!dlNs){st.className="status err";st.textContent="Downloaden is in deze weergave niet beschikbaar.";return}
+    st.className="status";st.textContent="Rapport wordt gemaakt...";
+    const blob=await fokRapport(s,m);const sl=(x)=>String(x||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+    await dlNs.save({filename:`fokadvies-${sl(s.naam)}-x-${sl(m.naam)}.pdf`,data:blob});st.className="status ok";st.textContent="Klaar."}
+  catch(err){const c=err&&err.code;st.className="status err";st.textContent=c==="declined"?"Download geannuleerd.":"Het rapport kon niet gemaakt worden."}}
 function srcHtml(h){const b=(h.bronnen||[]).filter(x=>x&&(x.naam||x.url));if(!b.length)return '<span class="chip bad">Geen bron</span>';
   return '<ul class="plain small">'+b.map(x=>`<li>${x.url&&/^https?:\/\//.test(x.url)?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.naam||x.url)}</a>`:esc(x.naam)}${x.datum?` <span class="muted">(${esc(x.datum)})</span>`:""}</li>`).join("")+"</ul>"}
 function fokHtml(h){const f=(h.fokwaarden||[]);if(!f.length)return '<span class="muted">onbekend</span>';
@@ -976,7 +1113,7 @@ function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<d
   const o=h.nakomelingen||{};const isDemo=String(h.id).startsWith("demo-");
   const sp=sponsorOf(h);const mk=marketHtml(h);const nb=(h.bronnen||[]).filter(x=>x&&(x.naam||x.url)).length;
   const af=afstOuders(h);
-  const tabs=[["overzicht","Overzicht"]].concat(af?[["afstamming","Afstamming"]]:[]).concat([["gegevens","Gegevens"]]).concat(mk&&FW_EXTRA.veilingen?[["veilingen","Veilingen"]]:[]).concat([["bronnen","Bronnen ("+nb+")"]]).concat(h.opmerking?[["opmerkingen","Opmerkingen"]]:[]);
+  const tabs=[["overzicht","Overzicht"]].concat(af?[["afstamming","Afstamming"]]:[]).concat(h.geslacht==="hengst"&&!h.ruin?[["dek","Dekinfo"]]:[]).concat([["gegevens","Gegevens"]]).concat(mk&&FW_EXTRA.veilingen?[["veilingen","Veilingen"]]:[]).concat([["bronnen","Bronnen ("+nb+")"]]).concat(h.opmerking?[["opmerkingen","Opmerkingen"]]:[]);
   if(!tabs.some(t=>t[0]===state.detTab))state.detTab="overzicht";
   const t=state.detTab;let body="";
   if(t==="overzicht")body=`<div class="ov-ped" aria-label="Stamboom">${pedCardSlot(h,"pc-fill")}</div>`;
@@ -984,6 +1121,8 @@ function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<d
     body=`<p class="small muted" style="margin:0 0 4px">Berekend uit de stamboom van ${esc(h.naam)}, aangevuld met de stambomen van de voorouders op de site.</p>
     ${foalFactsHtml(af.s,af.m,"detKin",dam?dam.id:"")}${coiHtml(c,"Inteelt van dit paard")}`;
     const key="det|"+h.id;setTimeout(()=>kinVak("detKin",af.s,af.m,key,()=>state.sel===h.id&&state.detTab==="afstamming"&&!!$("detKin")),0)}
+  else if(t==="dek")body=dekHtml(h)+(state.canWrite&&!isDemo&&db?`<details class="dek-edit"${dekLeeg(dekOf(h))?" open":""}><summary>Dekinfo aanpassen</summary><form class="wiki-form" data-wiki="dek" data-id="${esc(h.id)}">${dekFormHtml("wd")}<div class="row" style="margin-top:8px"><button class="btn" type="submit">Dekinfo bewaren</button></div><div class="status" role="status"></div></form></details>`
+    :state.canWiki&&!isDemo?'<p class="small muted" style="margin:10px 0 0">Klopt dit niet meer? Laat het weten bij Opmerkingen, met een bron.</p>':"");
   else if(t==="gegevens")body=`<dl class="facts two">
     <dt>Stamboek</dt><dd class="wide">${esc(h.stamboek||"onbekend")}</dd>
     <dt>UELN</dt><dd class="mono">${esc(h.ueln||"onbekend")}</dd><dt>FEI-ID</dt><dd class="mono">${esc(h.fei_id||"onbekend")}</dd>
@@ -1005,8 +1144,10 @@ function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<d
     <button class="btn" type="button" data-act="matches" data-id="${esc(h.id)}">Beste matches</button>
     <button class="btn ghost" type="button" data-act="compare" data-id="${esc(h.id)}">Virtueel veulen</button>
     <button class="btn ghost" type="button" data-act="stam" data-id="${esc(h.id)}">Stamlijn</button>
+    ${h.geslacht==="hengst"&&!h.ruin?`<button class="btn ghost" type="button" data-act="hcmp" data-id="${esc(h.id)}">Hengsten vergelijken</button>`:""}
     ${state.canWrite&&!isDemo?`<button class="btn ghost" type="button" data-act="edit" data-id="${esc(h.id)}">Bewerken</button>${state.isAdmin||state.site||(state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId)?`<button class="btn ghost" type="button" data-act="hist" data-id="${esc(h.id)}">Geschiedenis</button><button class="btn danger" type="button" data-act="del" data-own="${state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId?1:0}" data-id="${esc(h.id)}">Verwijderen</button>`:""}`:""}
    </div><div class="status" id="detStatus" role="status"></div></div>`;
+  if(t==="dek"&&$("wd-dekgeld"))setDekForm("wd",dekOf(h)||{});
   requestAnimationFrame(()=>{checkDetOverflow();paintPedSlots()})}
 // Afstamming van een paard: zijn ouders als paarden, met wat in zijn eigen stamboom staat (gaat voor)
 // aangevuld met het record van de ouder op de site. Per paard bewaard zolang de database niet verandert.
@@ -1026,6 +1167,43 @@ function openDetDialog(){const h=byId(state.sel),b=document.querySelector(".det-
   d.innerHTML=`<div class="dlg-head"><div><div class="label">${esc(tl)}</div><h3 style="margin:0">${esc(h.naam)}</h3></div><button type="button" class="btn ghost" data-close>Sluiten</button></div><div class="dlg-body">${b.innerHTML}</div>`;
   d.showModal()}
 
+// ---------- praktische hengstinfo (dekinfo) ----------
+// Bij een hengst: h.dek = {dekgeld, sperma:[vers|diepvries|natuurlijk], beschikbaar:beschikbaar|beperkt|niet, seizoen, toelichting, station, url, bijgewerkt}
+const SPERMA=[["vers","Vers sperma"],["diepvries","Diepvriessperma"],["natuurlijk","Natuurlijke dekking"]];
+const BESCHIK={beschikbaar:["Beschikbaar","good"],beperkt:["Beperkt beschikbaar","warn"],niet:["Niet beschikbaar","bad"]};
+const okUrl=(u)=>typeof u==="string"&&/^https?:\/\/[^\s/]+\.[^\s]+$/i.test(u.trim());
+function dekOf(h){const d=h&&h.geslacht==="hengst"&&h.dek;return d&&typeof d==="object"?d:null}
+function dekLeeg(d){return !d||!(d.dekgeld||(d.sperma||[]).length||d.beschikbaar||d.seizoen||d.toelichting||d.station||d.url)}
+const spermaTxt=(d)=>(d&&d.sperma||[]).map(k=>(SPERMA.find(x=>x[0]===k)||[k,k])[1]);
+const beschikTxt=(d)=>d&&BESCHIK[d.beschikbaar]?BESCHIK[d.beschikbaar][0]:"";
+const dagTxt=(iso)=>{try{const d=new Date(iso);return isNaN(d)?String(iso):d.toLocaleDateString("nl-BE",{day:"numeric",month:"long",year:"numeric"})}catch(_){return String(iso)}};
+function stationHtml(d){return `${d.station?esc(d.station):""}${okUrl(d.url)?`${d.station?"<br>":""}<a href="${esc(d.url.trim())}" target="_blank" rel="noopener">Website van het station</a>`:""}`||'<span class="muted">onbekend</span>'}
+function dekHtml(h,compact){const d=dekOf(h)||{};const unk='<span class="muted">onbekend</span>';
+  if(dekLeeg(d))return '<p class="small muted" style="margin:0">Nog geen dekinfo bekend voor deze hengst.</p>';
+  const b=BESCHIK[d.beschikbaar];
+  return `<dl class="facts two">
+   <dt>Dekgeld</dt><dd class="wide">${d.dekgeld?esc(d.dekgeld):unk}</dd>
+   <dt>Sperma</dt><dd class="wide">${(d.sperma||[]).length?`<span class="chips">${spermaTxt(d).map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</span>`:unk}</dd>
+   <dt>Beschikbaarheid</dt><dd class="wide">${b?`<span class="chip ${b[1]}">${b[0]}</span>`:unk}${d.seizoen?` <span class="small muted">dekseizoen ${esc(d.seizoen)}</span>`:""}${d.toelichting?`<div class="small" style="margin-top:4px">${esc(d.toelichting)}</div>`:""}</dd>
+   <dt>Station</dt><dd class="wide">${stationHtml(d)}</dd>
+  </dl>${compact?"":`<p class="small muted" style="margin:10px 0 0">${d.bijgewerkt?`<span>Laatst bijgewerkt:</span> <span>${esc(dagTxt(d.bijgewerkt))}</span>. `:""}Controleer dekgeld en beschikbaarheid altijd bij het station.</p>`}`}
+// Invulvelden voor de dekinfo (formulier Paarden beheren en snel aanpassen bij de hengst). p = voorvoegsel van de id's.
+function dekFormHtml(p){return `<div class="grid3">
+   <div class="field"><label class="label" for="${p}-dekgeld">Dekgeld</label><input id="${p}-dekgeld" maxlength="160" placeholder="bv. € 1.500 + € 500 bij dracht"></div>
+   <div class="field"><label class="label" for="${p}-beschik">Beschikbaarheid</label><select id="${p}-beschik"><option value="">Onbekend</option><option value="beschikbaar">Beschikbaar</option><option value="beperkt">Beperkt beschikbaar</option><option value="niet">Niet beschikbaar</option></select></div>
+   <div class="field"><label class="label" for="${p}-seizoen">Dekseizoen</label><input id="${p}-seizoen" maxlength="20" placeholder="bv. 2027"></div>
+   <div class="field"><label class="label" for="${p}-station">Station</label><input id="${p}-station" maxlength="120" placeholder="Naam van het hengstenstation"></div>
+   <div class="field"><label class="label" for="${p}-stationurl">Link naar het station</label><input id="${p}-stationurl" inputmode="url" autocomplete="url" spellcheck="false" maxlength="500" placeholder="https://..."></div>
+   <div class="field"><label class="label" for="${p}-dektoel">Toelichting</label><input id="${p}-dektoel" maxlength="300" placeholder="bv. diepvries ook in het buitenland"></div>
+  </div>
+  <fieldset class="dek-sp"><legend class="label">Sperma</legend>${SPERMA.map(([k,l])=>`<label><input type="checkbox" id="${p}-sp-${k}"> ${l}</label>`).join("")}</fieldset>`}
+function setDekForm(p,d){d=d||{};const s=(k,v)=>{const e=$(p+"-"+k);if(e)e.value=v==null?"":v};s("dekgeld",d.dekgeld);s("beschik",d.beschikbaar||"");s("seizoen",d.seizoen);s("station",d.station);s("stationurl",d.url);s("dektoel",d.toelichting);
+  SPERMA.forEach(([k])=>{const e=$(p+"-sp-"+k);if(e)e.checked=(d.sperma||[]).includes(k)})}
+function readDekForm(p){const g=(k)=>{const e=$(p+"-"+k);return e?e.value.trim():""};const d={};
+  [["dekgeld","dekgeld"],["beschikbaar","beschik"],["seizoen","seizoen"],["station","station"],["url","stationurl"],["toelichting","dektoel"]].forEach(([k,id])=>{const v=g(id);if(v)d[k]=v});
+  if(d.url&&!/^https?:\/\//i.test(d.url))d.url="https://"+d.url;
+  const sp=SPERMA.map(x=>x[0]).filter(k=>{const e=$(p+"-sp-"+k);return e&&e.checked});if(sp.length)d.sperma=sp;return d}
+function dekFsShow(){const f=$("dekFs");if(f)f.hidden=$("h-geslacht").value!=="hengst"}
 function compHtml(r){const lab={gen:"Genetische indexen",perf:"Prestaties en nakomelingen",coi:"Inteelt",health:"Gezondheid",data:"Datavolledigheid"};
   return '<div class="bars">'+Object.keys(lab).map(k=>{const v=r.comps[k];return `<div class="bar"><span>${lab[k]} <span class="muted small">(${state.w[k]})</span></span><div class="track"><div class="fill" style="width:${v==null?0:v}%"></div></div><span class="num" style="text-align:right">${v==null?"geen":Math.round(v)}</span></div>`}).join("")+"</div>"}
 function warnHtml(r){return r.warnings.length?'<div class="chips" style="margin-top:10px">'+r.warnings.map(w=>`<span class="chip ${w.lvl}">${esc(w.t)}</span>`).join("")+"</div>":""}
@@ -1091,6 +1269,7 @@ function renderCompare(){const s=byId($("cS").value),m=byId($("cM").value);
     <div class="label">Combinatie</div><h2>${esc(s.naam)} x ${esc(m.naam)}</h2>
     <div class="score" style="margin-top:10px"><span class="big num">${r.excluded?"&ndash;":Math.round(r.total)}</span><span class="muted">/ 100</span>
      ${r.excluded?'<span class="chip bad">Uitgesloten</span>':`<span class="chip">Betrouwbaarheid ${r.conf}</span>`}</div>
+    <div class="row" style="margin-top:10px;gap:8px;align-items:center"><button type="button" class="btn" id="fokPdf">Fokadvies als PDF</button><span class="status small" id="fokPdfSt" role="status"></span></div>
     ${warnHtml(r)}${compHtml(r)}
     ${r.reasons.length?`<h3 style="margin-top:16px">Sterke punten</h3><ul class="plain">${r.reasons.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}
     ${r.weak.length?`<h3 style="margin-top:12px">Aandachtspunten</h3><ul class="plain">${r.weak.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}
@@ -1098,6 +1277,44 @@ function renderCompare(){const s=byId($("cS").value),m=byId($("cM").value);
     <p class="small muted" style="margin-top:12px">Deze score is een hulpmiddel en vervangt geen advies van stamboek, dierenarts of fokker.</p>
    </div></div>${(()=>{const f=foalOf(s,m);state.cmpFoal=f;return `<section class="card pc-foal"><div class="label">Stamboom van het veulen</div><h3 style="margin:2px 0 0">${esc(s.naam)} x ${esc(m.naam)}</h3>${foalFactsHtml(s,m)}<div class="pc-wrap">${pedCardSlot(f)}</div></section>`})()}`;renderCouncil(s,m);requestAnimationFrame(paintPedSlots);fillFoalKin(s,m)}
 
+// ---------- hengsten naast elkaar ----------
+function renderHengsten(){const out=$("hcOut");if(!out)return;
+  const hs=[...new Set([0,1,2,3].map(i=>$("hc"+i).value).filter(Boolean))].map(byId).filter(Boolean),m=byId($("hcM").value);
+  if(hs.length<2){out.innerHTML='<div class="card empty">Kies minstens twee hengsten om ze naast elkaar te zetten.</div>';return}
+  const rs=m?hs.map(s=>match(s,m)):null,n=hs.length,o=(h)=>h.nakomelingen||{},unk='<span class="muted">onbekend</span>';
+  // de beste waarde in een rij krijgt een groene achtergrond (alleen als niet alle waarden gelijk zijn)
+  const row=(l,cells,vals,low)=>{let b=null;if(vals){const v=vals.filter(x=>x!=null);if(v.length>=2){const x=low?Math.min(...v):Math.max(...v);if(v.some(y=>y!==x))b=x}}
+    return `<tr><th scope="row">${l}</th>${cells.map((c,i)=>`<td${b!=null&&vals[i]===b?' class="hc-best"':""}>${c}</td>`).join("")}</tr>`};
+  const sec=(t)=>`<tr class="hc-sec"><th scope="colgroup" colspan="${n+1}">${t}</th></tr>`;
+  const map=(f)=>hs.map(f);
+  const nk=(h)=>num(o(h).sport)!=null?`<span class="num">${esc(o(h).sport)}</span> / <span class="num">${esc(o(h).m140||0)}</span> / <span class="num">${esc(o(h).m150||0)}</span>`:unk;
+  const dk=(h,f)=>{const d=dekOf(h);const v=d&&f(d);return v||unk};
+  out.innerHTML=`<div class="tablewrap hc-wrap"><table class="hc-tab" style="--hc-n:${n}"><thead><tr><th scope="col"><span class="sr-only">Gegeven</span></th>${hs.map((h,i)=>`<th scope="col"><div class="hc-head"><button type="button" class="hc-name" data-hcopen="${esc(h.id)}" title="Details bekijken">${esc(h.naam)}</button><button type="button" class="hc-del" data-hcdel="${[0,1,2,3].find(k=>$("hc"+k).value===h.id)}" aria-label="${esc(h.naam)} weghalen" title="Weghalen">&times;</button></div><div class="small muted hc-sub">${esc(h.stamboom&&h.stamboom.v||"?")} x ${esc(h.stamboom&&h.stamboom.mv||"?")}</div></th>`).join("")}</tr></thead><tbody>
+   ${sec("Paard")}
+   ${row("Stamboek",map(h=>esc(h.stamboek||"onbekend")))}
+   ${row("Geboortejaar",map(h=>esc(h.geboortejaar||"onbekend")))}
+   ${row("Stokmaat",map(h=>num(h.stokmaat_cm)!=null?esc(h.stokmaat_cm)+" cm":unk))}
+   ${row("Hoogste niveau",map(h=>fmtH(h.hoogste_niveau_cm)),map(h=>num(h.hoogste_niveau_cm)))}
+   ${row("Nakomelingen<br><span class='small'>sport / 1m40+ / 1m50+</span>",map(nk),map(h=>num(o(h).m140)))}
+   ${row("Fokwaarden",map(fokHtml))}
+   ${row("Fokwaarde genormaliseerd",map(h=>{const z=zOf(h);return z==null?unk:`<span class="num">${fz(z,2)}</span> SD`}),map(zOf))}
+   ${row("Bloedpercentage",map(h=>bloodHtml(bloodOf(h))))}
+   ${row("Gezondheid",map(h=>wffsChip(h.wffs)+" "+ocdChip(h)))}
+   ${row("Datavolledigheid",map(h=>Math.round(completeOf(h))+"%"),map(h=>Math.round(completeOf(h))))}
+   ${sec("Dekinfo")}
+   ${row("Dekgeld",map(h=>dk(h,d=>d.dekgeld&&esc(d.dekgeld))))}
+   ${row("Sperma",map(h=>dk(h,d=>spermaTxt(d).map(esc).join("<br>"))))}
+   ${row("Beschikbaarheid",map(h=>dk(h,d=>{const b=BESCHIK[d.beschikbaar];return (b?`<span class="chip ${b[1]}">${b[0]}</span>`:"")+(d.seizoen?` <span class="small muted">dekseizoen ${esc(d.seizoen)}</span>`:"")+(d.toelichting?`<div class="small">${esc(d.toelichting)}</div>`:"")})))}
+   ${row("Station",map(h=>{const d=dekOf(h);return d&&(d.station||okUrl(d.url))?stationHtml(d):unk}))}
+   ${m?`${sec(`<span>Combinatie met</span> <span>${esc(m.naam)}</span>`)}
+   ${row("Score",rs.map(r=>r.excluded?'<span class="chip bad">Uitgesloten</span>':`<span class="num hc-score">${Math.round(r.total)}</span> <span class="muted small">/ 100</span>`),rs.map(r=>r.excluded?null:Math.round(r.total)))}
+   ${row("Betrouwbaarheid",rs.map(r=>esc(r.conf)))}
+   ${row("Inteelt van het veulen",rs.map(r=>`<span class="num">${pct(r.coi.F)}</span>`),rs.map(r=>Math.round(r.coi.F*1e5)),true)}
+   ${row("Waarschuwingen",rs.map(r=>r.warnings.length?r.warnings.map(w=>`<span class="chip ${w.lvl}">${esc(w.t)}</span>`).join(" "):'<span class="muted">geen</span>'))}
+   ${row("Sterke punten",rs.map(r=>r.reasons.length?`<ul class="plain small">${r.reasons.slice(0,4).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:'<span class="muted">geen</span>'))}
+   ${row("",rs.map(r=>`<button type="button" class="btn ghost hc-vv" data-hcvv="${esc(r.s.id)}">Virtueel veulen</button>`))}`:""}
+  </tbody></table></div>
+  <p class="small muted" style="margin-top:10px">Groen gemarkeerd: de beste waarde in die rij. ${m?"":"Kies een merrie om de combinaties te scoren. "}Dekinfo kan veranderen: controleer ze altijd bij het station.</p>`}
 function renderMatches(){["gen","perf","coi","health","data"].forEach(k=>{$("w-"+k).value=state.w[k];$("wv-"+k).textContent=state.w[k]});$("tWarn").value=state.t.warn;$("tMax").value=state.t.max;
   const h=byId($("mFor").value);if(!h){$("matchOut").innerHTML='<div class="card empty">Kies een hengst of merrie om de best passende partners te zien.</div>';return}
   const cands=state.horses.filter(x=>x.geslacht!==h.geslacht&&x.id!==h.id&&!x.ruin);
@@ -1112,6 +1329,7 @@ function renderMatches(){["gen","perf","coi","health","data"].forEach(k=>{$("w-"
      ${r.excluded?"":`<div class="minibar"><div class="fill" style="width:${r.total}%"></div></div>`}</span>
     <span class="mscore num">${r.excluded?"&ndash;":Math.round(r.total)}</span></button>`};
   $("matchOut").innerHTML=`<div class="label" style="margin-bottom:6px">Beste ${h.geslacht==="hengst"?"merries":"hengsten"} voor ${esc(h.naam)}</div>
+   ${h.geslacht==="merrie"&&ok.length>=2?`<button type="button" class="btn ghost" id="mTop4" data-ids="${esc(ok.slice(0,4).map(r=>r.s.id).join(","))}" data-m="${esc(h.id)}" style="margin:0 0 10px">Vergelijk de beste ${Math.min(4,ok.length)} hengsten naast elkaar</button>`:""}
    <div class="list">${ok.length?ok.slice(0,15).map((r,i)=>line(r,i)).join(""):'<div class="empty">Alle combinaties zijn uitgesloten.</div>'}</div>
    ${bad.length?`<details class="card" style="margin-top:14px"><summary>Uitgesloten combinaties (${bad.length})</summary><div class="list" style="margin-top:10px">${bad.map(r=>line(r,null)).join("")}</div></details>`:""}
    <p class="small muted" style="margin-top:12px">Klik op een combinatie om ze naast elkaar te zetten. De score is een hulpmiddel en vervangt geen advies van stamboek, dierenarts of fokker.</p>`}
@@ -1145,9 +1363,10 @@ function formToHorse(){const g=(id)=>$(id).value.trim();const n=(id)=>num($(id).
   const h={naam:g("h-naam"),geslacht:g("h-geslacht"),geboortejaar:n("h-jaar"),stamboek:g("h-stamboek"),ueln:g("h-ueln").toUpperCase().replace(/\s/g,""),fei_id:g("h-fei"),stokmaat_cm:n("h-stokmaat"),
     stamboom,hoogste_niveau_cm:n("h-niveau"),niveau_label:g("h-niveaulabel"),nakomelingen:{sport:n("h-sport"),m140:n("h-m140"),m150:n("h-m150")},
     fokwaarden:fok,wffs:g("h-wffs"),ocd:g("h-ocd"),ocd_toelichting:g("h-ocdnote"),bronnen,opmerking:g("h-opm"),bijgewerkt:new Date().toISOString().slice(0,10)};
+  if(h.geslacht==="hengst"){const d=readDekForm("h"),old=state.editId&&byId(state.editId);if(!dekLeeg(d)){const od=old&&old.dek;d.bijgewerkt=od&&JSON.stringify(Object.assign({},od,{bijgewerkt:0}))===JSON.stringify(Object.assign({},d,{bijgewerkt:0}))?od.bijgewerkt:h.bijgewerkt;h.dek=d}}
   return h}
 function validate(h){const e=[];if(!h.naam)e.push("vul een naam in");if(h.geslacht!=="hengst"&&h.geslacht!=="merrie")e.push("kies hengst of merrie");
-  if(h.ueln&&h.ueln.length!==15)e.push("een UELN heeft 15 tekens");if(!(h.bronnen||[]).some(b=>b&&b.naam))e.push("voeg minstens één bron toe");
+  if(h.ueln&&h.ueln.length!==15)e.push("een UELN heeft 15 tekens");if(!(h.bronnen||[]).some(b=>b&&b.naam))e.push("voeg minstens één bron toe");if(h.dek&&h.dek.url&&!okUrl(h.dek.url))e.push("de link naar het station begint met http:// of https://");
   (h.fokwaarden||[]).forEach(f=>{if(!f.systeem||f.waarde==null||f.gemiddelde==null||!f.sd)e.push(`fokwaarde "${f.systeem||"?"}" mist waarde, gemiddelde of standaarddeviatie`)});return e}
 function docIdFor(h){return h.ueln?slug(h.ueln):slug(h.naam+"-"+(h.geboortejaar||""))}
 function clean(o){return JSON.parse(JSON.stringify(o,(k,v)=>v===undefined?undefined:v))}
@@ -1155,8 +1374,8 @@ async function saveHorse(h,id){await db.collection(DB_COLL).doc(id).set(clean(h)
 function fillForm(h){const s=(id,v)=>{$(id).value=v==null?"":v};s("h-naam",h.naam);s("h-geslacht",h.geslacht||"hengst");s("h-jaar",h.geboortejaar);s("h-stamboek",h.stamboek);s("h-ueln",h.ueln);s("h-fei",h.fei_id);s("h-stokmaat",h.stokmaat_cm);
   PED_KEYS.forEach(k=>s("ped-"+k,h.stamboom&&h.stamboom[k]));s("h-niveau",h.hoogste_niveau_cm);s("h-niveaulabel",h.niveau_label);const o=h.nakomelingen||{};s("h-sport",o.sport);s("h-m140",o.m140);s("h-m150",o.m150);
   s("h-fok",(h.fokwaarden||[]).map(f=>[f.systeem,f.waarde,f.gemiddelde,f.sd,f.jaar,f.betrouwbaarheid].map(x=>x==null?"":x).join(" | ")).join("\n"));
-  s("h-wffs",h.wffs||"onbekend");s("h-ocd",h.ocd||"onbekend");s("h-ocdnote",h.ocd_toelichting);s("h-bronnen",(h.bronnen||[]).map(b=>[b.naam,b.url,b.datum].map(x=>x||"").join(" | ")).join("\n"));s("h-opm",h.opmerking)}
-function resetForm(){$("hForm").reset();state.editId=null;$("formTitle").textContent="Paard toevoegen";$("saveBtn").textContent="Paard opslaan"}
+  s("h-wffs",h.wffs||"onbekend");s("h-ocd",h.ocd||"onbekend");s("h-ocdnote",h.ocd_toelichting);s("h-bronnen",(h.bronnen||[]).map(b=>[b.naam,b.url,b.datum].map(x=>x||"").join(" | ")).join("\n"));s("h-opm",h.opmerking);setDekForm("h",h.dek||{});dekFsShow()}
+function resetForm(){$("hForm").reset();state.editId=null;dekFsShow();$("formTitle").textContent="Paard toevoegen";$("saveBtn").textContent="Paard opslaan"}
 
 // ---------- events ----------
 {const hi=document.createElement("img");hi.className="info-horses";hi.alt="";hi.src=FW_HORSES;document.querySelector("#p-info .info-hero").appendChild(hi)}
@@ -1183,6 +1402,8 @@ $("detail").addEventListener("submit",async e=>{const f=e.target.closest("form.w
     if(f.dataset.wiki==="bron"){const naam=$("wbNaam").value.trim(),url=$("wbUrl").value.trim();if(!naam){st.className="status err";st.textContent="Vul de naam van de bron in.";btn.disabled=false;return}
       if(url&&!/^https?:\/\//.test(url)){st.className="status err";st.textContent="Een link begint met http:// of https://.";btn.disabled=false;return}
       const b={naam,datum:new Date().toISOString().slice(0,10)};if(url)b.url=url;await db.collection(DB_COLL).doc(h.id).update({bronnen:(h.bronnen||[]).concat([b])})}
+    else if(f.dataset.wiki==="dek"){const d=readDekForm("wd");if(d.url&&!okUrl(d.url)){st.className="status err";st.textContent="Een link begint met http:// of https://.";btn.disabled=false;return}
+      if(!dekLeeg(d))d.bijgewerkt=new Date().toISOString().slice(0,10);await db.collection(DB_COLL).doc(h.id).update({dek:dekLeeg(d)?null:d})}
     else await db.collection(DB_COLL).doc(h.id).update({opmerking:$("wOpm").value.trim()});
     st.className="status ok";st.textContent="Bewaard. Dank je voor je bijdrage."}
   catch(err){st.className="status err";st.textContent="Bewaren lukte niet: "+(err&&err.message||"onbekende fout")}finally{btn.disabled=false}});
@@ -1190,13 +1411,22 @@ $("detail").addEventListener("click",async e=>{const b=e.target.closest("button[
   if(act==="matches"){fillSelects();$("mFor").value=h.id;setTab("matches")}
   if(act==="stam"){state.stamSel=h.id;setTab("stam");return}
   if(act==="veil"){state.vSire=h.geslacht==="hengst"?(lotsFor(h).alsVader[0]||{})._kv||keyL(h.naam):"";$("vQ").value=h.geslacht==="hengst"?"":h.naam;state.vLim=60;setTab("veilingen");return}
+  if(act==="hcmp"){hcAdd([h.id]);return}
   if(act==="compare"){fillSelects();if(h.geslacht==="hengst")$("cS").value=h.id;else $("cM").value=h.id;setTab("vergelijken")}
   if(act==="edit")editHorse(h);
   if(act==="del"){if(!b.classList.contains("arm")){b.classList.add("arm");b.textContent="Klik opnieuw om te verwijderen";clearTimeout(armTimer);armTimer=setTimeout(()=>{b.classList.remove("arm");b.textContent="Verwijderen"},4000);return}
     try{b.disabled=true;await db.collection(DB_COLL).doc(h.id).delete();state.sel=null}catch(err){$("detStatus").className="status err";$("detStatus").textContent="Verwijderen lukte niet: "+(err&&err.message||"onbekende fout")}}});
 ["cS","cM"].forEach(id=>$(id).addEventListener("change",renderCompare));
+$("cmpOut").addEventListener("click",async e=>{const b=e.target.closest("#fokPdf");if(!b)return;const s=byId($("cS").value),m=byId($("cM").value);if(!s||!m)return;b.disabled=true;try{await downloadRapport(s,m,$("fokPdfSt"))}finally{b.disabled=false}});
+["hc0","hc1","hc2","hc3","hcM"].forEach(id=>$(id).addEventListener("change",renderHengsten));
+$("hcOut").addEventListener("click",e=>{const v=e.target.closest("[data-hcvv]");if(v){fillSelects();$("cS").value=v.dataset.hcvv;$("cM").value=$("hcM").value;setTab("vergelijken");return}
+  const o=e.target.closest("[data-hcopen]");if(o){state.sel=o.dataset.hcopen;state.detTab="overzicht";setTab("zoeken");return}
+  const d=e.target.closest("[data-hcdel]");if(d){const ids=[0,1,2,3].map(i=>$("hc"+i).value).filter((x,i)=>x&&i!==+d.dataset.hcdel);[0,1,2,3].forEach(i=>$("hc"+i).value=ids[i]||"");renderHengsten()}});
+// Een hengst bij "Hengsten vergelijken" zetten (op de eerste vrije plek); m = merrie erbij (optioneel).
+function hcAdd(ids,m){fillSelects();const cur=[0,1,2,3].map(i=>$("hc"+i).value).filter(Boolean);let list=ids.length>1?ids.slice(0,4):cur.filter(x=>x!==ids[0]).concat(ids).slice(-4);
+  [0,1,2,3].forEach(i=>$("hc"+i).value=list[i]||"");if(m!==undefined)$("hcM").value=m||"";setTab("hengsten")}
 $("mFor").addEventListener("change",renderMatches);
-$("matchOut").addEventListener("click",e=>{const b=e.target.closest(".match");if(!b)return;$("cS").value=b.dataset.s;$("cM").value=b.dataset.m;setTab("vergelijken")});
+$("matchOut").addEventListener("click",e=>{const t4=e.target.closest("#mTop4");if(t4){hcAdd(t4.dataset.ids.split(","),t4.dataset.m);return}const b=e.target.closest(".match");if(!b)return;$("cS").value=b.dataset.s;$("cM").value=b.dataset.m;setTab("vergelijken")});
 ["gen","perf","coi","health","data"].forEach(k=>$("w-"+k).addEventListener("input",e=>{state.w[k]=Number(e.target.value);renderMatches()}));
 $("tWarn").addEventListener("change",e=>{const v=num(e.target.value);if(v!=null)state.t.warn=v;renderMatches()});
 $("tMax").addEventListener("change",e=>{const v=num(e.target.value);if(v!=null)state.t.max=v;renderMatches()});
@@ -1594,7 +1824,7 @@ function fitList(){const r=$("results"),d=$("detail");if(!r||$("p-zoeken").hidde
   r.style.maxHeight=h+"px";d.style.height=h+"px";fwDetBase=h;checkDetOverflow();paintPedSlots()}
 window.addEventListener("resize",fitList);
 // ---------- start ----------
-buildPedInputs();renderAll();
+buildPedInputs();$("dekFields").innerHTML=dekFormHtml("h");$("h-geslacht").addEventListener("change",dekFsShow);dekFsShow();renderAll();
 (async()=>{try{
   if(!window.claude||!window.claude.use){state.dbState="none";if(!state.loaded){state.horses=DEMO;state.demo=true}renderAll();return}
   db=await window.claude.use("db");
