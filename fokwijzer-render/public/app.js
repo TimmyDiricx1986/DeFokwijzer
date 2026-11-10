@@ -1290,7 +1290,7 @@ function subtabsHtml(t){const toev=t==="aanvragen"||t==="beheer";const sel=(k)=>
 // Opslag: per persoon één privé-document {hengsten:[id], merries:[id], veulens:[{id,s,m,naam,notitie,gemaakt_op}]}.
 const STAL_MAX=300,VEUL_MAX=200;
 state.stal={hengsten:[],merries:[],veulens:[]};state.stalOk=false;let stalSub=null,stalKey="";
-function stalRef(){return state.site?db.doc("mijnstal/"+state.meId):db.doc("data/users/me/stal")}
+function stalRef(){return state.site?db.doc("mijnstal/"+state.meId):db.collection("data/users/"+state.meId).doc("stal")}
 function stalAan(){return !!(db&&state.canWrite&&state.meId&&state.dbState==="ready")}
 function ensureStal(){const k=stalAan()?state.meId:"";if(k===stalKey)return;stalKey=k;if(stalSub){try{stalSub()}catch(_){}stalSub=null}
   state.stal={hengsten:[],merries:[],veulens:[]};state.stalOk=false;if(!k)return;
