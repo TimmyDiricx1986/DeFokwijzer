@@ -1186,7 +1186,7 @@ function dekHtml(h,compact){const d=dekOf(h)||{};const unk='<span class="muted">
    <dt>Sperma</dt><dd class="wide">${(d.sperma||[]).length?`<span class="chips">${spermaTxt(d).map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</span>`:unk}</dd>
    <dt>Beschikbaarheid</dt><dd class="wide">${b?`<span class="chip ${b[1]}">${b[0]}</span>`:unk}${d.seizoen?` <span class="small muted">dekseizoen ${esc(d.seizoen)}</span>`:""}${d.toelichting?`<div class="small" style="margin-top:4px">${esc(d.toelichting)}</div>`:""}</dd>
    <dt>Station</dt><dd class="wide">${stationHtml(d)}</dd>
-  </dl>${compact?"":`<p class="small muted" style="margin:10px 0 0">${d.bijgewerkt?`<span>Laatst bijgewerkt:</span> <span>${esc(dagTxt(d.bijgewerkt))}</span>. `:""}Controleer dekgeld en beschikbaarheid altijd bij het station.</p>`}`}
+  </dl>${compact?"":`<p class="small muted" style="margin:10px 0 0">${d.herkomst==="automatisch"?`<span>Automatisch opgezocht</span>${d.bron&&okUrl(d.bron.url)?` <span>(bron:</span> <a href="${esc(d.bron.url)}" target="_blank" rel="noopener">${esc(d.bron.naam||"bron")}</a>)`:""}. `:""}${d.bijgewerkt?`<span>Laatst bijgewerkt:</span> <span>${esc(dagTxt(d.bijgewerkt))}</span>. `:""}Controleer dekgeld en beschikbaarheid altijd bij het station.</p>`}`}
 // Invulvelden voor de dekinfo (formulier Paarden beheren en snel aanpassen bij de hengst). p = voorvoegsel van de id's.
 function dekFormHtml(p){return `<div class="grid3">
    <div class="field"><label class="label" for="${p}-dekgeld">Dekgeld</label><input id="${p}-dekgeld" maxlength="160" placeholder="bv. € 1.500 + € 500 bij dracht"></div>
@@ -1203,6 +1203,7 @@ function readDekForm(p){const g=(k)=>{const e=$(p+"-"+k);return e?e.value.trim()
   [["dekgeld","dekgeld"],["beschikbaar","beschik"],["seizoen","seizoen"],["station","station"],["url","stationurl"],["toelichting","dektoel"]].forEach(([k,id])=>{const v=g(id);if(v)d[k]=v});
   if(d.url&&!/^https?:\/\//i.test(d.url))d.url="https://"+d.url;
   const sp=SPERMA.map(x=>x[0]).filter(k=>{const e=$(p+"-sp-"+k);return e&&e.checked});if(sp.length)d.sperma=sp;return d}
+function dekGelijk(a,b){const k=(d)=>JSON.stringify(["dekgeld","beschikbaar","seizoen","toelichting","station","url"].map(x=>(d&&d[x])||"").concat([(d&&d.sperma||[]).join(",")]));return k(a)===k(b)}
 function dekFsShow(){const f=$("dekFs");if(f)f.hidden=$("h-geslacht").value!=="hengst"}
 function compHtml(r){const lab={gen:"Genetische indexen",perf:"Prestaties en nakomelingen",coi:"Inteelt",health:"Gezondheid",data:"Datavolledigheid"};
   return '<div class="bars">'+Object.keys(lab).map(k=>{const v=r.comps[k];return `<div class="bar"><span>${lab[k]} <span class="muted small">(${state.w[k]})</span></span><div class="track"><div class="fill" style="width:${v==null?0:v}%"></div></div><span class="num" style="text-align:right">${v==null?"geen":Math.round(v)}</span></div>`}).join("")+"</div>"}
@@ -1363,7 +1364,9 @@ function formToHorse(){const g=(id)=>$(id).value.trim();const n=(id)=>num($(id).
   const h={naam:g("h-naam"),geslacht:g("h-geslacht"),geboortejaar:n("h-jaar"),stamboek:g("h-stamboek"),ueln:g("h-ueln").toUpperCase().replace(/\s/g,""),fei_id:g("h-fei"),stokmaat_cm:n("h-stokmaat"),
     stamboom,hoogste_niveau_cm:n("h-niveau"),niveau_label:g("h-niveaulabel"),nakomelingen:{sport:n("h-sport"),m140:n("h-m140"),m150:n("h-m150")},
     fokwaarden:fok,wffs:g("h-wffs"),ocd:g("h-ocd"),ocd_toelichting:g("h-ocdnote"),bronnen,opmerking:g("h-opm"),bijgewerkt:new Date().toISOString().slice(0,10)};
-  if(h.geslacht==="hengst"){const d=readDekForm("h"),old=state.editId&&byId(state.editId);if(!dekLeeg(d)){const od=old&&old.dek;d.bijgewerkt=od&&JSON.stringify(Object.assign({},od,{bijgewerkt:0}))===JSON.stringify(Object.assign({},d,{bijgewerkt:0}))?od.bijgewerkt:h.bijgewerkt;h.dek=d}}
+  if(h.geslacht==="hengst"){const d=readDekForm("h"),old=state.editId&&byId(state.editId),od=old&&old.dek;
+    // Onveranderde dekinfo blijft zoals ze was (ook "automatisch opgezocht" en de bron); gewijzigde dekinfo geldt als zelf ingevuld.
+    if(od&&dekGelijk(od,d))h.dek=od;else if(!dekLeeg(d)){d.bijgewerkt=h.bijgewerkt;h.dek=d}}
   return h}
 function validate(h){const e=[];if(!h.naam)e.push("vul een naam in");if(h.geslacht!=="hengst"&&h.geslacht!=="merrie")e.push("kies hengst of merrie");
   if(h.ueln&&h.ueln.length!==15)e.push("een UELN heeft 15 tekens");if(!(h.bronnen||[]).some(b=>b&&b.naam))e.push("voeg minstens één bron toe");if(h.dek&&h.dek.url&&!okUrl(h.dek.url))e.push("de link naar het station begint met http:// of https://");
@@ -1403,6 +1406,7 @@ $("detail").addEventListener("submit",async e=>{const f=e.target.closest("form.w
       if(url&&!/^https?:\/\//.test(url)){st.className="status err";st.textContent="Een link begint met http:// of https://.";btn.disabled=false;return}
       const b={naam,datum:new Date().toISOString().slice(0,10)};if(url)b.url=url;await db.collection(DB_COLL).doc(h.id).update({bronnen:(h.bronnen||[]).concat([b])})}
     else if(f.dataset.wiki==="dek"){const d=readDekForm("wd");if(d.url&&!okUrl(d.url)){st.className="status err";st.textContent="Een link begint met http:// of https://.";btn.disabled=false;return}
+      const od=dekOf(h);if(od&&dekGelijk(od,d)){st.className="status ok";st.textContent="Niets gewijzigd.";btn.disabled=false;return}
       if(!dekLeeg(d))d.bijgewerkt=new Date().toISOString().slice(0,10);await db.collection(DB_COLL).doc(h.id).update({dek:dekLeeg(d)?null:d})}
     else await db.collection(DB_COLL).doc(h.id).update({opmerking:$("wOpm").value.trim()});
     st.className="status ok";st.textContent="Bewaard. Dank je voor je bijdrage."}
