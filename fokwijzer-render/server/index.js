@@ -28,7 +28,7 @@ const clients = new Set();
 function broadcast(coll, id) {
   const msg = `event: change\ndata: ${JSON.stringify({ coll, id })}\n\n`;
   for (const c of clients) {
-    if (coll === "mijnstal") { if (c.userId != null && String(c.userId) === String(id)) c.res.write(msg); continue; }
+    if (coll === "mijnstal") { if (c.level >= LEVEL.beheerder || (c.userId != null && String(c.userId) === String(id))) c.res.write(msg); continue; }
     if (c.level >= (rule(coll, id, "read") ?? 99)) c.res.write(msg);
   }
 }
@@ -190,8 +190,8 @@ function guard(req, res, op) {
     res.status(req.actor.level ? 403 : 401).json({ fout: req.actor.level ? "Je hebt hiervoor niet de juiste rol." : "Log eerst in." });
     return false;
   }
-  // Mijn stal is privé: enkel het eigen document (id = eigen gebruikers-id), geen lijst van alle werkplekken.
-  if (coll === "mijnstal" && !req.actor.service && (id == null || req.actor.userId == null || String(req.actor.userId) !== String(id))) {
+  // Mijn stal: enkel het eigen document (id = eigen gebruikers-id). Een beheerder kan elke stal openen (lezen).
+  if (coll === "mijnstal" && !req.actor.service && !(op === "read" && req.actor.level >= LEVEL.beheerder) && (id == null || req.actor.userId == null || String(req.actor.userId) !== String(id))) {
     res.status(403).json({ fout: "Je kunt enkel je eigen stal bekijken en aanpassen." });
     return false;
   }

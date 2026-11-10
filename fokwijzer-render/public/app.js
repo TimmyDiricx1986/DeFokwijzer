@@ -1311,7 +1311,7 @@ function stalToggle(h,st){if(!h||!stalAan())return;const k=h.geslacht==="merrie"
 function geenWerkplek(){if(state.dbState==="loading")return '<p class="small muted">Opslag wordt geladen...</p>';
   if(state.dbState==="none")return '<div class="banner"><strong>Opslag niet beschikbaar.</strong> In deze weergave kan niets bewaard worden.</div>';
   const rol=state.site?state.rol||"anoniem":(state.platformWrite?state.rol:"lezer");
-  const uitleg='<div class="card werk-uitleg"><h3 style="margin:0">Je eigen Fokwijzer</h3><p style="margin:6px 0 0">Met een <b>Fokwijzer-profiel</b> bewaar je hengsten en merries in <b>Mijn stal</b>, combineer je ze, maak en bewaar je <b>virtuele veulens</b> met een fokadvies als PDF, en voeg je paarden toe: automatisch laten opzoeken of zelf invullen. Je stal en je veulens zie alleen jij.</p></div>';
+  const uitleg='<div class="card werk-uitleg"><h3 style="margin:0">Je eigen Fokwijzer</h3><p style="margin:6px 0 0">Met een <b>Fokwijzer-profiel</b> bewaar je hengsten en merries in <b>Mijn stal</b>, combineer je ze, maak en bewaar je <b>virtuele veulens</b> met een fokadvies als PDF, en voeg je paarden toe: automatisch laten opzoeken of zelf invullen.</p></div>';
   if(state.site||state.platformWrite)return uitleg+pbCta(rol);
   return uitleg+'<div class="banner"><strong>Alleen lezen.</strong> Vraag de eigenaar om de rechten van een Fokwijzer-profiel.</div>'}
 const stalRegel=(h)=>{const sb=h.stamboom||{};const d=dekOf(h),b=d&&BESCHIK[d.beschikbaar];const eigen=state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId;

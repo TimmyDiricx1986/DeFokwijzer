@@ -310,12 +310,42 @@
             if (!confirm("Account van " + u.name + " verwijderen?")) return;
             api("DELETE", "/api/users/" + u.id).then(load, function (e) { fail(st, e); });
           });
-          table.appendChild(el("tr", {}, [el("td", { text: u.name }), el("td", { text: u.email }), el("td", {}, [sel]), el("td", {}, [pc]), el("td", { text: u.last_login ? new Date(u.last_login).toLocaleString("nl-BE") : "nooit" }), el("td", {}, [del])]));
+          var stal = el("button", { class: "btn ghost", type: "button", text: "Stal" });
+          stal.addEventListener("click", function () { stalDialog(u); });
+          table.appendChild(el("tr", {}, [el("td", { text: u.name }), el("td", { text: u.email }), el("td", {}, [sel]), el("td", {}, [pc]), el("td", { text: u.last_login ? new Date(u.last_login).toLocaleString("nl-BE") : "nooit" }), el("td", {}, [stal, del])]));
         });
       }, function (e) { fail(st, e); });
     }
     load();
     return load;
+  }
+
+  // ------------------------------------------------------------ stal van een gebruiker bekijken (beheerder)
+  function stalDialog(u) {
+    var box = el("div", { class: "stack" });
+    var st = status();
+    st.textContent = "Laden...";
+    box.appendChild(st);
+    Promise.all([api("GET", "/api/c/mijnstal/" + encodeURIComponent(u.id)), api("GET", "/api/c/paarden")]).then(function (r) {
+      var d = (r[0] && r[0].data) || {}, naam = {};
+      (r[1] || []).forEach(function (p) { naam[p.id] = (p.data && p.data.naam) || p.id; });
+      st.textContent = "";
+      var leeg = !(d.hengsten || []).length && !(d.merries || []).length && !(d.veulens || []).length;
+      if (leeg) { st.textContent = "Deze stal is nog leeg."; return; }
+      function blok(titel, items) {
+        box.appendChild(el("div", { class: "label", text: titel + " (" + items.length + ")" }));
+        var ul = el("ul", { class: "plain" });
+        items.forEach(function (t) { ul.appendChild(el("li", { text: t })); });
+        box.appendChild(ul);
+      }
+      blok("Hengsten", (d.hengsten || []).map(function (id) { return naam[id] || id; }));
+      blok("Merries", (d.merries || []).map(function (id) { return naam[id] || id; }));
+      blok("Virtuele veulens", (d.veulens || []).map(function (v) {
+        var ouders = (naam[v.s] || v.s_naam || "?") + " x " + (naam[v.m] || v.m_naam || "?");
+        return (v.naam ? v.naam + ": " + ouders : ouders) + (v.notitie ? " (" + v.notitie + ")" : "");
+      }));
+    }, function (e) { fail(st, e); });
+    dialog("Stal van " + u.name, box);
   }
 
   // ------------------------------------------------------------ wiki-geschiedenis van een paard
