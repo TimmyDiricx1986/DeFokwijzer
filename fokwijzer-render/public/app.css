@@ -418,6 +418,11 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .hc-sub{font-weight:400;margin-top:2px}
 .hc-score{font-size:1.25rem;font-weight:700}
 .hc-vv{padding:5px 10px;font-size:.85rem}
+.subtabs{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;margin:0 0 14px;border:1px solid var(--line);border-radius:10px;background:var(--sunk)}
+.subtabs button{font:inherit;font-weight:600;font-size:.92rem;border:0;border-radius:7px;padding:7px 14px;background:transparent;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.subtabs button[aria-selected="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.subtabs button[aria-selected="false"] .count-badge{background:var(--accent);color:var(--accent-ink)}
+@media (max-width:640px){.subtabs{display:flex}.subtabs button{flex:1 1 0;justify-content:center;padding:8px 8px;font-size:.86rem;text-align:center}}
 .dek-sp{border:0;padding:0;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}.dek-sp legend{float:left;margin:0 6px 0 0;padding:0}.dek-sp label{display:flex;gap:6px;align-items:center;font-size:.92rem}
 .dek-edit{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}.dek-edit summary{cursor:pointer;font-weight:600;color:var(--accent)}.dek-edit .wiki-form{margin-top:10px}
 .wiki-form textarea{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
