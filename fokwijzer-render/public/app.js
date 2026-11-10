@@ -1382,7 +1382,7 @@ function resetForm(){$("hForm").reset();state.editId=null;dekFsShow();$("formTit
 
 // ---------- events ----------
 {const hi=document.createElement("img");hi.className="info-horses";hi.alt="";hi.src=FW_HORSES;document.querySelector("#p-info .info-hero").appendChild(hi)}
-$("p-info").addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(g){setTab(g.dataset.goto);window.scrollTo({top:0,behavior:"smooth"})}});
+$("p-info").addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(g){if(g.dataset.goto==="beheer")$("tab-beheer").click();else setTab(g.dataset.goto);window.scrollTo({top:0,behavior:"smooth"})}});
 document.addEventListener("click",e=>{if(e.target.closest("#adminLink")){e.preventDefault();setTab("admin")}});
 $("poList").addEventListener("click",e=>{const b=e.target.closest("[data-pa]");if(b)openPartnerAdmin(b.dataset.pa)});
 $("poNew").addEventListener("click",()=>{adFill(null);setTab("partners");$("adNaam").focus()});

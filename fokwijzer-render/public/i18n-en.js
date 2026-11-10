@@ -114,6 +114,7 @@
     "Naar Virtueel veulen": "Go to Virtual foal",
     "Bijdragen": "Contribute",
     "Jouw Fokwijzer": "Your Fokwijzer",
+    "Ga naar jouw Fokwijzer": "Go to your Fokwijzer",
     "Lezen": "Reading",
     "kan zonder account. Met een account als": "requires no account. With an account as a",
     "gebruiker": "user",
