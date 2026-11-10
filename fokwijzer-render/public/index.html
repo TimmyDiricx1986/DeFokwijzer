@@ -8,10 +8,10 @@
 <meta name="theme-color" content="#2F5A3A">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/fonts/fonts.css?v=0073d28fa1">
-<link rel="stylesheet" href="/app.css?v=8b8a839992">
+<link rel="stylesheet" href="/app.css?v=418ed5ed95">
 <link rel="alternate" hreflang="nl" href="/?lang=nl">
 <link rel="alternate" hreflang="en" href="/?lang=en">
-<script src="/i18n-en.js?v=8e076c943b"></script>
+<script src="/i18n-en.js?v=fa4ccef88e"></script>
 <script src="/i18n.js?v=12c9bae90f"></script>
 </head>
 <body>
@@ -32,6 +32,7 @@
     <button role="tab" id="tab-matches" aria-selected="false" data-tab="matches">Beste matches</button>
     <button type="button" class="tab-more" id="tabMore" aria-expanded="false" aria-label="Meer onderdelen"><span class="tm-txt">Meer </span><span aria-hidden="true">&#9662;</span></button>
     <button role="tab" id="tab-vergelijken" aria-selected="false" data-tab="vergelijken" class="tab-xtra">Virtueel veulen</button>
+    <button role="tab" id="tab-hengsten" aria-selected="false" data-tab="hengsten" class="tab-xtra">Hengsten vergelijken</button>
     <button role="tab" id="tab-stam" aria-selected="false" data-tab="stam" class="tab-xtra">Stamlijnen</button>
     <button role="tab" id="tab-veilingen" aria-selected="false" data-tab="veilingen" class="tab-xtra">Veilingen</button>
     <button role="tab" id="tab-aanvragen" aria-selected="false" data-tab="aanvragen" class="tab-xtra">Paard aanvragen <span class="count-badge" id="reqBadge" hidden></span></button>
@@ -83,6 +84,19 @@
     </div>
     <div id="cmpOut" style="margin-top:16px"></div>
     <div id="councilOut" style="margin-top:20px"></div>
+  </section>
+
+  <!-- HENGSTEN VERGELIJKEN -->
+  <section class="panel" id="p-hengsten" role="tabpanel" aria-labelledby="tab-hengsten" hidden>
+    <p class="small muted" style="margin:0 0 12px">Zet tot vier hengsten naast elkaar: prestaties, fokwaarden, gezondheid en dekinfo. Kies er een merrie bij om per hengst te zien hoe goed de combinatie scoort.</p>
+    <div class="hc-picks">
+      <div class="field"><label class="label" for="hc0">Hengst 1</label><select id="hc0"></select></div>
+      <div class="field"><label class="label" for="hc1">Hengst 2</label><select id="hc1"></select></div>
+      <div class="field"><label class="label" for="hc2">Hengst 3</label><select id="hc2"></select></div>
+      <div class="field"><label class="label" for="hc3">Hengst 4</label><select id="hc3"></select></div>
+    </div>
+    <div class="row" style="margin-top:10px"><div class="field grow"><label class="label" for="hcM">Met merrie (optioneel)</label><select id="hcM"></select></div></div>
+    <div id="hcOut" style="margin-top:16px"></div>
   </section>
 
   <!-- MATCHES -->
@@ -284,6 +298,10 @@
           <div class="field"><label class="label" for="h-ocdnote">Toelichting</label><input id="h-ocdnote"></div>
         </div>
       </fieldset>
+      <fieldset id="dekFs"><legend>Dekinfo (alleen voor hengsten)</legend>
+        <p class="small muted" style="margin:0 0 8px">Praktische info voor fokkers: dekgeld, soort sperma, beschikbaarheid en het station met een link.</p>
+        <div id="dekFields"></div>
+      </fieldset>
       <fieldset><legend>Bronnen *</legend>
         <p class="small muted" style="margin:0 0 8px">Eén per regel: <span class="mono">naam | url | datum geraadpleegd</span>. Elk paard heeft minstens één bron nodig.</p>
         <textarea id="h-bronnen" placeholder="BWP hengstenlijst | https://... | 2026-10-08"></textarea>
@@ -326,6 +344,6 @@
   <footer class="sitefoot"><span id="adVoet"></span><span>Powered by DeDilieHoeve</span><span class="fw-links"><a href="/over.html" target="_top">Over</a> · <a href="/privacy.html" target="_top">Privacy</a></span></footer>
 </div>
 <script src="/fokwijzer-api.js?v=2f3f4761d7"></script>
-<script src="/app.js?v=55ba07a6db"></script>
+<script src="/app.js?v=ae3ea3cb11"></script>
 </body>
 </html>
