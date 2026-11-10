@@ -1,0 +1,27 @@
+# Draait de servertests (npm test) bij elke pull request en push naar main die de website raakt.
+name: Tests
+on:
+  pull_request:
+    paths: ["fokwijzer-render/**", ".github/workflows/tests.yml"]
+  push:
+    branches: [main]
+    paths: ["fokwijzer-render/**"]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: fokwijzer-render
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: fokwijzer-render/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - name: Website opbouwen (controle)
+        run: python3 tools/build.py src/fokwijzer-app.html && node --check public/app.js
