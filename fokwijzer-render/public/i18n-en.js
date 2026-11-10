@@ -134,7 +134,7 @@
     "Hengst toevoegen": "Add a stallion",
     "Merrie toevoegen": "Add a mare",
     "Naam van de merrie": "Name of the mare",
-    "Nog geen hengsten in je stal. Zoek hierboven of klik bij een hengst op In mijn stal.": "No stallions in your stable yet. Search above or click In my stable on a stallion.",
+    "Nog geen hengsten in je stal. Zoek hierboven of klik bij een hengst op In mijn stal. De hengst hoeft niet per se je eigendom te zijn: je kunt hem perfect als voorkeurhengst toevoegen aan je stal op De Fokwijzer.": "No stallions in your stable yet. Search above or click In my stable on a stallion. You do not have to own the stallion: you can simply add him to your stable on De Fokwijzer as a preferred stallion.",
     "Nog geen merries in je stal. Zoek hierboven of klik bij een merrie op In mijn stal.": "No mares in your stable yet. Search above or click In my stable on a mare.",
     "Eigen paard": "Own horse",
     "Uit je stal halen": "Remove from your stable",
