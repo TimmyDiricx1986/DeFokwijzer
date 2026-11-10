@@ -364,7 +364,7 @@ function renderCouncil(s,m){const box=$("councilOut");if(!box)return;if(!s||!m){
   const id=cId(s,m);const saved=(state.council||{})[id];const live=councilBusy&&councilBusy.id===id?councilBusy:null;
   const exp=live?live.exp:saved&&saved.experts||{};const vz=live?live.vz:saved&&saved.voorzitter;
   const can=!!sampleNs&&!live;
-  let note="";if(!sampleNs)note=(sampleChecked||state.dbState==="none")?"De council is beschikbaar voor ingelogde paarden-beheerders, als AI-advies op de server is ingesteld.":"Council wordt geladen...";
+  let note="";if(!sampleNs)note=(sampleChecked||state.dbState==="none")?"De council is beschikbaar voor ingelogde bezoekers met een Fokwijzer-profiel, als AI-advies op de server is ingesteld.":"Council wordt geladen...";
   else if(live)note="De experten beoordelen de combinatie. Dit duurt meestal 30 tot 90 seconden.";
   else if(saved)note=`Advies van ${fmtDate(saved.gemaakt_op)}${saved.veilinglots!=null?`, met ${saved.veilinglots} veilinglots in de database`:""}.`;
   else note="Laat de vijf experten deze combinatie beoordelen. Dit telt mee voor je limiet van AI-vragen (5 vragen).";
@@ -374,7 +374,7 @@ function renderCouncil(s,m){const box=$("councilOut");if(!box)return;if(!s||!m){
    ${(saved||live)?`${chairCard(vz,live?(Object.keys(live.st).every(k=>live.st[k]!=="bezig")&&!vz?(live.vzSt||""):""):"")}
    <div class="xgrid">${EXPERTS.map(e=>expertCard(e,exp[e.id],live?live.st[e.id]:(exp[e.id]?"":"Geen oordeel."))).join("")}</div>`:""}`;
   const a=$("cAsk");if(a)a.onclick=()=>askCouncil(s,m,!!saved);const st=$("cStop");if(st)st.onclick=()=>{if(councilBusy&&councilBusy.ctl)councilBusy.ctl.abort()}}
-const sampleErr=(e)=>{const c=e&&e.code;return c==="not_granted"?"Log in als paarden-beheerder om de council te gebruiken.":c==="rate_limited"?"Even te veel vragen of je verbruikslimiet is bereikt. Probeer later opnieuw.":c==="sampling_disabled"?"AI-advies is niet beschikbaar op deze server.":c==="cancelled"?"Gestopt.":c==="invalid_json"?"Het antwoord was geen geldig formaat.":c==="session_expired"?"Meld je opnieuw aan.":(e&&e.message&&!/^Fout \d+$/.test(e.message)?e.message:"Geen antwoord ("+(c||"fout")+").")};
+const sampleErr=(e)=>{const c=e&&e.code;return c==="not_granted"?"Log in met een Fokwijzer-profiel om de council te gebruiken.":c==="rate_limited"?"Even te veel vragen of je verbruikslimiet is bereikt. Probeer later opnieuw.":c==="sampling_disabled"?"AI-advies is niet beschikbaar op deze server.":c==="cancelled"?"Gestopt.":c==="invalid_json"?"Het antwoord was geen geldig formaat.":c==="session_expired"?"Meld je opnieuw aan.":(e&&e.message&&!/^Fout \d+$/.test(e.message)?e.message:"Geen antwoord ("+(c||"fout")+").")};
 async function askCouncil(s,m,again){if(!sampleNs||councilBusy)return;const id=cId(s,m);const data=councilData(s,m);const ctl=new AbortController();
   state.cErr="";councilBusy={id,ctl,exp:{},st:Object.fromEntries(EXPERTS.map(e=>[e.id,"bezig"])),vz:null,vzSt:""};const rr=()=>{if(state.tab==="vergelijken")renderCouncil(byId($("cS").value),byId($("cM").value))};rr();
   const opts={signal:ctl.signal};if(again)opts.cache=false;
@@ -555,7 +555,7 @@ function renderReview0(){const box=$("aReview");const a=state.aanvragen.find(x=>
     <span class="status" id="rStatus" role="status"></span>
    </div></div>`}
 const LEDEN_COLL="leden";
-const ROL_NAAM={gebruiker:"Gebruiker",paardenbeheerder:"Paarden-beheerder",beheerder:"Beheerder"};
+const ROL_NAAM={gebruiker:"Bijdrager",paardenbeheerder:"Fokwijzer-profiel",beheerder:"Beheerder"};
 function applyArtRole(){if(state.site)return;const mine=(state.leden||{})[state.meId];
   state.rol=state.isOwner?"beheerder":(mine&&ROL_NAAM[mine.rol]?mine.rol:"gebruiker");
   state.isAdmin=state.rol==="beheerder";
@@ -563,7 +563,7 @@ function applyArtRole(){if(state.site)return;const mine=(state.leden||{})[state.
   state.isPartner=!!state.platformWrite&&(state.isAdmin||!!(mine&&mine.partner));
   if(state.sim){state.realRole=roleSnapshot();applySimOverlay()}}
 // ---------- simulatie: de site bekijken als een andere rol (alleen voor beheerders) ----------
-const SIM={lezer:{l:"Lezer (zonder account)",rol:null,pt:false},gebruiker:{l:"Gebruiker",rol:"gebruiker",pt:false},paardenbeheerder:{l:"Paarden-beheerder",rol:"paardenbeheerder",pt:false},partner:{l:"Partner (gebruiker)",rol:"gebruiker",pt:true},pbpartner:{l:"Paarden-beheerder + partner",rol:"paardenbeheerder",pt:true}};
+const SIM={lezer:{l:"Lezer (zonder account)",rol:null,pt:false},gebruiker:{l:"Bijdrager",rol:"gebruiker",pt:false},paardenbeheerder:{l:"Fokwijzer-profiel",rol:"paardenbeheerder",pt:false},partner:{l:"Partner (bijdrager)",rol:"gebruiker",pt:true},pbpartner:{l:"Fokwijzer-profiel + partner",rol:"paardenbeheerder",pt:true}};
 let realDb=null,realSample=null,realMcp=null;
 // AI (council) en geplande taken (data-agent, veilingmeester) starten nooit tijdens een simulatie.
 const SIM_AI_BTNS='#cAsk,#vmRun,#runBtn,#lnkBtn,#aBtn,[data-ract="retry"]';
@@ -601,11 +601,11 @@ function renderWho(){if(state.site)return;if(state.dbState!=="ready"){$("artWho"
 // "Mijn account": dezelfde mogelijkheden als op de website, met je account als login.
 function openMyAccount(){const nm=state.meName||(state.isOwner?"Eigenaar":"Jij");const ro=!state.platformWrite;const rl=ro?"Lezer":(ROL_NAAM[state.rol]||"Gebruiker");
   const d=document.createElement("dialog");d.className="detdlg";
-  const rolBtn=!ro&&state.rol==="gebruiker"?'<button class="btn" type="button" data-acct="word-pb">Word paarden-beheerder</button>':"";
+  const rolBtn=!ro&&state.rol==="gebruiker"?'<button class="btn" type="button" data-acct="word-pb">Maak je Fokwijzer-profiel</button>':"";
   const ptBtn=ro?"":(state.isAdmin?"":(state.isPartner?'<button class="btn ghost" type="button" data-myp="uit">Geen partner meer</button>':'<button class="btn" type="button" data-acct="word-partner">Word partner</button>'));
   d.innerHTML=`<div class="dlg-head"><h3 style="margin:0">Mijn account</h3><button type="button" class="btn ghost" data-close>Sluiten</button></div>
    <div class="dlg-body"><dl class="facts" style="margin:0 0 12px"><dt>Naam</dt><dd>${esc(nm)}</dd><dt>Rol</dt><dd><b>${esc(rl)}</b></dd><dt>Partner</dt><dd>${state.isPartner?"ja":"nee"}</dd><dt>Ingelogd via</dt><dd>je account</dd></dl>
-   <p class="small muted" style="margin:0 0 12px">${ro?"Je mag deze Fokwijzer alleen bekijken. Vraag de eigenaar om bewerkrechten (Kan bewerken) om bij te dragen.":"Gebruiker: bronnen en opmerkingen aanvullen. Paarden-beheerder: eigen paarden toevoegen en gegevens aanpassen. Partner: je bedrijf in de kijker zetten (voorlopig gratis)."}</p>
+   <p class="small muted" style="margin:0 0 12px">${ro?"Je mag deze Fokwijzer alleen bekijken. Vraag de eigenaar om bewerkrechten (Kan bewerken) om bij te dragen.":"Bijdrager: bronnen en opmerkingen aanvullen. Fokwijzer-profiel: eigen paarden toevoegen en gegevens aanpassen. Partner: je bedrijf in de kijker zetten (voorlopig gratis)."}</p>
    <div class="row" style="gap:8px">${rolBtn}${ptBtn}${state.isAdmin?'<button class="btn ghost" type="button" data-goadmin>Naar Beheer</button>':""}</div><div class="status" role="status" id="myStatus"></div>
    <p class="small muted" style="margin:14px 0 0">Wachtwoord en uitloggen regel je bij je account. Op de website van De Fokwijzer log je in met een eigen e-mailadres en wachtwoord.</p></div>`;
   document.body.appendChild(d);d.addEventListener("close",()=>d.remove());d.querySelector("[data-close]").onclick=()=>d.close();
@@ -622,7 +622,7 @@ async function renderLeden(){if(state.site||!state.isAdmin)return;const box=$("a
     const sel=me&&state.isOwner?'<span class="small">Beheerder (eigenaar)</span>':`<select data-lid="${esc(id)}" aria-label="Rol van ${esc(nm)}">${["gebruiker","paardenbeheerder","beheerder"].map(r=>`<option value="${r}" ${d.rol===r?"selected":""}>${ROL_NAAM[r]}</option>`).join("")}</select>`;
     const n=state.horses.filter(h=>h.eigenaar_id!=null&&String(h.eigenaar_id)===id).length;
     return `<tr><td>${esc(nm)}${me?' <span class="small muted">(jij)</span>':""}</td><td>${sel}</td><td><input type="checkbox" data-lpartner="${esc(id)}" aria-label="${esc(nm)} is partner" ${d.partner?"checked":""}></td><td class="num">${n}</td><td>${esc(d.laatst||"-")}</td></tr>`}).join("");
-  box.innerHTML=`<div class="card" style="margin-bottom:12px"><h3 style="margin:0 0 6px">Gebruikers en rollen (${ids.length})</h3><p class="small muted" style="margin:0 0 10px">Iedereen met wie je deze Fokwijzer deelt en die ze opende. Gebruiker: vult bronnen en opmerkingen aan. Paarden-beheerder: voegt paarden toe en beheert ze. Beheerder: alles. Wie de pagina alleen mag bekijken, blijft lezer.</p><div class="fw-users-wrap"><table class="fw-users"><tr><th>Naam</th><th>Rol</th><th>Partner</th><th>Eigen paarden</th><th>Laatst gezien</th></tr>${rows||'<tr><td colspan="5" class="small muted">Nog niemand anders opende deze Fokwijzer.</td></tr>'}</table></div><div class="status" role="status" id="ledenStatus"></div></div>`}
+  box.innerHTML=`<div class="card" style="margin-bottom:12px"><h3 style="margin:0 0 6px">Gebruikers en rollen (${ids.length})</h3><p class="small muted" style="margin:0 0 10px">Iedereen met wie je deze Fokwijzer deelt en die ze opende. Bijdrager: vult bronnen en opmerkingen aan. Fokwijzer-profiel: voegt paarden toe en beheert ze. Beheerder: alles. Wie de pagina alleen mag bekijken, blijft lezer.</p><div class="fw-users-wrap"><table class="fw-users"><tr><th>Naam</th><th>Rol</th><th>Partner</th><th>Eigen paarden</th><th>Laatst gezien</th></tr>${rows||'<tr><td colspan="5" class="small muted">Nog niemand anders opende deze Fokwijzer.</td></tr>'}</table></div><div class="status" role="status" id="ledenStatus"></div></div>`}
 // ---------- partners: contact- en betaalgegevens (alleen beheerders) ----------
 // Voorlopig zijn alle partners gratis; de betaalgegevens staan klaar voor later.
 const PA_ST={gratis:["Gratis","good"],open:["Open","warn"],betaald:["Betaald","good"],achterstallig:["Achterstallig","bad"]};
@@ -665,7 +665,7 @@ function openPartnerAdmin(id){const p=(state.partners||[]).find(x=>x.id===id);if
   d.showModal()}
 // Partners-pagina: zonder beheerdersrechten een duidelijke melding in plaats van het formulier.
 function renderPartnersNote(){const ready=state.dbState==="ready";const adm=!!state.isAdmin&&ready;const pt=!!state.isPartner&&ready;let n="";
-  const uitleg='Als <b>partner</b> zet je je bedrijf of dienst in de kijker: je logo rechtsboven in de kop, als sponsor bij je hengsten, onderaan elke pagina of bij Beste matches. Je kunt tegelijk gebruiker of paarden-beheerder zijn. Voorlopig is partner zijn <b>gratis</b>.';
+  const uitleg='Als <b>partner</b> zet je je bedrijf of dienst in de kijker: je logo rechtsboven in de kop, als sponsor bij je hengsten, onderaan elke pagina of bij Beste matches. Je kunt tegelijk bijdrager zijn of een Fokwijzer-profiel hebben. Voorlopig is partner zijn <b>gratis</b>.';
   if(!ready)n='<p class="small muted">Rechten worden gecontroleerd...</p>';
   else if(adm)n="";
   else if(pt)n='<p class="small muted" style="margin:0 0 10px">Je bent partner. Hier beheer je je eigen partnerplekken; een beheerder van De Fokwijzer kan ze ook aanpassen.</p>';
@@ -1134,7 +1134,7 @@ function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<d
    </dl>`;
   else if(t==="veilingen")body=mk.replace('<h3 style="margin-top:16px">Veilingen</h3>','');
   else if(t==="bronnen")body=srcHtml(h)+(state.canWiki&&!isDemo&&db?`<form class="wiki-form" data-wiki="bron" data-id="${esc(h.id)}"><div class="label" style="margin-top:12px">Bron toevoegen</div><div class="row"><div class="field grow"><label class="label" for="wbNaam">Naam van de bron</label><input id="wbNaam" maxlength="200" placeholder="Bv. FEI-profiel, studbook, veilingcatalogus" required></div><div class="field grow"><label class="label" for="wbUrl">Link (optioneel)</label><input id="wbUrl" type="url" maxlength="500" placeholder="https://..."></div><button class="btn" type="submit" style="align-self:end">Toevoegen</button></div><div class="status" role="status"></div></form>`:"");
-  else body=(state.canWiki&&!isDemo&&db?`<form class="wiki-form" data-wiki="opm" data-id="${esc(h.id)}"><label class="label" for="wOpm">Opmerkingen (wiki)</label><textarea id="wOpm" rows="5" maxlength="4000" placeholder="Wat weet je over dit paard? Vermeld je bron bij Bronnen.">${esc(h.opmerking||"")}</textarea><div class="row" style="margin-top:8px"><button class="btn" type="submit">Opmerking bewaren</button></div><div class="status" role="status"></div></form>`:(h.opmerking?`<p class="small" style="margin:0;white-space:pre-line">${esc(h.opmerking)}</p>`:'<p class="small muted" style="margin:0">Nog geen opmerkingen. Log in als gebruiker om er een toe te voegen.</p>'));
+  else body=(state.canWiki&&!isDemo&&db?`<form class="wiki-form" data-wiki="opm" data-id="${esc(h.id)}"><label class="label" for="wOpm">Opmerkingen (wiki)</label><textarea id="wOpm" rows="5" maxlength="4000" placeholder="Wat weet je over dit paard? Vermeld je bron bij Bronnen.">${esc(h.opmerking||"")}</textarea><div class="row" style="margin-top:8px"><button class="btn" type="submit">Opmerking bewaren</button></div><div class="status" role="status"></div></form>`:(h.opmerking?`<p class="small" style="margin:0;white-space:pre-line">${esc(h.opmerking)}</p>`:'<p class="small muted" style="margin:0">Nog geen opmerkingen. Log in als bijdrager om er een toe te voegen.</p>'));
   $("detail").innerHTML=`<div class="card det">
    <div class="det-head"><div style="min-width:0"><div class="label">${esc(h.geslacht)}${h.geboortejaar?" &middot; "+esc(h.geboortejaar):""} &middot; ${Math.round(completeOf(h))}% volledig</div><h2 class="det-name">${esc(h.naam)}</h2></div>
    <div class="chips">${sp?adWrap(sp,`<span class="ad-tag">Gesponsord door</span>${adLogo(sp,20,20)}<b style="font-size:.78rem">${esc(sp.naam)}</b>`,"ad-badge"):""}${isDemo?'<span class="chip demo">Fictief</span>':""}${h.record_status==="te_controleren"?'<span class="chip warn">Te controleren</span>':""}${h.ruin?'<span class="chip">Ruin</span>':""}${String(h.herkomst||"").startsWith("veiling")?'<span class="chip">Uit veiling</span>':""}${(h.aangevuld_door_gebruiker||[]).length?`<span class="chip">Aangevuld</span>`:""}${wffsChip(h.wffs)}${ocdChip(h)}</div></div>
@@ -1340,13 +1340,13 @@ function buildPedInputs(){$("pedInputs").innerHTML=PED_KEYS.map(k=>`<div class="
 function renderBeheer(){let note="";
   if(state.dbState==="none")note='<div class="banner"><strong>Opslag niet beschikbaar.</strong> Log in om bij te dragen.</div>';
   else if(state.dbState==="loading")note='<p class="small muted">Opslag wordt geladen...</p>';
-  else if(!state.canWrite)note='<div class="banner"><strong>Alleen lezen.</strong> Je hebt geen rechten om paarden toe te voegen of te wijzigen. Log in als paarden-beheerder, of vraag die rol aan bij Account maken.</div>';
-  // Op de website: zonder de juiste rol eerst een account (of de rol paarden-beheerder) nemen.
+  else if(!state.canWrite)note='<div class="banner"><strong>Alleen lezen.</strong> Je hebt geen rechten om paarden toe te voegen of te wijzigen. Log in met een Fokwijzer-profiel, of vraag die rol aan bij Account maken.</div>';
+  // Op de website: zonder de juiste rol eerst een account (of de rol Fokwijzer-profiel) nemen.
   const rol=state.site?state.rol||"anoniem":(state.platformWrite?state.rol:"lezer");const site=state.site||state.dbState==="ready";
   if(site&&!state.canWrite&&!(state.site===false&&!state.platformWrite)){
     note=rol==="anoniem"
-      ?`<div class="card pb-cta"><h3 style="margin:0">Je eigen paarden beheren</h3><p style="margin:6px 0 12px">Voeg je eigen paarden toe en houd hun gegevens bij. Daarvoor maak je eerst een gratis account als <b>paarden-beheerder</b>. Je kunt meteen aan de slag.</p><div class="row"><button class="btn" type="button" data-acct="registreren-pb">Account maken als paarden-beheerder</button><button class="btn ghost" type="button" data-acct="inloggen">Ik heb al een account: inloggen</button></div></div>`
-      :`<div class="card pb-cta"><h3 style="margin:0">Word paarden-beheerder</h3><p style="margin:6px 0 12px">Je bent ingelogd als <b>gebruiker</b>. Als paarden-beheerder voeg je je eigen paarden toe en pas je gegevens aan. Dat kan meteen, zonder goedkeuring.</p><div class="row"><button class="btn" type="button" data-acct="word-pb">Word paarden-beheerder</button></div><div class="status" role="status" id="pbStatus"></div></div>`}
+      ?`<div class="card pb-cta"><h3 style="margin:0">Je eigen paarden beheren</h3><p style="margin:6px 0 12px">Voeg je eigen paarden toe en houd hun gegevens bij. Daarvoor maak je eerst een gratis account met een <b>Fokwijzer-profiel</b>. Je kunt meteen aan de slag.</p><div class="row"><button class="btn" type="button" data-acct="registreren-pb">Account maken met een Fokwijzer-profiel</button><button class="btn ghost" type="button" data-acct="inloggen">Ik heb al een account: inloggen</button></div></div>`
+      :`<div class="card pb-cta"><h3 style="margin:0">Maak je Fokwijzer-profiel</h3><p style="margin:6px 0 12px">Je bent ingelogd als <b>bijdrager</b>. Met een Fokwijzer-profiel voeg je je eigen paarden toe en pas je gegevens aan. Dat kan meteen, zonder goedkeuring.</p><div class="row"><button class="btn" type="button" data-acct="word-pb">Maak je Fokwijzer-profiel</button></div><div class="status" role="status" id="pbStatus"></div></div>`}
   $("writeNote").innerHTML=note;const dis=!state.canWrite;["saveBtn","impBtn","lnkBtn"].forEach(id=>$(id).disabled=dis);
   if(!state.site&&state.dbState==="ready"&&!state.platformWrite)note='<div class="banner"><strong>Alleen lezen.</strong> Je mag deze Fokwijzer bekijken maar niet bewerken. Vraag de eigenaar om bewerkrechten (Kan bewerken) als je wilt bijdragen.</div>';
   $("writeNote").innerHTML=note;
@@ -1396,7 +1396,7 @@ $("mineList").addEventListener("click",e=>{const b=e.target.closest("[data-mine]
 $("tabMore").addEventListener("click",()=>{const n=document.querySelector("nav.tabs");const o=!n.classList.contains("open");n.classList.toggle("open",o);$("tabMore").setAttribute("aria-expanded",String(o))});
 document.querySelector("nav.tabs").addEventListener("click",e=>{if(e.target.closest("button[data-tab]")){const n=document.querySelector("nav.tabs");n.classList.remove("open");$("tabMore").setAttribute("aria-expanded","false")}});
 document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(!b)return;
-  // "Paarden beheren" bevat twee delen: aanvragen (iedereen) en paarden toevoegen of bewerken (paarden-beheerders).
+  // "Paarden beheren" bevat twee delen: aanvragen (iedereen) en paarden toevoegen of bewerken (Fokwijzer-profielen).
   if(b.dataset.tab==="beheer"){if(state.tab==="aanvragen"||state.tab==="beheer")return;const open=!$("reqBadge").hidden;setTab(open?"aanvragen":state.lastBeheer||(state.canWrite?"beheer":"aanvragen"));return}
   setTab(b.dataset.tab)});
 document.addEventListener("click",e=>{const b=e.target.closest(".subtabs [data-sub]");if(b)setTab(b.dataset.sub)});
@@ -1669,7 +1669,7 @@ function renderRun(){const btn=$("runBtn"),info=$("runInfo");const wacht=state.a
   btn.disabled=!wacht||!mcpNs||!state.canWrite||(recent&&!!bezig)||runBusy;
   let t="";
   if(runMsg)t=runMsg;
-  else if(mcpChecked&&!mcpNs)t="Automatisch verwerken is niet ingesteld op deze server, of je bent niet ingelogd als paarden-beheerder.";
+  else if(mcpChecked&&!mcpNs)t="Automatisch verwerken is niet ingesteld op deze server, of je bent niet ingelogd met een Fokwijzer-profiel.";
   else if(bezig)t=`De agent werkt aan ${bezig} aanvraag${bezig>1?"en":""}. Resultaten verschijnen hier vanzelf.`;
   else if(!wacht)t="Niets in de wachtrij.";
   else if(last)t="Laatst gestart: "+fmtDate(state.run.gestart_op)+".";
