@@ -8,10 +8,10 @@
 <meta name="theme-color" content="#2F5A3A">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/fonts/fonts.css?v=0073d28fa1">
-<link rel="stylesheet" href="/app.css?v=c37ba789e6">
+<link rel="stylesheet" href="/app.css?v=c341accd17">
 <link rel="alternate" hreflang="nl" href="/?lang=nl">
 <link rel="alternate" hreflang="en" href="/?lang=en">
-<script src="/i18n-en.js?v=c6970fb1b2"></script>
+<script src="/i18n-en.js?v=a47ee99280"></script>
 <script src="/i18n.js?v=12c9bae90f"></script>
 </head>
 <body>
@@ -83,6 +83,18 @@
     </div>
     <div id="cmpOut" style="margin-top:16px"></div>
     <div id="councilOut" style="margin-top:20px"></div>
+  </section>
+
+  <!-- MIJN STAL (werkplek van een Fokwijzer-profiel) -->
+  <section class="panel" id="p-stal" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div class="subtabs-slot"></div>
+    <div id="stalOut"></div>
+  </section>
+
+  <!-- MIJN VEULENS -->
+  <section class="panel" id="p-veulens" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div class="subtabs-slot"></div>
+    <div id="veulOut"></div>
   </section>
 
   <!-- HENGSTEN VERGELIJKEN -->
@@ -159,7 +171,7 @@
 
   <!-- AANVRAGEN -->
   <section class="panel" id="p-aanvragen" role="tabpanel" aria-labelledby="tab-beheer" hidden>
-    <div class="subtabs" role="tablist" aria-label="Paarden beheren"><button type="button" role="tab" data-sub="aanvragen" aria-selected="true">Paard aanvragen <span class="count-badge" data-subbadge hidden></span></button><button type="button" role="tab" data-sub="beheer" aria-selected="false">Paard toevoegen of bewerken</button></div>
+    <div class="subtabs-slot"></div>
     <div class="card">
       <form class="reqform" id="aForm" novalidate>
         <div class="req-rows" id="aRows"></div>
@@ -259,7 +271,7 @@
 
   <!-- BEHEER -->
   <section class="panel" id="p-beheer" role="tabpanel" aria-labelledby="tab-beheer" hidden>
-    <div class="subtabs" role="tablist" aria-label="Paarden beheren"><button type="button" role="tab" data-sub="aanvragen" aria-selected="false">Paard aanvragen <span class="count-badge" data-subbadge hidden></span></button><button type="button" role="tab" data-sub="beheer" aria-selected="true">Paard toevoegen of bewerken</button></div>
+    <div class="subtabs-slot"></div>
     <div id="writeNote"></div>
     <div class="card" id="mineCard" hidden><h3 style="margin:0 0 6px" id="mineTitle">Mijn paarden</h3><p class="small muted" style="margin:0 0 10px">Paarden die jij toevoegde. Je kunt ze bekijken, bewerken en verwijderen.</p><div class="mine-list" id="mineList"></div></div>
     <form id="hForm" class="stack" style="margin-top:12px" novalidate>
@@ -344,7 +356,7 @@
   </section>
   <footer class="sitefoot"><span id="adVoet"></span><span>Powered by DeDilieHoeve</span><span class="fw-links"><a href="/over.html" target="_top">Over</a> · <a href="/privacy.html" target="_top">Privacy</a></span></footer>
 </div>
-<script src="/fokwijzer-api.js?v=d0f0350ced"></script>
-<script src="/app.js?v=0d7b75998a"></script>
+<script src="/fokwijzer-api.js?v=a223d04bf1"></script>
+<script src="/app.js?v=6beb9de01a"></script>
 </body>
 </html>

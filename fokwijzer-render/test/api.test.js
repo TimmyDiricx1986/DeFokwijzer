@@ -311,7 +311,7 @@ test("aanvraag als pakket: max 5 paarden, max 3 aanvragen per dag voor gebruiker
   assert.equal((await dien([{ naam: "X", link: "javascript:alert(1)" }], c)).status, 400);
   assert.equal((await dien([{ naam: "<b>x</b>" }], c)).status, 400);
 
-  const eerste = await dien([{ naam: "Vijf 1", link: "horsetelex.com/horses/1" }].concat(p(4, "Vijf").slice(1)), c);
+  const eerste = await dien([{ naam: "Vijf 1", link: "horsetelex.com/horses/1" }].concat(p(5, "Vijf").slice(1)), c);
   assert.equal(eerste.status, 200);
   const j = await eerste.json();
   assert.equal(j.ids.length, 5);
@@ -385,4 +385,25 @@ test("downloadlink voor een bijlage: alleen aan te maken met het service-token, 
   assert.equal(d.headers.get("cache-control"), "no-store");
   assert.deepEqual(Buffer.from(await d.arrayBuffer()), jpgBytes);
   assert.equal((await fetch(base + link)).status, 410, "tweede keer geweigerd");
+});
+
+test("mijn stal: enkel het eigen document, enkel voor Fokwijzer-profielen", async () => {
+  const cp = await login("bij@test.be", "Sterk-wachtwoord-456");
+  const me = await (await fetch(base + "/api/me", { headers: { cookie: cp } })).json();
+  const eigen = String(me.gebruiker.id);
+  const stal = { hengsten: ["p1"], merries: [], veulens: [{ id: "v1", s: "p1", m: "p2", naam: "Veulen 2027" }] };
+  assert.equal((await put("/api/c/mijnstal/" + eigen, stal, cp)).status, 200, "eigen stal bewaren");
+  const terug = await (await fetch(base + "/api/c/mijnstal/" + eigen, { headers: { cookie: cp } })).json();
+  assert.deepEqual(terug.data.hengsten, ["p1"]);
+  const patch = await fetch(base + "/api/c/mijnstal/" + eigen, { method: "PATCH", headers: Object.assign({ cookie: cp }, H), body: JSON.stringify({ data: { merries: ["p2"] } }) });
+  assert.equal(patch.status, 200, "eigen stal aanvullen");
+  assert.equal((await fetch(base + "/api/c/mijnstal", { headers: { cookie: cp } })).status, 403, "geen lijst van alle stallen");
+  assert.equal((await put("/api/c/mijnstal/iemand-anders", stal, cp)).status, 403, "andermans stal schrijven mag niet");
+  assert.equal((await fetch(base + "/api/c/mijnstal/iemand-anders", { headers: { cookie: cp } })).status, 403, "andermans stal lezen mag niet");
+  const cb = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  assert.equal((await fetch(base + "/api/c/mijnstal/" + eigen, { headers: { cookie: cb } })).status, 403, "ook een beheerder leest andermans stal niet");
+  const cl = await login("lees@test.be", "Sterk-wachtwoord-789");
+  const ml = await (await fetch(base + "/api/me", { headers: { cookie: cl } })).json();
+  assert.equal((await put("/api/c/mijnstal/" + String(ml.gebruiker.id), stal, cl)).status, 403, "bijdrager heeft geen stal");
+  assert.equal((await fetch(base + "/api/c/mijnstal/" + eigen)).status, 401, "anoniem");
 });
