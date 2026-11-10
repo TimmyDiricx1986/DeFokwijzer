@@ -423,6 +423,11 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .hc-sub{font-weight:400;margin-top:2px}
 .hc-score{font-size:1.25rem;font-weight:700}
 .hc-vv{padding:5px 10px;font-size:.85rem}
+.subtabs{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;margin:0 0 14px;border:1px solid var(--line);border-radius:10px;background:var(--sunk)}
+.subtabs button{font:inherit;font-weight:600;font-size:.92rem;border:0;border-radius:7px;padding:7px 14px;background:transparent;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.subtabs button[aria-selected="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.subtabs button[aria-selected="false"] .count-badge{background:var(--accent);color:var(--accent-ink)}
+@media (max-width:640px){.subtabs{display:flex}.subtabs button{flex:1 1 0;justify-content:center;padding:8px 8px;font-size:.86rem;text-align:center}}
 .dek-sp{border:0;padding:0;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}.dek-sp legend{float:left;margin:0 6px 0 0;padding:0}.dek-sp label{display:flex;gap:6px;align-items:center;font-size:.92rem}
 .dek-edit{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}.dek-edit summary{cursor:pointer;font-weight:600;color:var(--accent)}.dek-edit .wiki-form{margin-top:10px}
 .wiki-form textarea{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
@@ -525,15 +530,14 @@ header.top #adminLink[aria-current="page"]{text-decoration-thickness:2px}
   </header>
   <nav class="tabs" role="tablist" aria-label="Onderdelen">
     <button role="tab" id="tab-info" aria-selected="true" data-tab="info">Info</button>
-    <button role="tab" id="tab-zoeken" aria-selected="false" data-tab="zoeken">Zoeken</button>
+    <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer">Paarden beheren <span class="count-badge" id="reqBadge" hidden></span></button>
     <button role="tab" id="tab-matches" aria-selected="false" data-tab="matches">Beste matches</button>
     <button type="button" class="tab-more" id="tabMore" aria-expanded="false" aria-label="Meer onderdelen"><span class="tm-txt">Meer </span><span aria-hidden="true">&#9662;</span></button>
     <button role="tab" id="tab-vergelijken" aria-selected="false" data-tab="vergelijken" class="tab-xtra">Virtueel veulen</button>
     <button role="tab" id="tab-hengsten" aria-selected="false" data-tab="hengsten" class="tab-xtra">Hengsten vergelijken</button>
     <button role="tab" id="tab-stam" aria-selected="false" data-tab="stam" class="tab-xtra">Stamlijnen</button>
     <button role="tab" id="tab-veilingen" aria-selected="false" data-tab="veilingen" class="tab-xtra">Veilingen</button>
-    <button role="tab" id="tab-aanvragen" aria-selected="false" data-tab="aanvragen" class="tab-xtra">Paard aanvragen <span class="count-badge" id="reqBadge" hidden></span></button>
-    <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer" class="tab-xtra">Paarden beheren</button>
+    <button role="tab" id="tab-zoeken" aria-selected="false" data-tab="zoeken" class="tab-xtra">Zoeken</button>
     <button role="tab" id="tab-partners" aria-selected="false" data-tab="partners" class="tab-xtra">Partners</button>
   </nav>
   <div id="simBar" class="sim-bar" role="status" hidden></div>
@@ -656,7 +660,8 @@ header.top #adminLink[aria-current="page"]{text-decoration-thickness:2px}
   </section>
 
   <!-- AANVRAGEN -->
-  <section class="panel" id="p-aanvragen" role="tabpanel" aria-labelledby="tab-aanvragen" hidden>
+  <section class="panel" id="p-aanvragen" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div class="subtabs" role="tablist" aria-label="Paarden beheren"><button type="button" role="tab" data-sub="aanvragen" aria-selected="true">Paard aanvragen <span class="count-badge" data-subbadge hidden></span></button><button type="button" role="tab" data-sub="beheer" aria-selected="false">Paard toevoegen of bewerken</button></div>
     <div class="card">
       <form class="reqform" id="aForm" novalidate>
         <div class="req-rows" id="aRows"></div>
@@ -756,6 +761,7 @@ header.top #adminLink[aria-current="page"]{text-decoration-thickness:2px}
 
   <!-- BEHEER -->
   <section class="panel" id="p-beheer" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div class="subtabs" role="tablist" aria-label="Paarden beheren"><button type="button" role="tab" data-sub="aanvragen" aria-selected="false">Paard aanvragen <span class="count-badge" data-subbadge hidden></span></button><button type="button" role="tab" data-sub="beheer" aria-selected="true">Paard toevoegen of bewerken</button></div>
     <div id="writeNote"></div>
     <div class="card" id="mineCard" hidden><h3 style="margin:0 0 6px" id="mineTitle">Mijn paarden</h3><p class="small muted" style="margin:0 0 10px">Paarden die jij toevoegde. Je kunt ze bekijken, bewerken en verwijderen.</p><div class="mine-list" id="mineList"></div></div>
     <form id="hForm" class="stack" style="margin-top:12px" novalidate>
@@ -1042,7 +1048,7 @@ function match(s,m){const w=state.w,t=state.t;const warnings=[],reasons=[],weak=
   return{s,m,total,comps,coi:c,excluded,warnings,reasons,weak,conf,z}}
 
 // ---------- rendering ----------
-function setTab(t){if((t==="stam"&&!FW_EXTRA.stamlijnen)||(t==="veilingen"&&!FW_EXTRA.veilingen))t="zoeken";const prevTab=state.tab;state.tab=t;document.querySelectorAll("nav.tabs button[data-tab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===t)));
+function setTab(t){if((t==="stam"&&!FW_EXTRA.stamlijnen)||(t==="veilingen"&&!FW_EXTRA.veilingen))t="zoeken";const prevTab=state.tab;state.tab=t;const navT=t==="aanvragen"?"beheer":t;if(t==="aanvragen"||t==="beheer")state.lastBeheer=t;document.querySelectorAll("nav.tabs button[data-tab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===navT)));
   ["info","zoeken","vergelijken","hengsten","matches","stam","veilingen","aanvragen","beheer","partners","admin"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab();
   // Na een tabwissel bovenaan het nieuwe onderdeel beginnen (vooral op de gsm stond je anders halverwege de pagina).
   if(prevTab!==t)fwTrack("tab",t);
@@ -1320,7 +1326,7 @@ const pill=(s)=>{const p=STATUS[s]||[s,""];return `<span class="chip ${p[1]}">${
 const fmtDate=(iso)=>{if(!iso)return"";try{return new Date(iso).toLocaleString("nl-BE",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}catch(_){return""}};
 function realHorses(){return state.demo?[]:state.horses}
 function existingFor(v){if(!v)return null;const id=docIdFor(v);return realHorses().find(h=>h.id===id)||realHorses().find(h=>norm(h.naam)===norm(v.naam))||null}
-function updateBadge(){const n=state.aanvragen.filter(a=>a.status==="klaar"||a.status==="niet_gevonden").length;const b=$("reqBadge");b.hidden=!n;b.textContent=n}
+function updateBadge(){setTimeout(()=>{const rb=$("reqBadge");document.querySelectorAll("[data-subbadge]").forEach(x=>{x.hidden=rb.hidden;x.textContent=rb.textContent})},0);const n=state.aanvragen.filter(a=>a.status==="klaar"||a.status==="niet_gevonden").length;const b=$("reqBadge");b.hidden=!n;b.textContent=n}
 function renderAanvragen(){
   const can=!!db&&state.canWrite&&state.dbState==="ready";$("aBtn").disabled=!can;if(can)loadLimiet();
   if(state.dbState==="none")$("aStatus").innerHTML='<span class="muted">Aanvragen kan alleen als de pagina in Claude geopend is terwijl je aangemeld bent.</span>';
@@ -2194,7 +2200,7 @@ function renderBeheer(){let note="";
   $("writeNote").innerHTML=note;const dis=!state.canWrite;["saveBtn","impBtn","lnkBtn"].forEach(id=>$(id).disabled=dis);
   if(!state.site&&state.dbState==="ready"&&!state.platformWrite)note='<div class="banner"><strong>Alleen lezen.</strong> Je mag deze Fokwijzer bekijken maar niet bewerken. Vraag de eigenaar om bewerkrechten (Kan bewerken) als je wilt bijdragen.</div>';
   $("writeNote").innerHTML=note;
-  {const off=site&&!state.canWrite;[...$("p-beheer").children].forEach(c=>{if(c.id!=="writeNote"&&c.id!=="mineCard")c.style.display=off?"none":""})}
+  {const off=site&&!state.canWrite;[...$("p-beheer").children].forEach(c=>{if(c.id!=="writeNote"&&c.id!=="mineCard"&&!c.classList.contains("subtabs"))c.style.display=off?"none":""})}
   const mine=site&&state.canWrite&&state.meId?state.horses.filter(h=>h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId).sort((a,b)=>String(a.naam).localeCompare(String(b.naam))):null;
   $("mineCard").hidden=!mine;
   if(mine){$("mineTitle").textContent=`Mijn paarden (${mine.length})`;
@@ -2239,7 +2245,11 @@ document.addEventListener("click",async e=>{const b=e.target.closest("[data-acct
 $("mineList").addEventListener("click",e=>{const b=e.target.closest("[data-mine]");if(!b)return;const h=byId(b.dataset.id);if(!h)return;if(b.dataset.mine==="edit")editHorse(h);else{state.sel=h.id;state.detTab="overzicht";$("q").value=h.naam;setTab("zoeken")}});
 $("tabMore").addEventListener("click",()=>{const n=document.querySelector("nav.tabs");const o=!n.classList.contains("open");n.classList.toggle("open",o);$("tabMore").setAttribute("aria-expanded",String(o))});
 document.querySelector("nav.tabs").addEventListener("click",e=>{if(e.target.closest("button[data-tab]")){const n=document.querySelector("nav.tabs");n.classList.remove("open");$("tabMore").setAttribute("aria-expanded","false")}});
-document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(b)setTab(b.dataset.tab)});
+document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(!b)return;
+  // "Paarden beheren" bevat twee delen: aanvragen (iedereen) en paarden toevoegen of bewerken (paarden-beheerders).
+  if(b.dataset.tab==="beheer"){if(state.tab==="aanvragen"||state.tab==="beheer")return;const open=!$("reqBadge").hidden;setTab(open?"aanvragen":state.lastBeheer||(state.canWrite?"beheer":"aanvragen"));return}
+  setTab(b.dataset.tab)});
+document.addEventListener("click",e=>{const b=e.target.closest(".subtabs [data-sub]");if(b)setTab(b.dataset.sub)});
 ["q","fSex","fStb","fSort"].forEach(id=>$(id).addEventListener("input",renderSearch));
 $("results").addEventListener("click",e=>{const b=e.target.closest(".item");if(!b)return;const r=$("results"),st=r.scrollTop;state.sel=b.dataset.id;state.detTab="overzicht";if(state.sel!==fwLastHorse&&!String(state.sel).startsWith("demo-")){fwLastHorse=state.sel;fwTrack("paard",state.sel)}renderSearch();r.scrollTop=st;if(window.matchMedia("(max-width:820px)").matches)requestAnimationFrame(()=>{const d=$("detail");if(d)d.scrollIntoView({behavior:"smooth",block:"start"})})});
 let armTimer=null;

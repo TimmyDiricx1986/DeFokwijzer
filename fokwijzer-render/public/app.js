@@ -198,7 +198,7 @@ function match(s,m){const w=state.w,t=state.t;const warnings=[],reasons=[],weak=
   return{s,m,total,comps,coi:c,excluded,warnings,reasons,weak,conf,z}}
 
 // ---------- rendering ----------
-function setTab(t){if((t==="stam"&&!FW_EXTRA.stamlijnen)||(t==="veilingen"&&!FW_EXTRA.veilingen))t="zoeken";const prevTab=state.tab;state.tab=t;document.querySelectorAll("nav.tabs button[data-tab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===t)));
+function setTab(t){if((t==="stam"&&!FW_EXTRA.stamlijnen)||(t==="veilingen"&&!FW_EXTRA.veilingen))t="zoeken";const prevTab=state.tab;state.tab=t;const navT=t==="aanvragen"?"beheer":t;if(t==="aanvragen"||t==="beheer")state.lastBeheer=t;document.querySelectorAll("nav.tabs button[data-tab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===navT)));
   ["info","zoeken","vergelijken","hengsten","matches","stam","veilingen","aanvragen","beheer","partners","admin"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab();
   // Na een tabwissel bovenaan het nieuwe onderdeel beginnen (vooral op de gsm stond je anders halverwege de pagina).
   if(prevTab!==t)fwTrack("tab",t);
@@ -476,7 +476,7 @@ const pill=(s)=>{const p=STATUS[s]||[s,""];return `<span class="chip ${p[1]}">${
 const fmtDate=(iso)=>{if(!iso)return"";try{return new Date(iso).toLocaleString("nl-BE",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}catch(_){return""}};
 function realHorses(){return state.demo?[]:state.horses}
 function existingFor(v){if(!v)return null;const id=docIdFor(v);return realHorses().find(h=>h.id===id)||realHorses().find(h=>norm(h.naam)===norm(v.naam))||null}
-function updateBadge(){const n=state.aanvragen.filter(a=>a.status==="klaar"||a.status==="niet_gevonden").length;const b=$("reqBadge");b.hidden=!n;b.textContent=n}
+function updateBadge(){setTimeout(()=>{const rb=$("reqBadge");document.querySelectorAll("[data-subbadge]").forEach(x=>{x.hidden=rb.hidden;x.textContent=rb.textContent})},0);const n=state.aanvragen.filter(a=>a.status==="klaar"||a.status==="niet_gevonden").length;const b=$("reqBadge");b.hidden=!n;b.textContent=n}
 function renderAanvragen(){
   const can=!!db&&state.canAsk&&state.dbState==="ready";$("aBtn").disabled=!can;if(can)loadLimiet();
   if(state.dbState==="none")$("aStatus").innerHTML='<span class="muted">Log in om een paard aan te vragen.</span>';
@@ -1350,7 +1350,7 @@ function renderBeheer(){let note="";
   $("writeNote").innerHTML=note;const dis=!state.canWrite;["saveBtn","impBtn","lnkBtn"].forEach(id=>$(id).disabled=dis);
   if(!state.site&&state.dbState==="ready"&&!state.platformWrite)note='<div class="banner"><strong>Alleen lezen.</strong> Je mag deze Fokwijzer bekijken maar niet bewerken. Vraag de eigenaar om bewerkrechten (Kan bewerken) als je wilt bijdragen.</div>';
   $("writeNote").innerHTML=note;
-  {const off=site&&!state.canWrite;[...$("p-beheer").children].forEach(c=>{if(c.id!=="writeNote"&&c.id!=="mineCard")c.style.display=off?"none":""})}
+  {const off=site&&!state.canWrite;[...$("p-beheer").children].forEach(c=>{if(c.id!=="writeNote"&&c.id!=="mineCard"&&!c.classList.contains("subtabs"))c.style.display=off?"none":""})}
   const mine=site&&state.canWrite&&state.meId?state.horses.filter(h=>h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId).sort((a,b)=>String(a.naam).localeCompare(String(b.naam))):null;
   $("mineCard").hidden=!mine;
   if(mine){$("mineTitle").textContent=`Mijn paarden (${mine.length})`;
@@ -1395,7 +1395,11 @@ document.addEventListener("click",async e=>{const b=e.target.closest("[data-acct
 $("mineList").addEventListener("click",e=>{const b=e.target.closest("[data-mine]");if(!b)return;const h=byId(b.dataset.id);if(!h)return;if(b.dataset.mine==="edit")editHorse(h);else{state.sel=h.id;state.detTab="overzicht";$("q").value=h.naam;setTab("zoeken")}});
 $("tabMore").addEventListener("click",()=>{const n=document.querySelector("nav.tabs");const o=!n.classList.contains("open");n.classList.toggle("open",o);$("tabMore").setAttribute("aria-expanded",String(o))});
 document.querySelector("nav.tabs").addEventListener("click",e=>{if(e.target.closest("button[data-tab]")){const n=document.querySelector("nav.tabs");n.classList.remove("open");$("tabMore").setAttribute("aria-expanded","false")}});
-document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(b)setTab(b.dataset.tab)});
+document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(!b)return;
+  // "Paarden beheren" bevat twee delen: aanvragen (iedereen) en paarden toevoegen of bewerken (paarden-beheerders).
+  if(b.dataset.tab==="beheer"){if(state.tab==="aanvragen"||state.tab==="beheer")return;const open=!$("reqBadge").hidden;setTab(open?"aanvragen":state.lastBeheer||(state.canWrite?"beheer":"aanvragen"));return}
+  setTab(b.dataset.tab)});
+document.addEventListener("click",e=>{const b=e.target.closest(".subtabs [data-sub]");if(b)setTab(b.dataset.sub)});
 ["q","fSex","fStb","fSort"].forEach(id=>$(id).addEventListener("input",renderSearch));
 $("results").addEventListener("click",e=>{const b=e.target.closest(".item");if(!b)return;const r=$("results"),st=r.scrollTop;state.sel=b.dataset.id;state.detTab="overzicht";if(state.sel!==fwLastHorse&&!String(state.sel).startsWith("demo-")){fwLastHorse=state.sel;fwTrack("paard",state.sel)}renderSearch();r.scrollTop=st;if(window.matchMedia("(max-width:820px)").matches)requestAnimationFrame(()=>{const d=$("detail");if(d)d.scrollIntoView({behavior:"smooth",block:"start"})})});
 let armTimer=null;

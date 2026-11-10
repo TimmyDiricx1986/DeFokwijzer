@@ -27,6 +27,7 @@
     "Virtueel veulen": "Virtual foal",
     // ------------------------------------------------------------ hengsten vergelijken, dekinfo en fokadvies (PDF)
     "Hengsten vergelijken": "Compare stallions",
+    "Paard toevoegen of bewerken": "Add or edit a horse",
     "Details bekijken": "View details",
     "Met merrie (optioneel)": "With mare (optional)",
     "Zet tot vier hengsten naast elkaar: prestaties, fokwaarden, gezondheid en dekinfo. Kies er een merrie bij om per hengst te zien hoe goed de combinatie scoort.": "Put up to four stallions side by side: performance, breeding values, health and breeding info. Add a mare to see how well each combination scores.",

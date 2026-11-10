@@ -8,10 +8,10 @@
 <meta name="theme-color" content="#2F5A3A">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/fonts/fonts.css?v=0073d28fa1">
-<link rel="stylesheet" href="/app.css?v=418ed5ed95">
+<link rel="stylesheet" href="/app.css?v=c37ba789e6">
 <link rel="alternate" hreflang="nl" href="/?lang=nl">
 <link rel="alternate" hreflang="en" href="/?lang=en">
-<script src="/i18n-en.js?v=29595e6cf9"></script>
+<script src="/i18n-en.js?v=4e29c72470"></script>
 <script src="/i18n.js?v=12c9bae90f"></script>
 </head>
 <body>
@@ -28,15 +28,14 @@
   </header>
   <nav class="tabs" role="tablist" aria-label="Onderdelen">
     <button role="tab" id="tab-info" aria-selected="true" data-tab="info">Info</button>
-    <button role="tab" id="tab-zoeken" aria-selected="false" data-tab="zoeken">Zoeken</button>
+    <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer">Paarden beheren <span class="count-badge" id="reqBadge" hidden></span></button>
     <button role="tab" id="tab-matches" aria-selected="false" data-tab="matches">Beste matches</button>
     <button type="button" class="tab-more" id="tabMore" aria-expanded="false" aria-label="Meer onderdelen"><span class="tm-txt">Meer </span><span aria-hidden="true">&#9662;</span></button>
     <button role="tab" id="tab-vergelijken" aria-selected="false" data-tab="vergelijken" class="tab-xtra">Virtueel veulen</button>
     <button role="tab" id="tab-hengsten" aria-selected="false" data-tab="hengsten" class="tab-xtra">Hengsten vergelijken</button>
     <button role="tab" id="tab-stam" aria-selected="false" data-tab="stam" class="tab-xtra">Stamlijnen</button>
     <button role="tab" id="tab-veilingen" aria-selected="false" data-tab="veilingen" class="tab-xtra">Veilingen</button>
-    <button role="tab" id="tab-aanvragen" aria-selected="false" data-tab="aanvragen" class="tab-xtra">Paard aanvragen <span class="count-badge" id="reqBadge" hidden></span></button>
-    <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer" class="tab-xtra">Paarden beheren</button>
+    <button role="tab" id="tab-zoeken" aria-selected="false" data-tab="zoeken" class="tab-xtra">Zoeken</button>
     <button role="tab" id="tab-partners" aria-selected="false" data-tab="partners" class="tab-xtra">Partners</button>
   </nav>
   <div id="simBar" class="sim-bar" role="status" hidden></div>
@@ -159,7 +158,8 @@
   </section>
 
   <!-- AANVRAGEN -->
-  <section class="panel" id="p-aanvragen" role="tabpanel" aria-labelledby="tab-aanvragen" hidden>
+  <section class="panel" id="p-aanvragen" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div class="subtabs" role="tablist" aria-label="Paarden beheren"><button type="button" role="tab" data-sub="aanvragen" aria-selected="true">Paard aanvragen <span class="count-badge" data-subbadge hidden></span></button><button type="button" role="tab" data-sub="beheer" aria-selected="false">Paard toevoegen of bewerken</button></div>
     <div class="card">
       <form class="reqform" id="aForm" novalidate>
         <div class="req-rows" id="aRows"></div>
@@ -259,6 +259,7 @@
 
   <!-- BEHEER -->
   <section class="panel" id="p-beheer" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div class="subtabs" role="tablist" aria-label="Paarden beheren"><button type="button" role="tab" data-sub="aanvragen" aria-selected="false">Paard aanvragen <span class="count-badge" data-subbadge hidden></span></button><button type="button" role="tab" data-sub="beheer" aria-selected="true">Paard toevoegen of bewerken</button></div>
     <div id="writeNote"></div>
     <div class="card" id="mineCard" hidden><h3 style="margin:0 0 6px" id="mineTitle">Mijn paarden</h3><p class="small muted" style="margin:0 0 10px">Paarden die jij toevoegde. Je kunt ze bekijken, bewerken en verwijderen.</p><div class="mine-list" id="mineList"></div></div>
     <form id="hForm" class="stack" style="margin-top:12px" novalidate>
@@ -344,6 +345,6 @@
   <footer class="sitefoot"><span id="adVoet"></span><span>Powered by DeDilieHoeve</span><span class="fw-links"><a href="/over.html" target="_top">Over</a> · <a href="/privacy.html" target="_top">Privacy</a></span></footer>
 </div>
 <script src="/fokwijzer-api.js?v=2f3f4761d7"></script>
-<script src="/app.js?v=23cb92e0a0"></script>
+<script src="/app.js?v=332606f808"></script>
 </body>
 </html>
