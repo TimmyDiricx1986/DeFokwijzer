@@ -39,6 +39,11 @@ def post(url, token, body):
     with urllib.request.urlopen(r, timeout=120) as resp:
         return json.loads(resp.read())
 
+def dek_info(d):
+    """Dekinfo van een hengst, kort: wie ze invulde (handmatig of automatisch) en wanneer."""
+    if not isinstance(d, dict) or not d: return None
+    return {"herkomst": "automatisch" if d.get("herkomst") == "automatisch" else "handmatig", "bijgewerkt": d.get("bijgewerkt") or ""}
+
 def downloadlinks(site, token, items, prefix=""):
     """Openbare repository: zet bij elk item met een afbeelding een beveiligde downloadlink in plaats van het bestand."""
     ids = [prefix + x["id"] for x in items if x.get("bijlage") == "niet_gedeeld"]
@@ -118,7 +123,8 @@ def main():
         p = d.get("data") or {}
         sb = p.get("stamboom") or {}
         paarden.append({k: v for k, v in {"id": d["id"], "naam": p.get("naam"), "naam_varianten": p.get("naam_varianten"),
-            "geboortejaar": p.get("geboortejaar"), "geslacht": p.get("geslacht"), "v": sb.get("v"), "m": sb.get("m"), "mv": sb.get("mv")}.items() if v})
+            "geboortejaar": p.get("geboortejaar"), "geslacht": p.get("geslacht"), "v": sb.get("v"), "m": sb.get("m"), "mv": sb.get("mv"),
+            "ruin": p.get("ruin"), "dek": dek_info(p.get("dek"))}.items() if v})
     paarden.sort(key=lambda x: x["id"])
     with open(os.path.join(uit, "aanvragen.json"), "w", encoding="utf-8") as f:
         json.dump(aanvragen, f, ensure_ascii=False, indent=1)
