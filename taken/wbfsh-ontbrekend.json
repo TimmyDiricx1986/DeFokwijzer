@@ -1,0 +1,946 @@
+{
+ "bron": "WBFSH Sire Rankings Jumping Top 100 (2008-2021, 2025), bestanden van de gebruiker",
+ "aangemaakt": "2026-11-10",
+ "hengsten": [
+  {
+   "naam": "Quidam's Rubin",
+   "wbfsh_rang_totaal": 41,
+   "jaren_in_top100": 9,
+   "beste_plaats": 24,
+   "beste_jaar": 2015,
+   "plaats_2025": null,
+   "eerste_jaar": 2012,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "Cruising",
+   "wbfsh_rang_totaal": 51,
+   "jaren_in_top100": 9,
+   "beste_plaats": 19,
+   "beste_jaar": 2011,
+   "plaats_2025": null,
+   "eerste_jaar": 2009,
+   "laatste_jaar": 2017
+  },
+  {
+   "naam": "Oklund",
+   "wbfsh_rang_totaal": 73,
+   "jaren_in_top100": 7,
+   "beste_plaats": 33,
+   "beste_jaar": 2016,
+   "plaats_2025": null,
+   "eerste_jaar": 2012,
+   "laatste_jaar": 2018
+  },
+  {
+   "naam": "Cantos",
+   "wbfsh_rang_totaal": 78,
+   "jaren_in_top100": 6,
+   "beste_plaats": 38,
+   "beste_jaar": 2019,
+   "plaats_2025": null,
+   "eerste_jaar": 2013,
+   "laatste_jaar": 2019
+  },
+  {
+   "naam": "Wandor van de Mispelaere",
+   "wbfsh_rang_totaal": 90,
+   "jaren_in_top100": 5,
+   "beste_plaats": 34,
+   "beste_jaar": 2017,
+   "plaats_2025": null,
+   "eerste_jaar": 2015,
+   "laatste_jaar": 2019
+  },
+  {
+   "naam": "Contendro II",
+   "wbfsh_rang_totaal": 108,
+   "jaren_in_top100": 4,
+   "beste_plaats": 52,
+   "beste_jaar": 2021,
+   "plaats_2025": null,
+   "eerste_jaar": 2017,
+   "laatste_jaar": 2021
+  },
+  {
+   "naam": "Carvallo",
+   "wbfsh_rang_totaal": 114,
+   "jaren_in_top100": 3,
+   "beste_plaats": 38,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2012
+  },
+  {
+   "naam": "Bustique",
+   "wbfsh_rang_totaal": 129,
+   "jaren_in_top100": 4,
+   "beste_plaats": 34,
+   "beste_jaar": 2021,
+   "plaats_2025": 76,
+   "eerste_jaar": 2019,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Calvaro F.C.",
+   "wbfsh_rang_totaal": 133,
+   "jaren_in_top100": 2,
+   "beste_plaats": 18,
+   "beste_jaar": 2020,
+   "plaats_2025": 52,
+   "eerste_jaar": 2020,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Dulf van den Bisschop",
+   "wbfsh_rang_totaal": 135,
+   "jaren_in_top100": 3,
+   "beste_plaats": 39,
+   "beste_jaar": 2018,
+   "plaats_2025": null,
+   "eerste_jaar": 2017,
+   "laatste_jaar": 2021
+  },
+  {
+   "naam": "Lancer II",
+   "wbfsh_rang_totaal": 140,
+   "jaren_in_top100": 3,
+   "beste_plaats": 56,
+   "beste_jaar": 2012,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2012
+  },
+  {
+   "naam": "Kolibri",
+   "wbfsh_rang_totaal": 144,
+   "jaren_in_top100": 2,
+   "beste_plaats": 36,
+   "beste_jaar": 2012,
+   "plaats_2025": null,
+   "eerste_jaar": 2011,
+   "laatste_jaar": 2012
+  },
+  {
+   "naam": "Goldfever I",
+   "wbfsh_rang_totaal": 147,
+   "jaren_in_top100": 3,
+   "beste_plaats": 56,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2013
+  },
+  {
+   "naam": "Kigali",
+   "wbfsh_rang_totaal": 151,
+   "jaren_in_top100": 4,
+   "beste_plaats": 71,
+   "beste_jaar": 2011,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2014
+  },
+  {
+   "naam": "Rosire",
+   "wbfsh_rang_totaal": 152,
+   "jaren_in_top100": 4,
+   "beste_plaats": 57,
+   "beste_jaar": 2014,
+   "plaats_2025": null,
+   "eerste_jaar": 2012,
+   "laatste_jaar": 2015
+  },
+  {
+   "naam": "Ukato",
+   "wbfsh_rang_totaal": 156,
+   "jaren_in_top100": 3,
+   "beste_plaats": 46,
+   "beste_jaar": 2021,
+   "plaats_2025": null,
+   "eerste_jaar": 2018,
+   "laatste_jaar": 2021
+  },
+  {
+   "naam": "Lancelot",
+   "wbfsh_rang_totaal": 158,
+   "jaren_in_top100": 2,
+   "beste_plaats": 41,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2011
+  },
+  {
+   "naam": "Cavalier Royale",
+   "wbfsh_rang_totaal": 161,
+   "jaren_in_top100": 2,
+   "beste_plaats": 46,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2011
+  },
+  {
+   "naam": "Otangelo",
+   "wbfsh_rang_totaal": 169,
+   "jaren_in_top100": 1,
+   "beste_plaats": 28,
+   "beste_jaar": 2025,
+   "plaats_2025": 28,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Cristallo I",
+   "wbfsh_rang_totaal": 170,
+   "jaren_in_top100": 2,
+   "beste_plaats": 55,
+   "beste_jaar": 2018,
+   "plaats_2025": null,
+   "eerste_jaar": 2017,
+   "laatste_jaar": 2018
+  },
+  {
+   "naam": "Vigo Cece",
+   "wbfsh_rang_totaal": 177,
+   "jaren_in_top100": 1,
+   "beste_plaats": 34,
+   "beste_jaar": 2025,
+   "plaats_2025": 34,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Scherif d'Elle",
+   "wbfsh_rang_totaal": 178,
+   "jaren_in_top100": 2,
+   "beste_plaats": 67,
+   "beste_jaar": 2013,
+   "plaats_2025": null,
+   "eerste_jaar": 2012,
+   "laatste_jaar": 2013
+  },
+  {
+   "naam": "Valentino",
+   "wbfsh_rang_totaal": 182,
+   "jaren_in_top100": 2,
+   "beste_plaats": 47,
+   "beste_jaar": 2021,
+   "plaats_2025": null,
+   "eerste_jaar": 2018,
+   "laatste_jaar": 2021
+  },
+  {
+   "naam": "Quite Easy",
+   "wbfsh_rang_totaal": 183,
+   "jaren_in_top100": 5,
+   "beste_plaats": 78,
+   "beste_jaar": 2013,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2018
+  },
+  {
+   "naam": "Nintender",
+   "wbfsh_rang_totaal": 189,
+   "jaren_in_top100": 3,
+   "beste_plaats": 72,
+   "beste_jaar": 2017,
+   "plaats_2025": null,
+   "eerste_jaar": 2017,
+   "laatste_jaar": 2019
+  },
+  {
+   "naam": "Prince van de Wolfsakker",
+   "wbfsh_rang_totaal": 191,
+   "jaren_in_top100": 1,
+   "beste_plaats": 42,
+   "beste_jaar": 2020,
+   "plaats_2025": null,
+   "eerste_jaar": 2020,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "Vechta",
+   "wbfsh_rang_totaal": 193,
+   "jaren_in_top100": 3,
+   "beste_plaats": 70,
+   "beste_jaar": 2012,
+   "plaats_2025": null,
+   "eerste_jaar": 2011,
+   "laatste_jaar": 2013
+  },
+  {
+   "naam": "Fuego du Prelet",
+   "wbfsh_rang_totaal": 197,
+   "jaren_in_top100": 1,
+   "beste_plaats": 48,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Champion du Lys",
+   "wbfsh_rang_totaal": 199,
+   "jaren_in_top100": 3,
+   "beste_plaats": 81,
+   "beste_jaar": 2011,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2012
+  },
+  {
+   "naam": "Vivant",
+   "wbfsh_rang_totaal": 200,
+   "jaren_in_top100": 1,
+   "beste_plaats": 49,
+   "beste_jaar": 2025,
+   "plaats_2025": 49,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "London",
+   "wbfsh_rang_totaal": 202,
+   "jaren_in_top100": 1,
+   "beste_plaats": 50,
+   "beste_jaar": 2025,
+   "plaats_2025": 50,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Limmerick",
+   "wbfsh_rang_totaal": 205,
+   "jaren_in_top100": 1,
+   "beste_plaats": 55,
+   "beste_jaar": 2012,
+   "plaats_2025": null,
+   "eerste_jaar": 2012,
+   "laatste_jaar": 2012
+  },
+  {
+   "naam": "Quality Time TN",
+   "wbfsh_rang_totaal": 212,
+   "jaren_in_top100": 1,
+   "beste_plaats": 59,
+   "beste_jaar": 2025,
+   "plaats_2025": 59,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Carinjo",
+   "wbfsh_rang_totaal": 213,
+   "jaren_in_top100": 2,
+   "beste_plaats": 72,
+   "beste_jaar": 2016,
+   "plaats_2025": null,
+   "eerste_jaar": 2016,
+   "laatste_jaar": 2017
+  },
+  {
+   "naam": "Colbert",
+   "wbfsh_rang_totaal": 215,
+   "jaren_in_top100": 2,
+   "beste_plaats": 65,
+   "beste_jaar": 2011,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2011
+  },
+  {
+   "naam": "Tornado",
+   "wbfsh_rang_totaal": 217,
+   "jaren_in_top100": 1,
+   "beste_plaats": 62,
+   "beste_jaar": 2015,
+   "plaats_2025": null,
+   "eerste_jaar": 2015,
+   "laatste_jaar": 2015
+  },
+  {
+   "naam": "Quality 9",
+   "wbfsh_rang_totaal": 218,
+   "jaren_in_top100": 2,
+   "beste_plaats": 66,
+   "beste_jaar": 2016,
+   "plaats_2025": null,
+   "eerste_jaar": 2016,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "Adelfos",
+   "wbfsh_rang_totaal": 220,
+   "jaren_in_top100": 2,
+   "beste_plaats": 81,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2014
+  },
+  {
+   "naam": "Olisco",
+   "wbfsh_rang_totaal": 223,
+   "jaren_in_top100": 1,
+   "beste_plaats": 66,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Gentleman",
+   "wbfsh_rang_totaal": 224,
+   "jaren_in_top100": 1,
+   "beste_plaats": 66,
+   "beste_jaar": 2012,
+   "plaats_2025": null,
+   "eerste_jaar": 2012,
+   "laatste_jaar": 2012
+  },
+  {
+   "naam": "Elan de la Cour",
+   "wbfsh_rang_totaal": 226,
+   "jaren_in_top100": 2,
+   "beste_plaats": 78,
+   "beste_jaar": 2014,
+   "plaats_2025": null,
+   "eerste_jaar": 2014,
+   "laatste_jaar": 2015
+  },
+  {
+   "naam": "Donald Rouge II",
+   "wbfsh_rang_totaal": 228,
+   "jaren_in_top100": 1,
+   "beste_plaats": 68,
+   "beste_jaar": 2011,
+   "plaats_2025": null,
+   "eerste_jaar": 2011,
+   "laatste_jaar": 2011
+  },
+  {
+   "naam": "Landjunge",
+   "wbfsh_rang_totaal": 229,
+   "jaren_in_top100": 1,
+   "beste_plaats": 68,
+   "beste_jaar": 2013,
+   "plaats_2025": null,
+   "eerste_jaar": 2013,
+   "laatste_jaar": 2013
+  },
+  {
+   "naam": "Billy Mexico",
+   "wbfsh_rang_totaal": 230,
+   "jaren_in_top100": 1,
+   "beste_plaats": 68,
+   "beste_jaar": 2025,
+   "plaats_2025": 68,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Cornado NRW",
+   "wbfsh_rang_totaal": 231,
+   "jaren_in_top100": 2,
+   "beste_plaats": 80,
+   "beste_jaar": 2020,
+   "plaats_2025": null,
+   "eerste_jaar": 2020,
+   "laatste_jaar": 2021
+  },
+  {
+   "naam": "Je t'aime Flamenco",
+   "wbfsh_rang_totaal": 232,
+   "jaren_in_top100": 2,
+   "beste_plaats": 83,
+   "beste_jaar": 2025,
+   "plaats_2025": 83,
+   "eerste_jaar": 2021,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Ultimo van ter Moude",
+   "wbfsh_rang_totaal": 237,
+   "jaren_in_top100": 2,
+   "beste_plaats": 77,
+   "beste_jaar": 2020,
+   "plaats_2025": null,
+   "eerste_jaar": 2018,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "Jacomar",
+   "wbfsh_rang_totaal": 239,
+   "jaren_in_top100": 1,
+   "beste_plaats": 72,
+   "beste_jaar": 2012,
+   "plaats_2025": null,
+   "eerste_jaar": 2012,
+   "laatste_jaar": 2012
+  },
+  {
+   "naam": "Denzel vt Meulenhof",
+   "wbfsh_rang_totaal": 240,
+   "jaren_in_top100": 1,
+   "beste_plaats": 72,
+   "beste_jaar": 2025,
+   "plaats_2025": 72,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Cassini Gold",
+   "wbfsh_rang_totaal": 241,
+   "jaren_in_top100": 1,
+   "beste_plaats": 73,
+   "beste_jaar": 2025,
+   "plaats_2025": 73,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Allegreto",
+   "wbfsh_rang_totaal": 243,
+   "jaren_in_top100": 2,
+   "beste_plaats": 79,
+   "beste_jaar": 2019,
+   "plaats_2025": null,
+   "eerste_jaar": 2011,
+   "laatste_jaar": 2019
+  },
+  {
+   "naam": "Libertino I",
+   "wbfsh_rang_totaal": 245,
+   "jaren_in_top100": 1,
+   "beste_plaats": 74,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Quantom",
+   "wbfsh_rang_totaal": 247,
+   "jaren_in_top100": 1,
+   "beste_plaats": 76,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Araconit",
+   "wbfsh_rang_totaal": 250,
+   "jaren_in_top100": 1,
+   "beste_plaats": 78,
+   "beste_jaar": 2011,
+   "plaats_2025": null,
+   "eerste_jaar": 2011,
+   "laatste_jaar": 2011
+  },
+  {
+   "naam": "Cardenio",
+   "wbfsh_rang_totaal": 251,
+   "jaren_in_top100": 1,
+   "beste_plaats": 78,
+   "beste_jaar": 2020,
+   "plaats_2025": null,
+   "eerste_jaar": 2020,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "Upsilon",
+   "wbfsh_rang_totaal": 254,
+   "jaren_in_top100": 1,
+   "beste_plaats": 79,
+   "beste_jaar": 2025,
+   "plaats_2025": 79,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Lifestyle",
+   "wbfsh_rang_totaal": 255,
+   "jaren_in_top100": 1,
+   "beste_plaats": 80,
+   "beste_jaar": 2013,
+   "plaats_2025": null,
+   "eerste_jaar": 2013,
+   "laatste_jaar": 2013
+  },
+  {
+   "naam": "Polytraum",
+   "wbfsh_rang_totaal": 256,
+   "jaren_in_top100": 1,
+   "beste_plaats": 80,
+   "beste_jaar": 2014,
+   "plaats_2025": null,
+   "eerste_jaar": 2014,
+   "laatste_jaar": 2014
+  },
+  {
+   "naam": "Triomphe de Muze",
+   "wbfsh_rang_totaal": 257,
+   "jaren_in_top100": 1,
+   "beste_plaats": 80,
+   "beste_jaar": 2015,
+   "plaats_2025": null,
+   "eerste_jaar": 2015,
+   "laatste_jaar": 2015
+  },
+  {
+   "naam": "Zento",
+   "wbfsh_rang_totaal": 258,
+   "jaren_in_top100": 1,
+   "beste_plaats": 80,
+   "beste_jaar": 2018,
+   "plaats_2025": null,
+   "eerste_jaar": 2018,
+   "laatste_jaar": 2018
+  },
+  {
+   "naam": "Hip Hop",
+   "wbfsh_rang_totaal": 262,
+   "jaren_in_top100": 1,
+   "beste_plaats": 82,
+   "beste_jaar": 2018,
+   "plaats_2025": null,
+   "eerste_jaar": 2018,
+   "laatste_jaar": 2018
+  },
+  {
+   "naam": "Epilot",
+   "wbfsh_rang_totaal": 264,
+   "jaren_in_top100": 2,
+   "beste_plaats": 85,
+   "beste_jaar": 2011,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2011
+  },
+  {
+   "naam": "Carry",
+   "wbfsh_rang_totaal": 265,
+   "jaren_in_top100": 1,
+   "beste_plaats": 83,
+   "beste_jaar": 2012,
+   "plaats_2025": null,
+   "eerste_jaar": 2012,
+   "laatste_jaar": 2012
+  },
+  {
+   "naam": "Sam R",
+   "wbfsh_rang_totaal": 267,
+   "jaren_in_top100": 2,
+   "beste_plaats": 87,
+   "beste_jaar": 2015,
+   "plaats_2025": null,
+   "eerste_jaar": 2014,
+   "laatste_jaar": 2015
+  },
+  {
+   "naam": "Habsburg",
+   "wbfsh_rang_totaal": 268,
+   "jaren_in_top100": 1,
+   "beste_plaats": 84,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Slaito",
+   "wbfsh_rang_totaal": 269,
+   "jaren_in_top100": 1,
+   "beste_plaats": 84,
+   "beste_jaar": 2017,
+   "plaats_2025": null,
+   "eerste_jaar": 2017,
+   "laatste_jaar": 2017
+  },
+  {
+   "naam": "Nervoso",
+   "wbfsh_rang_totaal": 270,
+   "jaren_in_top100": 1,
+   "beste_plaats": 84,
+   "beste_jaar": 2020,
+   "plaats_2025": null,
+   "eerste_jaar": 2020,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "Albfuehren's Memphis",
+   "wbfsh_rang_totaal": 271,
+   "jaren_in_top100": 1,
+   "beste_plaats": 85,
+   "beste_jaar": 2020,
+   "plaats_2025": null,
+   "eerste_jaar": 2020,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "San Patrignano Cassini",
+   "wbfsh_rang_totaal": 276,
+   "jaren_in_top100": 1,
+   "beste_plaats": 86,
+   "beste_jaar": 2025,
+   "plaats_2025": 86,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Helios de la Cour II",
+   "wbfsh_rang_totaal": 277,
+   "jaren_in_top100": 2,
+   "beste_plaats": 87,
+   "beste_jaar": 2016,
+   "plaats_2025": null,
+   "eerste_jaar": 2014,
+   "laatste_jaar": 2016
+  },
+  {
+   "naam": "Lord Byron Z",
+   "wbfsh_rang_totaal": 278,
+   "jaren_in_top100": 1,
+   "beste_plaats": 87,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Kapitol d'Argonne",
+   "wbfsh_rang_totaal": 280,
+   "jaren_in_top100": 1,
+   "beste_plaats": 87,
+   "beste_jaar": 2025,
+   "plaats_2025": 87,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  },
+  {
+   "naam": "Vigaro",
+   "wbfsh_rang_totaal": 281,
+   "jaren_in_top100": 2,
+   "beste_plaats": 89,
+   "beste_jaar": 2020,
+   "plaats_2025": null,
+   "eerste_jaar": 2019,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "Pavarotti vd Helle",
+   "wbfsh_rang_totaal": 283,
+   "jaren_in_top100": 1,
+   "beste_plaats": 88,
+   "beste_jaar": 2013,
+   "plaats_2025": null,
+   "eerste_jaar": 2013,
+   "laatste_jaar": 2013
+  },
+  {
+   "naam": "Montendro",
+   "wbfsh_rang_totaal": 284,
+   "jaren_in_top100": 2,
+   "beste_plaats": 91,
+   "beste_jaar": 2018,
+   "plaats_2025": null,
+   "eerste_jaar": 2018,
+   "laatste_jaar": 2019
+  },
+  {
+   "naam": "Fedor",
+   "wbfsh_rang_totaal": 285,
+   "jaren_in_top100": 1,
+   "beste_plaats": 89,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Nairobi",
+   "wbfsh_rang_totaal": 286,
+   "jaren_in_top100": 1,
+   "beste_plaats": 89,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Bon Ami",
+   "wbfsh_rang_totaal": 289,
+   "jaren_in_top100": 2,
+   "beste_plaats": 92,
+   "beste_jaar": 2011,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2011
+  },
+  {
+   "naam": "Surcouf de Revel",
+   "wbfsh_rang_totaal": 297,
+   "jaren_in_top100": 2,
+   "beste_plaats": 93,
+   "beste_jaar": 2014,
+   "plaats_2025": null,
+   "eerste_jaar": 2014,
+   "laatste_jaar": 2017
+  },
+  {
+   "naam": "Café au Lait",
+   "wbfsh_rang_totaal": 299,
+   "jaren_in_top100": 1,
+   "beste_plaats": 93,
+   "beste_jaar": 2018,
+   "plaats_2025": null,
+   "eerste_jaar": 2018,
+   "laatste_jaar": 2018
+  },
+  {
+   "naam": "Farmer",
+   "wbfsh_rang_totaal": 301,
+   "jaren_in_top100": 1,
+   "beste_plaats": 94,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Perhaps van het Molenvondel",
+   "wbfsh_rang_totaal": 303,
+   "jaren_in_top100": 1,
+   "beste_plaats": 94,
+   "beste_jaar": 2012,
+   "plaats_2025": null,
+   "eerste_jaar": 2012,
+   "laatste_jaar": 2012
+  },
+  {
+   "naam": "Cabrio van de Heffinck",
+   "wbfsh_rang_totaal": 304,
+   "jaren_in_top100": 1,
+   "beste_plaats": 94,
+   "beste_jaar": 2017,
+   "plaats_2025": null,
+   "eerste_jaar": 2017,
+   "laatste_jaar": 2017
+  },
+  {
+   "naam": "Lennon",
+   "wbfsh_rang_totaal": 305,
+   "jaren_in_top100": 1,
+   "beste_plaats": 95,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Salito",
+   "wbfsh_rang_totaal": 307,
+   "jaren_in_top100": 1,
+   "beste_plaats": 95,
+   "beste_jaar": 2016,
+   "plaats_2025": null,
+   "eerste_jaar": 2016,
+   "laatste_jaar": 2016
+  },
+  {
+   "naam": "Rebozo la Silla",
+   "wbfsh_rang_totaal": 308,
+   "jaren_in_top100": 1,
+   "beste_plaats": 95,
+   "beste_jaar": 2020,
+   "plaats_2025": null,
+   "eerste_jaar": 2020,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "FRH Quaid",
+   "wbfsh_rang_totaal": 313,
+   "jaren_in_top100": 1,
+   "beste_plaats": 96,
+   "beste_jaar": 2021,
+   "plaats_2025": null,
+   "eerste_jaar": 2021,
+   "laatste_jaar": 2021
+  },
+  {
+   "naam": "Heartbeat",
+   "wbfsh_rang_totaal": 318,
+   "jaren_in_top100": 1,
+   "beste_plaats": 97,
+   "beste_jaar": 2017,
+   "plaats_2025": null,
+   "eerste_jaar": 2017,
+   "laatste_jaar": 2017
+  },
+  {
+   "naam": "Carembar de Muze",
+   "wbfsh_rang_totaal": 320,
+   "jaren_in_top100": 1,
+   "beste_plaats": 98,
+   "beste_jaar": 2021,
+   "plaats_2025": null,
+   "eerste_jaar": 2021,
+   "laatste_jaar": 2021
+  },
+  {
+   "naam": "Sheraton",
+   "wbfsh_rang_totaal": 322,
+   "jaren_in_top100": 1,
+   "beste_plaats": 99,
+   "beste_jaar": 2015,
+   "plaats_2025": null,
+   "eerste_jaar": 2015,
+   "laatste_jaar": 2015
+  },
+  {
+   "naam": "Open Up Semilly",
+   "wbfsh_rang_totaal": 323,
+   "jaren_in_top100": 1,
+   "beste_plaats": 99,
+   "beste_jaar": 2020,
+   "plaats_2025": null,
+   "eerste_jaar": 2020,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "Alligator Fontaine",
+   "wbfsh_rang_totaal": 325,
+   "jaren_in_top100": 1,
+   "beste_plaats": 100,
+   "beste_jaar": 2010,
+   "plaats_2025": null,
+   "eerste_jaar": 2010,
+   "laatste_jaar": 2010
+  },
+  {
+   "naam": "Baloussini",
+   "wbfsh_rang_totaal": 327,
+   "jaren_in_top100": 1,
+   "beste_plaats": 100,
+   "beste_jaar": 2020,
+   "plaats_2025": null,
+   "eerste_jaar": 2020,
+   "laatste_jaar": 2020
+  },
+  {
+   "naam": "Dallas",
+   "wbfsh_rang_totaal": 328,
+   "jaren_in_top100": 1,
+   "beste_plaats": 100,
+   "beste_jaar": 2025,
+   "plaats_2025": 100,
+   "eerste_jaar": 2025,
+   "laatste_jaar": 2025
+  }
+ ]
+}
