@@ -1,0 +1,370 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-10",
+ "collecties": {
+  "paarden": {
+   "emerald-van-t-ruytershof-2004": {
+    "dek": {
+     "dekgeld": "€1000 excl. btw per inseminatie (diepvries of gekoeld); geen restitutie als merrie niet drachtig wordt. ICSI €1500 excl. btw per embryo",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Vers sperma beschikbaar van 2 maart tot 1 augustus 2026. Vader Diamant de Semilly, geboortejaar 2004.",
+     "station": "Euro Horse",
+     "url": "https://elitestallions.co.uk/stallion/Emerald van't Ruytershof",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Emerald van't Ruytershof"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "056007000a40713": {
+    "dek": {
+     "dekgeld": "Vers €2.500 (€1.000 + €1.500), diepvries €2.500, ICSI €1.250",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Prijzen op de hengstenpagina van Zangersheide; seizoen en stationnaam niet vermeld. Geboren 25/05/2006, stamboom begint met Ogano Sitte.",
+     "url": "https://www.zangersheide.com/en/stallions/aganix-du-seigneur-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/aganix-du-seigneur-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "eldorado-van-de-zeshoek-2004": {
+    "dek": {
+     "dekgeld": "€2.500",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Catalogus Nijhof 2026 (vermeld als Eldorado van de Zeshoek TN, vader Clinton, 2004). Alle hengsten beschikbaar via diepvries en/of ICSI.",
+     "station": "Team Nijhof (SWS Nijhof B.V.), Geesteren",
+     "url": "https://www.team-nijhof.nl",
+     "bron": {
+      "naam": "Catalogus Team Nijhof 2026",
+      "url": "https://www.team-nijhof.nl/wp-content/uploads/2026/02/20260202_Catalogus-Nijhof-2026-inhoud-NL-1.pdf"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "056002w00311101": {
+    "dek": {
+     "dekgeld": "€1.250 voor vers sperma en voor ingevroren sperma met garantie (merrie drachtig op 1 oktober, levendgeboren-garantie)",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Hengstenpagina Harrie Smolders met bestelknop voor sperma. Vader Comme Il Faut, geboren 2015.",
+     "station": "Smolders Sporthorses B.V.",
+     "url": "https://www.harriesmolders.com/en/horses/details/pegase-van-t-ruytershof",
+     "bron": {
+      "naam": "Harrie Smolders",
+      "url": "https://www.harriesmolders.com/en/horses/details/pegase-van-t-ruytershof"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "056015z55706210": {
+    "dek": {
+     "dekgeld": "€2.500 (€1.000 aankoop + €1.500 dracht)",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2025",
+     "toelichting": "Nieuwsbericht van 18 april 2025: vers sperma beschikbaar vanaf 1 mei. Geboortejaar en vader niet op de pagina bevestigd.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/pl/news/dominator-2000-z-available-with-fresh-semen",
+     "bron": {
+      "naam": "Zangersheide nieuws",
+      "url": "https://www.zangersheide.com/pl/news/dominator-2000-z-available-with-fresh-semen"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "conthargos-2004": {
+    "dek": {
+     "dekgeld": "€3.000 plus btw",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Hengstenpagina Schockemöhle; vader Converter, geboren 2004. Seizoen niet vermeld.",
+     "station": "Paul Schockemöhle Pferdehaltung GmbH, Mühlen",
+     "url": "https://schockemoehle.com/en/Conthargos/DE418180092504",
+     "bron": {
+      "naam": "Schockemöhle",
+      "url": "https://schockemoehle.com/en/Conthargos/DE418180092504"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "verdi-tn-2002": {
+    "dek": {
+     "dekgeld": "€2.000",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Catalogus Nijhof 2026, vader Quidam de Revel, 2002. Alle hengsten beschikbaar via diepvries en/of ICSI.",
+     "station": "Team Nijhof (SWS Nijhof B.V.), Geesteren",
+     "url": "https://www.team-nijhof.nl",
+     "bron": {
+      "naam": "Catalogus Team Nijhof 2026",
+      "url": "https://www.team-nijhof.nl/wp-content/uploads/2026/02/20260202_Catalogus-Nijhof-2026-inhoud-NL-1.pdf"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "chacoon-blue-2009": {
+    "dek": {
+     "dekgeld": "Inseminatiegeld €1.500 plus btw; dracht (gestation) fee €1.500 plus btw; splitsing mogelijk volgens dekvoorwaarden §4",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Shoppagina Schockemöhle met winkelwagenoptie. Geboortejaar 2009; vader niet vermeld op de pagina. Seizoen niet vermeld.",
+     "station": "Paul Schockemöhle Pferdehaltung GmbH, Mühlen",
+     "url": "https://shop.schockemoehle.com/en/Chacoon-Blue/DE427270322009",
+     "bron": {
+      "naam": "Schockemöhle shop",
+      "url": "https://shop.schockemoehle.com/en/Chacoon-Blue/DE427270322009"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "grandorado-tn-2011": {
+    "dek": {
+     "dekgeld": "€2.000",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Catalogus Nijhof 2026, vader Eldorado van de Zeshoek, 2011. Alle hengsten beschikbaar via diepvries en/of ICSI.",
+     "station": "Team Nijhof (SWS Nijhof B.V.), Geesteren",
+     "url": "https://www.team-nijhof.nl",
+     "bron": {
+      "naam": "Catalogus Team Nijhof 2026",
+      "url": "https://www.team-nijhof.nl/wp-content/uploads/2026/02/20260202_Catalogus-Nijhof-2026-inhoud-NL-1.pdf"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "056002w00297452": {
+    "dek": {
+     "dekgeld": "£1.563 incl. btw (split terms: £1.339 plus btw, btw terug bij niet-drachtigverklaring dierenarts)",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Gekoeld sperma (EU Chilled Import) via Stallion AI. Geboortejaar 2010, vader Bamako de Muze. Seizoen niet vermeld op de pagina.",
+     "station": "Stal De Muze",
+     "url": "https://www.stallionai.co.uk/animals/stallion/kasanova-de-la-pomme",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/kasanova-de-la-pomme"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "276441410863509": {
+    "dek": {
+     "dekgeld": "€1.600 (vers of diepgevroren); ICSI €800; bij vers sperma 'Breed now - pay in 2027'",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina Zangersheide noemt ook ICSI en 'See conditions'. Geboren 09/02/2009, vader Comme il Faut. Seizoen niet expliciet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/comilfo-plus-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/comilfo-plus-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "diarado-2005": {
+    "dek": {
+     "dekgeld": "€2.200 excl. btw, onbeperkte pogingen gekoeld sperma, één merrie per seizoen; €1.100 excl. btw terug als niet drachtig na eind september",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Plus €175 excl. btw voor transport en gezondheidspapieren. Gekoeld sperma in hoogseizoen soms niet beschikbaar door voorrang eigen merries; diepvries dan meestal wel, zelfde voorwaarden. Pagina: hengsten enkel te bekijken, niet te bestellen.",
+     "station": "Deckstation Schockemöhle",
+     "url": "https://www.elitestallions.co.uk/stallion/Diarado",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Diarado"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "276473730631803": {
+    "dek": {
+     "dekgeld": "€1.200 diepgevroren sperma; ICSI €600",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Zangersheide-pagina. Geboortejaar 2003, vader Coriano Z. Seizoen en stationlocatie niet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/colorit-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/colorit-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "mosito-van-het-hellehof-2012": {
+    "dek": {
+     "dekgeld": "£1.117 (EU Chilled Import: £893 plus btw, btw terug bij niet-drachtigverklaring dierenarts; split terms)",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beperkt",
+     "toelichting": "Pagina meldt: geen voorraad momenteel voor het gekozen leveringsland. Bestellen via team Stallion AI. Geboortejaar 2012, vader Elvis ter Putte. Seizoen niet vermeld.",
+     "station": "Stal De Muze",
+     "url": "https://www.stallionai.co.uk/animals/stallion/mosito-van-het-hellehof",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/mosito-van-het-hellehof"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "carrera-vdl-2006": {
+    "dek": {
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "VDL Stud meldt in nieuwsbericht 'Fresh semen of Carrera available again', verkrijgbaar vanaf de dag na het bericht. Geen dekgeld, datum of seizoen vermeld.",
+     "station": "VDL Stud",
+     "url": "https://www.vdlstud.com/en/paarden/Carrera-VDL-Cardento-x-Baloubet-du-Rouet",
+     "bron": {
+      "naam": "VDL Stud nieuws",
+      "url": "https://www.vdlstud.com/nl/nieuws/Fresh-semen-of-Carrera-available-again"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "el-barone-111-z-2012": {
+    "dek": {
+     "dekgeld": "€1.500 vers sperma, per 1 oktober met garantie levend veulen",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina heeft knop 'Order semen now!'. Geboortejaar 2012, vader Emerald van 't Ruytershof. Seizoen niet vermeld.",
+     "station": "Harrie Smolders",
+     "url": "https://www.harriesmolders.com/en/horses/details/el-barone-111-z",
+     "bron": {
+      "naam": "Harrie Smolders",
+      "url": "https://www.harriesmolders.com/en/horses/details/el-barone-111-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "056015z55725108": {
+    "dek": {
+     "dekgeld": "€1.600 vers sperma",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina: 'Breed now - pay in 2027'. Zangersheide-nieuws (19 dec 2025): Tobago Z joins studfarm Zangersheide for 2026 breeding season. Geboren 04/06/2008, vader Tangelo van de Zuuthoeve.",
+     "station": "Zangersheide",
+     "seizoen": "2026",
+     "url": "https://www.zangersheide.com/en/stallions/tobago-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/tobago-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   },
+   "276418180179906": {
+    "dek": {
+     "dekgeld": "€2.500",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Zangersheide-nieuws (21 dec 2025): weer beschikbaar voor Europese fokkers na jaren van onbereikbaarheid. Vader Cornet Obolensky. Seizoen niet vermeld.",
+     "station": "Studfarm Zangersheide (Lanaken)",
+     "url": "https://www.zangersheide.com/en/news/breaking-news-balou-du-reventon-z-to-studfarm-zangersheide",
+     "bron": {
+      "naam": "Zangersheide nieuws",
+      "url": "https://www.zangersheide.com/en/news/breaking-news-balou-du-reventon-z-to-studfarm-zangersheide"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-10"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "emerald-van-t-ruytershof-2004": "gevonden",
+  "056007000a40713": "gevonden",
+  "eldorado-van-de-zeshoek-2004": "gevonden",
+  "056002w00311101": "gevonden",
+  "056015z55706210": "gevonden",
+  "conthargos-2004": "gevonden",
+  "comme-il-faut-5-2005": "niet_gevonden",
+  "verdi-tn-2002": "gevonden",
+  "fra00114498350y": "niet_gevonden",
+  "chacoon-blue-2009": "gevonden",
+  "chellano-alpha-z-2008": "niet_gevonden",
+  "sea-coast-don-t-touch-tiji-hero-2009": "niet_gevonden",
+  "grandorado-tn-2011": "gevonden",
+  "056002w00297452": "gevonden",
+  "276441410863509": "gevonden",
+  "diarado-2005": "gevonden",
+  "echo-van-t-spieveld-2004": "niet_gevonden",
+  "276473730631803": "gevonden",
+  "poker-de-mariposa-tn-2015": "niet_gevonden",
+  "mosito-van-het-hellehof-2012": "gevonden",
+  "united-touch-s-2012": "niet_gevonden",
+  "carrera-vdl-2006": "gevonden",
+  "el-barone-111-z-2012": "gevonden",
+  "056015z55725108": "gevonden",
+  "276418180179906": "gevonden"
+ }
+}
