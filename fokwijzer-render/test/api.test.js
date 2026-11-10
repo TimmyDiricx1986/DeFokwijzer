@@ -311,7 +311,7 @@ test("aanvraag als pakket: max 5 paarden, max 3 aanvragen per dag voor gebruiker
   assert.equal((await dien([{ naam: "X", link: "javascript:alert(1)" }], c)).status, 400);
   assert.equal((await dien([{ naam: "<b>x</b>" }], c)).status, 400);
 
-  const eerste = await dien([{ naam: "Vijf 1", link: "horsetelex.com/horses/1" }].concat(p(4, "Vijf").slice(1)), c);
+  const eerste = await dien([{ naam: "Vijf 1", link: "horsetelex.com/horses/1" }].concat(p(5, "Vijf").slice(1)), c);
   assert.equal(eerste.status, 200);
   const j = await eerste.json();
   assert.equal(j.ids.length, 5);
