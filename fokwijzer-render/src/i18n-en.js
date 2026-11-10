@@ -113,6 +113,7 @@
     "Zet een hengst en een merrie naast elkaar en bekijk het virtuele veulen: verwachte sterktes, inteelt en aandachtspunten.": "Put a stallion and a mare side by side and look at the virtual foal: expected strengths, inbreeding and points of attention.",
     "Naar Virtueel veulen": "Go to Virtual foal",
     "Bijdragen": "Contribute",
+    "Jouw Fokwijzer": "Your Fokwijzer",
     "Lezen": "Reading",
     "kan zonder account. Met een account als": "requires no account. With an account as a",
     "gebruiker": "user",
