@@ -1338,18 +1338,28 @@ function renderStal(){const out=$("stalOut");if(!out)return;ensureStal();
      <div id="stalComb" style="margin-top:12px"></div>`:'<p class="small muted" style="margin:4px 0 0">Voeg een merrie toe aan je stal om je hengsten met haar te combineren.</p>'}
     <div class="status" id="stalSt" role="status"></div></section>`;
   if(M.length)renderComb()}
-function renderComb(){const box=$("stalComb");if(!box)return;const m=byId(state.stalM);if(!m){box.innerHTML="";return}
-  const H=stalLijst("hengst");
-  if(!H.length){box.innerHTML=`<p class="small muted" style="margin:0">Je hebt nog geen hengsten in je stal. <button type="button" class="linkbtn" data-stalmatch="${esc(m.id)}">Bekijk de beste hengsten uit de hele database</button></p>`;return}
-  const rs=H.map(s=>match(s,m)).sort((a,b)=>(a.excluded-b.excluded)||(b.total-a.total));
-  const ok=rs.filter(r=>!r.excluded);
-  box.innerHTML=`<div class="list">${rs.map((r,i)=>{const bew=state.stal.veulens.some(v=>v.s===r.s.id&&v.m===m.id);return `<div class="comb-row"><span class="rank num">${r.excluded?"&ndash;":i+1}</span>
+// Combineren: je eigen hengsten voor deze merrie, en daaronder de beste hengsten uit de hele database.
+let _combC={src:null,map:new Map()};
+function combRij(r,m,i,extra){const bew=state.stal.veulens.some(v=>v.s===r.s.id&&v.m===m.id);
+  return `<div class="comb-row"><span class="rank num">${r.excluded?"&ndash;":i+1}</span>
      <span style="min-width:0"><b>${esc(r.s.naam)}</b> <span class="small muted">x ${esc(m.naam)}</span>
       <span class="chips" style="margin-top:4px"><span class="chip">inteelt ${pct(r.coi.F)}</span>${r.excluded?'<span class="chip bad">Uitgesloten</span>':`<span class="chip">betrouwbaarheid ${esc(r.conf)}</span>`}${r.warnings.map(w=>`<span class="chip ${w.lvl}">${esc(w.t)}</span>`).join("")}</span>
       ${r.excluded?"":`<div class="minibar"><div class="fill" style="width:${r.total}%"></div></div>`}</span>
      <span class="mscore num">${r.excluded?"&ndash;":Math.round(r.total)}</span>
-     <span class="comb-acties"><button type="button" class="btn ghost" data-vvopen="${esc(r.s.id)}|${esc(m.id)}">Virtueel veulen</button><button type="button" class="btn${bew?" ghost":""}" data-vvbewaar="${esc(r.s.id)}|${esc(m.id)}"${bew?" disabled":""}>${bew?"Bewaard":"Bewaar veulen"}</button></span></div>`}).join("")}</div>
-   ${ok.length>=2?`<button type="button" class="btn ghost" data-stalhc="${esc(ok.slice(0,4).map(r=>r.s.id).join(","))}" data-m="${esc(m.id)}" style="margin-top:10px">Vergelijk de beste ${Math.min(4,ok.length)} hengsten naast elkaar</button>`:""}`}
+     <span class="comb-acties">${extra?`<button type="button" class="btn ghost" data-staladd="${esc(r.s.id)}">+ In mijn stal</button>`:""}<button type="button" class="btn ghost" data-vvopen="${esc(r.s.id)}|${esc(m.id)}">Virtueel veulen</button><button type="button" class="btn${bew?" ghost":""}" data-vvbewaar="${esc(r.s.id)}|${esc(m.id)}"${bew?" disabled":""}>${bew?"Bewaard":"Bewaar veulen"}</button></span></div>`}
+function renderComb(){const box=$("stalComb");if(!box)return;const m=byId(state.stalM);if(!m){box.innerHTML="";return}
+  const H=stalLijst("hengst"),mijn=new Set(H.map(h=>h.id));
+  const rs=H.map(s=>match(s,m)).sort((a,b)=>(a.excluded-b.excluded)||(b.total-a.total));const ok=rs.filter(r=>!r.excluded);
+  box.innerHTML=`${H.length?`<div class="label" style="margin-bottom:6px">Hengsten uit je stal</div><div class="list">${rs.map((r,i)=>combRij(r,m,i,false)).join("")}</div>
+     ${ok.length>=2?`<button type="button" class="btn ghost" data-stalhc="${esc(ok.slice(0,4).map(r=>r.s.id).join(","))}" data-m="${esc(m.id)}" style="margin-top:10px">Vergelijk de beste ${Math.min(4,ok.length)} hengsten naast elkaar</button>`:""}`
+    :'<p class="small muted" style="margin:0">Je hebt nog geen hengsten in je stal. Hieronder staan de best passende hengsten uit de hele database: zet ze met één klik in je stal.</p>'}
+   <div class="label" style="margin:16px 0 6px">Beste hengsten uit de hele database</div><div id="combAlle"><p class="small muted">Wordt berekend...</p></div>`;
+  if(_combC.src!==state.horses)_combC={src:state.horses,map:new Map()};
+  const toon=(lijst)=>{const el=$("combAlle");if(!el||state.stalM!==m.id)return;const top=lijst.filter(r=>!mijn.has(r.s.id)).slice(0,5);
+    el.innerHTML=top.length?`<div class="list">${top.map((r,i)=>combRij(r,m,i,true)).join("")}</div><button type="button" class="linkbtn" data-stalmatch="${esc(m.id)}" style="margin-top:8px">Alle beste matches voor ${esc(m.naam)} bekijken</button>`:'<p class="small muted">Geen andere hengsten gevonden.</p>'};
+  if(_combC.map.has(m.id)){toon(_combC.map.get(m.id));return}
+  setTimeout(()=>{if(state.stalM!==m.id||!$("combAlle"))return;const lijst=state.horses.filter(h=>h.geslacht==="hengst"&&!h.ruin).map(s=>match(s,m)).filter(r=>!r.excluded).sort((a,b)=>b.total-a.total).slice(0,40);
+    _combC.map.set(m.id,lijst);toon(lijst)},30)}
 function stalSug(inp){const g=inp.dataset.stalzoek,box=document.querySelector(`[data-stalsug="${g}"]`);if(!box)return;const q=norm(inp.value);
   if(q.length<2){box.innerHTML="";return}
   const have=new Set(stalLijst(g).map(h=>h.id));
@@ -1559,7 +1569,7 @@ document.addEventListener("click",e=>{const t=e.target.closest("[data-staladd],[
   if(d.staladd){const h=byId(d.staladd);if(h){stalSave(v=>{(h.geslacht==="merrie"?v.merries:v.hengsten).push(h.id)});const i=document.querySelector(`[data-stalzoek="${h.geslacht}"]`);if(i){i.value="";setTimeout(()=>{const j=document.querySelector(`[data-stalzoek="${h.geslacht}"]`);if(j)j.focus()},0)}}return}
   if(d.staldel){const h=byId(d.staldel);stalSave(v=>{v.hengsten=v.hengsten.filter(x=>x!==d.staldel);v.merries=v.merries.filter(x=>x!==d.staldel)});return}
   if(d.stalopen){state.sel=d.stalopen;state.detTab="overzicht";setTab("zoeken");return}
-  if(d.stalcomb){state.stalM=d.stalcomb;const s=$("stalM");if(s){s.value=d.stalcomb;renderComb()}const c=$("stalCombCard");if(c)c.scrollIntoView({behavior:"smooth",block:"start"});return}
+  if(d.stalcomb){state.stalM=d.stalcomb;const s=$("stalM");if(s){s.value=d.stalcomb;renderComb()}const c=$("stalCombCard");if(c){c.scrollIntoView({behavior:"smooth",block:"start"});c.classList.remove("flits");void c.offsetWidth;c.classList.add("flits")}return}
   if(d.stalmatch){fillSelects();$("mFor").value=d.stalmatch;setTab("matches");return}
   if(d.stalvraag!==undefined){state.lastToev="aanvragen";setTab("aanvragen");setTimeout(()=>{const i=document.querySelector("#aRows input");if(i){i.value=d.stalvraag;i.dispatchEvent(new Event("input",{bubbles:true}));i.focus()}},50);return}
   if(d.stalhc){hcAdd(d.stalhc.split(","),d.m);return}
