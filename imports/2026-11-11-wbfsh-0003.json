@@ -1,0 +1,1238 @@
+{
+ "formaat": "fokwijzer-export",
+ "datum": "2026-11-10",
+ "collecties": {
+  "paarden": {
+   "quidam-s-rubin-1999": {
+    "naam": "Quidam's Rubin",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1999,
+    "stamboek": "Holsteiner",
+    "stamboom": {
+     "v": "Quidam de Revel",
+     "m": "Helvecia",
+     "vv": "Jalisco B",
+     "vm": "Tangra",
+     "mv": "Landgraf I",
+     "mm": "Warthburg",
+     "vvv": "Almé",
+     "vvm": "Dirka",
+     "vmv": "Nankin",
+     "vmm": "Ondine de Baugy",
+     "mvv": "Ladykiller xx",
+     "mvm": "Betty I",
+     "mmv": "Caletto I",
+     "mmm": "Vega"
+    },
+    "bronnen": [
+     {
+      "naam": "Superior Equine Sires",
+      "url": "https://superiorequinesires.com/quidams-rubin",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Stokmaat bron geeft 16.2 hand (ca. 168 cm), niet als stokmaat vermeld, daarom weggelaten. Winnaar 70-dagentest Neustadt/Dosse 2004. WBFSH Top 100 springvaders: 9 jaar, beste plaats 24 (2015)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "cruising-1985": {
+    "naam": "Cruising",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1985,
+    "stamboek": "Irish Sport Horse",
+    "stokmaat_cm": 165,
+    "stamboom": {
+     "v": "Sea Crest",
+     "m": "Mullacrew"
+    },
+    "bronnen": [
+     {
+      "naam": "The Irish Field",
+      "url": "https://theirishfield.ie/sport-horse/sport-horse-news/what-made-cruising-so-special-174690",
+      "datum": "2026-11-10"
+     },
+     {
+      "name": "x",
+      "naam": "Hastkatalogen.se",
+      "url": "https://hastkatalogen.se/content/horse/info.php?id=221546",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur schimmel. Alleen v en m zeker; Hastkatalogen toont 30 voorouders zonder positiecodes, dus overige posities weggelaten. Identiteit aannemelijk (Ierse hengst met klonen, WBFSH 2009-2017), geen aparte bevestiging van WBFSH-jaren. WBFSH Top 100 springvaders: 9 jaar, beste plaats 19 (2011)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "oklund": {
+    "naam": "Oklund",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "stamboom": {
+     "v": "Holland",
+     "m": "Ilotte"
+    },
+    "bronnen": [
+     {
+      "naam": "Rimondo",
+      "url": "https://rimondo.com/en/pedigree/144123/oklund",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Alleen vader en moeder overgenomen; Rimondo-pagina gaf geen geboortejaar, stamboek of expliciete positiecodes (hoger gelegen voorouders weggelaten omdat positie niet zeker was). Gebruik officiele bron voor verificatie. WBFSH Top 100 springvaders: 7 jaar, beste plaats 33 (2016)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "cantos-1996": {
+    "naam": "Cantos",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1996,
+    "stamboek": "KWPN",
+    "stokmaat_cm": 166,
+    "stamboom": {
+     "v": "Contender",
+     "m": "Gabanta",
+     "vv": "Calypso II",
+     "vm": "Gofine",
+     "mv": "Goodtimes",
+     "mm": "Abanta",
+     "vvv": "Cor de la Bryere",
+     "vvm": "Tabelle",
+     "vmv": "Ramiro Z",
+     "vmm": "Cita",
+     "mvv": "Nimmerdor",
+     "mvm": "Zigeunerin",
+     "mmv": "Abantos",
+     "mmm": "Venda"
+    },
+    "niveau_label": "Grand Prix",
+    "wffs": "non carrier",
+    "bronnen": [
+     {
+      "naam": "VDL Stud",
+      "url": "https://vdlstud.com/en/paarden/Cantos-Preferent-Contender-x-Goodtimes",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Geboren 11-04-1996. WBFSH Top 100 springvaders: 6 jaar, beste plaats 38 (2019)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "dulf-van-den-bisschop": {
+    "naam": "Dulf van den Bisschop",
+    "naam_varianten": [
+     "Dulf Van Den Bisschop"
+    ],
+    "geslacht": "hengst",
+    "stamboek": "BWP",
+    "stamboom": {
+     "v": "Heartbreaker",
+     "m": "Secret Love Wonderland"
+    },
+    "bronnen": [
+     {
+      "naam": "Select Breeders Services",
+      "url": "https://portal.selectbreeders.com/stallions/4524-dulf-van-den-bisschop",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Bron noemt BWP Elite Ambassador. Stamboomnamen stonden zonder posities in de bron (Heartbreaker, Secret Love Wonderland, Nimmerdor, Bacarole, Libero H, Priscilla, Farn, Ramonaa, Silvano, Orchidee, Landgraf I, Oktave, Grannus, Zarina); v en m zijn afgeleid uit de volgorde, de rest weggelaten. Geboortejaar niet vermeld. WBFSH Top 100 springvaders: 3 jaar, beste plaats 39 (2018)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "goldfever-i-1991": {
+    "naam": "Goldfever I",
+    "naam_varianten": [
+     "Goldfever 3"
+    ],
+    "geslacht": "hengst",
+    "geboortejaar": 1991,
+    "stamboek": "Hannoveraner",
+    "stamboom": {
+     "v": "Grosso Z",
+     "m": "Gundula"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/33306-goldfever-i",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur vos. Fokker Sigurd Hochmuth (Duitsland). Verdere voorouders stonden zonder positie op de pagina en zijn weggelaten. WBFSH Top 100 springvaders: 3 jaar, beste plaats 56 (2010)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "rosire-1983": {
+    "naam": "Rosire",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1983,
+    "stamboek": "Selle Francais",
+    "stamboom": {
+     "v": "Uriel",
+     "m": "Eolienne",
+     "vv": "Nankin",
+     "vm": "Jesabelle de Baugy",
+     "mv": "Ultra Son",
+     "mm": "Argentanaise",
+     "vvv": "Fra Diavolo xx",
+     "vvm": "Constellation",
+     "vmv": "Ascot",
+     "vmm": "Nadine",
+     "mvv": "Prince du Cy",
+     "mvm": "Gavotte",
+     "mmv": "Furioso xx",
+     "mmm": "Fleur de Feu"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/21450-rosire",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur vos. Geboren 1983, dus 29 jaar voor WBFSH-jaar 2012: identiteit niet extra bevestigd. WBFSH Top 100 springvaders: 4 jaar, beste plaats 57 (2014)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "ukato-2001": {
+    "naam": "Ukato",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 2001,
+    "stamboek": "Hannoveraner",
+    "stamboom": {
+     "v": "Stakkato",
+     "m": "Leona",
+     "vv": "Spartan",
+     "vm": "Pia",
+     "mv": "Literat",
+     "mm": "Spange"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo (stamboom van een nakomeling)",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/38996-ukato",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur donkerbruin. Gegevens afgeleid uit de stamboom van een nakomeling op Hippomundo, niet uit een eigen paardpagina; positie van derde generatie en dieper niet gebruikt. Let op: Ukato v/d Stapelheyde (AES, 2020) is een ander paard. Verifieer in officiele bron. WBFSH Top 100 springvaders: 3 jaar, beste plaats 46 (2021)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "cavalier-royale-1978": {
+    "naam": "Cavalier Royale",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1978,
+    "stamboom": {
+     "v": "Cor de la Bryere",
+     "m": "Ligustra"
+    },
+    "bronnen": [
+     {
+      "naam": "The Horse Magazine (Great Stallions)",
+      "url": "https://www.horsemagazine.com/thm/?p=14270",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin, 17 hh (geen cm vermeld, daarom weggelaten). Overleden 1999. Niet goedgekeurd door Holsteiner commissie, in Ierland als supplementary sire. Puissance-winnaar 7'3\" en internationaal springpaard. Overige stamboomposities niet vermeld in bron. Geboren 1978, dus ruim voor WBFSH-jaren 2010-2011 (nakomelingen). WBFSH Top 100 springvaders: 2 jaar, beste plaats 46 (2010)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "cristallo-i-2003": {
+    "naam": "Cristallo I",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 2003,
+    "stamboek": "Westfalen",
+    "stokmaat_cm": 172,
+    "stamboom": {
+     "v": "Cornet Obolensky",
+     "m": "Cassie",
+     "vv": "Clinton",
+     "vm": "Rabanna v. Costersveld",
+     "mv": "Cassini I",
+     "mm": "Profilda",
+     "vvv": "Corrado I",
+     "vvm": "Urte I",
+     "vmv": "Heartbreaker",
+     "vmm": "Holivea v. Costersveld",
+     "mvv": "Capitol I",
+     "mvm": "Wisma",
+     "mmv": "Polydor",
+     "mmm": "Fleur v. Festivo"
+    },
+    "bronnen": [
+     {
+      "naam": "Gestuet Neuenhof",
+      "url": "https://www.gestuet-neuenhof.de/en/?p=4955",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur schimmel (mold). Pagina noemt successen in youngster- en medium tour; geen cm-niveau vermeld. WBFSH Top 100 springvaders: 2 jaar, beste plaats 55 (2018)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "vigo-cece-2009": {
+    "naam": "Vigo Cece",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 2009,
+    "stamboek": "Selle Francais",
+    "stokmaat_cm": 170,
+    "stamboom": {
+     "v": "Quaprice"
+    },
+    "bronnen": [
+     {
+      "naam": "France Etalons",
+      "url": "https://www.france-etalons.com/en/?p=7468",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Pagina vermeldt 34e plaats in WBFSH Stallion Rankings. Moeder en verdere voorouders niet vermeld op de pagina. WBFSH Top 100 springvaders: 1 jaar, beste plaats 34 (2025), plaats 2025: 34",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "quite-easy-1994": {
+    "naam": "Quite Easy",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1994,
+    "stokmaat_cm": 165,
+    "stamboom": {
+     "v": "Quidam",
+     "m": "Birte II",
+     "mv": "Landgraf",
+     "mm": "U-Capitol"
+    },
+    "bronnen": [
+     {
+      "naam": "The Horse Magazine (Great Stallions)",
+      "url": "https://www.horsemagazine.com/thm/?p=1104",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Stamboek niet vermeld. Succes: 2e Zweeds outdoorkampioenschap en winnaar Zweedse 7-8 jarigen kampioenschap (Peter Eriksson); Grand Prix-niveau niet bevestigd. Vader staat als 'Quidam' op de pagina. WBFSH Top 100 springvaders: 5 jaar, beste plaats 78 (2013)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "nintender": {
+    "naam": "Nintender",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "stamboek": "KWPN",
+    "stokmaat_cm": 170,
+    "stamboom": {
+     "v": "Namelus R",
+     "m": "K-Nambia"
+    },
+    "wffs": "N/N",
+    "bronnen": [
+     {
+      "naam": "GFE (Genetic Frontiers/Equine) hengstenpagina",
+      "url": "https://www.gfeweb.com/en/collection/nintender-kon-warm-paard-nederland-dark-bay,91.html",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur donkerbruin. Geboortejaar niet vermeld (pagina geeft leeftijd 24). Stamboom stond als lijst zonder posities; v en m afgeleid uit groepering, rest weggelaten. Kampioen Oldenburger hengstenkeuring, CSI2* en CSI3*. WBFSH Top 100 springvaders: 3 jaar, beste plaats 72 (2017)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "prince-van-de-wolfsakker-1999": {
+    "naam": "Prince van de Wolfsakker",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1999,
+    "stamboek": "sBs",
+    "stamboom": {
+     "v": "Nabab de Reve",
+     "m": "Renis",
+     "vv": "Quidam de Revel",
+     "vm": "Melodie en Fa",
+     "mv": "Chin Chin",
+     "mm": "Dream Girl",
+     "vvv": "Jalisco B",
+     "vvm": "Dirka",
+     "vmv": "Artichaut",
+     "vmm": "Caravelle",
+     "mvv": "Constant",
+     "mvm": "Larese",
+     "mmv": "Landgraf I",
+     "mmm": "Weltlady 3"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/38382-prince-van-de-wolfsakker/6",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Goedgekeurd voor AES. Posities afgeleid uit volgorde op de pagina (geen labels); de ouderlijst is wel consistent (Nabab de Reve x Renis). WBFSH Top 100 springvaders: 1 jaar, beste plaats 42 (2020)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "vechta-1991": {
+    "naam": "Vechta",
+    "naam_varianten": [
+     "Vechta (Juppy)"
+    ],
+    "geslacht": "hengst",
+    "geboortejaar": 1991,
+    "stamboek": "KWPN",
+    "stamboom": {
+     "v": "Voltaire",
+     "m": "Woludine",
+     "vv": "Furioso II",
+     "vm": "Gogo Möve",
+     "mv": "Joost",
+     "mm": "Oludine",
+     "vvv": "Furioso xx",
+     "vvm": "Dame de Ranville",
+     "vmv": "Gotthard",
+     "vmm": "Mosaik",
+     "mvv": "Consul",
+     "mvm": "Ulana",
+     "mmv": "Lucky Boy xx",
+     "mmm": "Gewaldine"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/43683-vechta/4",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Posities afgeleid uit volgorde op de pagina (geen labels); de reeks is genealogisch consistent. WBFSH Top 100 springvaders: 3 jaar, beste plaats 70 (2012)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "fuego-du-prelet-1993": {
+    "naam": "Fuego du Prelet",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1993,
+    "stamboek": "Selle Francais",
+    "stamboom": {
+     "v": "Jalisco B",
+     "m": "Tornade du Prelet"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo",
+      "url": "https://www.hippomundo.com/en/pedigree/performance/29863-fuego-du-prelet_",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Verdere voorouders stonden zonder posities op de pagina en zijn weggelaten. WBFSH Top 100 springvaders: 1 jaar, beste plaats 48 (2010)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "champion-du-lys-1990": {
+    "naam": "Champion du Lys",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1990,
+    "stamboek": "Selle Francais",
+    "stamboom": {
+     "v": "Laeken",
+     "m": "Karen du Lys"
+    },
+    "bronnen": [
+     {
+      "naam": "HW Farm",
+      "url": "https://hwfarm.com/Stallions/urls/champion_du_lys.htm",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur grijs, circa 16.2 hand (geen cm vermeld). Winnaar Hamburger Derby 2003, vele Grand Prix en Nations Cup. Stamboek niet expliciet, pagina noemt ras Selle Francais. Overige stamboomposities niet vast te stellen. WBFSH Top 100 springvaders: 3 jaar, beste plaats 81 (2011)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "london-2002": {
+    "naam": "London",
+    "naam_varianten": [
+     "Carembar de Muze",
+     "Glock's London N.O.P."
+    ],
+    "geslacht": "hengst",
+    "geboortejaar": 2002,
+    "stamboek": "BWP",
+    "bronnen": [
+     {
+      "naam": "Rimondo",
+      "url": "https://rimondo.com/en/horse-details/210460/london",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Olympisch vicekampioen met Gerco Schroder. Stamboom niet op pagina; ouders niet bevestigd. Identiteit aannemelijk (WBFSH 2025) maar niet bevestigd door WBFSH-bron. WBFSH Top 100 springvaders: 1 jaar, beste plaats 50 (2025), plaats 2025: 50",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "quality-time-tn-2002": {
+    "naam": "Quality Time TN",
+    "naam_varianten": [
+     "BMC Quality Time TN"
+    ],
+    "geslacht": "hengst",
+    "geboortejaar": 2002,
+    "stamboek": "Holsteiner",
+    "stokmaat_cm": 170,
+    "stamboom": {
+     "v": "Quantum",
+     "m": "Cantus",
+     "vv": "Quidam de Revel",
+     "vm": "Ulla V",
+     "mv": "H-Cortonne",
+     "mm": "Jessika II",
+     "vvv": "Jalisco B",
+     "vvm": "Dirka",
+     "vmv": "Cor de la Bryere",
+     "vmm": "Ella",
+     "mvv": "Thesee",
+     "mvm": "Mowgli",
+     "mmv": "Caletto I",
+     "mmm": "Monoline"
+    },
+    "bronnen": [
+     {
+      "naam": "Team Nijhof",
+      "url": "https://www.team-nijhof.nl/en/paarden/quality-time-tn",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur schimmel. Posities afgeleid uit volgorde op de pagina (platte tekst). WBFSH Top 100 springvaders: 1 jaar, beste plaats 59 (2025), plaats 2025: 59",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "elan-de-la-cour-1992": {
+    "naam": "Elan de la Cour",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1992,
+    "stamboek": "Selle Francais Originel",
+    "stokmaat_cm": 172,
+    "stamboom": {
+     "v": "Vas y Donc Longane",
+     "m": "Rejane de la Cour",
+     "vv": "Grand Veneur",
+     "vm": "Amour du Bois",
+     "mv": "Jalisco B",
+     "mm": "Lady de la Cour"
+    },
+    "bronnen": [
+     {
+      "naam": "France Etalons",
+      "url": "https://france-etalons.com/en/stallions/ELAN DE LA COUR-groomy-15436",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur vos. 4e in CSIO 5* La Baule met Laurent Le Vot. Posities afgeleid uit platte tekst op de pagina; derde generatie weggelaten omdat die onzeker was. WBFSH Top 100 springvaders: 2 jaar, beste plaats 78 (2014)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "donald-rouge-ii-1991": {
+    "naam": "Donald Rouge II",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1991,
+    "stamboek": "Selle Francais",
+    "stokmaat_cm": 166,
+    "stamboom": {
+     "v": "Thoas du Theillet"
+    },
+    "bronnen": [
+     {
+      "naam": "Swiss Studbook (cheval-suisse) stamboompdf",
+      "url": "https://studbook.cheval-suisse.com/documents/4043-donald-rouge-ii-pedigree-fr.pdf",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin (bai). Pdf geeft geen positielabels; alleen vader (eerste vermelde) overgenomen, moeder en overige voorouders onzeker en weggelaten. Nummer 91455503 T (FR) op pagina niet als UELN gelabeld. WBFSH Top 100 springvaders: 1 jaar, beste plaats 68 (2011)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "billy-mexico-2005": {
+    "naam": "Billy Mexico",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 2005,
+    "fei_id": "103DA71",
+    "stamboom": {
+     "v": "Cevin Z",
+     "m": "Bidorette",
+     "vm": "Larthago"
+    },
+    "niveau_label": "CSI5*",
+    "wffs": "N/N",
+    "bronnen": [
+     {
+      "naam": "KWPN-NA",
+      "url": "https://kwpn-na.org/stallion/billy-mexico/",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur vos. Approved AES (Affiliate Stallion), stamboek niet expliciet. CSI5* met William Funnell. Stokmaat 16.1 hh (geen cm vermeld). Registratienummer 82600205013706 heeft 14 tekens en is daarom niet als UELN overgenomen. WBFSH Top 100 springvaders: 1 jaar, beste plaats 68 (2025), plaats 2025: 68",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "je-t-aime-flamenco-2000": {
+    "naam": "Je t'aime Flamenco",
+    "naam_varianten": [
+     "Asjeblief van Berckenbroeck",
+     "Je T'aime Flamenco"
+    ],
+    "geslacht": "hengst",
+    "geboortejaar": 2000,
+    "stamboek": "BWP",
+    "stamboom": {
+     "v": "Flamenco de Semilly",
+     "m": "Quansie van de Halhoeve",
+     "vv": "Le Tot de Semilly",
+     "vm": "Quenotte du Chemin",
+     "mv": "Landetto",
+     "mm": "Koriena van de Halhoeve"
+    },
+    "bronnen": [
+     {
+      "naam": "Swiss Studbook (cheval-suisse) stamboompdf",
+      "url": "https://studbook.cheval-suisse.com/documents/7730-je-taime-flamenco-pedigree-fr.pdf",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin (bai). Posities afgeleid uit volgorde (geen labels); derde generatie weggelaten wegens onzekerheid. Alternatieve naam Asjeblief van Berckenbroeck komt uit een BWP-zoekresultaat (niet gefetcht). WBFSH Top 100 springvaders: 2 jaar, beste plaats 83 (2025), plaats 2025: 83",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "ultimo-van-ter-moude": {
+    "naam": "Ultimo van ter Moude",
+    "naam_varianten": [
+     "Ultimo Van Ter Moude"
+    ],
+    "geslacht": "hengst",
+    "stamboek": "BWP",
+    "stamboom": {
+     "v": "Capitol I",
+     "m": "Nurielle van ter Moude"
+    },
+    "bronnen": [
+     {
+      "naam": "Select Breeders Services",
+      "url": "https://portal.selectbreeders.com/stallions/3170-ultimo-van-ter-moude",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Ook goedgekeurd Selle Francais en BWP/NAD. Grand Prix-overwinningen in 2008 (o.a. Beacon Hill). Voorouderlijst zonder positielabels; v en m afgeleid uit de eerste twee namen. Geboortejaar niet vermeld. WBFSH Top 100 springvaders: 2 jaar, beste plaats 77 (2020)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "cassini-gold-2007": {
+    "naam": "Cassini Gold",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 2007,
+    "stamboek": "Holsteiner (ook goedgekeurd KWPN en Oldenburg)",
+    "stokmaat_cm": 170,
+    "stamboom": {
+     "v": "Cassini I",
+     "m": "Naomi XXXII",
+     "vv": "Capitol I",
+     "vm": "Wisma",
+     "mv": "Contender",
+     "mm": "Glocke",
+     "vvv": "Capitano",
+     "vvm": "Folia",
+     "vmv": "Calletto II",
+     "vmm": "Prisma",
+     "mvv": "Calypso II",
+     "mvm": "Gofine",
+     "mmv": "Ahorn Z",
+     "mmm": "Taktik"
+    },
+    "bronnen": [
+     {
+      "naam": "StallionAI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/cassini-gold",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Cassini Gold",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur grijs. Op de bronpagina staat de stamboom als lijst zonder expliciete posities; indeling volgt de paginavolgorde (standaard pedigree-opbouw) en is niet per positie bevestigd. Geen UELN of FEI-ID gevonden. WBFSH Top 100 springvaders: 1 jaar, beste plaats 73 (2025), plaats 2025: 73",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "upsilon-2008": {
+    "naam": "Upsilon",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 2008,
+    "stamboek": "AACr",
+    "stamboom": {
+     "v": "Canturo",
+     "m": "O'Vive",
+     "vv": "Cantus",
+     "vm": "Fara",
+     "mv": "Fusain du Defey",
+     "mm": "Garce d'Aulix X",
+     "vvv": "Caletto I",
+     "vvm": "Monoline",
+     "vmv": "Calando I",
+     "vmm": "Ulara II",
+     "mvv": "Phosph'Or",
+     "mvm": "Jacinthe du Maury",
+     "mmv": "Quatar de Plape",
+     "mmm": "Em Giao"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/389230-upsilon/5",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur schimmel. Posities afgeleid uit de paginavolgorde (geboortejaren kloppen met de generaties) maar niet expliciet gelabeld. Stamboekcode AACr zoals vermeld bij het geboortejaar. Geen UELN, FEI-ID of stokmaat gevonden. WBFSH Top 100 springvaders: 1 jaar, beste plaats 79 (2025), plaats 2025: 79",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "triomphe-de-muze-1996": {
+    "naam": "Triomphe de Muze",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1996,
+    "stamboek": "BWP",
+    "stamboom": {
+     "v": "Chin Chin",
+     "m": "Caprice d'Ifrane",
+     "vv": "Constant",
+     "vm": "Larese",
+     "mv": "Galoubet A",
+     "mm": "Ifrane",
+     "vvv": "Cor de la Bryère",
+     "vvm": "Ella",
+     "vmv": "Farnese",
+     "vmm": "Cesta",
+     "mvv": "Almé Z",
+     "mvm": "Viti",
+     "mmv": "Château du Diable xx",
+     "mmm": "Oita"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/28615-triomphe-de-muze_/4",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Geen UELN, FEI-ID of stokmaat gevonden. WBFSH Top 100 springvaders: 1 jaar, beste plaats 80 (2015)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "zento-2004": {
+    "naam": "Zento",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 2004,
+    "stamboek": "KWPN",
+    "stamboom": {
+     "v": "Quasimodo Z",
+     "m": "Caloma Z"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/49867-zento/4",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur zwartbruin. Alleen vader en moeder opgenomen: de pagina geeft geen expliciete posities en de verdere indeling bleek inconsistent, dus grootouders weggelaten. Geen UELN, FEI-ID of stokmaat gevonden. WBFSH Top 100 springvaders: 1 jaar, beste plaats 80 (2018)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "sam-r-1999": {
+    "naam": "Sam R",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1999,
+    "stamboek": "KWPN",
+    "stamboom": {
+     "v": "Mermus R",
+     "m": "Amelusiena",
+     "vv": "Burggraaf",
+     "vm": "Dwermie",
+     "mv": "Abgar xx",
+     "mm": "Melusiena",
+     "vvv": "Landgraf I",
+     "vvm": "Loanda",
+     "vmv": "Ramiro Z",
+     "vmm": "Wermie",
+     "mvv": "Abernant xx",
+     "mvm": "Karadja xx",
+     "mmv": "Wagner",
+     "mmm": "Kusiena"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/74817-sam-r/4",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Posities afgeleid uit paginavolgorde (geboortejaren kloppen met de generaties), niet expliciet gelabeld. Geen UELN, FEI-ID of stokmaat gevonden. WBFSH Top 100 springvaders: 2 jaar, beste plaats 87 (2015)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "helios-de-la-cour-ii-1995": {
+    "naam": "Helios de la Cour II",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1995,
+    "stamboek": "Selle Français",
+    "stokmaat_cm": 167,
+    "stamboom": {
+     "v": "Papillon Rouge",
+     "m": "Sisi de la Cour",
+     "mv": "Uriel"
+    },
+    "bronnen": [
+     {
+      "naam": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Helios_de_la_Cour_II",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Geboren 29 mei 1995 in Moyon. Alleen v, m en mv expliciet in de bron. Geen UELN of FEI-ID als zodanig vermeld. WBFSH Top 100 springvaders: 2 jaar, beste plaats 87 (2016)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "kapitol-d-argonne-1998": {
+    "naam": "Kapitol d'Argonne",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1998,
+    "stamboek": "Selle Français (SFO)",
+    "stokmaat_cm": 176,
+    "stamboom": {
+     "v": "Apache d'Adriers",
+     "m": "Dame Vannetaise",
+     "vv": "Double Espoir",
+     "vm": "Joyeuse de Choisy",
+     "mv": "Galoubet A",
+     "mm": "Lady de Rhuys",
+     "vvv": "Ibrahim",
+     "vvm": "Quatrième Espoir",
+     "vmv": "Felix",
+     "vmm": "Violette O",
+     "mvv": "Almé",
+     "mvm": "Viti",
+     "mmv": "Fair Play III",
+     "mmm": "Sirène"
+    },
+    "bronnen": [
+     {
+      "naam": "France Etalons",
+      "url": "https://www.france-etalons.com/en/stallions/KAPITOL DARGONNE-groomy-16894/",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur donkere vos. Deelnemer WEG 2006 en 2010. Posities afgeleid uit de paginavolgorde (lijst zonder labels, maar generaties kloppen), niet expliciet gelabeld. Geen UELN of FEI-ID gevonden. WBFSH Top 100 springvaders: 1 jaar, beste plaats 87 (2025), plaats 2025: 87",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "528003200202350": {
+    "naam": "Vigaro",
+    "naam_varianten": [
+     "S.I.E.C. Vigaro"
+    ],
+    "geslacht": "hengst",
+    "geboortejaar": 2002,
+    "stamboek": "KWPN",
+    "ueln": "528003200202350",
+    "fei_id": "NED42080",
+    "stokmaat_cm": 169,
+    "stamboom": {
+     "v": "Tangelo van de Zuuthoeve",
+     "m": "Kiaralda"
+    },
+    "bronnen": [
+     {
+      "naam": "Rimondo",
+      "url": "https://rimondo.com/en/horse-details/1618565/vigaro",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. De bron noemt ook Renville als vader van de moeder, maar de positie was onduidelijk, dus niet opgenomen. WBFSH Top 100 springvaders: 2 jaar, beste plaats 89 (2020)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "cabrio-van-de-heffinck-2002": {
+    "naam": "Cabrio van de Heffinck",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 2002,
+    "stamboek": "BWP/sBs (zoals genoemd op de bronpagina)",
+    "stokmaat_cm": 169,
+    "stamboom": {
+     "v": "Cassini I",
+     "vv": "Capitol I",
+     "vvv": "Capitano"
+    },
+    "bronnen": [
+     {
+      "naam": "Superior Equine Sires",
+      "url": "https://superiorequinesires.com/cabrio-van-de-heffinck",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur grijs. Winnaar GP CSIO5* Calgary. Moeder niet bij naam genoemd (moederlijn Holsteiner familie 1752). Posities in bron niet expliciet; alleen de rechte vaderlijn is opgenomen. WBFSH Top 100 springvaders: 1 jaar, beste plaats 94 (2017)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "salito-1991": {
+    "naam": "Salito",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1991,
+    "stamboek": "Hannoveraner",
+    "stamboom": {
+     "v": "Stakkato"
+    },
+    "bronnen": [
+     {
+      "naam": "Superior Equine Sires (archief)",
+      "url": "https://superiorequinesires.com/salito",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Hannoveraans springkampioen 2006. Alleen de vader is expliciet genoemd; de moeder en overige posities staan niet duidelijk op de pagina. Kleur onzeker (vermeld als 'Gret'), niet opgenomen. WBFSH Top 100 springvaders: 1 jaar, beste plaats 95 (2016)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "frh-quaid-2004": {
+    "naam": "FRH Quaid",
+    "naam_varianten": [
+     "Quaid"
+    ],
+    "geslacht": "hengst",
+    "geboortejaar": 2004,
+    "stamboek": "Hannoveraner",
+    "stokmaat_cm": 167,
+    "stamboom": {
+     "v": "Quidam's Rubin",
+     "m": "Vojelza",
+     "vv": "Quidam de Revel",
+     "vm": "Helvecia",
+     "mv": "Voltaire",
+     "mm": "Biejelza",
+     "vvv": "Jalisco B",
+     "vvm": "Dirka",
+     "vmv": "Landgraf I",
+     "vmm": "Betty I",
+     "mvv": "Furioso II",
+     "mvm": "Gogo Moeve",
+     "mmv": "Ramiro",
+     "mmm": "Nelza"
+    },
+    "bronnen": [
+     {
+      "naam": "Gestüt Sosath",
+      "url": "https://sosath.com/en/stallions/detail/quaid",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Bundeschampion 5-jarige springpaarden 2009; 1,45 m-klassen. Posities afgeleid uit de paginavolgorde (generaties kloppen), niet expliciet gelabeld. Geen UELN of FEI-ID gevonden. WBFSH Top 100 springvaders: 1 jaar, beste plaats 96 (2021)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "alligator-fontaine-1988": {
+    "naam": "Alligator Fontaine",
+    "naam_varianten": [],
+    "geslacht": "hengst",
+    "geboortejaar": 1988,
+    "stamboek": "Selle Français",
+    "stamboom": {
+     "v": "Gayssire Fleury Noren",
+     "m": "Nighty Fontaine",
+     "vv": "Sire xx",
+     "vm": "Capucine",
+     "mv": "Dark Tiger xx",
+     "mm": "Elyria",
+     "vvv": "Mourne xx",
+     "vvm": "Sariegail xx",
+     "vmv": "Khereddine",
+     "vmm": "Marjolaine",
+     "mvv": "Nasrullah xx",
+     "mvm": "Spotted Beauty xx",
+     "mmv": "Nykio",
+     "mmm": "L'Echappee xx"
+    },
+    "bronnen": [
+     {
+      "naam": "Hippomundo",
+      "url": "https://www.hippomundo.com/en/pedigree/genealogy/38614-alligator-fontaine_/4",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur bruin. Overleden 2018 (Breedingnews-titel in zoekresultaat). Posities afgeleid uit de standaardvolgorde van de pagina, niet expliciet gelabeld. Geen UELN, FEI-ID of stokmaat gevonden. WBFSH Top 100 springvaders: 1 jaar, beste plaats 100 (2010)",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   },
+   "dallas-vdl-2008": {
+    "naam": "Dallas VDL",
+    "naam_varianten": [
+     "Dallas"
+    ],
+    "geslacht": "hengst",
+    "geboortejaar": 2008,
+    "stamboek": "KWPN",
+    "stokmaat_cm": 174,
+    "wffs": "Clear",
+    "stamboom": {
+     "v": "Douglas VDL",
+     "m": "Wonder A.S.",
+     "vv": "Darco",
+     "vm": "Fiona M",
+     "mv": "Heartbreaker"
+    },
+    "bronnen": [
+     {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Dallas VDL",
+      "datum": "2026-11-10"
+     },
+     {
+      "naam": "WBFSH Sire Rankings Jumping (Top 100)",
+      "url": "https://wbfsh.com/sire-rankings",
+      "datum": "2026-11-10"
+     }
+    ],
+    "opmerking": "Kleur grijs. Won Falsterbo-puissance 1,90 m. Alleen eerste twee generaties plus mv opgenomen; de rest van de pedigree stond zonder labels en was tegenstrijdig (Bonnette als grand dam). Posities afgeleid uit paginavolgorde. Geen UELN of FEI-ID gevonden. WBFSH Top 100 springvaders: 1 jaar, beste plaats 100 (2025), plaats 2025: 100",
+    "record_status": "te_controleren",
+    "herkomst": "WBFSH-ranglijst springen",
+    "bijgewerkt": "2026-11-10"
+   }
+  }
+ }
+}
