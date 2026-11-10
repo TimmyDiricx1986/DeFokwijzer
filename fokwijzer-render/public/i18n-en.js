@@ -124,6 +124,7 @@
     "vul je bronnen en opmerkingen aan en vraag je paarden aan. Met een": "you add sources and comments and request horses. With a",
     "Fokwijzer-profiel": "Fokwijzer profile",
     "voeg je je eigen paarden toe en pas je gegevens aan. Gegevens met het label": "you add your own horses and edit data. Data labelled",
+    "voeg je je eigen paarden toe en pas je gegevens aan.": "you add your own horses and edit data.",
     "Te controleren": "To be checked",
     "zijn nog niet nagekeken.": "has not been reviewed yet.",
     "Onafhankelijk": "Independent",
