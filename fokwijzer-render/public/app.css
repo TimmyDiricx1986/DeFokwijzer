@@ -436,6 +436,9 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .stal-item{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
 .stal-naam{min-width:0}.stal-naam .linkbtn{font-weight:700}
 .stal-acties{display:flex;align-items:center;gap:6px;flex:none}.stal-acties .btn{padding:4px 10px;font-size:.85rem;min-height:0}
+@keyframes combFlits{0%{box-shadow:0 0 0 3px var(--gold)}100%{box-shadow:0 0 0 0 transparent}}
+#stalCombCard.flits{animation:combFlits 1.6s ease-out}
+@media (prefers-reduced-motion:reduce){#stalCombCard.flits{animation:none}}
 .comb-row{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:6px 14px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}
 .comb-row:last-child{border-bottom:0}
 .comb-acties{grid-column:2/-1;display:flex;flex-wrap:wrap;gap:6px}.comb-acties .btn{padding:4px 10px;font-size:.85rem;min-height:0}
