@@ -4,11 +4,11 @@
 (function () {
   "use strict";
   var LEVEL = { anoniem: 0, gebruiker: 1, paardenbeheerder: 2, beheerder: 3, lezer: 1, bijdrager: 2 };
-  var ROL_LABEL = { gebruiker: "Gebruiker", paardenbeheerder: "Paarden-beheerder", beheerder: "Beheerder", lezer: "Gebruiker", bijdrager: "Paarden-beheerder" };
+  var ROL_LABEL = { gebruiker: "Bijdrager", paardenbeheerder: "Fokwijzer-profiel", beheerder: "Beheerder", lezer: "Bijdrager", bijdrager: "Fokwijzer-profiel" };
   var ROL_UITLEG = {
     lezer: "Lezer: zoeken, stambomen en virtuele veulens bekijken. Daarvoor heb je geen account nodig.",
-    gebruiker: "Gebruiker: vult de wiki aan met bronnen en opmerkingen en kan paarden aanvragen.",
-    paardenbeheerder: "Paarden-beheerder: voegt paarden toe, beheert zijn eigen paarden en kan gegevens van andere paarden aanpassen.",
+    gebruiker: "Bijdrager: vult de wiki aan met bronnen en opmerkingen en kan paarden aanvragen.",
+    paardenbeheerder: "Fokwijzer-profiel: voegt paarden toe, beheert zijn eigen paarden en kan gegevens van andere paarden aanpassen.",
     beheerder: "Beheerder: beheert de hele site, gebruikers, partners en back-ups."
   };
 
@@ -233,8 +233,8 @@
     var keuze = null;
     if (reg) {
       keuze = el("fieldset", { class: "fw-rolkeuze" }, [el("legend", { text: "Wat wil je doen op De Fokwijzer?" })]);
-      [["gebruiker", "Gebruiker", "Bronnen en opmerkingen aanvullen en paarden aanvragen. Meteen actief."],
-       ["paardenbeheerder", "Paarden-beheerder", "Je eigen paarden toevoegen en beheren, en gegevens van andere paarden aanpassen. Ook meteen actief."]].forEach(function (o, i) {
+      [["gebruiker", "Bijdrager", "Bronnen en opmerkingen aanvullen en paarden aanvragen. Meteen actief."],
+       ["paardenbeheerder", "Fokwijzer-profiel", "Je eigen paarden toevoegen en beheren, en gegevens van andere paarden aanpassen. Ook meteen actief."]].forEach(function (o, i) {
         var id = "fw-rol-" + o[0];
         var r = el("input", { type: "radio", name: "fw-rol", id: id, value: o[0] });
         if ((i === 1) === !!kiesPb) r.checked = true;
@@ -421,7 +421,7 @@
     }
     side.insertBefore(box, side.firstChild);
   }
-  // Knoppen in de app (bv. op Paarden beheren): account maken, inloggen, paarden-beheerder worden.
+  // Knoppen in de app (bv. op Paarden beheren): account maken, inloggen, Fokwijzer-profiel worden.
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-acct]");
     if (!b) return;

@@ -56,22 +56,22 @@ def transform(html, links=('/over.html', '/privacy.html')):
     # ---------------------------------------------------------------- JavaScript-aanpassingen
     texts = [
         ("De council werkt alleen in de Claude-app, aangemeld, met toestemming om Claude te gebruiken.",
-         "De council is beschikbaar voor ingelogde paarden-beheerders, als AI-advies op de server is ingesteld."),
+         "De council is beschikbaar voor ingelogde bezoekers met een Fokwijzer-profiel, als AI-advies op de server is ingesteld."),
         ("Dit gebruikt je eigen Claude-verbruik (5 vragen).", "Dit telt mee voor je limiet van AI-vragen (5 vragen)."),
-        ("Je gaf geen toestemming om Claude te gebruiken voor deze pagina.", "Log in als paarden-beheerder om de council te gebruiken."),
+        ("Je gaf geen toestemming om Claude te gebruiken voor deze pagina.", "Log in met een Fokwijzer-profiel om de council te gebruiken."),
         ("Claude is niet beschikbaar voor dit account.", "AI-advies is niet beschikbaar op deze server."),
         ("Aanvragen kan alleen als de pagina in Claude geopend is terwijl je aangemeld bent.", "Log in om een paard aan te vragen."),
         ("In deze weergave kan niets bewaard worden. Open de pagina in Claude terwijl je aangemeld bent.", "Log in om bij te dragen."),
         ('Starten kan alleen in de Claude-app met de connector Claude Code Remote. Je kunt ook in de chat vragen: \\"verwerk de aanvragen\\".',
-         "Automatisch verwerken is niet ingesteld op deze server, of je bent niet ingelogd als paarden-beheerder."),
+         "Automatisch verwerken is niet ingesteld op deze server, of je bent niet ingelogd met een Fokwijzer-profiel."),
         ('"Starten lukte niet ("+(c||"onbekend")+").";', '(err&&err.message)||"Starten lukte niet.";'),
         ('"Starten lukte niet ("+(err&&err.code||"onbekend")+"). Je kunt ook in de chat vragen: \\"laat de veilingmeester controleren\\"."',
          '(err&&err.message)||"Starten lukte niet."'),
         ('"De connector Claude Code Remote moet opnieuw verbonden worden (claude.ai, Instellingen, Connectors)."', '"Log opnieuw in."'),
         ('"De connector Claude Code Remote is niet beschikbaar voor deze weergave. Voeg hem toe in claude.ai, Instellingen, Connectors, of vraag in de chat: \\"verwerk de aanvragen\\"."',
          '"Automatisch verwerken is niet ingesteld op deze server."'),
-        ("Je hebt geen rechten om paarden toe te voegen of te wijzigen. Vraag de eigenaar om je paarden-beheerdersrechten te geven.",
-         "Je hebt geen rechten om paarden toe te voegen of te wijzigen. Log in als paarden-beheerder, of vraag die rol aan bij Account maken."),
+        ("Je hebt geen rechten om paarden toe te voegen of te wijzigen. Vraag de eigenaar om de rechten van een Fokwijzer-profiel te geven.",
+         "Je hebt geen rechten om paarden toe te voegen of te wijzigen. Log in met een Fokwijzer-profiel, of vraag die rol aan bij Account maken."),
     ]
     for old, new in texts:
         js = rep(js, old, new)
@@ -80,7 +80,7 @@ def transform(html, links=('/over.html', '/privacy.html')):
     js = re.sub(r'const RUN_TRIGGER="[^"]*";', 'const RUN_TRIGGER="verwerking";', js)
     js = rep(js, "(state.inst&&state.inst.vm_trigger)||VM_TRIGGER", "VM_TRIGGER")
     js = rep(js, "(state.inst&&state.inst.run_trigger)||RUN_TRIGGER", "RUN_TRIGGER")
-    # Gebruikers (ingelogd, zonder paarden-beheerdersrechten) mogen paarden aanvragen.
+    # Gebruikers (ingelogd, zonder Fokwijzer-profielenrechten) mogen paarden aanvragen.
     js = rep(js, "state.canWrite=can!==false;", "state.canWrite=can===true;state.canAsk=!!(user&&user.level>=1);")
     js = rep(js, 'const can=!!db&&state.canWrite&&state.dbState==="ready";$("aBtn").disabled=!can;',
              'const can=!!db&&state.canAsk&&state.dbState==="ready";$("aBtn").disabled=!can;')

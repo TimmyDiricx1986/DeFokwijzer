@@ -225,7 +225,7 @@ function onlyWiki(before, after) {
 function save(req, res, id, data, cur) {
   const { coll } = req.params;
   if (coll === "paarden" && data && typeof data === "object" && !Array.isArray(data)) {
-    if (cur && req.actor.level < LEVEL.paardenbeheerder && !onlyWiki(cur.data, data)) return res.status(403).json({ fout: "Als gebruiker kun je alleen bronnen en opmerkingen aanvullen." });
+    if (cur && req.actor.level < LEVEL.paardenbeheerder && !onlyWiki(cur.data, data)) return res.status(403).json({ fout: "Als bijdrager kun je alleen bronnen en opmerkingen aanvullen." });
     // Wie een paard toevoegt, wordt de eigenaar ervan; alleen een beheerder kan dat veranderen.
     if (cur && cur.data && cur.data.eigenaar_id != null && req.actor.level < LEVEL.beheerder) data.eigenaar_id = cur.data.eigenaar_id;
     else if (!cur && req.actor.userId && req.actor.level < LEVEL.beheerder) data.eigenaar_id = req.actor.userId;
