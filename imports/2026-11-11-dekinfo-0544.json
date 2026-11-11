@@ -1,0 +1,299 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-11",
+ "collecties": {
+  "paarden": {
+   "chinchero-2017": {
+    "dek": {
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Stud fee I omvat 3 porties diepvriessperma (TG), 1 portie per merrie. Vers sperma per post bestelbaar tijdens de toernooipauze; niet-drachtige merries kunnen daarna overstappen op TG. Dekgeld niet vermeld.",
+     "station": "Stallion AI Services, Chapel Field Stud (Whitchurch, Shropshire)",
+     "url": "https://www.stallionai.co.uk/animals/stallion/chinchero",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/chinchero"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "bel002w00301601": {
+    "dek": {
+     "dekgeld": "Stud fee 1: € 350 + € 1.000 bij drachtige merrie + € 250 veulengeld; Stud fee 2: € 350 + € 1.750 bij dracht; ICSI € 1.250 (alles excl. btw)",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "ICSI ook mogelijk. Beschikbaar bij alle stations van de Holsteiner Verband Hengsthaltung; de hengst blijft in Elmshorn.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH (Elmshorn)",
+     "url": "https://holsteiner-verband.de/en/suche/horse/million-dollar-bwp",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/suche/horse/million-dollar-bwp"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "colestus-2006": {
+    "dek": {
+     "dekgeld": "€ 1.500",
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Hengst is volgens Team Nijhof beschikbaar voor dekking; bestelformulier op de pagina. Soort sperma en seizoen niet vermeld.",
+     "station": "Team Nijhof",
+     "url": "https://www.team-nijhof.nl/en/paarden/colestus/",
+     "bron": {
+      "naam": "Team Nijhof",
+      "url": "https://www.team-nijhof.nl/en/paarden/colestus/"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "elvis-ter-putte-2004": {
+    "dek": {
+     "dekgeld": "£ 1.340 (in termijnen); EU chilled import £ 1.116 + btw, terug na veeartsverklaring dat merrie niet drachtig is",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Pagina noemt gekoeld (chilled) sperma als EU-import. Beschikbaarheid en seizoen niet vermeld.",
+     "station": "Stal De Muze",
+     "url": "https://www.stallionai.co.uk/animals/stallion/elvis-ter-putte",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/elvis-ter-putte"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "clarimo-2003": {
+    "dek": {
+     "dekgeld": "Stud fee 1: € 350 + € 1.000 bij dracht + € 250 veulengeld; Stud fee 2: € 350 + € 1.750 bij dracht; ICSI € 1.250 (alles excl. btw)",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Bestelformulier voor sperma op de pagina; beschikbaarheid en seizoen niet expliciet vermeld.",
+     "station": "Haras de Talma / France Etalons (Termes, Frankrijk)",
+     "url": "https://www.holsteiner-verband.de/en/suche/horse/clarimo",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/suche/horse/clarimo"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "vingino-2002": {
+    "dek": {
+     "dekgeld": "€ 1.500 excl. btw; € 1.000 excl. btw terug als merrie eind september niet drachtig is; verzending € 175 excl. btw",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Gekoeld of diepvries. Pagina vermeldt 'restricted to Browsing at this time'. Prijs geldt voor onbeperkt pogingen met gekoeld sperma op 1 merrie in 1 seizoen.",
+     "station": "Hengststation Bachl",
+     "url": "https://www.elitestallions.co.uk/stallion/Vingino",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Vingino"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "tattoo-tn-2019": {
+    "dek": {
+     "dekgeld": "£ 804; £ 581 + btw terug na veeartsverklaring (merrie niet drachtig)",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "EU chilled import. Pagina: 'Availability may vary; please confirm prior to ordering semen'. Hengst actief in sport.",
+     "station": "Team Nijhof (Stallion AI Services is agent)",
+     "url": "https://www.stallionai.co.uk/animals/stallion/tattoo-tn",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/tattoo-tn"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "conthalou-2017": {
+    "dek": {
+     "dekgeld": "€ 600 inseminatie + € 600 dracht (excl. btw)",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Beschikbaarheid en seizoen niet vermeld.",
+     "station": "Deckstation Schockemöhle (Mühlen)",
+     "url": "https://shop.schockemoehle.com/en/Conthalou/DE418184015317",
+     "bron": {
+      "naam": "Schockemöhle",
+      "url": "https://shop.schockemoehle.com/en/Conthalou/DE418184015317"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "crack-2015": {
+    "dek": {
+     "dekgeld": "€ 350 + € 750 bij dracht + € 100 veulengeld, alles excl. btw (alternatief: € 350 + € 1.250 bij dracht); ICSI € 650 excl. btw",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina vermeldt: beschikbaar op alle stations van de Holsteiner Verband Hengsthaltung GmbH. Dekseizoen niet vermeld.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://www.holsteiner-verband.de/en/suche/horse/crack",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/suche/horse/crack"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "056002w00293639": {
+    "dek": {
+     "dekgeld": "Vers € 1.400 (\"Breed now - pay in 2027\"); diepvries € 1.400; ICSI € 700",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina noemt Fresh, Frozen en ICSI. Seizoen en beschikbaarheid niet expliciet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/jenson-van-t-meulenhof",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/jenson-van-t-meulenhof"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "056002w00272677": {
+    "dek": {
+     "dekgeld": "€ 1.250",
+     "toelichting": "Pagina noemt geen soort sperma, beschikbaarheid of seizoen.",
+     "station": "Team Nijhof",
+     "url": "https://www.team-nijhof.nl/en/?p=9366",
+     "bron": {
+      "naam": "Team Nijhof",
+      "url": "https://www.team-nijhof.nl/en/?p=9366"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "arezzo-vdl-2005": {
+    "dek": {
+     "dekgeld": "€ 1.500",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina vermeldt 'Standing stud'. Seizoen niet vermeld.",
+     "station": "VDL Stud",
+     "url": "https://vdlstud.com/en/paarden/Arezzo-Chin-Chin-x-Heartbreaker",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://vdlstud.com/en/paarden/Arezzo-Chin-Chin-x-Heartbreaker"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "hardrock-z-2003": {
+    "dek": {
+     "dekgeld": "€ 2.000",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina vermeldt 'Standing stud'. Seizoen niet vermeld.",
+     "station": "VDL Stud",
+     "url": "https://vdlstud.com/en/paarden/Hardrock-Z-Heartbreaker-x-Carthago",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://vdlstud.com/en/paarden/Hardrock-Z-Heartbreaker-x-Carthago"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "276431314403702": {
+    "dek": {
+     "dekgeld": "Vers € 1.200; diepvries € 1.200; ICSI € 600",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "seizoen": "2025",
+     "toelichting": "Pagina noemt 'Breed now - pay in 2025'; mogelijk verouderd.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/codex-one-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/codex-one-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   },
+   "keaton-i-2016": {
+    "dek": {
+     "dekgeld": "€ 350 + € 750 bij dracht + € 100 fokkersfee, excl. btw (alternatief: € 350 + € 1.150 bij dracht); ICSI € 650",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Beschikbaar bij alle stations van de Holsteiner Verband Hengsthaltung GmbH; ICSI ook mogelijk. Seizoen niet vermeld.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://www.holsteiner-verband.de/en/suche/horse/keaton",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/suche/horse/keaton"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-11"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "056002w00315268": "niet_gevonden",
+  "chinchero-2017": "gevonden",
+  "dourkhan-hero-z-2015": "niet_gevonden",
+  "bel002w00301601": "gevonden",
+  "chopin-va-2009": "niet_gevonden",
+  "colestus-2006": "gevonden",
+  "vagabond-de-la-pomme": "niet_gevonden",
+  "elvis-ter-putte-2004": "gevonden",
+  "vdl-zirocco-blue-2004": "niet_gevonden",
+  "clarimo-2003": "gevonden",
+  "vingino-2002": "gevonden",
+  "tattoo-tn-2019": "gevonden",
+  "conthalou-2017": "gevonden",
+  "crack-2015": "gevonden",
+  "corydon-van-t-l-2011": "niet_gevonden",
+  "056002w00293639": "gevonden",
+  "denzel-van-t-meulenhof-2009": "niet_gevonden",
+  "056002w00272677": "gevonden",
+  "arezzo-vdl-2005": "gevonden",
+  "quabri-de-l-isle-2004": "niet_gevonden",
+  "hardrock-z-2003": "gevonden",
+  "276431314403702": "gevonden",
+  "telstar-jm-tn-2019": "niet_gevonden",
+  "avenger-z-2016": "niet_gevonden",
+  "keaton-i-2016": "gevonden"
+ }
+}
