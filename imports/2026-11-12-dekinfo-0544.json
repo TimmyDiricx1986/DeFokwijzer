@@ -1,0 +1,289 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-12",
+ "collecties": {
+  "paarden": {
+   "chacfly-ps-2012": {
+    "dek": {
+     "dekgeld": "€750 excl. btw voor inseminatie plus €750 excl. btw bij dracht",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Seizoen en beschikbaarheid niet vermeld op de pagina. Geboortejaar 2012 en vader Chacco-Blue komen overeen.",
+     "station": "Deckstation Schockemöhle",
+     "url": "https://shop.schockemoehle.com/en/Chacfly-PS/DE431319601512",
+     "bron": {
+      "naam": "Deckstation Schockemöhle",
+      "url": "https://shop.schockemoehle.com/en/Chacfly-PS/DE431319601512"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "uricas-van-de-kattevennen-2012": {
+    "dek": {
+     "dekgeld": "€1.900 excl. btw, max 3 pogingen diepvries, 1 merrie, 1 seizoen; €1.500 terug bij niet drachtig voor eind september",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beperkt",
+     "toelichting": "Pagina meldt \"restricted to Browsing at this time\". Courier en gezondheidspapieren diepvries €175 excl. btw. Seizoen niet vermeld.",
+     "url": "https://elitestallions.co.uk/stallion/Uricas vd Kattevennen",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Uricas vd Kattevennen"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "056007000e49014": {
+    "dek": {
+     "dekgeld": "1.200 USD",
+     "toelichting": "Seizoen, soort sperma en beschikbaarheid niet vermeld. Vader Taran de la Pomme komt overeen; profiel vermeldt niet export-gekwalificeerd.",
+     "url": "https://portal.selectbreeders.com/stallions/4283-el-torreo-de-muze",
+     "bron": {
+      "naam": "Select Breeders",
+      "url": "https://portal.selectbreeders.com/stallions/4283-el-torreo-de-muze"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "jasper-2009": {
+    "dek": {
+     "dekgeld": "£1.340 excl. btw; EU chilled import £893 excl. btw, terug bij niet drachtig",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Geen voorraad getoond voor het Verenigd Koninkrijk op de pagina. Seizoen niet vermeld. Geboortejaar 2009 en vader Heartbreaker komen overeen.",
+     "url": "https://stallionai.co.uk/animals/stallion/jasper",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://stallionai.co.uk/animals/stallion/jasper"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "camargo-2008": {
+    "dek": {
+     "dekgeld": "Boekingsvergoeding €350 plus €900 bij dracht, excl. 5,5% btw",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Online reserveren vanaf 1 februari. Seizoen niet vermeld. Pagina noemt leeftijd 18 jaar en vader Canturo.",
+     "station": "Groupe France Élevage (GFE)",
+     "url": "https://www.gfeweb.com/en/stallions-liste/camargo-hannoveraner-bay,160.html",
+     "bron": {
+      "naam": "GFE",
+      "url": "https://www.gfeweb.com/en/stallions-liste/camargo-hannoveraner-bay,160.html"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "uriko-2007": {
+    "dek": {
+     "dekgeld": "Diepvries: €350 excl. btw plus €950 bij dracht plus €100 veulengeld (optie 2: €350 plus €1.450 bij dracht); ICSI €950, alles excl. btw",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beperkt",
+     "toelichting": "Pagina meldt beschikbaar bij alle stations van de Holsteiner Verband Hengsthaltung. Hengst overleed volgens Holsteiner Verband nieuws van 27 mei 2026. Seizoen niet vermeld.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/uriko-kwpn",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/uriko-kwpn"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "fantomas-de-muze-2005": {
+    "dek": {
+     "dekgeld": "£1.117 (split terms); EU chilled import £893 plus btw, btw terug bij niet drachtig",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma uit de EU. Beschikbaarheid en seizoen niet vermeld. Geboortejaar 2005 en vader Sandro Boy komen overeen.",
+     "station": "Stal De Muze",
+     "url": "https://stallionai.co.uk/animals/stallion/fantomas-de-muze",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://stallionai.co.uk/animals/stallion/fantomas-de-muze"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "carambole": {
+    "dek": {
+     "dekgeld": "€1.600",
+     "toelichting": "Soort sperma, beschikbaarheid en seizoen niet vermeld. Pagina noemt Cassini I als vader.",
+     "station": "Team Nijhof",
+     "url": "https://www.team-nijhof.nl/paarden/carambole/",
+     "bron": {
+      "naam": "Team Nijhof",
+      "url": "https://www.team-nijhof.nl/paarden/carambole/"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "nld003200312838": {
+    "dek": {
+     "dekgeld": "Inseminatie €1.500 excl. btw plus €1.500 excl. btw bij dracht",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Beschikbaarheid en seizoen niet vermeld op de pagina. Geboortejaar 2003 en vader Quick Star komen overeen.",
+     "url": "https://shop.schockemoehle.com/en/Big-Star/NLD003200312838",
+     "bron": {
+      "naam": "Schockemöhle shop",
+      "url": "https://shop.schockemoehle.com/en/Big-Star/NLD003200312838"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "25000102064702h": {
+    "dek": {
+     "dekgeld": "Diepvries: €350 excl. btw bij bestelling, €1.500 excl. btw per 1 oktober",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Beschikbaarheid en seizoen niet vermeld. Pagina noemt Kannan als eerste in de stamboom, geboortejaar 2002; eigenaar IFCE.",
+     "station": "IFCE (France Etalons)",
+     "url": "https://france-etalons.com/en/stallions/OGRION DES CHAMPS-groomy-15445",
+     "bron": {
+      "naam": "France Etalons",
+      "url": "https://france-etalons.com/en/stallions/OGRION DES CHAMPS-groomy-15445"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "056002w00322869": {
+    "dek": {
+     "dekgeld": "EUR 1.000 diepvries; ICSI EUR 500",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Diepvriessperma, ook geschikt voor ICSI. Seizoen niet vermeld op de pagina.",
+     "station": "Studfarm Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/tomme-de-regor-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/tomme-de-regor-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "cahil-2017": {
+    "dek": {
+     "dekgeld": "EUR 350 + EUR 400 bij dracht + EUR 100 veulengeld, of EUR 350 + EUR 850 bij dracht; alles excl. btw",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Beschikbaar bij alle stations van de Holsteiner Verband Hengsthaltung GmbH. Seizoen niet vermeld op de pagina.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://www.holsteiner-verband.de/en/suche/horse/cahil",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/suche/horse/cahil"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "chaccothage-blue-ps-2017": {
+    "dek": {
+     "dekgeld": "EUR 600 inseminatie + EUR 600 bij dracht, excl. btw",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Seizoen en beschikbaarheid niet vermeld op de pagina. Eigenaar Paul Schockemöhle Pferdehaltung GmbH.",
+     "station": "Paul Schockemöhle Pferdehaltung GmbH",
+     "url": "https://shop.schockemoehle.com/en/Chaccothage-Blue-PS/DE418185026117",
+     "bron": {
+      "naam": "Schockemöhle",
+      "url": "https://shop.schockemoehle.com/en/Chaccothage-Blue-PS/DE418185026117"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "diablue-ps-2017": {
+    "dek": {
+     "dekgeld": "EUR 750 inseminatie + EUR 750 bij dracht, excl. btw",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Staat in Mühlen (Duitsland). Seizoen en beschikbaarheid niet vermeld op de pagina.",
+     "station": "Deckstation Schockemöhle",
+     "url": "https://shop.schockemoehle.com/en/Diablue-PS/DE418185041817",
+     "bron": {
+      "naam": "Schockemöhle",
+      "url": "https://shop.schockemoehle.com/en/Diablue-PS/DE418185041817"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   },
+   "chezarro-2016": {
+    "dek": {
+     "dekgeld": "EUR 350 + EUR 750 bij dracht + EUR 100 veulengeld, of EUR 350 + EUR 1.150 bij dracht; alles excl. btw",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beperkt",
+     "seizoen": "2026",
+     "toelichting": "Hengst in juli 2026 gecastreerd en verkocht (sportcarriere); diepvriessperma nog beschikbaar uit voorraad bij de Holsteiner Verband Hengsthaltung GmbH.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://www.holsteiner-verband.de/en/suche/horse/chezarro",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/hengsthaltung/news/chezarro-und-millions-way-wechseln-in-sportfoerderung"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-12"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "chacfly-ps-2012": "gevonden",
+  "uricas-van-de-kattevennen-2012": "gevonden",
+  "056007000e49014": "gevonden",
+  "jasper-2009": "gevonden",
+  "camargo-2008": "gevonden",
+  "uriko-2007": "gevonden",
+  "fantomas-de-muze-2005": "gevonden",
+  "carambole": "gevonden",
+  "cornado-i-2003": "niet_gevonden",
+  "cornet-s-stern-2003": "niet_gevonden",
+  "nld003200312838": "gevonden",
+  "25000102064702h": "gevonden",
+  "056002w00327761": "niet_gevonden",
+  "056002w00322869": "gevonden",
+  "cavalier-russe-z-2018": "niet_gevonden",
+  "sunday-jm-2018": "niet_gevonden",
+  "056015z55534617": "niet_gevonden",
+  "cahil-2017": "gevonden",
+  "chaccothage-blue-ps-2017": "gevonden",
+  "charaktervoll-2017": "niet_gevonden",
+  "diablue-ps-2017": "gevonden",
+  "quando-van-de-helle-2017": "niet_gevonden",
+  "riesling-van-t-roosakker-2017": "niet_gevonden",
+  "chezarro-2016": "gevonden",
+  "commander-hk-z": "niet_gevonden"
+ }
+}
