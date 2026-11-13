@@ -8,10 +8,10 @@
 <meta name="theme-color" content="#2F5A3A">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="stylesheet" href="/fonts/fonts.css?v=0073d28fa1">
-<link rel="stylesheet" href="/app.css?v=11efa53068">
+<link rel="stylesheet" href="/app.css?v=885a492de7">
 <link rel="alternate" hreflang="nl" href="/?lang=nl">
 <link rel="alternate" hreflang="en" href="/?lang=en">
-<script src="/i18n-en.js?v=67e697b69e"></script>
+<script src="/i18n-en.js?v=91c295d6fc"></script>
 <script src="/i18n.js?v=12c9bae90f"></script>
 </head>
 <body>
@@ -28,7 +28,7 @@
   </header>
   <nav class="tabs" role="tablist" aria-label="Onderdelen">
     <button role="tab" id="tab-info" aria-selected="true" data-tab="info">Info</button>
-    <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer">Paarden beheren <span class="count-badge" id="reqBadge" hidden></span></button>
+    <button role="tab" id="tab-beheer" aria-selected="false" data-tab="beheer">Mijn Fokwijzer <span class="count-badge" id="reqBadge" hidden></span></button>
     <button role="tab" id="tab-matches" aria-selected="false" data-tab="matches">Beste matches</button>
     <button type="button" class="tab-more" id="tabMore" aria-expanded="false" aria-label="Meer onderdelen"><span class="tm-txt">Meer </span><span aria-hidden="true">&#9662;</span></button>
     <button role="tab" id="tab-vergelijken" aria-selected="false" data-tab="vergelijken" class="tab-xtra">Virtueel veulen</button>
@@ -91,7 +91,13 @@
     <div id="stalOut"></div>
   </section>
 
-  <!-- MIJN VEULENS -->
+  <!-- NAKOMELINGEN -->
+  <section class="panel" id="p-nakom" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div class="subtabs-slot"></div>
+    <div id="nakomOut"></div>
+  </section>
+
+  <!-- COMBINATIES (virtuele veulens) -->
   <section class="panel" id="p-veulens" role="tabpanel" aria-labelledby="tab-beheer" hidden>
     <div class="subtabs-slot"></div>
     <div id="veulOut"></div>
@@ -356,7 +362,7 @@
   </section>
   <footer class="sitefoot"><span id="adVoet"></span><span>Powered by DeDilieHoeve</span><span class="fw-links"><a href="/over.html" target="_top">Over</a> · <a href="/privacy.html" target="_top">Privacy</a></span></footer>
 </div>
-<script src="/fokwijzer-api.js?v=56a5379ac7"></script>
-<script src="/app.js?v=e160d2cec2"></script>
+<script src="/fokwijzer-api.js?v=b5058e2443"></script>
+<script src="/app.js?v=57b14552ff"></script>
 </body>
 </html>

@@ -452,7 +452,7 @@
     }
     side.insertBefore(box, side.firstChild);
   }
-  // Knoppen in de app (bv. op Paarden beheren): account maken, inloggen, Fokwijzer-profiel worden.
+  // Knoppen in de app (bv. op Mijn Fokwijzer): account maken, inloggen, Fokwijzer-profiel worden.
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-acct]");
     if (!b) return;
@@ -476,7 +476,7 @@
   window.__fwTrack = function (t, v) {
     try { fetch("/api/stat", { method: "POST", credentials: "same-origin", keepalive: true, headers: { "content-type": "application/json", "x-fokwijzer": "1" }, body: JSON.stringify({ t: t, v: v }) }).catch(function () {}); } catch (_) {}
   };
-  var TAB_NAAM = { info: "Info", zoeken: "Zoeken", matches: "Beste matches", vergelijken: "Virtueel veulen", aanvragen: "Paard aanvragen", beheer: "Paarden beheren", partners: "Partners", admin: "Beheer", stam: "Stamlijnen", veilingen: "Veilingen" };
+  var TAB_NAAM = { info: "Info", zoeken: "Zoeken", matches: "Beste matches", vergelijken: "Virtueel veulen", aanvragen: "Paard aanvragen", beheer: "Mijn Fokwijzer", partners: "Partners", admin: "Beheer", stam: "Stamlijnen", veilingen: "Veilingen" };
   var SVG = "http://www.w3.org/2000/svg";
   function svg(tag, attrs) { var n = document.createElementNS(SVG, tag); Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); }); return n; }
   function fmtDag(d) { var p = d.split("-"); return parseInt(p[2], 10) + "/" + parseInt(p[1], 10); }
