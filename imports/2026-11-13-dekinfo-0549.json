@@ -1,0 +1,363 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-13",
+ "collecties": {
+  "paarden": {
+   "for-treasure-vdl-2016": {
+    "dek": {
+     "dekgeld": "€ 900,-",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Staat als \"Standing stud\" bij VDL Stud. Dekvoorwaarden: fokseizoen eindigt 15 aug 2026; diepvries beschikbaar als de hengst op een concours is.",
+     "station": "VDL Stud",
+     "url": "https://www.vdlstud.com/en/paarden/For-Treasure-VDL-For-Pleasure-x-Carthago",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://www.vdlstud.com/en/dekvoorwaarden"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "landino-vdl-2016": {
+    "dek": {
+     "dekgeld": "€ 1.000,-",
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Vermeld als \"Landino\" onder Jumping stallions in de dekvoorwaarden van VDL Stud. Fokseizoen eindigt 15 aug 2026; diepvries beschikbaar als de hengst op een concours is.",
+     "station": "VDL Stud",
+     "url": "https://www.vdlstud.com/en/dekvoorwaarden",
+     "bron": {
+      "naam": "VDL Stud dekvoorwaarden",
+      "url": "https://www.vdlstud.com/en/dekvoorwaarden"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "omano-bc-2014": {
+    "dek": {
+     "dekgeld": "Ordering 300,00€ HT, Technical 120,00€ HT, 1st of October 900,00€ HT (HT = excl. btw)",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Tarieventabel Breeding conditions op France Etalons (BWP, 2014, grijs). Vader op de pagina als Cumano BD vermeld, moedersvader Darco. Beschikbaarheid en seizoen niet vermeld.",
+     "station": "France Etalons",
+     "url": "https://france-etalons.com/en/stallions/OMANO BC-groomy-27518",
+     "bron": {
+      "naam": "France Etalons",
+      "url": "https://france-etalons.com/en/stallions/OMANO BC-groomy-27518"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "zinedream-2014": {
+    "dek": {
+     "dekgeld": "£1160 + VAT, btw terug na dierenartsverklaring dat merrie niet drachtig is; split terms",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Stallion AI: EU Chilled Import. Elite Stallions noemt € 1650 excl. btw, gekoeld en diepvries, en dat de hengst momenteel enkel te bekijken is (browsing). Beschikbaarheid en seizoen niet vermeld.",
+     "station": "Gestüt Bonhomme",
+     "url": "https://www.stallionai.co.uk/animals/stallion/zinedream",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/zinedream"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "copycat-z-2013": {
+    "dek": {
+     "dekgeld": "€450,00 per dosis zonder garantie; €1.000,00 met garantie",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Pagina Harrie Smolders met knop Order semen now. Beschikbaarheid en seizoen niet expliciet vermeld.",
+     "station": "Harrie Smolders",
+     "url": "https://www.harriesmolders.com/en/horses/details/copycat-z",
+     "bron": {
+      "naam": "Harrie Smolders",
+      "url": "https://www.harriesmolders.com/en/horses/details/copycat-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "inaico-vdl-2013": {
+    "dek": {
+     "dekgeld": "€ 1.250,-",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Staat onder \"Only frozen semen\" in de dekvoorwaarden van VDL Stud. Fokseizoen eindigt 15 aug 2026.",
+     "station": "VDL Stud",
+     "url": "https://vdlstud.com/en/paarden/Inaico-Indoctro-x-Baloubet-du-Rouet",
+     "bron": {
+      "naam": "VDL Stud dekvoorwaarden",
+      "url": "https://www.vdlstud.com/en/dekvoorwaarden"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "naxcel-v": {
+    "dek": {
+     "dekgeld": "Technical 400,00 € HT; foal 600,00 € HT (HT = excl. btw)",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Tarieven op France Etalons (2013, Balou du Rouet x Qaroline). Seizoen niet vermeld.",
+     "station": "France Etalons",
+     "url": "https://www.france-etalons.com/en/stallions/NAXCEL V-groomy-33774/",
+     "bron": {
+      "naam": "France Etalons",
+      "url": "https://www.france-etalons.com/en/stallions/NAXCEL V-groomy-33774/"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "nixon-van-t-meulenhof-2013": {
+    "dek": {
+     "dekgeld": "£1,340.00 (£1,027 + VAT, btw terug na dierenartsverklaring); split terms, max 3 pogingen in een seizoen",
+     "toelichting": "Stallion AI (SAIS) is de agent. Soort sperma, beschikbaarheid en seizoen niet vermeld.",
+     "station": "Stallion AI Services",
+     "url": "https://stallionai.co.uk/animals/stallion/nixon-vant-meulenhof",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://stallionai.co.uk/animals/stallion/nixon-vant-meulenhof"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "276441411036712": {
+    "dek": {
+     "dekgeld": "Vers EUR 1.000 (nu dekken, betalen in 2026); diepvries EUR 1.000; ICSI EUR 500",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "seizoen": "2026",
+     "toelichting": "Ook ICSI-sperma aangeboden. Beschikbaarheid niet expliciet vermeld op de pagina.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/brunetti-z",
+     "bron": {
+      "naam": "Zangersheide hengstenpagina",
+      "url": "https://www.zangersheide.com/en/stallions/brunetti-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "diaron-old-2012": {
+    "dek": {
+     "dekgeld": "GBP 1.429 (splitsvoorwaarden: GBP 714 plus btw, terugbetaald na dierenartsverklaring niet drachtig)",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma (EU Chilled Import) via Stallion AI Services. Seizoen en beschikbaarheid niet vermeld.",
+     "station": "Deckstation Schockemöhle",
+     "url": "https://shop.schockemoehle.com/en/Diaron-OLD/DE433330496212",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/diaron-old"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "escape-z-2012": {
+    "dek": {
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Dekgeld niet vermeld (wordt rechtstreeks aan eigenaar betaald). Stallion AI meldt voor het geselecteerde land momenteel geen voorraad. Geboortejaar 2012 komt overeen; vader volgens BWP Emerald van 't Ruytershof.",
+     "station": "Stallion AI Services",
+     "url": "https://www.stallionai.co.uk/animals/stallion/escape-z",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/escape-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "hernandez-tn-2012": {
+    "dek": {
+     "dekgeld": "EUR 1.250",
+     "toelichting": "Soort sperma, beschikbaarheid en seizoen niet vermeld op de pagina.",
+     "station": "Team Nijhof",
+     "url": "https://www.team-nijhof.nl/en/paarden/hernandez-tn",
+     "bron": {
+      "naam": "Team Nijhof",
+      "url": "https://www.team-nijhof.nl/en/paarden/hernandez-tn"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "mumbai-van-de-moerhoeve-2012": {
+    "dek": {
+     "dekgeld": "EUR 1.500 excl. btw; bij diepvries plus EUR 175 excl. btw koerier en papieren; onbeperkte pogingen voor 1 merrie in 1 dekseizoen",
+     "sperma": [
+      "diepvries",
+      "vers"
+     ],
+     "toelichting": "Pagina vermeldt als naam enkel Mumbai (2012, Diamant de Semilly, moeder Ischgl de Muze). Sperma tegenstrijdig (productdetails diepvries, voorwaarden gekoeld). Op dat moment enkel te bekijken, niet te bestellen. Bij niet drachtig eind september EUR 1.200 plus btw terug.",
+     "station": "Ludger Beerbaum",
+     "url": "https://elitestallions.co.uk/stallion/Mumbai",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Mumbai"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "zuccero-hv-2012": {
+    "dek": {
+     "dekgeld": "Stud fee 1: EUR 350 excl. btw plus EUR 1.000 bij dracht plus EUR 100 fokkersfee; stud fee 2: EUR 350 plus EUR 1.750 bij dracht; ICSI EUR 1.250 (alles excl. btw)",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beperkt",
+     "toelichting": "Pagina vermeldt 'Frozen semen limited'. Seizoen niet vermeld.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH (alle stations)",
+     "url": "https://www.holsteiner-verband.de/en/suche/horse/zuccero",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/suche/horse/zuccero"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "baloutaire-ps-2011": {
+    "dek": {
+     "dekgeld": "EUR 1.000 excl. btw",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Stallion AI vermeldt gekoeld sperma (EU chilled import) beschikbaar tot 15.08.26, dekgeld GBP 893 (split terms, GBP 446 plus btw terug na dierenartsverklaring niet drachtig). Seizoen niet vermeld op stationspagina.",
+     "station": "Paul Schockemöhle Pferdehaltung GmbH (Mühlen)",
+     "url": "https://shop.schockemoehle.com/en/Baloutaire-PS/DE418184046611",
+     "bron": {
+      "naam": "Schockemöhle",
+      "url": "https://shop.schockemoehle.com/en/Baloutaire-PS/DE418184046611"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "cashpaid-j-f-2011": {
+    "dek": {
+     "dekgeld": "EUR 1.200 (EUR 300 plus EUR 900)",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Pagina verwijst naar Zangersheide Stallion Presentation 2026. Beschikbaarheid en seizoen niet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/cashpaid-j-f-z",
+     "bron": {
+      "naam": "Zangersheide hengstenpagina",
+      "url": "https://www.zangersheide.com/en/stallions/cashpaid-j-f-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "scuderia-1918-casago-2011": {
+    "dek": {
+     "dekgeld": "Reservering EUR 350 plus EUR 1.300 bij dracht, excl. 5,5% btw",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Online reserveren vanaf 1 februari (jaar niet vermeld). Pagina geeft leeftijd 15 jaar, vader Casall.",
+     "station": "Groupe France Elevage (Falaise)",
+     "url": "https://www.gfeweb.com/en/fresh-semen/scuderia-casago-holsteiner-warmblut-grey,165.html",
+     "bron": {
+      "naam": "Groupe France Elevage",
+      "url": "https://www.gfeweb.com/en/fresh-semen/scuderia-casago-holsteiner-warmblut-grey,165.html"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "056002w00296771": {
+    "dek": {
+     "dekgeld": "Vers EUR 1.600 (EUR 600 plus EUR 1.000); diepvries EUR 1.600; ICSI EUR 800",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Beschikbaarheid en seizoen niet vermeld op de pagina.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/kassander-van-t-roosakker-z",
+     "bron": {
+      "naam": "Zangersheide hengstenpagina",
+      "url": "https://www.zangersheide.com/en/stallions/kassander-van-t-roosakker-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   },
+   "dinken-2010": {
+    "dek": {
+     "dekgeld": "Stud fee 1: EUR 350 excl. btw plus EUR 500 bij dracht plus EUR 100 veulengeld; stud fee 2: EUR 350 plus EUR 850 bij dracht (alles excl. btw)",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Beschikbaar op alle stations van de Holsteiner Verband Hengsthaltung GmbH. Seizoen niet vermeld.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH (alle stations)",
+     "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/dinken",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/dinken"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-13"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "for-treasure-vdl-2016": "gevonden",
+  "landino-vdl-2016": "gevonden",
+  "056002w00310281": "niet_gevonden",
+  "corlou-ps-2015": "niet_gevonden",
+  "kazan-z-2015": "niet_gevonden",
+  "omano-bc-2014": "gevonden",
+  "orak-d-hamwyck": "niet_gevonden",
+  "zinedream-2014": "gevonden",
+  "copycat-z-2013": "gevonden",
+  "inaico-vdl-2013": "gevonden",
+  "naxcel-v": "gevonden",
+  "nixon-van-t-meulenhof-2013": "gevonden",
+  "276431319602912": "niet_gevonden",
+  "276441411036712": "gevonden",
+  "diaron-old-2012": "gevonden",
+  "escape-z-2012": "gevonden",
+  "hernandez-tn-2012": "gevonden",
+  "highway-m-tn-2012": "niet_gevonden",
+  "mumbai-van-de-moerhoeve-2012": "gevonden",
+  "zuccero-hv-2012": "gevonden",
+  "baloutaire-ps-2011": "gevonden",
+  "cashpaid-j-f-2011": "gevonden",
+  "scuderia-1918-casago-2011": "gevonden",
+  "056002w00296771": "gevonden",
+  "dinken-2010": "gevonden"
+ }
+}
