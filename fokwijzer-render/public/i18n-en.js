@@ -107,6 +107,7 @@
     "voor en door paardenfokkers": "by and for horse breeders",
     ". Je vindt er per hengst en merrie de afstamming, prestaties, fokwaarden en gezondheid op één plek, met bronvermelding. Zo kies je sneller en beter onderbouwd de juiste combinatie voor je merrie.": ". For every stallion and mare you will find pedigree, performance, breeding values and health in one place, with sources. That way you choose the right combination for your mare faster and on firmer ground.",
     "Start met zoeken": "Start searching",
+    "Start met je eigen Fokwijzer": "Start your own Fokwijzer",
     "Zoek op naam, UELN, vader of moeder. Klik een paard aan voor zijn stamboomkaart, gegevens, bronnen en opmerkingen. De stamboomkaart download je als afbeelding of PDF.": "Search by name, UELN, sire or dam. Click a horse to see its pedigree card, data, sources and comments. You can download the pedigree card as an image or PDF.",
     "Naar Zoeken": "Go to Search",
     "Kies je merrie en krijg de hengsten die het best scoren op fokwaarden, prestaties, inteelt en gezondheid.": "Choose your mare and get the stallions that score best on breeding values, performance, inbreeding and health.",
