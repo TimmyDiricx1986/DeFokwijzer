@@ -432,6 +432,10 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .dos-lijst{list-style:none;margin:10px 0 0;padding:4px 14px}.dos-item{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line)}.dos-item:first-child{border-top:0}
 .dos-item .dos-dat{display:flex;flex-direction:column}.dos-soort{font-weight:700;color:var(--accent)}.dos-item.g-zorg .dos-soort{color:#2f5d7c}.dos-item.g-kosten .dos-soort{color:#855a10}.dos-item.g-veulen .dos-soort{color:#3e6b35}.dos-item.g-notitie .dos-soort{color:var(--muted)}
 .dos-acties{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px;font-size:.85rem}.linkbtn.danger{color:var(--bad,#a33a2c)}
+.dos-verslagen{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}.dos-verslag{display:inline-flex;align-items:center;gap:2px;padding:2px 4px 2px 8px;border:1px solid var(--line);border-radius:7px;background:var(--sunk);font-size:.86rem}
+.dos-banner{border-color:#d9b26b;background:#fff7e6;margin-bottom:14px}
+.dos-maillog{margin:4px 0 0;padding-left:0;list-style:none}.dos-maillog li{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:4px 0;border-top:1px solid var(--line)}.dos-maillog li:first-child{border-top:0}
+.status.warn{color:#855a10}
 .dos-kost{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}
 #dosOut textarea{font:inherit}
 @media (max-width:700px){.dos-mrow{grid-template-columns:1fr auto}.dos-msub,.dos-mvolg{grid-column:1/-1}.dos-grow{grid-column:auto}.dos-item{grid-template-columns:1fr;gap:2px}.dos-nieuw .label{min-width:0;width:100%}}

@@ -40,3 +40,14 @@ services:
       # Optioneel: AI-advies voor de council
       - key: ANTHROPIC_API_KEY
         sync: false
+      # Herinneringen uit het merriedossier per mail (via een mail-API, zonder extra pakketten).
+      # MAIL_PROVIDER = brevo of resend; MAIL_API_KEY = API-sleutel; MAIL_FROM = afzenderadres
+      # (bij Brevo een geverifieerd adres, bij Resend een adres op een geverifieerd domein).
+      - key: MAIL_PROVIDER
+        sync: false
+      - key: MAIL_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: MAIL_FROM_NAME
+        value: De Fokwijzer

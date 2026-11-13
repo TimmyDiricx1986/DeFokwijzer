@@ -1307,7 +1307,7 @@ function ensureStal(){const k=stalAan()?state.meId:"";if(k===stalKey)return;stal
     if(state.tab==="stal")renderStal();if(state.tab==="nakom")renderNakom();if(state.tab==="dossier")renderDossier();if(state.tab==="profiel")renderProfiel();if(state.tab==="veulens")renderVeulens();if(state.tab==="vergelijken")stalKnopCmp();if(state.tab==="zoeken")stalKnopDet()},err=>{state.stalOk=true;state.stalErr=true;if(state.tab==="stal")renderStal()})}catch(_){state.stalOk=true;state.stalErr=true}}
 let stalBusy=Promise.resolve();
 function stalSave(fn,st){ // fn past een kopie aan; daarna in volgorde bewaren
-  const nw=JSON.parse(JSON.stringify(state.stal));fn(nw);nw.hengsten=[...new Set(nw.hengsten)].slice(0,STAL_MAX);nw.merries=[...new Set(nw.merries)].slice(0,STAL_MAX);nw.veulens=nw.veulens.slice(0,VEUL_MAX);nw.rol=nw.rol||{};for(const k of Object.keys(nw.rol))if(!nw.hengsten.includes(k)&&!nw.merries.includes(k))delete nw.rol[k];nw.dossier=nw.dossier||{};nw.bijgewerkt=new Date().toISOString();profielStalSync(nw);
+  const nw=JSON.parse(JSON.stringify(state.stal));fn(nw);nw.hengsten=[...new Set(nw.hengsten)].slice(0,STAL_MAX);nw.merries=[...new Set(nw.merries)].slice(0,STAL_MAX);nw.veulens=nw.veulens.slice(0,VEUL_MAX);nw.rol=nw.rol||{};for(const k of Object.keys(nw.rol))if(!nw.hengsten.includes(k)&&!nw.merries.includes(k))delete nw.rol[k];nw.dossier=nw.dossier||{};nw.planning=planningUit(nw);nw.bijgewerkt=new Date().toISOString();profielStalSync(nw);
   state.stal=nw;if(state.tab==="stal")renderStal();if(state.tab==="nakom")renderNakom();if(state.tab==="dossier")renderDossier();if(state.tab==="profiel")renderProfiel();if(state.tab==="veulens")renderVeulens();stalKnopDet();stalKnopCmp();
   stalBusy=stalBusy.then(()=>stalRef().set(clean(nw))).then(()=>{if(st){st.className="status ok";st.textContent="Bewaard."}}).catch(err=>{const m="Bewaren lukte niet: "+(err&&err.message||"onbekende fout");if(st){st.className="status err";st.textContent=m}else fwToast(m)});return stalBusy}
 function fwToast(t){const d=document.createElement("div");d.className="sim-toast";d.setAttribute("role","status");d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),4500)}
@@ -1424,6 +1424,7 @@ const M_STATUS={fokmerrie:"Fokmerrie",sportmerrie:"Sportmerrie",draagmerrie:"Dra
 // Soorten ingaven. Veld: [sleutel, label, type, opties]. Types: date, time, text, area, num, sel, check, hengst, dek.
 // Bij een "volgende"-datum is de optie het voorgestelde aantal dagen.
 const SOORTEN={
+ gyn:{g:"voort",l:"Gynaecologisch onderzoek",v:[["datum","Datum","date"],["dierenarts","Dierenarts","text"],["bevindingen","Bevindingen","area"],["advies","Advies","area"],["volgende","Volgende controle","date"]]},
  hengstig:{g:"voort",l:"Hengstigheid en cycluscontrole",v:[["datum","Datum","date"],["follikel","Grootste follikel (mm)","num"],["zijde","Eierstok","sel",{"":"-",links:"Links",rechts:"Rechts"}],["oedeem","Baarmoederoedeem","sel",{"":"-","0":"0 (geen)","1":"1","2":"2","3":"3 (veel)"}],["baarmoeder","Baarmoeder","sel",{"":"-",normaal:"Normaal",vocht:"Vocht",ontsteking:"Ontsteking"}],["inductie","Ovulatie-inductie gegeven","check"],["ovulatie","Ovulatie vastgesteld","check"],["notitie","Notitie","area"]]},
  dekking:{g:"voort",l:"Dekking of inseminatie",v:[["datum","Datum","date"],["tijd","Uur","time"],["hengst","Hengst","hengst"],["methode","Methode","sel",METHODES],["rietjes","Aantal rietjes of dosissen","num"],["station","Station of dierenarts","text"],["dekgeld","Dekgeld (€)","num"],["notitie","Notitie","area"]]},
  spoeling:{g:"voort",l:"Embryospoeling",v:[["datum","Datum","date"],["dek","Bij dekking","dek"],["resultaat","Resultaat","sel",{embryo:"Embryo gevonden",geen:"Geen embryo"}],["draagmerrie","Draagmerrie","text"],["notitie","Notitie","area"]]},
@@ -1441,8 +1442,8 @@ const SOORTEN={
  herinnering:{g:"notitie",l:"Eigen herinnering",v:[["datum","Datum","date"],["tekst","Wat","text"]]},
  notitie:{g:"notitie",l:"Notitie",v:[["datum","Datum","date"],["tekst","Notitie","area"]]}};
 const GROEPEN={alles:"Tijdlijn",voort:"Voortplanting",veulen:"Veulens",zorg:"Zorg",kosten:"Kosten",notitie:"Notities"};
-const NIEUW_KNOPPEN=[["Voortplanting",["hengstig","dekking","spoeling","controle","bewaking"]],["Veulen",["geboorte"]],["Zorg",["vaccinatie","ontworming","hoefsmid","tandarts","dierenarts","medicatie","conditie"]],["Overig",["kosten","notitie","herinnering"]]];
-const KORT={hengstig:"Hengstigheid",dekking:"Dekking",spoeling:"Embryospoeling",controle:"Drachtcontrole",bewaking:"Veulenbewaking",geboorte:"Geboorte",vaccinatie:"Vaccinatie",ontworming:"Ontworming",hoefsmid:"Hoefsmid",tandarts:"Tandarts",dierenarts:"Dierenarts",medicatie:"Medicatie",conditie:"Gewicht en conditie",kosten:"Kosten",notitie:"Notitie",herinnering:"Eigen herinnering"};
+const NIEUW_KNOPPEN=[["Voortplanting",["gyn","hengstig","dekking","spoeling","controle","bewaking"]],["Veulen",["geboorte"]],["Zorg",["vaccinatie","ontworming","hoefsmid","tandarts","dierenarts","medicatie","conditie"]],["Overig",["kosten","notitie","herinnering"]]];
+const KORT={gyn:"Gynaecologisch onderzoek",hengstig:"Hengstigheid",dekking:"Dekking",spoeling:"Embryospoeling",controle:"Drachtcontrole",bewaking:"Veulenbewaking",geboorte:"Geboorte",vaccinatie:"Vaccinatie",ontworming:"Ontworming",hoefsmid:"Hoefsmid",tandarts:"Tandarts",dierenarts:"Dierenarts",medicatie:"Medicatie",conditie:"Gewicht en conditie",kosten:"Kosten",notitie:"Notitie",herinnering:"Eigen herinnering"};
 const byDatum=(a,b)=>(a.datum||"")<(b.datum||"")?-1:(a.datum||"")>(b.datum||"")?1:(a.tijd||"")<(b.tijd||"")?-1:1;
 function dosOf(D,mid){const x=D&&D[mid];if(!x)return{info:{},items:[]};
   if(Array.isArray(x)){const items=[];for(const k of x){if(!k||!k.datum)continue;const d={id:k.id,soort:"dekking",datum:k.datum,hengst:k.hengst,methode:k.methode};if(k.hengst_id)d.hengst_id=k.hengst_id;if(k.notitie)d.notitie=k.notitie;items.push(d);
@@ -1489,7 +1490,7 @@ function herinneringen(){const D=state.stal.dossier||{};const out=[];for(const m
 function herRegel(h,metMerrie){const n=dagenTot(h.datum);const wanneer=n<0?`${-n} ${-n===1?"dag":"dagen"} geleden`:n===0?"vandaag":n===1?"morgen":`over ${n} dagen`;
   return `<li class="dos-her-item${n<0?" laat":""}"><div class="dos-dat"><b>${esc(fmtDag(h.datum))}</b><span class="small muted">${esc(wanneer)}</span></div><div>${metMerrie===false?"":`<button type="button" class="linkbtn" data-dossel="${esc(h.mid)}"><b>${esc(h.merrie)}</b></button>: `}${esc(h.t)}${h.extra?`<div class="small muted">${esc(h.extra)}</div>`:""}</div></li>`}
 function itemSamenvatting(d,i){const S=SOORTEN[i.soort];const parts=[];
-  for(const [k,lab,type] of S.v){const v=i[k];if(k==="datum"||k==="notitie"||k==="tekst"||k==="behandeling"||v==null||v===""||v===false)continue;
+  for(const [k,lab,type] of S.v){const v=i[k];if(k==="datum"||k==="notitie"||k==="tekst"||k==="behandeling"||k==="bevindingen"||k==="advies"||v==null||v===""||v===false)continue;
     if(type==="check")parts.push(esc(lab));
     else if(type==="sel")parts.push(`${esc(lab)}: <b>${esc(optLabel(i.soort,k,v))}</b>`);
     else if(type==="hengst"){const h=i.hengst_id&&byId(i.hengst_id);parts.push(`${esc(lab)}: ${h?`<button type="button" class="linkbtn" data-stalopen="${esc(h.id)}">${esc(h.naam)}</button>`:`<b>${esc(v)}</b>`}`)}
@@ -1498,14 +1499,16 @@ function itemSamenvatting(d,i){const S=SOORTEN[i.soort];const parts=[];
     else if(k==="dekgeld"||k==="bedrag")parts.push(`${esc(lab.replace(" (€)",""))}: <b>${esc(euroBedrag(v))}</b>`);
     else parts.push(`${esc(lab)}: <b>${esc(v)}</b>`)}
   return parts.join(" · ")}
-function itemKaart(d,i,mid){const tekst=i.notitie||i.tekst||i.behandeling||"";let extra="";
+function itemKaart(d,i,mid){const tekst=[i.bevindingen&&"Bevindingen: "+i.bevindingen,i.advies&&"Advies: "+i.advies,i.notitie||i.tekst||i.behandeling].filter(Boolean).join("\n");
+  const vs=Array.isArray(i.verslagen)?i.verslagen:[];let extra="";
   if(i.soort==="dekking"){const x=dekInfo(d,i);const [st,kl]=DEK_ST[x.st];extra=`<div class="chips" style="margin-top:4px"><span class="chip ${kl}">${esc(st)}</span>${x.st==="drachtig"||x.st==="wacht"||x.st==="twijfel"?`<span class="chip">Dag ${x.dag}</span><span class="chip">Verwacht ${esc(fmtKort(x.verw))}</span>`:""}</div>`}
   if(i.soort==="controle"&&i.dek){const k=d.items.find(x=>x.id===i.dek);if(k)extra=`<div class="small muted">Dag ${dagVerschil(k.datum,i.datum)} na de dekking</div>`}
   const sam=itemSamenvatting(d,i);
   return `<li class="dos-item g-${SOORTEN[i.soort].g}"><div class="dos-dat"><b>${esc(fmtKort(i.datum))}</b>${i.tijd?`<span class="small muted">${esc(i.tijd)}</span>`:""}</div>
     <div style="min-width:0"><div class="dos-soort">${esc(KORT[i.soort])}</div>${sam?`<div class="small">${sam}</div>`:""}${extra}${tekst?`<div class="small muted" style="white-space:pre-line;margin-top:2px">${esc(tekst)}</div>`:""}
+    ${vs.length?`<div class="dos-verslagen">${vs.map(v=>`<span class="dos-verslag"><button type="button" class="linkbtn" data-dosvopen="${esc(v.id)}" data-naam="${esc(v.naam)}">${v.type==="application/pdf"?"PDF":"Foto"}: ${esc(v.naam)}</button><button type="button" class="hc-del" data-dosvweg="${esc(i.id)}|${esc(v.id)}" aria-label="Verslag ${esc(v.naam)} weghalen" title="Weghalen">&times;</button></span>`).join("")}</div>`:""}
     <div class="dos-acties">${i.soort==="geboorte"?`<button type="button" class="linkbtn" data-dosveulen="${esc(i.id)}">Veulen als paard opslaan</button>`:""}<button type="button" class="linkbtn" data-dosedit="${esc(i.id)}">Aanpassen</button><button type="button" class="linkbtn danger" data-dosweg="${esc(i.id)}">Weghalen</button></div></div></li>`}
-function dosVeld(d,[k,lab,type,opt],val,isNew){const id="df-"+k;const v=val==null?"":val;
+function dosVeld(d,[k,lab,type,opt],val,isNew,pre){const id=(pre||"df-")+k;const v=val==null?"":val;
   if(type==="area")return `<div class="field dos-wide"><label class="label" for="${id}">${esc(lab)}</label><textarea id="${id}" name="${k}" rows="2" maxlength="1500">${esc(v)}</textarea></div>`;
   if(type==="check")return `<label class="dos-check"><input type="checkbox" name="${k}"${v?" checked":""}> ${esc(lab)}</label>`;
   if(type==="sel")return `<div class="field"><label class="label" for="${id}">${esc(lab)}</label><select id="${id}" name="${k}">${Object.entries(opt).map(([o,l])=>`<option value="${esc(o)}"${String(v)===o?" selected":""}>${esc(l)}</option>`).join("")}</select></div>`;
@@ -1517,7 +1520,8 @@ function dosVeld(d,[k,lab,type,opt],val,isNew){const id="df-"+k;const v=val==nul
   return `<div class="field dos-grow"><label class="label" for="${id}">${esc(lab)}</label><input id="${id}" name="${k}" maxlength="200" value="${esc(v)}"></div>`}
 function dosFormHtml(d){const f=state.dosForm;if(!f)return"";const S=SOORTEN[f.soort];const it=f.id?d.items.find(i=>i.id===f.id)||{}:{};
   return `<form id="dosItemForm" class="dos-form card"><h3 style="margin:0 0 10px">${f.id?"Aanpassen":"Nieuw"}: ${esc(S.l)}</h3><div class="dos-velden">${S.v.map(fd=>dosVeld(d,fd,it[fd[0]],!f.id)).join("")}</div>
-    ${f.soort==="vaccinatie"||f.soort==="dekking"||f.soort==="controle"?'<p class="small muted" style="margin:8px 0 0">Richtdagen en schema\'s zijn een hulpmiddel: je dierenarts beslist.</p>':""}
+    <div class="field dos-wide" style="margin-top:10px"><label class="label" for="dfFiles">${f.soort==="gyn"||f.soort==="dierenarts"||f.soort==="controle"?"Verslag van de dierenarts toevoegen":"Verslag of foto toevoegen"} (PDF of foto, max. ${state.site?"2,5":"0,7"} MB per bestand)</label><input type="file" id="dfFiles" accept="application/pdf,image/jpeg,image/png,image/webp" multiple>${it.verslagen&&it.verslagen.length?`<div class="small muted" style="margin-top:4px">Al toegevoegd: ${it.verslagen.map(v=>esc(v.naam)).join(", ")}</div>`:""}</div>
+    ${f.soort==="vaccinatie"||f.soort==="dekking"||f.soort==="controle"||f.soort==="gyn"?'<p class="small muted" style="margin:8px 0 0">Richtdagen en schema\'s zijn een hulpmiddel: je dierenarts beslist.</p>':""}
     <div class="row" style="gap:8px;margin-top:10px"><button class="btn" type="submit">Bewaren</button><button class="btn ghost" type="button" data-dosannul>Annuleren</button></div></form>`}
 const INFO_VELDEN=[["status","Status","sel",Object.assign({"":"-"},M_STATUS)],["verblijf","Verblijfplaats of stal","text"],["dierenarts","Dierenarts","text"],["hoefsmid","Hoefsmid","text"],["chip","Chipnummer","text"],["paspoort","Paspoortnummer","text"],["verzekering","Verzekering","text"],["notitie","Notities","area"]];
 function renderDossier(){const out=$("dosOut");if(!out)return;ensureStal();
@@ -1528,7 +1532,7 @@ function renderDossier(){const out=$("dosOut");if(!out)return;ensureStal();
   const herKaart=`<section class="card"><div class="stal-titel" style="margin:0 0 6px"><h3 style="margin:0">Komende herinneringen</h3>${alle.length?'<button type="button" class="btn ghost" data-dosics>Zet in je agenda (.ics)</button>':""}</div>
      ${alle.length?`<ul class="dos-her">${toon.map(h=>herRegel(h)).join("")}</ul>${alle.length>toon.length?`<button type="button" class="linkbtn" data-dosalle style="margin-top:6px">Toon alle ${alle.length}</button>`:""}`:'<p class="small muted" style="margin:0">Nog geen herinneringen. Registreer een dekking of een zorgmoment met een volgende datum: dan verschijnen ze hier.</p>'}
      <div class="status" id="dosSt" role="status"></div></section>`;
-  if(!M.length){out.innerHTML=herKaart+'<div class="card empty" style="margin-top:14px">Zet eerst een merrie in Mijn stal. Daarna volg je hier alles van haar op: cyclus, dekkingen, dracht, veulens, zorg en kosten.</div>';return}
+  if(!M.length){out.innerHTML=mailBanner()+herKaart+mailKaart()+'<div class="card empty" style="margin-top:14px">Zet eerst een merrie in Mijn stal. Daarna volg je hier alles van haar op: cyclus, dekkingen, dracht, veulens, zorg en kosten.</div>';return}
   const overzicht=`<section class="card" style="margin-top:14px"><h3 style="margin:0 0 8px">Je merries</h3><div class="dos-overzicht">${M.map(m=>{const s=merrieStatus(m.id);const vh=herinneringenVan(m.id,dosM(m.id)).filter(h=>dagenTot(h.datum)>=-7).sort(byDatum)[0];
       return `<button type="button" class="dos-mrow${m.id===mSel?" actief":""}" data-dossel="${esc(m.id)}" aria-pressed="${m.id===mSel}"><span class="dos-mnaam">${esc(m.naam)}</span><span class="chip ${s.kl}">${esc(s.t)}</span><span class="small muted dos-msub">${esc(s.sub||"")}</span><span class="small dos-mvolg">${vh?`${esc(fmtKort(vh.datum))}: ${esc(vh.t)}`:'<span class="muted">Geen herinneringen</span>'}</span></button>`}).join("")}</div></section>`;
   const m=byId(mSel);const d=dosM(mSel);const s=merrieStatus(mSel);const sb=(m&&m.stamboom)||{};const info=d.info||{};
@@ -1538,14 +1542,14 @@ function renderDossier(){const out=$("dosOut");if(!out)return;ensureStal();
     d.items.forEach(i=>{if(i.soort==="kosten"&&num(i.bedrag)!=null)add(i.datum,optLabel("kosten","categorie",i.categorie||"andere"),num(i.bedrag));if(i.soort==="dekking"&&num(i.dekgeld)!=null)add(i.datum,"Dekgeld",num(i.dekgeld))});
     const jr=Object.keys(per).sort().reverse();kost=jr.length?`<div class="dos-kost">${jr.map(y=>`<div class="card" style="background:var(--sunk)"><div class="label">${esc(y)}</div><div style="font-size:1.3rem;font-weight:700" class="num">${esc(euroBedrag(per[y].tot))}</div><ul class="plain small">${Object.entries(per[y].cat).map(([c,b])=>`<li>${esc(c)}: ${esc(euroBedrag(b))}</li>`).join("")}</ul></div>`).join("")}</div>`:""}
   const herM=herinneringenVan(mSel,d).filter(h=>dagenTot(h.datum)>=-30).sort(byDatum).slice(0,4);
-  out.innerHTML=herKaart+overzicht+`
+  out.innerHTML=mailBanner()+herKaart+mailKaart()+overzicht+`
    <section class="card dos-kop" style="margin-top:14px"><div class="stal-titel" style="margin:0"><div style="min-width:0"><div class="label">Merriedossier</div><h2 style="margin:2px 0 0;overflow-wrap:anywhere">${m?`<button type="button" class="linkbtn" data-stalopen="${esc(m.id)}">${esc(m.naam)}</button>`:esc(d.naam||"")}</h2>
       <div class="small muted">${[m&&m.geboortejaar,(sb.v||"?")+" x "+(sb.mv||"?"),m&&m.stamboek].filter(Boolean).map(esc).join(" · ")}</div></div>
       <div class="row" style="gap:8px"><button type="button" class="btn ghost" data-dospdf>PDF van het dossier</button></div></div>
      <div class="dos-status"><span class="chip ${s.kl}" style="font-size:.95rem">${esc(s.t)}</span>${s.sub?`<span class="small">${esc(s.sub)}</span>`:""}</div>
      ${herM.length?`<div class="label" style="margin-top:10px">Volgende stappen</div><ul class="dos-her">${herM.map(h=>herRegel(h,false)).join("")}</ul>`:""}
      <details class="dos-det" style="margin-top:10px"${state.dosInfoOpen?" open":""}><summary>Merriekaart: ${[info.status&&M_STATUS[info.status],info.verblijf,info.dierenarts&&"dierenarts "+info.dierenarts].filter(Boolean).map(esc).join(" · ")||"vul aan"}</summary>
-      <form id="dosInfoForm" class="dos-velden" style="margin-top:8px">${INFO_VELDEN.map(fd=>dosVeld(d,fd,info[fd[0]],false)).join("")}<div class="dos-wide"><button class="btn" type="submit">Merriekaart bewaren</button></div></form></details>
+      <form id="dosInfoForm" class="dos-velden" style="margin-top:8px">${INFO_VELDEN.map(fd=>dosVeld(d,fd,info[fd[0]],false,"mi-")).join("")}<div class="dos-wide"><button class="btn" type="submit">Merriekaart bewaren</button></div></form></details>
      <div class="status" id="dosPdfSt" role="status"></div></section>
    <section class="card" style="margin-top:14px"><h3 style="margin:0 0 8px">Nieuwe ingave</h3>
      ${NIEUW_KNOPPEN.map(([g,l])=>`<div class="dos-nieuw"><span class="label">${esc(g)}</span>${l.map(k=>`<button type="button" class="btn ghost${state.dosForm&&!state.dosForm.id&&state.dosForm.soort===k?" actief":""}" data-dosnieuw="${k}">+ ${esc(KORT[k])}</button>`).join("")}</div>`).join("")}
@@ -1563,11 +1567,17 @@ function veulenAlsPaard(mid,i){const d=dosM(mid);const m=byId(mid);const k=i.dek
   state.lastToev="beheer";resetForm();setTab("beheer");
   setTimeout(()=>{const set=(id,v)=>{const el=$(id);if(el&&v!=null&&v!=="")el.value=v};set("h-naam",i.naam||"");set("h-geslacht",i.veulen_geslacht==="merrie"?"merrie":"hengst");set("h-jaar",(i.datum||"").slice(0,4));
     PED_KEYS.forEach(p=>set("ped-"+p,sb[p]));const n=$("h-naam");if(n)n.focus()},60)}
-$("dosOut").addEventListener("submit",e=>{e.preventDefault();const f=e.target;const st=$("dosSt");const mid=state.dosM;if(!mid)return;const fd=new FormData(f);
+$("dosOut").addEventListener("submit",async e=>{e.preventDefault();const f=e.target;
+  if(f.id==="mailForm"){const v=parseInt($("mailVooraf").value,10);mailActie("instellen",{email:$("mailAdres").value.trim(),vooraf:v,dagzelf:$("mailDag").checked,actief:true});return}const st=$("dosSt");const mid=state.dosM;if(!mid)return;const fd=new FormData(f);
   if(f.id==="dosInfoForm"){const info={};INFO_VELDEN.forEach(([k])=>{const v=String(fd.get(k)||"").trim();if(v)info[k]=v});state.dosInfoOpen=false;dosSave(mid,d=>{d.info=info},st);return}
   if(f.id!=="dosItemForm"||!state.dosForm)return;const soort=state.dosForm.soort,S=SOORTEN[soort];const it={id:state.dosForm.id||("i"+Date.now().toString(36)+Math.random().toString(36).slice(2,5)),soort};
   for(const [k,,type] of S.v){if(type==="check"){if(fd.get(k))it[k]=true;continue}let v=String(fd.get(k)??"").trim();if(!v)continue;if(type==="num"){const n=parseFloat(v.replace(",","."));if(isNaN(n))continue;it[k]=n;continue}it[k]=v}
   if(!it.datum)return;if(soort==="dekking"){const h=state.horses.find(x=>x.geslacht==="hengst"&&norm(x.naam)===norm(it.hengst||""));if(h){it.hengst=h.naam;it.hengst_id=h.id}}
+  const oud=dosM(mid).items.find(x=>x.id===it.id);const vs=oud&&Array.isArray(oud.verslagen)?oud.verslagen.slice():[];
+  const files=[...(($("dfFiles")||{}).files||[])];const fst=f.querySelector(".dos-upst")||f.appendChild(Object.assign(document.createElement("div"),{className:"status dos-upst"}));
+  if(files.length){fst.className="status dos-upst";fst.textContent="Verslag wordt opgeladen...";const knop=f.querySelector("button[type=submit]");if(knop)knop.disabled=true;
+    try{for(const file of files)vs.push(await verslagOpladen(file,mid))}catch(err){fst.className="status err dos-upst";fst.textContent=(err&&err.message)||"Opladen lukte niet.";if(knop)knop.disabled=false;return}}
+  if(vs.length)it.verslagen=vs;
   state.dosForm=null;dosSave(mid,d=>{const i=d.items.findIndex(x=>x.id===it.id);if(i>=0)d.items[i]=it;else d.items.push(it)},st)});
 $("dosOut").addEventListener("click",async e=>{const t=e.target;let b;
   if((b=t.closest("[data-dossel]"))){state.dosM=b.dataset.dossel;state.dosForm=null;renderDossier();const k=document.querySelector(".dos-kop");if(k)k.scrollIntoView({behavior:"smooth",block:"start"});return}
@@ -1576,7 +1586,14 @@ $("dosOut").addEventListener("click",async e=>{const t=e.target;let b;
   if((b=t.closest("[data-dosnieuw]"))){state.dosForm={soort:b.dataset.dosnieuw};renderDossier();const f=$("dosItemForm");if(f){f.scrollIntoView({behavior:"smooth",block:"center"});const x=f.querySelector("input,select");if(x)x.focus({preventScroll:true})}return}
   if((b=t.closest("[data-dosedit]"))){const i=dosM(state.dosM).items.find(x=>x.id===b.dataset.dosedit);if(i){state.dosForm={soort:i.soort,id:i.id};renderDossier();const f=$("dosItemForm");if(f)f.scrollIntoView({behavior:"smooth",block:"center"})}return}
   if(t.closest("[data-dosannul]")){state.dosForm=null;renderDossier();return}
-  if((b=t.closest("[data-dosweg]"))){if(b.dataset.zeker!=="1"){b.dataset.zeker="1";b.textContent="Zeker weghalen?";return}const id=b.dataset.dosweg;dosSave(state.dosM,d=>{d.items=d.items.filter(x=>x.id!==id).map(x=>x.dek===id?Object.assign({},x,{dek:""}):x)},$("dosSt"));return}
+  if((b=t.closest("[data-dosweg]"))){if(b.dataset.zeker!=="1"){b.dataset.zeker="1";b.textContent="Zeker weghalen?";return}const id=b.dataset.dosweg;const weg=dosM(state.dosM).items.find(x=>x.id===id);(weg&&weg.verslagen||[]).forEach(v=>verslagWeg(v.id));dosSave(state.dosM,d=>{d.items=d.items.filter(x=>x.id!==id).map(x=>x.dek===id?Object.assign({},x,{dek:""}):x)},$("dosSt"));return}
+  if((b=t.closest("[data-dosvopen]"))){const st=$("dosSt");try{st.className="status";st.textContent="Verslag wordt geopend...";const v=await verslagOphalen(b.dataset.dosvopen);
+      if(!dlNs){dlNs=await window.claude.use("downloads")}if(!dlNs)throw new Error("Downloaden is in deze weergave niet beschikbaar.");
+      const blob=await (await fetch(v.data)).blob();await dlNs.save({filename:v.naam||b.dataset.naam||"verslag",data:blob});st.className="status ok";st.textContent="Klaar."}
+    catch(err){st.className="status err";st.textContent=err&&err.code==="declined"?"Download geannuleerd.":(err&&err.message)||"Het verslag kon niet geopend worden."}return}
+  if((b=t.closest("[data-dosvweg]"))){if(b.dataset.zeker!=="1"){b.dataset.zeker="1";b.textContent="?";b.title="Klik nog eens om te bevestigen";return}const [iid,vid]=b.dataset.dosvweg.split("|");verslagWeg(vid);
+    dosSave(state.dosM,d=>{const i=d.items.find(x=>x.id===iid);if(i){i.verslagen=(i.verslagen||[]).filter(v=>v.id!==vid);if(!i.verslagen.length)delete i.verslagen}},$("dosSt"));return}
+  if((b=t.closest("[data-mailactie]"))){mailActie(b.dataset.mailactie);return}
   if((b=t.closest("[data-dosveulen]"))){const i=dosM(state.dosM).items.find(x=>x.id===b.dataset.dosveulen);if(i)veulenAlsPaard(state.dosM,i);return}
   if(t.closest("summary")&&t.closest(".dos-kop")){state.dosInfoOpen=!t.closest("details").open;return}
   if(t.closest("[data-dospdf]")){const st=$("dosPdfSt");try{if(!dlNs){dlNs=await window.claude.use("downloads")}
@@ -1619,13 +1636,69 @@ async function dossierPdf(mid){const m=byId(mid),d=dosM(mid),info=d.info||{},naa
   const ks=dekkingenVan(d).reverse();
   if(ks.length){heading("Dekkingen en dracht");table([{w:90,label:"Datum"},{w:150,label:"Hengst"},{w:110,label:"Methode"},{w:CW-350,label:"Resultaat"}],ks.map(k=>{const x=dekInfo(d,k);return [T(fmtKort(k.datum)),k.hengst||"",T(METHODES[k.methode]||""),T(DEK_ST[x.st][0])+(x.st==="drachtig"||x.st==="wacht"?"\n"+T("Verwacht")+" "+T(fmtKort(x.verw)):x.geb?"\n"+T(fmtKort(x.geb.datum))+(x.geb.naam?": "+x.geb.naam:""):"")]}))}
   const all=d.items.slice().sort(byDatum).reverse();
-  if(all.length){heading("Tijdlijn");table([{w:90,label:"Datum"},{w:130,label:"Soort"},{w:CW-220,label:"Details"}],all.map(i=>[T(fmtKort(i.datum))+(i.tijd?"\n"+i.tijd:""),T(KORT[i.soort]),[plat(itemSamenvatting(d,i)),i.notitie||i.tekst||i.behandeling||""].filter(Boolean).map(x=>T(x)).join("\n")]))}
+  if(all.length){heading("Tijdlijn");table([{w:90,label:"Datum"},{w:130,label:"Soort"},{w:CW-220,label:"Details"}],all.map(i=>[T(fmtKort(i.datum))+(i.tijd?"\n"+i.tijd:""),T(KORT[i.soort]),[plat(itemSamenvatting(d,i)),i.bevindingen&&T("Bevindingen")+": "+i.bevindingen,i.advies&&T("Advies")+": "+i.advies,i.notitie||i.tekst||i.behandeling||"",(i.verslagen||[]).length?T("Verslagen")+": "+i.verslagen.map(v=>v.naam).join(", "):""].filter(Boolean).map(x=>T(x)).join("\n")]))}
   const per={};d.items.forEach(i=>{const b=i.soort==="kosten"?num(i.bedrag):i.soort==="dekking"?num(i.dekgeld):null;if(b==null)return;const yr=(i.datum||"").slice(0,4);per[yr]=(per[yr]||0)+b});
   if(Object.keys(per).length){heading("Kosten per jaar");table([{w:150,label:"Jaar"},{w:CW-150,label:"Totaal"}],Object.keys(per).sort().reverse().map(yr=>[yr,euroBedrag(per[yr])]))}
   y+=6;para("Richtdagen en herinneringen zijn een hulpmiddel en vervangen het advies van je dierenarts niet.",{size:10,color:MUTED});
   const N=pages.length;pages.forEach((pg,i)=>{c=pg.c;c.fillStyle=GOLD;c.fillRect(M,H-48,CW,.8);font(600,8.5,DISP);c.fillStyle=GREEN;c.letterSpacing="1.4px";
     c.fillText("DE FOKWIJZER  ·  "+T("Een wikigids voor en door paardenfokkers").toUpperCase(),M,H-32);c.letterSpacing="0px";font(400,9.5);c.fillStyle=MUTED;c.textAlign="right";c.fillText(T(`Pagina ${i+1} van ${N}`),W-M,H-32);c.textAlign="left"});
   return pdfFromPages(pages)}
+
+// ---------- Verslagen van de dierenarts bij een ingave ----------
+// Website: op de server (enkel voor jezelf en beheerders). In de app-versie: in je eigen privé-opslag.
+const VERSLAG_MAX=()=>state.site?2.5*1024*1024:0.7*1024*1024;
+const leesDataUrl=(blob)=>new Promise((ok,nok)=>{const r=new FileReader();r.onload=()=>ok(r.result);r.onerror=()=>nok(new Error("Het bestand kon niet gelezen worden."));r.readAsDataURL(blob)});
+async function verslagOpladen(file,mid){let type=file.type,naam=String(file.name||"verslag").slice(0,120),blob=file;
+  if(!["application/pdf","image/jpeg","image/png","image/webp"].includes(type))throw new Error(`${naam}: enkel PDF of een foto (JPG, PNG, WebP).`);
+  if(type!=="application/pdf"){try{const bm=await createImageBitmap(file);const sc=Math.min(1,2000/Math.max(bm.width,bm.height));const cv=document.createElement("canvas");cv.width=Math.round(bm.width*sc);cv.height=Math.round(bm.height*sc);cv.getContext("2d").drawImage(bm,0,0,cv.width,cv.height);
+      const b2=await new Promise(r=>cv.toBlob(r,"image/jpeg",.85));if(b2&&b2.size<file.size){blob=b2;type="image/jpeg";naam=naam.replace(/\.(png|webp|jpe?g)$/i,"")+".jpg"}}catch(_){}}
+  if(blob.size>VERSLAG_MAX())throw new Error(`${naam} is te groot (maximaal ${state.site?"2,5":"0,7"} MB).`);
+  const data=await leesDataUrl(blob);
+  if(state.site&&window.fokwijzerVerslag){const r=await window.fokwijzerVerslag.upload({type,data,naam,merrie_id:mid});return {id:r.id,naam:r.naam,type:r.type,grootte:r.grootte}}
+  const id="v"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  await db.collection("data/users/"+state.meId).doc("verslag-"+id).set({naam,type,grootte:blob.size,data,merrie_id:mid,opgeladen_op:new Date().toISOString()});
+  return {id,naam,type,grootte:blob.size}}
+async function verslagOphalen(id){if(state.site&&window.fokwijzerVerslag)return window.fokwijzerVerslag.get(id);
+  const d=await db.collection("data/users/"+state.meId).doc("verslag-"+id).get();if(!d||!d.exists)throw new Error("Verslag niet gevonden.");return d.data()}
+function verslagWeg(id){try{const p=state.site&&window.fokwijzerVerslag?window.fokwijzerVerslag.weg(id):db.collection("data/users/"+state.meId).doc("verslag-"+id).delete();if(p&&p.catch)p.catch(()=>{})}catch(_){}}
+
+// ---------- Planning voor de herinneringen per mail (de server leest ze uit Mijn stal) ----------
+function planningUit(nw){const out=[];const D=nw.dossier||{};const v=vandaagIso(),max=dPlus(v,400),min=dPlus(v,-3);
+  for(const mid of Object.keys(D)){for(const h of herinneringenVan(mid,dosOf(D,mid)))if(h.datum>=min&&h.datum<=max)out.push({k:String(h.kid)+"-"+h.soort,datum:h.datum,t:h.t,merrie:h.merrie,extra:h.extra||""})}
+  return out.sort(byDatum).slice(0,300)}
+
+// ---------- Herinneringen per mail (enkel op de website) ----------
+const VOORAF={0:"op de dag zelf",1:"1 dag vooraf",3:"3 dagen vooraf",7:"1 week vooraf"};
+const mailKan=()=>!!(state.site&&window.fokwijzerMail);
+function mailLaad(){if(!mailKan()||state.mailLaden)return;state.mailLaden=true;
+  window.fokwijzerMail.status().then(s=>{state.mail=s}).catch(err=>{state.mail={fout:(err&&err.message)||"Kon de instellingen niet laden."}}).finally(()=>{state.mailLaden=false;if(state.tab==="dossier")renderDossier()})}
+const tijdKort=(iso)=>{const d=new Date(iso);return isNaN(d)?"":d.toLocaleString("nl-BE",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})};
+function mailBanner(){const s=state.mail;if(!mailKan()||!s||!s.mails)return"";const m=s.mails.find(x=>x.soort!=="bevestiging"&&!x.ontvangen_op&&Date.now()-Date.parse(x.verzonden_op)>12*36e5);if(!m)return"";
+  return `<div class="card dos-banner"><b>Kwam de mail van ${esc(tijdKort(m.verzonden_op))} goed aan?</b> Open de mail en klik op "Ik heb deze mail goed ontvangen". Niets gekregen? Kijk in je spam of controleer je e-mailadres hieronder.</div>`}
+function mailKaart(){const kop='<h3 style="margin:0 0 6px">Herinneringen per mail</h3>';
+  if(!mailKan())return `<section class="card" style="margin-top:14px">${kop}<p class="small muted" style="margin:0">Herinneringen per mail werken op de website van De Fokwijzer. Hier kun je ze als agendabestand downloaden.</p></section>`;
+  const s=state.mail;if(!s){mailLaad();return `<section class="card" style="margin-top:14px">${kop}<p class="small muted" style="margin:0">Wordt geladen...</p></section>`}
+  if(s.fout)return `<section class="card" style="margin-top:14px">${kop}<div class="status err">${esc(s.fout)}</div></section>`;
+  const i=s.instelling||{};let st="";
+  if(!s.ingesteld)st='<div class="status err">Mails versturen is nog niet ingesteld op de server. Een beheerder moet dat eerst doen.</div>';
+  else if(i.email&&!i.bevestigd)st=`<div class="status warn"><b>Bevestig je e-mailadres.</b> We stuurden een mail naar ${esc(i.email)}. Klik daarin op "Ik heb deze mail goed ontvangen". Pas daarna sturen we herinneringen. Niets gekregen? Kijk in je spam.</div><div class="row" style="gap:8px;margin-top:6px"><button type="button" class="btn ghost" data-mailactie="opnieuw">Bevestigingsmail opnieuw sturen</button></div>`;
+  else if(i.bevestigd&&i.actief)st=`<div class="status ok">Herinneringen gaan naar <b>${esc(i.email)}</b>, ${esc(VOORAF[i.vooraf]||"")}${i.dagzelf&&i.vooraf?" en op de dag zelf":""}. Je krijgt hoogstens één mail per dag, vanaf 7 uur.</div><div class="row" style="gap:8px;margin-top:6px"><button type="button" class="btn ghost" data-mailactie="test">Stuur nu een testmail</button><button type="button" class="btn ghost danger" data-mailactie="stop">Mails uitzetten</button></div>`;
+  else if(i.bevestigd&&!i.actief)st='<div class="status">Mails staan uit. Bewaar hieronder opnieuw om ze aan te zetten.</div>';
+  const open=!i.email||state.mailOpen;
+  const lijst=(s.mails||[]).slice(0,6);
+  return `<section class="card" style="margin-top:14px">${kop}<p class="small muted" style="margin:0 0 8px">Krijg je herinneringen ook per mail. In elke mail bevestig je met één klik dat ze goed aankwam, zodat je zeker weet dat niets verloren gaat.</p>${st}
+    <details class="dos-det" style="margin-top:8px"${open?" open":""}><summary>${i.email?"E-mailadres en timing aanpassen":"E-mailadres instellen"}</summary>
+     <form id="mailForm" class="dos-velden" style="margin-top:8px"><div class="field dos-grow"><label class="label" for="mailAdres">E-mailadres</label><input type="email" id="mailAdres" required maxlength="160" value="${esc(i.email||"")}" autocomplete="email"></div>
+      <div class="field"><label class="label" for="mailVooraf">Wanneer</label><select id="mailVooraf">${Object.entries(VOORAF).map(([k,l])=>`<option value="${k}"${String(i.vooraf==null?1:i.vooraf)===k?" selected":""}>${esc(l.charAt(0).toUpperCase()+l.slice(1))}</option>`).join("")}</select></div>
+      <label class="dos-check"><input type="checkbox" id="mailDag"${i.dagzelf||!i.email?" checked":""}> Ook op de dag zelf</label>
+      <div class="dos-wide"><button class="btn" type="submit">${i.email?"Bewaren":"Bewaren en bevestigingsmail sturen"}</button></div></form></details>
+    ${lijst.length?`<div class="label" style="margin-top:12px">Verzonden mails</div><ul class="plain small dos-maillog">${lijst.map(m=>`<li><span>${esc(tijdKort(m.verzonden_op))}</span><span>${esc(m.soort==="bevestiging"?"Bevestiging van je adres":m.soort==="test"?"Testmail":m.aantal===1?"1 herinnering":m.aantal+" herinneringen")}</span><span class="chip ${m.ontvangen_op?"good":"warn"}">${m.ontvangen_op?"Ontvangen bevestigd":"Wacht op je bevestiging"}</span></li>`).join("")}</ul>`:""}
+    <div class="status" id="mailSt" role="status"></div></section>`}
+async function mailActie(a,body){const st=$("mailSt");if(st){st.className="status";st.textContent="Bezig..."}
+  try{const r=a==="instellen"?await window.fokwijzerMail.instellen(body):a==="opnieuw"?await window.fokwijzerMail.opnieuw():a==="test"?await window.fokwijzerMail.test():await window.fokwijzerMail.stop();
+    state.mail=r.status||state.mail;state.mailOpen=false;renderDossier();const s2=$("mailSt");if(s2){s2.className="status ok";s2.textContent=a==="test"?"Testmail verstuurd. Bevestig in de mail dat ze goed aankwam.":a==="opnieuw"?"Bevestigingsmail opnieuw verstuurd.":a==="stop"?"Mails staan uit.":"Bewaard."}
+    if(a==="instellen"&&stalAan())stalSave(()=>{})}
+  catch(err){state.mail=null;mailLaad();setTimeout(()=>{const s2=$("mailSt");if(s2){s2.className="status err";s2.textContent=(err&&err.message)||"Dat lukte niet."}},400)}}
 
 // ---------- Fokkersprofiel: een openbare pagina met je paarden en contactgegevens ----------
 const F_COLL="fokkers";state.fokkers={};

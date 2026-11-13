@@ -9,6 +9,8 @@ const path = require("path");
 process.env.DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), "fw-test-"));
 process.env.COOKIE_SECURE = "false";
 process.env.SERVICE_TOKEN = "t".repeat(40);
+process.env.MAIL_PROVIDER = "test";
+process.env.PUBLIC_URL = "";
 const app = require("../server/index");
 const auth = require("../server/auth");
 
@@ -451,4 +453,68 @@ test("fokkersprofiel: openbaar leesbaar, enkel de eigenaar schrijft", async () =
   const cb = await login("beheer@test.be", "Sterk-wachtwoord-123");
   assert.equal((await put("/api/c/fokkers/" + eigen, { stalnaam: "Anders" }, cb)).status, 403, "beheerder past niet aan");
   assert.equal((await fetch(base + "/api/c/fokkers/" + eigen, { method: "DELETE", headers: Object.assign({ cookie: cb }, H) })).status, 200, "beheerder mag weghalen");
+});
+
+test("verslagen: enkel de eigenaar en beheerders", async () => {
+  const cp = await login("bij@test.be", "Sterk-wachtwoord-456");
+  const post = (body, c) => fetch(base + "/api/verslagen", { method: "POST", headers: Object.assign({}, H, { cookie: c }), body: JSON.stringify(body) });
+  const pdf = "data:application/pdf;base64," + Buffer.from("%PDF-1.4 test").toString("base64");
+  assert.equal((await post({ type: "text/html", data: "data:text/html;base64,PGI+" }, cp)).status, 400, "geen html");
+  const r = await post({ type: "application/pdf", data: pdf, naam: "echo.pdf", merrie_id: "m1" }, cp);
+  assert.equal(r.status, 200);
+  const { id } = await r.json();
+  const terug = await (await fetch(base + "/api/verslagen/" + id, { headers: { cookie: cp } })).json();
+  assert.equal(terug.data.data, pdf);
+  const cl = await login("lees@test.be", "Sterk-wachtwoord-789");
+  assert.equal((await fetch(base + "/api/verslagen/" + id, { headers: { cookie: cl } })).status, 403, "bijdrager");
+  const cb = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  assert.equal((await fetch(base + "/api/verslagen/" + id, { headers: { cookie: cb } })).status, 200, "beheerder kan openen");
+  assert.equal((await fetch(base + "/api/c/verslagen/" + id)).status, 401, "niet via de algemene API");
+  assert.equal((await fetch(base + "/api/verslagen/" + id, { method: "DELETE", headers: Object.assign({}, H, { cookie: cp }) })).status, 200);
+  assert.equal((await fetch(base + "/api/verslagen/" + id, { headers: { cookie: cp } })).status, 404);
+});
+
+test("herinneringen per mail: bevestigen, versturen en ontvangst bevestigen", async () => {
+  const mail = require("../server/mail");
+  const her = require("../server/herinneringen");
+  const cp = await login("bij@test.be", "Sterk-wachtwoord-456");
+  const me = await (await fetch(base + "/api/me", { headers: { cookie: cp } })).json();
+  const uid = String(me.gebruiker.id);
+  const post = (url, body) => fetch(base + url, { method: "POST", headers: Object.assign({}, H, { cookie: cp }), body: JSON.stringify(body || {}) });
+  assert.equal((await post("/api/mail/instellen", { email: "geen-adres" })).status, 400);
+  const n0 = mail.verzonden.length;
+  const r = await post("/api/mail/instellen", { email: "Fokker@Voorbeeld.be", vooraf: 1, dagzelf: true });
+  assert.equal(r.status, 200);
+  assert.equal((await r.json()).status.instelling.bevestigd, false);
+  assert.equal(mail.verzonden.length, n0 + 1, "bevestigingsmail");
+  const link = /\/mail\/ontvangen\/([a-f0-9]{48})/.exec(mail.verzonden[mail.verzonden.length - 1].text)[1];
+  assert.equal((await post("/api/mail/test")).status, 400, "eerst bevestigen");
+  const pagina = await fetch(base + "/mail/ontvangen/" + link);
+  assert.match(await pagina.text(), /Ja, ik heb deze mail goed ontvangen/);
+  let st = await (await fetch(base + "/api/mail/status", { headers: { cookie: cp } })).json();
+  assert.equal(st.instelling.bevestigd, false, "openen alleen bevestigt niets");
+  assert.equal((await fetch(base + "/mail/ontvangen/" + link, { method: "POST" })).status, 200);
+  st = await (await fetch(base + "/api/mail/status", { headers: { cookie: cp } })).json();
+  assert.equal(st.instelling.bevestigd, true);
+  // planning in de stal en een ronde
+  const vandaag = her.belgisch().dag;
+  const morgen = new Date(Date.parse(vandaag + "T12:00:00Z") + 864e5).toISOString().slice(0, 10);
+  await put("/api/c/mijnstal/" + uid, { hengsten: [], merries: [], veulens: [], planning: [{ k: "d1-echo1", datum: morgen, t: "Eerste drachtcontrole (echo)", merrie: "Delta" }, { k: "d1-veulen", datum: "2099-01-01", t: "Verwachte veulendatum", merrie: "Delta" }] }, cp);
+  const n1 = mail.verzonden.length;
+  const ronde = await her.ronde({ altijd: true });
+  assert.equal(ronde.verstuurd >= 1, true);
+  const laatste = mail.verzonden[mail.verzonden.length - 1];
+  assert.equal(mail.verzonden.length, n1 + ronde.verstuurd);
+  assert.match(laatste.text, /Eerste drachtcontrole/);
+  assert.doesNotMatch(laatste.text, /Verwachte veulendatum/, "enkel wat eraan komt");
+  assert.equal((await her.ronde({ altijd: true })).verstuurd, 0, "niet twee keer hetzelfde");
+  st = await (await fetch(base + "/api/mail/status", { headers: { cookie: cp } })).json();
+  const hm = st.mails.find((m) => m.soort === "herinnering");
+  assert.equal(hm.ontvangen_op, null);
+  const link2 = /\/mail\/ontvangen\/([a-f0-9]{48})/.exec(laatste.text)[1];
+  await fetch(base + "/mail/ontvangen/" + link2, { method: "POST" });
+  st = await (await fetch(base + "/api/mail/status", { headers: { cookie: cp } })).json();
+  assert.notEqual(st.mails.find((m) => m.soort === "herinnering").ontvangen_op, null, "ontvangst bevestigd");
+  assert.equal((await fetch(base + "/mail/ontvangen/" + "0".repeat(48))).status, 404);
+  assert.equal((await fetch(base + "/api/c/maillog")).status, 401, "log niet via de algemene API");
 });
