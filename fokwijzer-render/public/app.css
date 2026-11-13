@@ -419,6 +419,8 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .hc-score{font-size:1.25rem;font-weight:700}
 .hc-vv{padding:5px 10px;font-size:.85rem}
 .count-badge[hidden]{display:none!important}
+.nakom-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.stal-wijzer{margin-top:14px;font-size:.92rem;background:var(--sunk)}
 .stal-titel{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;margin:0 0 12px}
 .stal-naam-h{font-size:1.5rem;margin-top:2px;overflow-wrap:anywhere}
 .stal-naam-h .muted{font-weight:400;font-size:1.1rem}
