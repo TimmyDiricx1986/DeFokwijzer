@@ -18,7 +18,7 @@ const COLLS = table({
   systeem: { read: 0, create: 3, update: 3, delete: 3, max: 100e3 },
   // Werkplek van een Fokwijzer-profiel (bewaarde hengsten, merries en virtuele veulens): enkel het eigen
   // document, met als id het gebruikers-id (zie index.js). Een beheerder kan elke werkplek openen.
-  mijnstal: { read: 2, create: 2, update: 2, delete: 2, max: 300e3 },
+  mijnstal: { read: 2, create: 2, update: 2, delete: 2, max: 900e3 },
   // Aanvragen voor de expertenraad: aanmaken enkel via /api/council/aanvraag. Een geplande taak verwerkt
   // ze één keer per uur en zet het advies in "council".
   // Openbaar fokkersprofiel van een Fokwijzer-profiel: iedereen leest, enkel de eigenaar schrijft
