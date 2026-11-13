@@ -1407,78 +1407,225 @@ function renderNakom(){const out=$("nakomOut");if(!out)return;ensureStal();
     :`<div class="nakom-grid">${perOuder.map(({p,k})=>{const toon=open.has(p.id)?k:k.slice(0,8);
       return `<section class="card nakom-kaart"><div class="stal-titel" style="margin:0 0 4px"><div style="min-width:0"><div class="label">${p.geslacht==="merrie"?"Merrie":"Hengst"}</div><h3 style="margin:2px 0 0;overflow-wrap:anywhere">${esc(p.naam)}</h3></div><span class="muted small">${k.length} ${k.length===1?"nakomeling":"nakomelingen"}</span></div>
         ${k.length?`<ul class="stal-list">${toon.map(h=>kindRegel(h,p)).join("")}</ul>${k.length>toon.length?`<button type="button" class="linkbtn" data-nakommeer="${esc(p.id)}" style="margin-top:6px">Toon alle ${k.length}</button>`:""}`:'<p class="small muted" style="margin:6px 0 0">Nog geen nakomelingen in De Fokwijzer.</p>'}</section>`}).join("")}</div>`}`}
-// ---------- Merriedossier: dekkingen, drachtcontroles, verwachte veulendatum en herinneringen ----------
+// ---------- Merriedossier: volledige opvolging van elke merrie ----------
+// Opslag in Mijn stal: dossier[merrie-id] = {naam, info:{...}, items:[{id, soort, datum, ...}]}.
 const DRACHT_DAGEN=340;
 const isoDag=(d)=>{const x=new Date(d);return isNaN(x)?"":new Date(x.getTime()-x.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
 const vandaagIso=()=>isoDag(new Date());
 const dPlus=(iso,n)=>{const d=new Date(iso+"T12:00:00");d.setDate(d.getDate()+n);return isoDag(d)};
 const dagVerschil=(a,b)=>Math.round((new Date(b+"T12:00:00")-new Date(a+"T12:00:00"))/864e5);
-const fmtDag=(iso)=>{const d=new Date(iso+"T12:00:00");return isNaN(d)?String(iso||""):d.toLocaleDateString("nl-BE",{day:"numeric",month:"long",year:"numeric"})};
-const METHODES={vers:"Vers sperma",diepvries:"Diepvriessperma",natuurlijk:"Natuurlijke dekking",embryo:"Embryotransfer",onbekend:"Onbekend"};
-const UITSLAG={drachtig:"Drachtig",leeg:"Niet drachtig",twijfel:"Twijfel"};
-function dekStatus(k){if(k.veulen&&k.veulen.datum)return["Veulen geboren","good"];const c=(k.controles||[]).slice().sort((a,b)=>a.datum<b.datum?-1:1),l=c[c.length-1];
-  if(l&&l.uitslag==="leeg")return["Niet drachtig","bad"];if(l&&l.uitslag==="drachtig")return["Drachtig","good"];if(l&&l.uitslag==="twijfel")return["Twijfel","warn"];return["Wacht op drachtcontrole","warn"]}
-function herinneringen(){const out=[];const D=state.stal.dossier||{};
-  for(const [mid,lijst] of Object.entries(D)){const m=byId(mid);
-    for(const k of (Array.isArray(lijst)?lijst:[])){if(!k||!k.datum)continue;const st=dekStatus(k)[0];if(st==="Niet drachtig"||st==="Veulen geboren")continue;
-      const mn=m?m.naam:(k.merrie_naam||"Merrie");const c=k.controles||[];const gedaan=(n)=>c.some(x=>x.datum&&dagVerschil(k.datum,x.datum)>=n-3);
-      const add=(n,t,soort)=>out.push({datum:dPlus(k.datum,n),t,soort,merrie:mn,mid,kid:k.id,hengst:k.hengst||""});
-      if(!gedaan(15))add(15,"Eerste drachtcontrole (echo)","echo1");
-      if(!gedaan(28))add(28,"Tweede echo: hartslag van de vrucht","echo2");
-      if(!gedaan(45))add(45,"Bevestiging van de dracht (echo)","echo3");
-      add(310,"Veulenbewaking voorbereiden","voorbereiden");add(DRACHT_DAGEN,"Verwachte veulendatum","veulen")}}
-  return out.sort((a,b)=>a.datum<b.datum?-1:a.datum>b.datum?1:0)}
-function herRegel(h){const n=dagenTot(h.datum);const wanneer=n<0?`${-n} ${-n===1?"dag":"dagen"} geleden`:n===0?"vandaag":n===1?"morgen":`over ${n} dagen`;
-  return `<li class="dos-her-item${n<0?" laat":""}"><div class="dos-dat"><b>${esc(fmtDag(h.datum))}</b><span class="small muted">${esc(wanneer)}</span></div><div><b>${esc(h.merrie)}</b>: ${esc(h.t)}${h.hengst?`<div class="small muted">Dekking met ${esc(h.hengst)}</div>`:""}</div></li>`}
 const dagenTot=(iso)=>dagVerschil(vandaagIso(),iso);
-function dekKaart(mid,k){const [st,kl]=dekStatus(k);const verw=dPlus(k.datum,DRACHT_DAGEN);const n=dagenTot(verw);const c=(k.controles||[]).slice().sort((a,b)=>a.datum<b.datum?-1:1);const h=k.hengst_id&&byId(k.hengst_id);
-  return `<section class="card dos-kaart"><div class="stal-titel" style="margin:0 0 4px"><div style="min-width:0"><div class="label">Gedekt op ${esc(fmtDag(k.datum))}</div><h3 style="margin:2px 0 0;overflow-wrap:anywhere">${h?`<button type="button" class="linkbtn" data-stalopen="${esc(h.id)}">${esc(h.naam)}</button>`:esc(k.hengst||"Onbekende hengst")}</h3></div><span class="chip ${kl}">${esc(st)}</span></div>
-    <p class="small" style="margin:4px 0">${esc(METHODES[k.methode]||METHODES.onbekend)}${st==="Veulen geboren"?` · Veulen geboren op ${esc(fmtDag(k.veulen.datum))}${k.veulen.naam?": "+esc(k.veulen.naam):""}`:st==="Niet drachtig"?"":` · Verwachte veulendatum <b>${esc(fmtDag(verw))}</b> <span class="muted">(${n>=0?"over "+n+" dagen":-n+" dagen geleden"})</span>`}</p>
-    ${k.notitie?`<p class="small muted" style="margin:4px 0;white-space:pre-line">${esc(k.notitie)}</p>`:""}
-    ${c.length?`<div class="label" style="margin-top:8px">Drachtcontroles</div><ul class="plain small">${c.map(x=>`<li>${esc(fmtDag(x.datum))} (dag ${dagVerschil(k.datum,x.datum)}): <b>${esc(UITSLAG[x.uitslag]||x.uitslag)}</b>${x.notitie?" · "+esc(x.notitie):""}</li>`).join("")}</ul>`:""}
-    <details class="dos-det"><summary>Drachtcontrole toevoegen</summary><form class="dos-ctrl row" data-kid="${esc(k.id)}"><div class="field"><label class="label" for="dc-d-${esc(k.id)}">Datum</label><input type="date" id="dc-d-${esc(k.id)}" name="datum" value="${vandaagIso()}" required></div><div class="field"><label class="label" for="dc-u-${esc(k.id)}">Uitslag</label><select id="dc-u-${esc(k.id)}" name="uitslag"><option value="drachtig">Drachtig</option><option value="leeg">Niet drachtig</option><option value="twijfel">Twijfel</option></select></div><div class="field grow"><label class="label" for="dc-n-${esc(k.id)}">Notitie</label><input id="dc-n-${esc(k.id)}" name="notitie" maxlength="200"></div><button class="btn" type="submit">Bewaren</button></form></details>
-    ${st==="Veulen geboren"?"":`<details class="dos-det"><summary>Veulen geboren</summary><form class="dos-veulen row" data-kid="${esc(k.id)}"><div class="field"><label class="label" for="dv-d-${esc(k.id)}">Geboortedatum</label><input type="date" id="dv-d-${esc(k.id)}" name="datum" value="${vandaagIso()}" required></div><div class="field grow"><label class="label" for="dv-n-${esc(k.id)}">Naam (optioneel)</label><input id="dv-n-${esc(k.id)}" name="naam" maxlength="80"></div><button class="btn" type="submit">Bewaren</button></form></details>`}
-    <div class="row" style="margin-top:8px;gap:8px">${st==="Veulen geboren"?'<button type="button" class="btn ghost" data-nakomnieuw>Als eigen veulen toevoegen</button>':""}<button type="button" class="btn ghost danger" data-dosweg="${esc(mid)}|${esc(k.id)}">Dekking weghalen</button></div></section>`}
+const fmtDag=(iso)=>{const d=new Date(iso+"T12:00:00");return isNaN(d)?String(iso||""):d.toLocaleDateString("nl-BE",{day:"numeric",month:"long",year:"numeric"})};
+const fmtKort=(iso)=>{const d=new Date(iso+"T12:00:00");return isNaN(d)?String(iso||""):d.toLocaleDateString("nl-BE",{day:"numeric",month:"short",year:"numeric"})};
+const euroBedrag=(n)=>"€ "+Number(n||0).toLocaleString("nl-BE",{minimumFractionDigits:0,maximumFractionDigits:2});
+const METHODES={vers:"Vers sperma",diepvries:"Diepvriessperma",natuurlijk:"Natuurlijke dekking",embryo:"Embryotransfer",onbekend:"Onbekend"};
+const UITSLAG={drachtig:"Drachtig",leeg:"Niet drachtig",twijfel:"Twijfel",tweeling:"Tweeling"};
+const M_STATUS={fokmerrie:"Fokmerrie",sportmerrie:"Sportmerrie",draagmerrie:"Draagmerrie",rust:"Rust",gestopt:"Gestopt met fokken"};
+// Soorten ingaven. Veld: [sleutel, label, type, opties]. Types: date, time, text, area, num, sel, check, hengst, dek.
+// Bij een "volgende"-datum is de optie het voorgestelde aantal dagen.
+const SOORTEN={
+ hengstig:{g:"voort",l:"Hengstigheid en cycluscontrole",v:[["datum","Datum","date"],["follikel","Grootste follikel (mm)","num"],["zijde","Eierstok","sel",{"":"-",links:"Links",rechts:"Rechts"}],["oedeem","Baarmoederoedeem","sel",{"":"-","0":"0 (geen)","1":"1","2":"2","3":"3 (veel)"}],["baarmoeder","Baarmoeder","sel",{"":"-",normaal:"Normaal",vocht:"Vocht",ontsteking:"Ontsteking"}],["inductie","Ovulatie-inductie gegeven","check"],["ovulatie","Ovulatie vastgesteld","check"],["notitie","Notitie","area"]]},
+ dekking:{g:"voort",l:"Dekking of inseminatie",v:[["datum","Datum","date"],["tijd","Uur","time"],["hengst","Hengst","hengst"],["methode","Methode","sel",METHODES],["rietjes","Aantal rietjes of dosissen","num"],["station","Station of dierenarts","text"],["dekgeld","Dekgeld (€)","num"],["notitie","Notitie","area"]]},
+ spoeling:{g:"voort",l:"Embryospoeling",v:[["datum","Datum","date"],["dek","Bij dekking","dek"],["resultaat","Resultaat","sel",{embryo:"Embryo gevonden",geen:"Geen embryo"}],["draagmerrie","Draagmerrie","text"],["notitie","Notitie","area"]]},
+ controle:{g:"voort",l:"Drachtcontrole",v:[["datum","Datum","date"],["dek","Bij dekking","dek"],["uitslag","Uitslag","sel",UITSLAG],["reductie","Tweeling gereduceerd","check"],["geslacht","Geslacht van de vrucht","sel",{"":"Niet bepaald",hengst:"Hengst",merrie:"Merrie"}],["notitie","Notitie","area"]]},
+ bewaking:{g:"voort",l:"Veulenbewaking",v:[["datum","Datum","date"],["uier","Uier","sel",{"":"-",niets:"Geen verandering",vult:"Vult zich",was:"Wasdruppels",lekt:"Lekt melk"}],["ph","Melk-pH","num"],["notitie","Notitie","area"]]},
+ geboorte:{g:"veulen",l:"Geboorte",v:[["datum","Datum","date"],["tijd","Uur","time"],["dek","Uit dekking","dek"],["verloop","Verloop","sel",{normaal:"Normaal",hulp:"Met hulp",dierenarts:"Dierenarts nodig",keizersnede:"Keizersnede"}],["nageboorte","Nageboorte","sel",{"":"-","3u":"Binnen 3 uur af",later:"Later dan 3 uur",dierenarts:"Door de dierenarts"}],["veulen_geslacht","Geslacht van het veulen","sel",{"":"-",hengst:"Hengst",merrie:"Merrie"}],["kleur","Kleur","text"],["naam","Naam","text"],["gestaan","Binnen 1 uur gestaan","check"],["gedronken","Binnen 2 uur gedronken","check"],["igg","Biest of IgG-test","sel",{"":"Niet getest",goed:"Goed",matig:"Matig",slecht:"Onvoldoende"}],["notitie","Notitie","area"]]},
+ vaccinatie:{g:"zorg",l:"Vaccinatie",v:[["datum","Datum","date"],["type","Vaccin","sel",{influenza:"Influenza",tetanus:"Tetanus","influenza-tetanus":"Influenza en tetanus",rhino:"Rhinopneumonie (EHV)",andere:"Andere"}],["middel","Product","text"],["volgende","Volgende keer","date"],["notitie","Notitie","area"]]},
+ ontworming:{g:"zorg",l:"Ontworming en mestonderzoek",v:[["datum","Datum","date"],["middel","Middel","text"],["epg","Mestonderzoek (eieren per gram)","num"],["volgende","Volgende keer","date"],["notitie","Notitie","area"]]},
+ hoefsmid:{g:"zorg",l:"Hoefsmid",v:[["datum","Datum","date"],["wat","Wat","sel",{bekappen:"Bekappen",beslaan:"Beslaan",anders:"Anders"}],["volgende","Volgende keer","date",49],["notitie","Notitie","area"]]},
+ tandarts:{g:"zorg",l:"Tandarts",v:[["datum","Datum","date"],["volgende","Volgende keer","date",365],["notitie","Notitie","area"]]},
+ dierenarts:{g:"zorg",l:"Dierenarts",v:[["datum","Datum","date"],["reden","Reden","text"],["behandeling","Behandeling","area"],["volgende","Opvolging","date"]]},
+ medicatie:{g:"zorg",l:"Medicatie",v:[["datum","Start","date"],["middel","Middel","text"],["dosis","Dosis en duur","text"],["einde","Einde","date"],["notitie","Notitie","area"]]},
+ conditie:{g:"zorg",l:"Gewicht en conditie",v:[["datum","Datum","date"],["gewicht","Gewicht (kg)","num"],["bcs","Conditiescore (1 tot 9)","sel",{"":"-","1":"1","2":"2","3":"3","4":"4","5":"5","6":"6","7":"7","8":"8","9":"9"}],["notitie","Notitie","area"]]},
+ kosten:{g:"kosten",l:"Kosten",v:[["datum","Datum","date"],["categorie","Categorie","sel",{dekgeld:"Dekgeld",sperma:"Sperma en transport",dierenarts:"Dierenarts",pension:"Pension of stalling",hoefsmid:"Hoefsmid",voeding:"Voeding",andere:"Andere"}],["bedrag","Bedrag (€)","num"],["omschrijving","Omschrijving","text"]]},
+ herinnering:{g:"notitie",l:"Eigen herinnering",v:[["datum","Datum","date"],["tekst","Wat","text"]]},
+ notitie:{g:"notitie",l:"Notitie",v:[["datum","Datum","date"],["tekst","Notitie","area"]]}};
+const GROEPEN={alles:"Tijdlijn",voort:"Voortplanting",veulen:"Veulens",zorg:"Zorg",kosten:"Kosten",notitie:"Notities"};
+const NIEUW_KNOPPEN=[["Voortplanting",["hengstig","dekking","spoeling","controle","bewaking"]],["Veulen",["geboorte"]],["Zorg",["vaccinatie","ontworming","hoefsmid","tandarts","dierenarts","medicatie","conditie"]],["Overig",["kosten","notitie","herinnering"]]];
+const KORT={hengstig:"Hengstigheid",dekking:"Dekking",spoeling:"Embryospoeling",controle:"Drachtcontrole",bewaking:"Veulenbewaking",geboorte:"Geboorte",vaccinatie:"Vaccinatie",ontworming:"Ontworming",hoefsmid:"Hoefsmid",tandarts:"Tandarts",dierenarts:"Dierenarts",medicatie:"Medicatie",conditie:"Gewicht en conditie",kosten:"Kosten",notitie:"Notitie",herinnering:"Eigen herinnering"};
+const byDatum=(a,b)=>(a.datum||"")<(b.datum||"")?-1:(a.datum||"")>(b.datum||"")?1:(a.tijd||"")<(b.tijd||"")?-1:1;
+function dosOf(D,mid){const x=D&&D[mid];if(!x)return{info:{},items:[]};
+  if(Array.isArray(x)){const items=[];for(const k of x){if(!k||!k.datum)continue;const d={id:k.id,soort:"dekking",datum:k.datum,hengst:k.hengst,methode:k.methode};if(k.hengst_id)d.hengst_id=k.hengst_id;if(k.notitie)d.notitie=k.notitie;items.push(d);
+      (k.controles||[]).forEach((c,i)=>items.push(Object.assign({id:k.id+"c"+i,soort:"controle",datum:c.datum,dek:k.id,uitslag:c.uitslag},c.notitie?{notitie:c.notitie}:{})));
+      if(k.veulen&&k.veulen.datum)items.push(Object.assign({id:k.id+"v",soort:"geboorte",datum:k.veulen.datum,dek:k.id},k.veulen.naam?{naam:k.veulen.naam}:{}))}
+    return{naam:(x[0]&&x[0].merrie_naam)||"",info:{},items}}
+  return{naam:x.naam||"",info:x.info&&typeof x.info==="object"?x.info:{},items:Array.isArray(x.items)?x.items.filter(i=>i&&SOORTEN[i.soort]):[]}}
+const dosM=(mid)=>dosOf(state.stal.dossier,mid);
+function dosSave(mid,fn,st){const m=byId(mid);return stalSave(nw=>{nw.dossier=nw.dossier||{};const d=dosOf(nw.dossier,mid);fn(d);if(m)d.naam=m.naam;d.items=d.items.sort(byDatum).slice(-1500);nw.dossier[mid]=d},st)}
+const dekkingenVan=(d)=>d.items.filter(i=>i.soort==="dekking").sort(byDatum);
+function dekInfo(d,k){const rel=d.items.filter(i=>i.dek===k.id);const ctr=rel.filter(i=>i.soort==="controle").sort(byDatum),l=ctr[ctr.length-1];
+  const geb=rel.find(i=>i.soort==="geboorte");const sp=rel.filter(i=>i.soort==="spoeling");let st="wacht";
+  if(geb)st="geboren";else if(sp.some(s=>s.resultaat==="embryo"))st="gespoeld";else if(l&&l.uitslag==="leeg")st="leeg";else if(l&&(l.uitslag==="drachtig"||l.uitslag==="tweeling"))st="drachtig";else if(l&&l.uitslag==="twijfel")st="twijfel";
+  return{st,ctr,geb,sp,verw:dPlus(k.datum,DRACHT_DAGEN),dag:dagVerschil(k.datum,vandaagIso())}}
+const DEK_ST={wacht:["Wacht op drachtcontrole","warn"],twijfel:["Dracht onzeker","warn"],drachtig:["Drachtig","good"],leeg:["Niet drachtig","bad"],geboren:["Veulen geboren","good"],gespoeld:["Embryo gespoeld",""]};
+function merrieStatus(mid){const d=dosM(mid);const ks=dekkingenVan(d);const k=ks[ks.length-1];const x=k?dekInfo(d,k):null;
+  if(x&&x.st==="drachtig")return{t:`Drachtig, dag ${x.dag}`,kl:"good",sub:`Verwacht op ${fmtDag(x.verw)}`};
+  if(x&&(x.st==="wacht"||x.st==="twijfel"))return{t:x.st==="twijfel"?"Dracht onzeker":"Gedekt, wacht op echo",kl:"warn",sub:`Gedekt op ${fmtDag(k.datum)}${k.hengst?" met "+k.hengst:""}`};
+  if(x&&x.st==="gespoeld")return{t:"Embryo gespoeld",kl:"",sub:`Uit de dekking van ${fmtDag(k.datum)}`};
+  const geb=d.items.filter(i=>i.soort==="geboorte").sort(byDatum).pop();
+  if(geb&&dagenTot(geb.datum)>-200)return{t:"Veulen aan de voet",kl:"good",sub:`Geboren op ${fmtDag(geb.datum)}${geb.naam?": "+geb.naam:""}`};
+  return{t:d.info.status?M_STATUS[d.info.status]||"Gust":"Gust",kl:"",sub:x&&x.st==="leeg"?"Laatste dekking niet drachtig":""}}
+function optLabel(soort,k,val){const v=(SOORTEN[soort].v.find(f=>f[0]===k)||[])[3];return v&&typeof v==="object"&&v[val]!=null?v[val]:val}
+function laterGedaan(d,i){return d.items.some(j=>j.soort===i.soort&&j.id!==i.id&&(j.datum||"")>(i.datum||"")&&(i.soort!=="vaccinatie"||j.type===i.type))}
+function herinneringenVan(mid,d){const out=[];const m=byId(mid);const mn=m?m.naam:(d.naam||"Merrie");const add=(datum,t,soort,id,extra)=>{if(datum)out.push({datum,t,soort,merrie:mn,mid,kid:id,extra:extra||""})};
+  for(const k of dekkingenVan(d)){const x=dekInfo(d,k);const H=k.hengst?"Dekking met "+k.hengst:"";
+    if(x.st==="leeg"||x.st==="gespoeld")continue;
+    if(x.st==="geboren"){const g=x.geb;add(dPlus(g.datum,1),"Merrie en veulen laten nakijken door de dierenarts","nacontrole",g.id);add(dPlus(g.datum,7),"Veulenhengstigheid (rond dag 7 tot 10)","veulenhengst",g.id);add(dPlus(g.datum,14),"Geboorte melden en registratie regelen bij je stamboek","melden",g.id);continue}
+    const gedaan=(n)=>x.ctr.some(c=>dagVerschil(k.datum,c.datum)>=n-3);
+    if(!gedaan(15))add(dPlus(k.datum,15),"Eerste drachtcontrole (echo)","echo1",k.id,H);
+    if(!gedaan(28))add(dPlus(k.datum,28),"Tweede echo: hartslag van de vrucht","echo2",k.id,H);
+    if(!gedaan(45))add(dPlus(k.datum,45),"Bevestiging van de dracht (echo)","echo3",k.id,H);
+    for(const [n,mnd] of [[150,5],[210,7],[270,9]])if(!d.items.some(i=>i.soort==="vaccinatie"&&i.type==="rhino"&&Math.abs(dagVerschil(dPlus(k.datum,n),i.datum))<=21))add(dPlus(k.datum,n),`Rhinopneumonievaccin, ${mnd}e maand dracht`,"rhino"+mnd,k.id,H);
+    if(!d.items.some(i=>i.soort==="vaccinatie"&&/influenza|tetanus/.test(i.type||"")&&dagVerschil(k.datum,i.datum)>=280))add(dPlus(k.datum,300),"Booster influenza en tetanus (4 tot 6 weken voor het veulen)","boost",k.id,H);
+    add(dPlus(k.datum,310),"Veulenbewaking voorbereiden: uier en melk opvolgen","bewaking",k.id,H);
+    add(x.verw,"Verwachte veulendatum","veulen",k.id,H)}
+  for(const i of d.items){
+    if(i.soort==="hengstig"&&i.inductie&&!i.ovulatie&&!d.items.some(j=>(j.soort==="hengstig"||j.soort==="dekking")&&(j.datum||"")>(i.datum||"")))add(dPlus(i.datum,2),"Ovulatie controleren na inductie","ovulatie",i.id);
+    if(i.volgende&&!laterGedaan(d,i))add(i.volgende,KORT[i.soort]+(i.type?": "+optLabel(i.soort,"type",i.type):""),"volgende",i.id);
+    if(i.soort==="medicatie"&&i.einde)add(i.einde,"Einde medicatie"+(i.middel?": "+i.middel:""),"einde",i.id);
+    if(i.soort==="herinnering")add(i.datum,i.tekst||"Herinnering","eigen",i.id)}
+  return out}
+function herinneringen(){const D=state.stal.dossier||{};const out=[];for(const mid of Object.keys(D))out.push(...herinneringenVan(mid,dosOf(D,mid)));return out.sort(byDatum)}
+function herRegel(h,metMerrie){const n=dagenTot(h.datum);const wanneer=n<0?`${-n} ${-n===1?"dag":"dagen"} geleden`:n===0?"vandaag":n===1?"morgen":`over ${n} dagen`;
+  return `<li class="dos-her-item${n<0?" laat":""}"><div class="dos-dat"><b>${esc(fmtDag(h.datum))}</b><span class="small muted">${esc(wanneer)}</span></div><div>${metMerrie===false?"":`<button type="button" class="linkbtn" data-dossel="${esc(h.mid)}"><b>${esc(h.merrie)}</b></button>: `}${esc(h.t)}${h.extra?`<div class="small muted">${esc(h.extra)}</div>`:""}</div></li>`}
+function itemSamenvatting(d,i){const S=SOORTEN[i.soort];const parts=[];
+  for(const [k,lab,type] of S.v){const v=i[k];if(k==="datum"||k==="notitie"||k==="tekst"||k==="behandeling"||v==null||v===""||v===false)continue;
+    if(type==="check")parts.push(esc(lab));
+    else if(type==="sel")parts.push(`${esc(lab)}: <b>${esc(optLabel(i.soort,k,v))}</b>`);
+    else if(type==="hengst"){const h=i.hengst_id&&byId(i.hengst_id);parts.push(`${esc(lab)}: ${h?`<button type="button" class="linkbtn" data-stalopen="${esc(h.id)}">${esc(h.naam)}</button>`:`<b>${esc(v)}</b>`}`)}
+    else if(type==="dek"){const k2=d.items.find(x=>x.id===v);if(k2)parts.push(`${esc(lab)}: ${esc(fmtKort(k2.datum))}${k2.hengst?" ("+esc(k2.hengst)+")":""}`)}
+    else if(type==="date")parts.push(`${esc(lab)}: ${esc(fmtKort(v))}`);
+    else if(k==="dekgeld"||k==="bedrag")parts.push(`${esc(lab.replace(" (€)",""))}: <b>${esc(euroBedrag(v))}</b>`);
+    else parts.push(`${esc(lab)}: <b>${esc(v)}</b>`)}
+  return parts.join(" · ")}
+function itemKaart(d,i,mid){const tekst=i.notitie||i.tekst||i.behandeling||"";let extra="";
+  if(i.soort==="dekking"){const x=dekInfo(d,i);const [st,kl]=DEK_ST[x.st];extra=`<div class="chips" style="margin-top:4px"><span class="chip ${kl}">${esc(st)}</span>${x.st==="drachtig"||x.st==="wacht"||x.st==="twijfel"?`<span class="chip">Dag ${x.dag}</span><span class="chip">Verwacht ${esc(fmtKort(x.verw))}</span>`:""}</div>`}
+  if(i.soort==="controle"&&i.dek){const k=d.items.find(x=>x.id===i.dek);if(k)extra=`<div class="small muted">Dag ${dagVerschil(k.datum,i.datum)} na de dekking</div>`}
+  const sam=itemSamenvatting(d,i);
+  return `<li class="dos-item g-${SOORTEN[i.soort].g}"><div class="dos-dat"><b>${esc(fmtKort(i.datum))}</b>${i.tijd?`<span class="small muted">${esc(i.tijd)}</span>`:""}</div>
+    <div style="min-width:0"><div class="dos-soort">${esc(KORT[i.soort])}</div>${sam?`<div class="small">${sam}</div>`:""}${extra}${tekst?`<div class="small muted" style="white-space:pre-line;margin-top:2px">${esc(tekst)}</div>`:""}
+    <div class="dos-acties">${i.soort==="geboorte"?`<button type="button" class="linkbtn" data-dosveulen="${esc(i.id)}">Veulen als paard opslaan</button>`:""}<button type="button" class="linkbtn" data-dosedit="${esc(i.id)}">Aanpassen</button><button type="button" class="linkbtn danger" data-dosweg="${esc(i.id)}">Weghalen</button></div></div></li>`}
+function dosVeld(d,[k,lab,type,opt],val,isNew){const id="df-"+k;const v=val==null?"":val;
+  if(type==="area")return `<div class="field dos-wide"><label class="label" for="${id}">${esc(lab)}</label><textarea id="${id}" name="${k}" rows="2" maxlength="1500">${esc(v)}</textarea></div>`;
+  if(type==="check")return `<label class="dos-check"><input type="checkbox" name="${k}"${v?" checked":""}> ${esc(lab)}</label>`;
+  if(type==="sel")return `<div class="field"><label class="label" for="${id}">${esc(lab)}</label><select id="${id}" name="${k}">${Object.entries(opt).map(([o,l])=>`<option value="${esc(o)}"${String(v)===o?" selected":""}>${esc(l)}</option>`).join("")}</select></div>`;
+  if(type==="dek"){const ks=dekkingenVan(d).reverse();const def=isNew?(ks[0]&&ks[0].id)||"":v;return `<div class="field"><label class="label" for="${id}">${esc(lab)}</label><select id="${id}" name="${k}"><option value="">Geen</option>${ks.map(x=>`<option value="${esc(x.id)}"${x.id===def?" selected":""}>${esc(fmtKort(x.datum))}${x.hengst?" · "+esc(x.hengst):""}</option>`).join("")}</select></div>`}
+  if(type==="hengst")return `<div class="field dos-grow"><label class="label" for="${id}">${esc(lab)}</label><input id="${id}" name="${k}" list="dosHengsten" maxlength="120" autocomplete="off" required value="${esc(v)}" placeholder="Naam van de hengst"></div>`;
+  if(type==="date"){const def=isNew&&!v?(k==="datum"?vandaagIso():typeof opt==="number"?dPlus(vandaagIso(),opt):""):v;return `<div class="field"><label class="label" for="${id}">${esc(lab)}</label><input type="date" id="${id}" name="${k}" value="${esc(def)}"${k==="datum"?" required":""}></div>`}
+  if(type==="time")return `<div class="field"><label class="label" for="${id}">${esc(lab)}</label><input type="time" id="${id}" name="${k}" value="${esc(v)}"></div>`;
+  if(type==="num")return `<div class="field"><label class="label" for="${id}">${esc(lab)}</label><input type="number" step="any" min="0" id="${id}" name="${k}" value="${esc(v)}"${k==="bedrag"?" required":""}></div>`;
+  return `<div class="field dos-grow"><label class="label" for="${id}">${esc(lab)}</label><input id="${id}" name="${k}" maxlength="200" value="${esc(v)}"></div>`}
+function dosFormHtml(d){const f=state.dosForm;if(!f)return"";const S=SOORTEN[f.soort];const it=f.id?d.items.find(i=>i.id===f.id)||{}:{};
+  return `<form id="dosItemForm" class="dos-form card"><h3 style="margin:0 0 10px">${f.id?"Aanpassen":"Nieuw"}: ${esc(S.l)}</h3><div class="dos-velden">${S.v.map(fd=>dosVeld(d,fd,it[fd[0]],!f.id)).join("")}</div>
+    ${f.soort==="vaccinatie"||f.soort==="dekking"||f.soort==="controle"?'<p class="small muted" style="margin:8px 0 0">Richtdagen en schema\'s zijn een hulpmiddel: je dierenarts beslist.</p>':""}
+    <div class="row" style="gap:8px;margin-top:10px"><button class="btn" type="submit">Bewaren</button><button class="btn ghost" type="button" data-dosannul>Annuleren</button></div></form>`}
+const INFO_VELDEN=[["status","Status","sel",Object.assign({"":"-"},M_STATUS)],["verblijf","Verblijfplaats of stal","text"],["dierenarts","Dierenarts","text"],["hoefsmid","Hoefsmid","text"],["chip","Chipnummer","text"],["paspoort","Paspoortnummer","text"],["verzekering","Verzekering","text"],["notitie","Notities","area"]];
 function renderDossier(){const out=$("dosOut");if(!out)return;ensureStal();
   if(!stalAan()){out.innerHTML=geenWerkplek();return}
   if(!state.stalOk){out.innerHTML='<p class="small muted">Je stal wordt geladen...</p>';return}
-  const M=stalLijst("merrie"),D=state.stal.dossier||{};const mSel=M.some(m=>m.id===state.dosM)?state.dosM:(M[0]&&M[0].id)||"";state.dosM=mSel;
-  const kom=herinneringen().filter(h=>dagenTot(h.datum)>=-30);const toon=state.dosAlle?kom:kom.slice(0,8);
-  const lijst=(D[mSel]||[]).slice().sort((a,b)=>a.datum<b.datum?1:-1);
-  const hs=[...new Set(stalLijst("hengst").map(h=>h.naam).concat(state.horses.filter(h=>h.geslacht==="hengst").map(h=>h.naam)))].slice(0,4000);
-  out.innerHTML=`<section class="card"><div class="stal-titel" style="margin:0 0 6px"><h3 style="margin:0">Komende herinneringen</h3>${kom.length?'<button type="button" class="btn ghost" data-dosics>Zet in je agenda (.ics)</button>':""}</div>
-     ${kom.length?`<ul class="dos-her">${toon.map(herRegel).join("")}</ul>${kom.length>toon.length?`<button type="button" class="linkbtn" data-dosalle style="margin-top:6px">Toon alle ${kom.length}</button>`:""}`:'<p class="small muted" style="margin:0">Nog geen herinneringen. Registreer hieronder een dekking: dan verschijnen de drachtcontroles en de verwachte veulendatum hier.</p>'}
-     <p class="small muted" style="margin:8px 0 0">Richtdagen na de dekking: echo rond dag 15, hartslag rond dag 28, bevestiging rond dag 45, veulen rond dag 340. Volg altijd het advies van je dierenarts.</p><div class="status" id="dosSt" role="status"></div></section>
-   ${!M.length?'<div class="card empty" style="margin-top:14px">Zet eerst een merrie in Mijn stal. Daarna houd je hier haar dekkingen, drachtcontroles en veulens bij.</div>':`
-   <section class="card" style="margin-top:14px"><div class="row" style="align-items:flex-end;gap:12px"><div class="field grow"><label class="label" for="dosM">Merrie</label><select id="dosM">${M.map(m=>{const a=(D[m.id]||[]).length;return `<option value="${esc(m.id)}"${m.id===mSel?" selected":""}>${esc(m.naam)}${a?" ("+a+")":""}</option>`}).join("")}</select></div></div>
-    <form id="dosForm" class="dos-form"><h3 style="margin:14px 0 8px">Nieuwe dekking</h3><div class="row" style="gap:10px;align-items:flex-end">
-     <div class="field"><label class="label" for="dosDatum">Datum</label><input type="date" id="dosDatum" value="${vandaagIso()}" required></div>
-     <div class="field grow"><label class="label" for="dosHengst">Hengst</label><input id="dosHengst" list="dosHengsten" maxlength="120" autocomplete="off" required placeholder="Naam van de hengst"><datalist id="dosHengsten">${hs.map(n=>`<option value="${esc(n)}">`).join("")}</datalist></div>
-     <div class="field"><label class="label" for="dosMethode">Methode</label><select id="dosMethode">${Object.entries(METHODES).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join("")}</select></div></div>
-     <div class="field" style="margin-top:8px"><label class="label" for="dosNotitie">Notitie (optioneel)</label><textarea id="dosNotitie" rows="2" maxlength="500" placeholder="bv. station, dierenarts, aantal rietjes"></textarea></div>
-     <button class="btn" type="submit" style="margin-top:8px">Dekking bewaren</button></form></section>
-   <h3 style="margin:18px 0 8px">Dekkingen van ${esc((byId(mSel)||{}).naam||"")} <span class="muted small">(${lijst.length})</span></h3>
-   ${lijst.length?`<div class="dos-grid">${lijst.map(k=>dekKaart(mSel,k)).join("")}</div>`:'<div class="card empty">Nog geen dekkingen geregistreerd voor deze merrie.</div>'}`}`}
+  const M=stalLijst("merrie");const mSel=M.some(m=>m.id===state.dosM)?state.dosM:(M[0]&&M[0].id)||"";state.dosM=mSel;
+  const alle=herinneringen().filter(h=>dagenTot(h.datum)>=-30);const toon=state.dosAlle?alle:alle.slice(0,8);
+  const herKaart=`<section class="card"><div class="stal-titel" style="margin:0 0 6px"><h3 style="margin:0">Komende herinneringen</h3>${alle.length?'<button type="button" class="btn ghost" data-dosics>Zet in je agenda (.ics)</button>':""}</div>
+     ${alle.length?`<ul class="dos-her">${toon.map(h=>herRegel(h)).join("")}</ul>${alle.length>toon.length?`<button type="button" class="linkbtn" data-dosalle style="margin-top:6px">Toon alle ${alle.length}</button>`:""}`:'<p class="small muted" style="margin:0">Nog geen herinneringen. Registreer een dekking of een zorgmoment met een volgende datum: dan verschijnen ze hier.</p>'}
+     <div class="status" id="dosSt" role="status"></div></section>`;
+  if(!M.length){out.innerHTML=herKaart+'<div class="card empty" style="margin-top:14px">Zet eerst een merrie in Mijn stal. Daarna volg je hier alles van haar op: cyclus, dekkingen, dracht, veulens, zorg en kosten.</div>';return}
+  const overzicht=`<section class="card" style="margin-top:14px"><h3 style="margin:0 0 8px">Je merries</h3><div class="dos-overzicht">${M.map(m=>{const s=merrieStatus(m.id);const vh=herinneringenVan(m.id,dosM(m.id)).filter(h=>dagenTot(h.datum)>=-7).sort(byDatum)[0];
+      return `<button type="button" class="dos-mrow${m.id===mSel?" actief":""}" data-dossel="${esc(m.id)}" aria-pressed="${m.id===mSel}"><span class="dos-mnaam">${esc(m.naam)}</span><span class="chip ${s.kl}">${esc(s.t)}</span><span class="small muted dos-msub">${esc(s.sub||"")}</span><span class="small dos-mvolg">${vh?`${esc(fmtKort(vh.datum))}: ${esc(vh.t)}`:'<span class="muted">Geen herinneringen</span>'}</span></button>`}).join("")}</div></section>`;
+  const m=byId(mSel);const d=dosM(mSel);const s=merrieStatus(mSel);const sb=(m&&m.stamboom)||{};const info=d.info||{};
+  const groep=state.dosGroep||"alles";const items=d.items.filter(i=>groep==="alles"||SOORTEN[i.soort].g===groep).slice().sort(byDatum).reverse();
+  const hs=[...new Set(stalLijst("hengst").map(h=>h.naam).concat(state.horses.filter(h=>h.geslacht==="hengst").map(h=>h.naam)))].slice(0,5000);
+  let kost="";if(groep==="kosten"){const per={};const add=(j,c,b)=>{const y=(j||"").slice(0,4);per[y]=per[y]||{tot:0,cat:{}};per[y].tot+=b;per[y].cat[c]=(per[y].cat[c]||0)+b};
+    d.items.forEach(i=>{if(i.soort==="kosten"&&num(i.bedrag)!=null)add(i.datum,optLabel("kosten","categorie",i.categorie||"andere"),num(i.bedrag));if(i.soort==="dekking"&&num(i.dekgeld)!=null)add(i.datum,"Dekgeld",num(i.dekgeld))});
+    const jr=Object.keys(per).sort().reverse();kost=jr.length?`<div class="dos-kost">${jr.map(y=>`<div class="card" style="background:var(--sunk)"><div class="label">${esc(y)}</div><div style="font-size:1.3rem;font-weight:700" class="num">${esc(euroBedrag(per[y].tot))}</div><ul class="plain small">${Object.entries(per[y].cat).map(([c,b])=>`<li>${esc(c)}: ${esc(euroBedrag(b))}</li>`).join("")}</ul></div>`).join("")}</div>`:""}
+  const herM=herinneringenVan(mSel,d).filter(h=>dagenTot(h.datum)>=-30).sort(byDatum).slice(0,4);
+  out.innerHTML=herKaart+overzicht+`
+   <section class="card dos-kop" style="margin-top:14px"><div class="stal-titel" style="margin:0"><div style="min-width:0"><div class="label">Merriedossier</div><h2 style="margin:2px 0 0;overflow-wrap:anywhere">${m?`<button type="button" class="linkbtn" data-stalopen="${esc(m.id)}">${esc(m.naam)}</button>`:esc(d.naam||"")}</h2>
+      <div class="small muted">${[m&&m.geboortejaar,(sb.v||"?")+" x "+(sb.mv||"?"),m&&m.stamboek].filter(Boolean).map(esc).join(" · ")}</div></div>
+      <div class="row" style="gap:8px"><button type="button" class="btn ghost" data-dospdf>PDF van het dossier</button></div></div>
+     <div class="dos-status"><span class="chip ${s.kl}" style="font-size:.95rem">${esc(s.t)}</span>${s.sub?`<span class="small">${esc(s.sub)}</span>`:""}</div>
+     ${herM.length?`<div class="label" style="margin-top:10px">Volgende stappen</div><ul class="dos-her">${herM.map(h=>herRegel(h,false)).join("")}</ul>`:""}
+     <details class="dos-det" style="margin-top:10px"${state.dosInfoOpen?" open":""}><summary>Merriekaart: ${[info.status&&M_STATUS[info.status],info.verblijf,info.dierenarts&&"dierenarts "+info.dierenarts].filter(Boolean).map(esc).join(" · ")||"vul aan"}</summary>
+      <form id="dosInfoForm" class="dos-velden" style="margin-top:8px">${INFO_VELDEN.map(fd=>dosVeld(d,fd,info[fd[0]],false)).join("")}<div class="dos-wide"><button class="btn" type="submit">Merriekaart bewaren</button></div></form></details>
+     <div class="status" id="dosPdfSt" role="status"></div></section>
+   <section class="card" style="margin-top:14px"><h3 style="margin:0 0 8px">Nieuwe ingave</h3>
+     ${NIEUW_KNOPPEN.map(([g,l])=>`<div class="dos-nieuw"><span class="label">${esc(g)}</span>${l.map(k=>`<button type="button" class="btn ghost${state.dosForm&&!state.dosForm.id&&state.dosForm.soort===k?" actief":""}" data-dosnieuw="${k}">+ ${esc(KORT[k])}</button>`).join("")}</div>`).join("")}
+     <datalist id="dosHengsten">${hs.map(n=>`<option value="${esc(n)}">`).join("")}</datalist>
+     ${dosFormHtml(d)}</section>
+   <div class="subtabs" role="tablist" aria-label="Onderdelen van het dossier" style="margin-top:16px">${Object.entries(GROEPEN).map(([k,l])=>`<button type="button" role="tab" data-dosgroep="${k}" aria-selected="${k===groep}">${esc(l)}</button>`).join("")}</div>
+   ${kost}
+   ${items.length?`<ul class="dos-lijst card">${items.map(i=>itemKaart(d,i,mSel)).join("")}</ul>`:'<div class="card empty">Nog niets geregistreerd'+(groep==="alles"?"":" in dit onderdeel")+'.</div>'}`}
 function icsTekst(items){const e=(x)=>String(x).replace(/[\;,]/g,m=>"\\"+m).replace(/\n/g,"\\n");const nu=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d+/,"");
   const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//De Fokwijzer//Merriedossier//NL","CALSCALE:GREGORIAN","X-WR-CALNAME:De Fokwijzer: merriedossier"];
-  for(const h of items){const d=h.datum.replace(/-/g,"");L.push("BEGIN:VEVENT","UID:"+String(h.kid).replace(/[^A-Za-z0-9-]/g,"")+"-"+h.soort+"@defokwijzer","DTSTAMP:"+nu,"DTSTART;VALUE=DATE:"+d,"DTEND;VALUE=DATE:"+dPlus(h.datum,1).replace(/-/g,""),"SUMMARY:"+e(h.merrie+": "+h.t),"DESCRIPTION:"+e((h.hengst?"Dekking met "+h.hengst+". ":"")+"Uit je merriedossier in De Fokwijzer."),"END:VEVENT")}
+  for(const h of items){const d=h.datum.replace(/-/g,"");L.push("BEGIN:VEVENT","UID:"+String(h.kid).replace(/[^A-Za-z0-9-]/g,"")+"-"+h.soort+"@defokwijzer","DTSTAMP:"+nu,"DTSTART;VALUE=DATE:"+d,"DTEND;VALUE=DATE:"+dPlus(h.datum,1).replace(/-/g,""),"SUMMARY:"+e(h.merrie+": "+h.t),"DESCRIPTION:"+e((h.extra?h.extra+". ":"")+"Uit je merriedossier in De Fokwijzer."),"END:VEVENT")}
   L.push("END:VCALENDAR");return L.join("\r\n")}
-$("dosOut").addEventListener("change",e=>{if(e.target.id==="dosM"){state.dosM=e.target.value;renderDossier()}});
-$("dosOut").addEventListener("submit",e=>{e.preventDefault();const f=e.target;const st=$("dosSt");const mid=state.dosM;if(!mid)return;
-  if(f.id==="dosForm"){const naam=$("dosHengst").value.trim(),datum=$("dosDatum").value;if(!naam||!datum)return;const h=state.horses.find(x=>x.geslacht==="hengst"&&norm(x.naam)===norm(naam));
-    const k={id:"d"+Date.now().toString(36),datum,hengst:h?h.naam:naam,methode:$("dosMethode").value,controles:[],merrie_naam:(byId(mid)||{}).naam||""};if(h)k.hengst_id=h.id;const nt=$("dosNotitie").value.trim();if(nt)k.notitie=nt;
-    stalSave(nw=>{nw.dossier=nw.dossier||{};nw.dossier[mid]=(nw.dossier[mid]||[]).concat([k]).slice(-60)},st);return}
-  const kid=f.dataset.kid;const fd=new FormData(f);
-  if(f.classList.contains("dos-ctrl"))stalSave(nw=>{const k=(nw.dossier[mid]||[]).find(x=>x.id===kid);if(k){k.controles=(k.controles||[]).concat([{datum:fd.get("datum"),uitslag:fd.get("uitslag"),notitie:String(fd.get("notitie")||"").trim()}]).slice(-20)}},st);
-  if(f.classList.contains("dos-veulen"))stalSave(nw=>{const k=(nw.dossier[mid]||[]).find(x=>x.id===kid);if(k){k.veulen={datum:fd.get("datum"),naam:String(fd.get("naam")||"").trim()}}},st)});
-$("dosOut").addEventListener("click",async e=>{const t=e.target;
+function veulenAlsPaard(mid,i){const d=dosM(mid);const m=byId(mid);const k=i.dek&&d.items.find(x=>x.id===i.dek);const h=k&&k.hengst_id&&byId(k.hengst_id);
+  let sb={};if(h&&m)sb=foalOf(h,m).stamboom;else if(m){const b=pedOf(m);sb={v:k&&k.hengst||"",m:m.naam,mv:b.v,mm:b.m,mvv:b.vv,mvm:b.vm,mmv:b.mv,mmm:b.mm}}
+  state.lastToev="beheer";resetForm();setTab("beheer");
+  setTimeout(()=>{const set=(id,v)=>{const el=$(id);if(el&&v!=null&&v!=="")el.value=v};set("h-naam",i.naam||"");set("h-geslacht",i.veulen_geslacht==="merrie"?"merrie":"hengst");set("h-jaar",(i.datum||"").slice(0,4));
+    PED_KEYS.forEach(p=>set("ped-"+p,sb[p]));const n=$("h-naam");if(n)n.focus()},60)}
+$("dosOut").addEventListener("submit",e=>{e.preventDefault();const f=e.target;const st=$("dosSt");const mid=state.dosM;if(!mid)return;const fd=new FormData(f);
+  if(f.id==="dosInfoForm"){const info={};INFO_VELDEN.forEach(([k])=>{const v=String(fd.get(k)||"").trim();if(v)info[k]=v});state.dosInfoOpen=false;dosSave(mid,d=>{d.info=info},st);return}
+  if(f.id!=="dosItemForm"||!state.dosForm)return;const soort=state.dosForm.soort,S=SOORTEN[soort];const it={id:state.dosForm.id||("i"+Date.now().toString(36)+Math.random().toString(36).slice(2,5)),soort};
+  for(const [k,,type] of S.v){if(type==="check"){if(fd.get(k))it[k]=true;continue}let v=String(fd.get(k)??"").trim();if(!v)continue;if(type==="num"){const n=parseFloat(v.replace(",","."));if(isNaN(n))continue;it[k]=n;continue}it[k]=v}
+  if(!it.datum)return;if(soort==="dekking"){const h=state.horses.find(x=>x.geslacht==="hengst"&&norm(x.naam)===norm(it.hengst||""));if(h){it.hengst=h.naam;it.hengst_id=h.id}}
+  state.dosForm=null;dosSave(mid,d=>{const i=d.items.findIndex(x=>x.id===it.id);if(i>=0)d.items[i]=it;else d.items.push(it)},st)});
+$("dosOut").addEventListener("click",async e=>{const t=e.target;let b;
+  if((b=t.closest("[data-dossel]"))){state.dosM=b.dataset.dossel;state.dosForm=null;renderDossier();const k=document.querySelector(".dos-kop");if(k)k.scrollIntoView({behavior:"smooth",block:"start"});return}
   if(t.closest("[data-dosalle]")){state.dosAlle=true;renderDossier();return}
-  const w=t.closest("[data-dosweg]");if(w){if(w.dataset.zeker!=="1"){w.dataset.zeker="1";w.textContent="Zeker weghalen?";return}const [mid,kid]=w.dataset.dosweg.split("|");stalSave(nw=>{nw.dossier[mid]=(nw.dossier[mid]||[]).filter(x=>x.id!==kid);if(!nw.dossier[mid].length)delete nw.dossier[mid]},$("dosSt"));return}
-  if(t.closest("[data-nakomnieuw]")){state.lastToev="beheer";resetForm();setTab("beheer");return}
+  if((b=t.closest("[data-dosgroep]"))){state.dosGroep=b.dataset.dosgroep;renderDossier();return}
+  if((b=t.closest("[data-dosnieuw]"))){state.dosForm={soort:b.dataset.dosnieuw};renderDossier();const f=$("dosItemForm");if(f){f.scrollIntoView({behavior:"smooth",block:"center"});const x=f.querySelector("input,select");if(x)x.focus({preventScroll:true})}return}
+  if((b=t.closest("[data-dosedit]"))){const i=dosM(state.dosM).items.find(x=>x.id===b.dataset.dosedit);if(i){state.dosForm={soort:i.soort,id:i.id};renderDossier();const f=$("dosItemForm");if(f)f.scrollIntoView({behavior:"smooth",block:"center"})}return}
+  if(t.closest("[data-dosannul]")){state.dosForm=null;renderDossier();return}
+  if((b=t.closest("[data-dosweg]"))){if(b.dataset.zeker!=="1"){b.dataset.zeker="1";b.textContent="Zeker weghalen?";return}const id=b.dataset.dosweg;dosSave(state.dosM,d=>{d.items=d.items.filter(x=>x.id!==id).map(x=>x.dek===id?Object.assign({},x,{dek:""}):x)},$("dosSt"));return}
+  if((b=t.closest("[data-dosveulen]"))){const i=dosM(state.dosM).items.find(x=>x.id===b.dataset.dosveulen);if(i)veulenAlsPaard(state.dosM,i);return}
+  if(t.closest("summary")&&t.closest(".dos-kop")){state.dosInfoOpen=!t.closest("details").open;return}
+  if(t.closest("[data-dospdf]")){const st=$("dosPdfSt");try{if(!dlNs){dlNs=await window.claude.use("downloads")}
+      if(!dlNs){st.className="status err";st.textContent="Downloaden is in deze weergave niet beschikbaar.";return}
+      st.className="status";st.textContent="PDF wordt gemaakt...";const m=byId(state.dosM);const sl=(x)=>String(x||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+      await dlNs.save({filename:`merriedossier-${sl(m?m.naam:"merrie")}.pdf`,data:await dossierPdf(state.dosM)});st.className="status ok";st.textContent="Klaar."}
+    catch(err){st.className="status err";st.textContent=err&&err.code==="declined"?"Download geannuleerd.":"De PDF kon niet gemaakt worden."}return}
   if(t.closest("[data-dosics]")){const st=$("dosSt");try{if(!dlNs){dlNs=await window.claude.use("downloads")}
       if(!dlNs){st.className="status err";st.textContent="Downloaden is in deze weergave niet beschikbaar.";return}
       const items=herinneringen().filter(h=>dagenTot(h.datum)>=0);await dlNs.save({filename:"fokwijzer-herinneringen.ics",data:new Blob([icsTekst(items)],{type:"text/calendar"})});st.className="status ok";st.textContent="Klaar: open het bestand om de herinneringen in je agenda te zetten."}
     catch(err){st.className="status err";st.textContent=err&&err.code==="declined"?"Download geannuleerd.":"Het agendabestand kon niet gemaakt worden."}}});
+async function dossierPdf(mid){const m=byId(mid),d=dosM(mid),info=d.info||{},naam=m?m.naam:(d.naam||"Merrie");
+  const mob=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);const S=mob?2.4:3.2,W=794,H=1123,M=58,CW=W-2*M,BOT=H-70;
+  const GREEN="#13302A",GOLD="#B08A5A",LINE="#E4DCCB",INK="#1F2420",MUTED="#6B6F66";const DISP='"Spectral SC", Georgia, serif',BODY='"Source Sans 3", system-ui, sans-serif';
+  try{await Promise.all(["700 30px 'Spectral SC'","600 13px 'Spectral SC'","400 13px 'Source Sans 3'","600 13px 'Source Sans 3'","700 13px 'Source Sans 3'"].map(f=>document.fonts.load(f)))}catch(_){}
+  const emb=await fwImg(FW_EMBLEM);const T=(x)=>fwT(String(x==null?"":x));const pages=[];let c,y=M;
+  const font=(w,sz,f)=>{c.font=`${w} ${sz}px ${f||BODY}`};
+  const newPage=()=>{const cv=document.createElement("canvas");cv.width=Math.round(W*S);cv.height=Math.round(H*S);c=cv.getContext("2d");c.scale(S,S);c.fillStyle="#fff";c.fillRect(0,0,W,H);pages.push({cv,w:595.28,h:841.89,c});
+    y=M;if(pages.length>1){font(700,10,DISP);c.fillStyle=GREEN;c.letterSpacing="1.5px";c.fillText(T("De Fokwijzer")+"  ·  "+T("Merriedossier").toUpperCase(),M,y);c.letterSpacing="0px";font(400,10);c.fillStyle=MUTED;c.textAlign="right";c.fillText(naam,W-M,y);c.textAlign="left";y+=10;c.fillStyle=GOLD;c.fillRect(M,y,CW,1);y+=22}};
+  const room=(h)=>{if(y+h>BOT)newPage()};const lines=(txt,w)=>pcWrap(c,T(txt),w,999);
+  const para=(txt,o={})=>{const sz=o.size||11.5,lh=sz*1.42;font(o.weight||400,sz);for(const l of lines(txt,o.w||CW)){room(lh);c.fillStyle=o.color||INK;c.fillText(l,M,y+sz);y+=lh}y+=o.gap==null?4:o.gap};
+  const heading=(txt)=>{room(60);y+=12;font(700,16,DISP);c.fillStyle=GREEN;c.fillText(T(txt),M,y+16);y+=24;c.fillStyle=LINE;c.fillRect(M,y,CW,1);y+=10};
+  const table=(cols,rows)=>{const pad=6,sz=10.2,lh=sz*1.38;const xs=[];let x=M;cols.forEach(k=>{xs.push(x);x+=k.w});
+    const head=()=>{font(700,sz);c.fillStyle=GREEN;cols.forEach((k,i)=>c.fillText(T(k.label),xs[i]+pad,y+sz+2));y+=lh+6;c.fillStyle=GOLD;c.fillRect(M,y-2,CW,1);y+=2};
+    room(lh*2+14);head();
+    for(const row of rows){const cell=row.map((t,i)=>{font(i===0?600:400,sz);return String(t==null||t===""?"–":t).split("\n").flatMap(p=>pcWrap(c,p,cols[i].w-2*pad,999))});const hh=Math.max(...cell.map(a=>a.length))*lh+pad*1.4;
+      if(y+hh>BOT){newPage();head()}cell.forEach((ls,i)=>{font(i===0?600:400,sz);c.fillStyle=i===0?MUTED:INK;ls.forEach((l,j)=>c.fillText(l,xs[i]+pad,y+pad*.7+sz+j*lh))});y+=hh;c.fillStyle=LINE;c.fillRect(M,y,CW,.8);y+=1}y+=10};
+  const plat=(h)=>String(h||"").replace(/<[^>]+>/g,"").replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&ndash;/g,"–");
+  newPage();
+  const eh=62,ew=eh/(emb.height/emb.width);c.drawImage(emb,M,y-4,ew,eh);const tx=M+ew+14;font(700,22,DISP);c.fillStyle=GREEN;c.letterSpacing="2px";c.fillText("DE FOKWIJZER",tx,y+24);
+  font(600,8.5,DISP);c.fillStyle=GOLD;c.letterSpacing="1.6px";c.fillText(T("Een wikigids voor en door paardenfokkers").toUpperCase(),tx,y+40);c.letterSpacing="0px";
+  c.textAlign="right";font(700,13,DISP);c.fillStyle=GREEN;c.letterSpacing="1.5px";c.fillText(T("Merriedossier").toUpperCase(),W-M,y+22);c.letterSpacing="0px";font(400,10);c.fillStyle=MUTED;c.fillText(T(fmtDag(vandaagIso())),W-M,y+38);c.textAlign="left";
+  y+=eh+6;c.fillStyle=GOLD;c.fillRect(M,y,CW,1.5);y+=24;
+  let tsz=28;font(700,tsz,DISP);while(c.measureText(naam).width>CW&&tsz>15){tsz--;font(700,tsz,DISP)}c.fillStyle=GREEN;c.fillText(naam,M,y+tsz*.8);y+=tsz*.8+12;
+  const sb=(m&&m.stamboom)||{};const s=merrieStatus(mid);para([m&&m.geboortejaar,(sb.v||"?")+" x "+(sb.mv||"?"),m&&m.stamboek,m&&m.ueln].filter(Boolean).join("   ·   "),{size:11,color:MUTED,gap:6});
+  para(T("Status")+": "+T(s.t)+(s.sub?"  ·  "+T(s.sub):""),{size:12,weight:600,gap:8});
+  heading("Merriekaart");table([{w:170,label:"Gegeven"},{w:CW-170,label:"Waarde"}],INFO_VELDEN.map(([k,l,type])=>[T(l),info[k]?(type==="sel"?T(M_STATUS[info[k]]||info[k]):info[k]):""]));
+  const her=herinneringenVan(mid,d).filter(h=>dagenTot(h.datum)>=0).sort(byDatum).slice(0,20);
+  if(her.length){heading("Komende herinneringen");table([{w:150,label:"Datum"},{w:CW-150,label:"Wat"}],her.map(h=>[T(fmtDag(h.datum)),T(h.t)+(h.extra?"\n"+T(h.extra):"")]))}
+  const ks=dekkingenVan(d).reverse();
+  if(ks.length){heading("Dekkingen en dracht");table([{w:90,label:"Datum"},{w:150,label:"Hengst"},{w:110,label:"Methode"},{w:CW-350,label:"Resultaat"}],ks.map(k=>{const x=dekInfo(d,k);return [T(fmtKort(k.datum)),k.hengst||"",T(METHODES[k.methode]||""),T(DEK_ST[x.st][0])+(x.st==="drachtig"||x.st==="wacht"?"\n"+T("Verwacht")+" "+T(fmtKort(x.verw)):x.geb?"\n"+T(fmtKort(x.geb.datum))+(x.geb.naam?": "+x.geb.naam:""):"")]}))}
+  const all=d.items.slice().sort(byDatum).reverse();
+  if(all.length){heading("Tijdlijn");table([{w:90,label:"Datum"},{w:130,label:"Soort"},{w:CW-220,label:"Details"}],all.map(i=>[T(fmtKort(i.datum))+(i.tijd?"\n"+i.tijd:""),T(KORT[i.soort]),[plat(itemSamenvatting(d,i)),i.notitie||i.tekst||i.behandeling||""].filter(Boolean).map(x=>T(x)).join("\n")]))}
+  const per={};d.items.forEach(i=>{const b=i.soort==="kosten"?num(i.bedrag):i.soort==="dekking"?num(i.dekgeld):null;if(b==null)return;const yr=(i.datum||"").slice(0,4);per[yr]=(per[yr]||0)+b});
+  if(Object.keys(per).length){heading("Kosten per jaar");table([{w:150,label:"Jaar"},{w:CW-150,label:"Totaal"}],Object.keys(per).sort().reverse().map(yr=>[yr,euroBedrag(per[yr])]))}
+  y+=6;para("Richtdagen en herinneringen zijn een hulpmiddel en vervangen het advies van je dierenarts niet.",{size:10,color:MUTED});
+  const N=pages.length;pages.forEach((pg,i)=>{c=pg.c;c.fillStyle=GOLD;c.fillRect(M,H-48,CW,.8);font(600,8.5,DISP);c.fillStyle=GREEN;c.letterSpacing="1.4px";
+    c.fillText("DE FOKWIJZER  ·  "+T("Een wikigids voor en door paardenfokkers").toUpperCase(),M,H-32);c.letterSpacing="0px";font(400,9.5);c.fillStyle=MUTED;c.textAlign="right";c.fillText(T(`Pagina ${i+1} van ${N}`),W-M,H-32);c.textAlign="left"});
+  return pdfFromPages(pages)}
 
 // ---------- Fokkersprofiel: een openbare pagina met je paarden en contactgegevens ----------
 const F_COLL="fokkers";state.fokkers={};
