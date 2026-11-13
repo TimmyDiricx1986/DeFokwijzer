@@ -424,6 +424,16 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .hc-score{font-size:1.25rem;font-weight:700}
 .hc-vv{padding:5px 10px;font-size:.85rem}
 .count-badge[hidden]{display:none!important}
+.seg{display:inline-flex;flex-wrap:wrap;gap:2px;margin-top:6px;padding:2px;border:1px solid var(--line);border-radius:8px;background:var(--sunk)}
+.seg button{font:inherit;font-size:.78rem;font-weight:600;border:0;border-radius:6px;padding:3px 8px;background:transparent;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.dos-her{list-style:none;margin:0;padding:0}.dos-her-item{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:8px 0;border-top:1px solid var(--line)}.dos-her-item:first-child{border-top:0}
+.dos-her-item.laat .dos-dat b{color:var(--bad,#b3261e)}.dos-dat{display:flex;flex-direction:column}
+.dos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.dos-det{margin-top:8px}.dos-det summary{cursor:pointer;font-weight:600;font-size:.9rem;color:var(--accent)}.dos-det form{margin-top:8px;gap:8px;align-items:flex-end}
+#dosOut textarea,#profOut textarea{font:inherit}
+.prof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+@media (max-width:560px){.dos-her-item{grid-template-columns:1fr;gap:2px}}
 .nakom-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
 .stal-wijzer{margin-top:14px;font-size:.92rem;background:var(--sunk)}
 .stal-titel{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;margin:0 0 12px}
@@ -464,7 +474,7 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .subtabs button{font:inherit;font-weight:600;font-size:.92rem;border:0;border-radius:7px;padding:7px 14px;background:transparent;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:4px}
 .subtabs button[aria-selected="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .subtabs button[aria-selected="false"] .count-badge{background:var(--accent);color:var(--accent-ink)}
-@media (max-width:640px){.subtabs{display:flex}.subtabs button{flex:1 1 0;justify-content:center;padding:7px 4px;font-size:.82rem;text-align:center;white-space:normal;line-height:1.2;min-width:0}}
+@media (max-width:640px){.subtabs{display:flex}.subtabs button{flex:1 1 30%;justify-content:center;padding:7px 4px;font-size:.82rem;text-align:center;white-space:normal;line-height:1.2;min-width:0}}
 .dek-sp{border:0;padding:0;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}.dek-sp legend{float:left;margin:0 6px 0 0;padding:0}.dek-sp label{display:flex;gap:6px;align-items:center;font-size:.92rem}
 .dek-edit{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}.dek-edit summary{cursor:pointer;font-weight:600;color:var(--accent)}.dek-edit .wiki-form{margin-top:10px}
 .wiki-form textarea{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
@@ -634,6 +644,18 @@ header.top #adminLink[aria-current="page"]{text-decoration-thickness:2px}
   <section class="panel" id="p-nakom" role="tabpanel" aria-labelledby="tab-beheer" hidden>
     <div class="subtabs-slot"></div>
     <div id="nakomOut"></div>
+  </section>
+
+  <!-- MERRIEDOSSIER -->
+  <section class="panel" id="p-dossier" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div class="subtabs-slot"></div>
+    <div id="dosOut"></div>
+  </section>
+
+  <!-- FOKKERSPROFIEL -->
+  <section class="panel" id="p-profiel" role="tabpanel" aria-labelledby="tab-beheer" hidden>
+    <div class="subtabs-slot"></div>
+    <div id="profOut"></div>
   </section>
 
   <!-- COMBINATIES (virtuele veulens) -->
@@ -1104,11 +1126,11 @@ function match(s,m){const w=state.w,t=state.t;const warnings=[],reasons=[],weak=
 
 // ---------- rendering ----------
 function setTab(t){if((t==="stam"&&!FW_EXTRA.stamlijnen)||(t==="veilingen"&&!FW_EXTRA.veilingen))t="zoeken";const prevTab=state.tab;state.tab=t;const navT=WERK.includes(t)?"beheer":t;if(WERK.includes(t)){state.lastBeheer=t;const sl=$("p-"+t).querySelector(".subtabs-slot");if(sl)sl.innerHTML=subtabsHtml(t)}document.querySelectorAll("nav.tabs button[data-tab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===navT)));
-  ["info","zoeken","vergelijken","hengsten","matches","stam","veilingen","stal","nakom","veulens","aanvragen","beheer","partners","admin"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab();
+  ["info","zoeken","vergelijken","hengsten","matches","stam","veilingen","stal","nakom","veulens","dossier","profiel","aanvragen","beheer","partners","admin"].forEach(k=>$("p-"+k).hidden=k!==t);renderTab();
   // Na een tabwissel bovenaan het nieuwe onderdeel beginnen (vooral op de gsm stond je anders halverwege de pagina).
   if(prevTab!==t)fwTrack("tab",t);
   if(prevTab!==t){const n=document.querySelector("nav.tabs");if(n&&n.getBoundingClientRect().top<0)window.scrollTo({top:Math.max(0,n.getBoundingClientRect().top+window.scrollY-8)})}}
-function renderTab(){if(state.tab==="zoeken"){renderSearch();requestAnimationFrame(fitList)}if(state.tab==="vergelijken")renderCompare();if(state.tab==="hengsten")renderHengsten();if(state.tab==="stal")renderStal();if(state.tab==="nakom")renderNakom();if(state.tab==="veulens")renderVeulens();if(state.tab==="matches")renderMatches();if(state.tab==="stam")renderStam();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="aanvragen")renderAanvragen();if(state.tab==="beheer")renderBeheer();if(state.tab==="partners"){renderPartnersNote();renderAdAdmin()}if(state.tab==="admin")renderAdmin()}
+function renderTab(){if(state.tab==="zoeken"){renderSearch();requestAnimationFrame(fitList)}if(state.tab==="vergelijken")renderCompare();if(state.tab==="hengsten")renderHengsten();if(state.tab==="stal")renderStal();if(state.tab==="nakom")renderNakom();if(state.tab==="dossier")renderDossier();if(state.tab==="profiel")renderProfiel();if(state.tab==="veulens")renderVeulens();if(state.tab==="matches")renderMatches();if(state.tab==="stam")renderStam();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="aanvragen")renderAanvragen();if(state.tab==="beheer")renderBeheer();if(state.tab==="partners"){renderPartnersNote();renderAdAdmin()}if(state.tab==="admin")renderAdmin()}
 
 // ---------- veilingen (veilingmeester) ----------
 const V_COLL="veilingen",C_COLL="council";
@@ -2037,6 +2059,7 @@ function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<d
   else if(t==="dek")body=dekHtml(h)+(state.canWrite&&!isDemo&&db?`<details class="dek-edit"${dekLeeg(dekOf(h))?" open":""}><summary>Dekinfo aanpassen</summary><form class="wiki-form" data-wiki="dek" data-id="${esc(h.id)}">${dekFormHtml("wd")}<div class="row" style="margin-top:8px"><button class="btn" type="submit">Dekinfo bewaren</button></div><div class="status" role="status"></div></form></details>`
     :state.canWiki&&!isDemo?'<p class="small muted" style="margin:10px 0 0">Klopt dit niet meer? Laat het weten bij Opmerkingen, met een bron.</p>':"");
   else if(t==="gegevens")body=`<dl class="facts two">
+    ${(()=>{const fp=profielVan(h.eigenaar_id);return fp?`<dt>Fokker</dt><dd class="wide"><button type="button" class="linkbtn" data-fokker="${esc(String(h.eigenaar_id))}">${esc(fp.stalnaam)}</button></dd>`:""})()}
     <dt>Stamboek</dt><dd class="wide">${esc(h.stamboek||"onbekend")}</dd>
     <dt>UELN</dt><dd class="mono">${esc(h.ueln||"onbekend")}</dd><dt>FEI-ID</dt><dd class="mono">${esc(h.fei_id||"onbekend")}</dd>
     <dt>Stokmaat</dt><dd>${num(h.stokmaat_cm)!=null?esc(h.stokmaat_cm)+" cm":"onbekend"}</dd><dt>Niveau</dt><dd>${fmtH(h.hoogste_niveau_cm)}</dd>
@@ -2195,24 +2218,24 @@ function renderCompare(){const s=byId($("cS").value),m=byId($("cM").value);
 
 // ---------- Mijn Fokwijzer: werkplek van een Fokwijzer-profiel ----------
 // Tabbladen: Mijn stal (stal), Nakomelingen (nakom), Combinaties (veulens), Paard toevoegen (aanvragen = automatisch, beheer = zelf invullen).
-const WERK=["stal","nakom","veulens","aanvragen","beheer"];
+const WERK=["stal","nakom","veulens","dossier","profiel","aanvragen","beheer"];
 function subtabsHtml(t){const toev=t==="aanvragen"||t==="beheer";const sel=(k)=>`aria-selected="${k}"`;
-  const top=`<div class="subtabs" role="tablist" aria-label="Mijn Fokwijzer"><button type="button" role="tab" data-sub="stal" ${sel(t==="stal")}>Mijn stal</button><button type="button" role="tab" data-sub="nakom" ${sel(t==="nakom")}>Nakomelingen</button><button type="button" role="tab" data-sub="veulens" ${sel(t==="veulens")}>Combinaties</button><button type="button" role="tab" data-sub="toevoegen" ${sel(toev)}>Paard toevoegen <span class="count-badge" data-subbadge${$("reqBadge").hidden?" hidden":""}>${esc($("reqBadge").textContent)}</span></button></div>`;
+  const top=`<div class="subtabs" role="tablist" aria-label="Mijn Fokwijzer"><button type="button" role="tab" data-sub="stal" ${sel(t==="stal")}>Mijn stal</button><button type="button" role="tab" data-sub="nakom" ${sel(t==="nakom")}>Nakomelingen</button><button type="button" role="tab" data-sub="veulens" ${sel(t==="veulens")}>Combinaties</button><button type="button" role="tab" data-sub="dossier" ${sel(t==="dossier")}>Merriedossier</button><button type="button" role="tab" data-sub="profiel" ${sel(t==="profiel")}>Fokkersprofiel</button><button type="button" role="tab" data-sub="toevoegen" ${sel(toev)}>Paard toevoegen <span class="count-badge" data-subbadge${$("reqBadge").hidden?" hidden":""}>${esc($("reqBadge").textContent)}</span></button></div>`;
   return top+(toev?`<div class="subtabs sub2" role="tablist" aria-label="Paard toevoegen"><button type="button" role="tab" data-sub="aanvragen" ${sel(t==="aanvragen")}>Automatisch laten opzoeken</button><button type="button" role="tab" data-sub="beheer" ${sel(t==="beheer")}>Zelf invullen</button></div>
     <p class="small muted sub2-uitleg">${t==="aanvragen"?"Geef de naam (en eventueel een link of printscreen): de data-agent zoekt afstamming, sport, gezondheid en identiteit op en zet alles klaar om na te kijken.":"Vul zelf de gegevens van een paard in, of pas een paard aan dat je eerder toevoegde."}</p>`:"")}
 // Opslag: per persoon één privé-document {hengsten:[id], merries:[id], veulens:[{id,s,m,naam,notitie,gemaakt_op}]}.
 const STAL_MAX=300,VEUL_MAX=200;
-state.stal={hengsten:[],merries:[],veulens:[]};state.stalOk=false;let stalSub=null,stalKey="";
+state.stal={hengsten:[],merries:[],veulens:[],rol:{},dossier:{}};state.stalOk=false;let stalSub=null,stalKey="";
 function stalRef(){return state.site?db.doc("mijnstal/"+state.meId):db.collection("data/users/"+state.meId).doc("stal")}
 function stalAan(){return !!(db&&state.canWrite&&state.meId&&state.dbState==="ready")}
 function ensureStal(){const k=stalAan()?state.meId:"";if(k===stalKey)return;stalKey=k;if(stalSub){try{stalSub()}catch(_){}stalSub=null}
-  state.stal={hengsten:[],merries:[],veulens:[]};state.stalOk=false;if(!k)return;
-  try{stalSub=stalRef().onSnapshot(d=>{const v=d&&d.exists?d.data():null;state.stal={naam:(v&&typeof v.naam==="string"?v.naam:""),hengsten:(v&&v.hengsten)||[],merries:(v&&v.merries)||[],veulens:(v&&v.veulens)||[]};state.stalOk=true;
-    if(state.tab==="stal")renderStal();if(state.tab==="nakom")renderNakom();if(state.tab==="veulens")renderVeulens();if(state.tab==="vergelijken")stalKnopCmp();if(state.tab==="zoeken")stalKnopDet()},err=>{state.stalOk=true;state.stalErr=true;if(state.tab==="stal")renderStal()})}catch(_){state.stalOk=true;state.stalErr=true}}
+  state.stal={hengsten:[],merries:[],veulens:[],rol:{},dossier:{}};state.stalOk=false;if(!k)return;
+  try{stalSub=stalRef().onSnapshot(d=>{const v=d&&d.exists?d.data():null;state.stal={naam:(v&&typeof v.naam==="string"?v.naam:""),hengsten:(v&&v.hengsten)||[],merries:(v&&v.merries)||[],veulens:(v&&v.veulens)||[],rol:(v&&v.rol&&typeof v.rol==="object"?v.rol:{}),dossier:(v&&v.dossier&&typeof v.dossier==="object"?v.dossier:{})};state.stalOk=true;
+    if(state.tab==="stal")renderStal();if(state.tab==="nakom")renderNakom();if(state.tab==="dossier")renderDossier();if(state.tab==="profiel")renderProfiel();if(state.tab==="veulens")renderVeulens();if(state.tab==="vergelijken")stalKnopCmp();if(state.tab==="zoeken")stalKnopDet()},err=>{state.stalOk=true;state.stalErr=true;if(state.tab==="stal")renderStal()})}catch(_){state.stalOk=true;state.stalErr=true}}
 let stalBusy=Promise.resolve();
 function stalSave(fn,st){ // fn past een kopie aan; daarna in volgorde bewaren
-  const nw=JSON.parse(JSON.stringify(state.stal));fn(nw);nw.hengsten=[...new Set(nw.hengsten)].slice(0,STAL_MAX);nw.merries=[...new Set(nw.merries)].slice(0,STAL_MAX);nw.veulens=nw.veulens.slice(0,VEUL_MAX);nw.bijgewerkt=new Date().toISOString();
-  state.stal=nw;if(state.tab==="stal")renderStal();if(state.tab==="nakom")renderNakom();if(state.tab==="veulens")renderVeulens();stalKnopDet();stalKnopCmp();
+  const nw=JSON.parse(JSON.stringify(state.stal));fn(nw);nw.hengsten=[...new Set(nw.hengsten)].slice(0,STAL_MAX);nw.merries=[...new Set(nw.merries)].slice(0,STAL_MAX);nw.veulens=nw.veulens.slice(0,VEUL_MAX);nw.rol=nw.rol||{};for(const k of Object.keys(nw.rol))if(!nw.hengsten.includes(k)&&!nw.merries.includes(k))delete nw.rol[k];nw.dossier=nw.dossier||{};nw.bijgewerkt=new Date().toISOString();profielStalSync(nw);
+  state.stal=nw;if(state.tab==="stal")renderStal();if(state.tab==="nakom")renderNakom();if(state.tab==="dossier")renderDossier();if(state.tab==="profiel")renderProfiel();if(state.tab==="veulens")renderVeulens();stalKnopDet();stalKnopCmp();
   stalBusy=stalBusy.then(()=>stalRef().set(clean(nw))).then(()=>{if(st){st.className="status ok";st.textContent="Bewaard."}}).catch(err=>{const m="Bewaren lukte niet: "+(err&&err.message||"onbekende fout");if(st){st.className="status err";st.textContent=m}else fwToast(m)});return stalBusy}
 function fwToast(t){const d=document.createElement("div");d.className="sim-toast";d.setAttribute("role","status");d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),4500)}
 const eigenPaarden=()=>state.meId?state.horses.filter(h=>h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId):[];
@@ -2230,8 +2253,9 @@ function geenWerkplek(){if(state.dbState==="loading")return '<p class="small mut
 const stalRegel=(h)=>{const sb=h.stamboom||{};const d=dekOf(h),b=d&&BESCHIK[d.beschikbaar];const eigen=state.meId&&h.eigenaar_id!=null&&String(h.eigenaar_id)===state.meId;
   return `<li class="stal-item"><div class="stal-naam"><button type="button" class="linkbtn" data-stalopen="${esc(h.id)}">${esc(h.naam)}</button>
     <div class="small muted">${[h.geboortejaar,(sb.v||"?")+" x "+(sb.mv||"?")].filter(Boolean).map(esc).join(" · ")}</div>
-    <div class="chips" style="margin-top:3px">${eigen?'<span class="chip">Eigen paard</span>':""}${h.wffs&&h.wffs!=="onbekend"?wffsChip(h.wffs):""}${num(h.hoogste_niveau_cm)!=null?`<span class="chip">${esc(fmtH(h.hoogste_niveau_cm))}</span>`:""}${b?`<span class="chip ${b[1]}">${b[0]}</span>`:""}</div></div>
-    <div class="stal-acties">${h.geslacht==="merrie"?`<button type="button" class="btn ghost" data-stalcomb="${esc(h.id)}">Combineer</button>`:""}${eigen?"":`<button type="button" class="hc-del" data-staldel="${esc(h.id)}" aria-label="${esc(h.naam)} uit je stal halen" title="Uit je stal halen">&times;</button>`}</div></li>`};
+    <div class="chips" style="margin-top:3px">${eigen?'<span class="chip">Eigen paard</span>':""}${h.wffs&&h.wffs!=="onbekend"?wffsChip(h.wffs):""}${num(h.hoogste_niveau_cm)!=null?`<span class="chip">${esc(fmtH(h.hoogste_niveau_cm))}</span>`:""}${b?`<span class="chip ${b[1]}">${b[0]}</span>`:""}</div>
+    ${h.geslacht==="hengst"&&!eigen?(()=>{const r=(state.stal.rol||{})[h.id]==="eigendom"?"eigendom":"fokkerij";return `<div class="seg" role="group" aria-label="Rol van ${esc(h.naam)} in je stal"><button type="button" data-stalrol="${esc(h.id)}|fokkerij" aria-pressed="${r==="fokkerij"}">Te gebruiken in fokkerij</button><button type="button" data-stalrol="${esc(h.id)}|eigendom" aria-pressed="${r==="eigendom"}">In eigendom</button></div>`})():""}</div>
+    <div class="stal-acties">${h.geslacht==="merrie"?`<button type="button" class="btn ghost" data-stalcomb="${esc(h.id)}">Combineer</button><button type="button" class="btn ghost" data-stalgodos="${esc(h.id)}">Dossier</button>`:""}${eigen?"":`<button type="button" class="hc-del" data-staldel="${esc(h.id)}" aria-label="${esc(h.naam)} uit je stal halen" title="Uit je stal halen">&times;</button>`}</div></li>`};
 function renderStal(){const out=$("stalOut");if(!out)return;ensureStal();
   if(!stalAan()){out.innerHTML=geenWerkplek();return}
   if(!state.stalOk){out.innerHTML='<p class="small muted">Je stal wordt geladen...</p>';return}
@@ -2310,6 +2334,122 @@ function renderNakom(){const out=$("nakomOut");if(!out)return;ensureStal();
     :`<div class="nakom-grid">${perOuder.map(({p,k})=>{const toon=open.has(p.id)?k:k.slice(0,8);
       return `<section class="card nakom-kaart"><div class="stal-titel" style="margin:0 0 4px"><div style="min-width:0"><div class="label">${p.geslacht==="merrie"?"Merrie":"Hengst"}</div><h3 style="margin:2px 0 0;overflow-wrap:anywhere">${esc(p.naam)}</h3></div><span class="muted small">${k.length} ${k.length===1?"nakomeling":"nakomelingen"}</span></div>
         ${k.length?`<ul class="stal-list">${toon.map(h=>kindRegel(h,p)).join("")}</ul>${k.length>toon.length?`<button type="button" class="linkbtn" data-nakommeer="${esc(p.id)}" style="margin-top:6px">Toon alle ${k.length}</button>`:""}`:'<p class="small muted" style="margin:6px 0 0">Nog geen nakomelingen in De Fokwijzer.</p>'}</section>`}).join("")}</div>`}`}
+// ---------- Merriedossier: dekkingen, drachtcontroles, verwachte veulendatum en herinneringen ----------
+const DRACHT_DAGEN=340;
+const isoDag=(d)=>{const x=new Date(d);return isNaN(x)?"":new Date(x.getTime()-x.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+const vandaagIso=()=>isoDag(new Date());
+const dPlus=(iso,n)=>{const d=new Date(iso+"T12:00:00");d.setDate(d.getDate()+n);return isoDag(d)};
+const dagVerschil=(a,b)=>Math.round((new Date(b+"T12:00:00")-new Date(a+"T12:00:00"))/864e5);
+const fmtDag=(iso)=>{const d=new Date(iso+"T12:00:00");return isNaN(d)?String(iso||""):d.toLocaleDateString("nl-BE",{day:"numeric",month:"long",year:"numeric"})};
+const METHODES={vers:"Vers sperma",diepvries:"Diepvriessperma",natuurlijk:"Natuurlijke dekking",embryo:"Embryotransfer",onbekend:"Onbekend"};
+const UITSLAG={drachtig:"Drachtig",leeg:"Niet drachtig",twijfel:"Twijfel"};
+function dekStatus(k){if(k.veulen&&k.veulen.datum)return["Veulen geboren","good"];const c=(k.controles||[]).slice().sort((a,b)=>a.datum<b.datum?-1:1),l=c[c.length-1];
+  if(l&&l.uitslag==="leeg")return["Niet drachtig","bad"];if(l&&l.uitslag==="drachtig")return["Drachtig","good"];if(l&&l.uitslag==="twijfel")return["Twijfel","warn"];return["Wacht op drachtcontrole","warn"]}
+function herinneringen(){const out=[];const D=state.stal.dossier||{};
+  for(const [mid,lijst] of Object.entries(D)){const m=byId(mid);
+    for(const k of (Array.isArray(lijst)?lijst:[])){if(!k||!k.datum)continue;const st=dekStatus(k)[0];if(st==="Niet drachtig"||st==="Veulen geboren")continue;
+      const mn=m?m.naam:(k.merrie_naam||"Merrie");const c=k.controles||[];const gedaan=(n)=>c.some(x=>x.datum&&dagVerschil(k.datum,x.datum)>=n-3);
+      const add=(n,t,soort)=>out.push({datum:dPlus(k.datum,n),t,soort,merrie:mn,mid,kid:k.id,hengst:k.hengst||""});
+      if(!gedaan(15))add(15,"Eerste drachtcontrole (echo)","echo1");
+      if(!gedaan(28))add(28,"Tweede echo: hartslag van de vrucht","echo2");
+      if(!gedaan(45))add(45,"Bevestiging van de dracht (echo)","echo3");
+      add(310,"Veulenbewaking voorbereiden","voorbereiden");add(DRACHT_DAGEN,"Verwachte veulendatum","veulen")}}
+  return out.sort((a,b)=>a.datum<b.datum?-1:a.datum>b.datum?1:0)}
+function herRegel(h){const n=dagenTot(h.datum);const wanneer=n<0?`${-n} ${-n===1?"dag":"dagen"} geleden`:n===0?"vandaag":n===1?"morgen":`over ${n} dagen`;
+  return `<li class="dos-her-item${n<0?" laat":""}"><div class="dos-dat"><b>${esc(fmtDag(h.datum))}</b><span class="small muted">${esc(wanneer)}</span></div><div><b>${esc(h.merrie)}</b>: ${esc(h.t)}${h.hengst?`<div class="small muted">Dekking met ${esc(h.hengst)}</div>`:""}</div></li>`}
+const dagenTot=(iso)=>dagVerschil(vandaagIso(),iso);
+function dekKaart(mid,k){const [st,kl]=dekStatus(k);const verw=dPlus(k.datum,DRACHT_DAGEN);const n=dagenTot(verw);const c=(k.controles||[]).slice().sort((a,b)=>a.datum<b.datum?-1:1);const h=k.hengst_id&&byId(k.hengst_id);
+  return `<section class="card dos-kaart"><div class="stal-titel" style="margin:0 0 4px"><div style="min-width:0"><div class="label">Gedekt op ${esc(fmtDag(k.datum))}</div><h3 style="margin:2px 0 0;overflow-wrap:anywhere">${h?`<button type="button" class="linkbtn" data-stalopen="${esc(h.id)}">${esc(h.naam)}</button>`:esc(k.hengst||"Onbekende hengst")}</h3></div><span class="chip ${kl}">${esc(st)}</span></div>
+    <p class="small" style="margin:4px 0">${esc(METHODES[k.methode]||METHODES.onbekend)}${st==="Veulen geboren"?` · Veulen geboren op ${esc(fmtDag(k.veulen.datum))}${k.veulen.naam?": "+esc(k.veulen.naam):""}`:st==="Niet drachtig"?"":` · Verwachte veulendatum <b>${esc(fmtDag(verw))}</b> <span class="muted">(${n>=0?"over "+n+" dagen":-n+" dagen geleden"})</span>`}</p>
+    ${k.notitie?`<p class="small muted" style="margin:4px 0;white-space:pre-line">${esc(k.notitie)}</p>`:""}
+    ${c.length?`<div class="label" style="margin-top:8px">Drachtcontroles</div><ul class="plain small">${c.map(x=>`<li>${esc(fmtDag(x.datum))} (dag ${dagVerschil(k.datum,x.datum)}): <b>${esc(UITSLAG[x.uitslag]||x.uitslag)}</b>${x.notitie?" · "+esc(x.notitie):""}</li>`).join("")}</ul>`:""}
+    <details class="dos-det"><summary>Drachtcontrole toevoegen</summary><form class="dos-ctrl row" data-kid="${esc(k.id)}"><div class="field"><label class="label" for="dc-d-${esc(k.id)}">Datum</label><input type="date" id="dc-d-${esc(k.id)}" name="datum" value="${vandaagIso()}" required></div><div class="field"><label class="label" for="dc-u-${esc(k.id)}">Uitslag</label><select id="dc-u-${esc(k.id)}" name="uitslag"><option value="drachtig">Drachtig</option><option value="leeg">Niet drachtig</option><option value="twijfel">Twijfel</option></select></div><div class="field grow"><label class="label" for="dc-n-${esc(k.id)}">Notitie</label><input id="dc-n-${esc(k.id)}" name="notitie" maxlength="200"></div><button class="btn" type="submit">Bewaren</button></form></details>
+    ${st==="Veulen geboren"?"":`<details class="dos-det"><summary>Veulen geboren</summary><form class="dos-veulen row" data-kid="${esc(k.id)}"><div class="field"><label class="label" for="dv-d-${esc(k.id)}">Geboortedatum</label><input type="date" id="dv-d-${esc(k.id)}" name="datum" value="${vandaagIso()}" required></div><div class="field grow"><label class="label" for="dv-n-${esc(k.id)}">Naam (optioneel)</label><input id="dv-n-${esc(k.id)}" name="naam" maxlength="80"></div><button class="btn" type="submit">Bewaren</button></form></details>`}
+    <div class="row" style="margin-top:8px;gap:8px">${st==="Veulen geboren"?'<button type="button" class="btn ghost" data-nakomnieuw>Als eigen veulen toevoegen</button>':""}<button type="button" class="btn ghost danger" data-dosweg="${esc(mid)}|${esc(k.id)}">Dekking weghalen</button></div></section>`}
+function renderDossier(){const out=$("dosOut");if(!out)return;ensureStal();
+  if(!stalAan()){out.innerHTML=geenWerkplek();return}
+  if(!state.stalOk){out.innerHTML='<p class="small muted">Je stal wordt geladen...</p>';return}
+  const M=stalLijst("merrie"),D=state.stal.dossier||{};const mSel=M.some(m=>m.id===state.dosM)?state.dosM:(M[0]&&M[0].id)||"";state.dosM=mSel;
+  const kom=herinneringen().filter(h=>dagenTot(h.datum)>=-30);const toon=state.dosAlle?kom:kom.slice(0,8);
+  const lijst=(D[mSel]||[]).slice().sort((a,b)=>a.datum<b.datum?1:-1);
+  const hs=[...new Set(stalLijst("hengst").map(h=>h.naam).concat(state.horses.filter(h=>h.geslacht==="hengst").map(h=>h.naam)))].slice(0,4000);
+  out.innerHTML=`<section class="card"><div class="stal-titel" style="margin:0 0 6px"><h3 style="margin:0">Komende herinneringen</h3>${kom.length?'<button type="button" class="btn ghost" data-dosics>Zet in je agenda (.ics)</button>':""}</div>
+     ${kom.length?`<ul class="dos-her">${toon.map(herRegel).join("")}</ul>${kom.length>toon.length?`<button type="button" class="linkbtn" data-dosalle style="margin-top:6px">Toon alle ${kom.length}</button>`:""}`:'<p class="small muted" style="margin:0">Nog geen herinneringen. Registreer hieronder een dekking: dan verschijnen de drachtcontroles en de verwachte veulendatum hier.</p>'}
+     <p class="small muted" style="margin:8px 0 0">Richtdagen na de dekking: echo rond dag 15, hartslag rond dag 28, bevestiging rond dag 45, veulen rond dag 340. Volg altijd het advies van je dierenarts.</p><div class="status" id="dosSt" role="status"></div></section>
+   ${!M.length?'<div class="card empty" style="margin-top:14px">Zet eerst een merrie in Mijn stal. Daarna houd je hier haar dekkingen, drachtcontroles en veulens bij.</div>':`
+   <section class="card" style="margin-top:14px"><div class="row" style="align-items:flex-end;gap:12px"><div class="field grow"><label class="label" for="dosM">Merrie</label><select id="dosM">${M.map(m=>{const a=(D[m.id]||[]).length;return `<option value="${esc(m.id)}"${m.id===mSel?" selected":""}>${esc(m.naam)}${a?" ("+a+")":""}</option>`}).join("")}</select></div></div>
+    <form id="dosForm" class="dos-form"><h3 style="margin:14px 0 8px">Nieuwe dekking</h3><div class="row" style="gap:10px;align-items:flex-end">
+     <div class="field"><label class="label" for="dosDatum">Datum</label><input type="date" id="dosDatum" value="${vandaagIso()}" required></div>
+     <div class="field grow"><label class="label" for="dosHengst">Hengst</label><input id="dosHengst" list="dosHengsten" maxlength="120" autocomplete="off" required placeholder="Naam van de hengst"><datalist id="dosHengsten">${hs.map(n=>`<option value="${esc(n)}">`).join("")}</datalist></div>
+     <div class="field"><label class="label" for="dosMethode">Methode</label><select id="dosMethode">${Object.entries(METHODES).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join("")}</select></div></div>
+     <div class="field" style="margin-top:8px"><label class="label" for="dosNotitie">Notitie (optioneel)</label><textarea id="dosNotitie" rows="2" maxlength="500" placeholder="bv. station, dierenarts, aantal rietjes"></textarea></div>
+     <button class="btn" type="submit" style="margin-top:8px">Dekking bewaren</button></form></section>
+   <h3 style="margin:18px 0 8px">Dekkingen van ${esc((byId(mSel)||{}).naam||"")} <span class="muted small">(${lijst.length})</span></h3>
+   ${lijst.length?`<div class="dos-grid">${lijst.map(k=>dekKaart(mSel,k)).join("")}</div>`:'<div class="card empty">Nog geen dekkingen geregistreerd voor deze merrie.</div>'}`}`}
+function icsTekst(items){const e=(x)=>String(x).replace(/[\;,]/g,m=>"\\"+m).replace(/\n/g,"\\n");const nu=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d+/,"");
+  const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//De Fokwijzer//Merriedossier//NL","CALSCALE:GREGORIAN","X-WR-CALNAME:De Fokwijzer: merriedossier"];
+  for(const h of items){const d=h.datum.replace(/-/g,"");L.push("BEGIN:VEVENT","UID:"+String(h.kid).replace(/[^A-Za-z0-9-]/g,"")+"-"+h.soort+"@defokwijzer","DTSTAMP:"+nu,"DTSTART;VALUE=DATE:"+d,"DTEND;VALUE=DATE:"+dPlus(h.datum,1).replace(/-/g,""),"SUMMARY:"+e(h.merrie+": "+h.t),"DESCRIPTION:"+e((h.hengst?"Dekking met "+h.hengst+". ":"")+"Uit je merriedossier in De Fokwijzer."),"END:VEVENT")}
+  L.push("END:VCALENDAR");return L.join("\r\n")}
+$("dosOut").addEventListener("change",e=>{if(e.target.id==="dosM"){state.dosM=e.target.value;renderDossier()}});
+$("dosOut").addEventListener("submit",e=>{e.preventDefault();const f=e.target;const st=$("dosSt");const mid=state.dosM;if(!mid)return;
+  if(f.id==="dosForm"){const naam=$("dosHengst").value.trim(),datum=$("dosDatum").value;if(!naam||!datum)return;const h=state.horses.find(x=>x.geslacht==="hengst"&&norm(x.naam)===norm(naam));
+    const k={id:"d"+Date.now().toString(36),datum,hengst:h?h.naam:naam,methode:$("dosMethode").value,controles:[],merrie_naam:(byId(mid)||{}).naam||""};if(h)k.hengst_id=h.id;const nt=$("dosNotitie").value.trim();if(nt)k.notitie=nt;
+    stalSave(nw=>{nw.dossier=nw.dossier||{};nw.dossier[mid]=(nw.dossier[mid]||[]).concat([k]).slice(-60)},st);return}
+  const kid=f.dataset.kid;const fd=new FormData(f);
+  if(f.classList.contains("dos-ctrl"))stalSave(nw=>{const k=(nw.dossier[mid]||[]).find(x=>x.id===kid);if(k){k.controles=(k.controles||[]).concat([{datum:fd.get("datum"),uitslag:fd.get("uitslag"),notitie:String(fd.get("notitie")||"").trim()}]).slice(-20)}},st);
+  if(f.classList.contains("dos-veulen"))stalSave(nw=>{const k=(nw.dossier[mid]||[]).find(x=>x.id===kid);if(k){k.veulen={datum:fd.get("datum"),naam:String(fd.get("naam")||"").trim()}}},st)});
+$("dosOut").addEventListener("click",async e=>{const t=e.target;
+  if(t.closest("[data-dosalle]")){state.dosAlle=true;renderDossier();return}
+  const w=t.closest("[data-dosweg]");if(w){if(w.dataset.zeker!=="1"){w.dataset.zeker="1";w.textContent="Zeker weghalen?";return}const [mid,kid]=w.dataset.dosweg.split("|");stalSave(nw=>{nw.dossier[mid]=(nw.dossier[mid]||[]).filter(x=>x.id!==kid);if(!nw.dossier[mid].length)delete nw.dossier[mid]},$("dosSt"));return}
+  if(t.closest("[data-nakomnieuw]")){state.lastToev="beheer";resetForm();setTab("beheer");return}
+  if(t.closest("[data-dosics]")){const st=$("dosSt");try{if(!dlNs){dlNs=await window.claude.use("downloads")}
+      if(!dlNs){st.className="status err";st.textContent="Downloaden is in deze weergave niet beschikbaar.";return}
+      const items=herinneringen().filter(h=>dagenTot(h.datum)>=0);await dlNs.save({filename:"fokwijzer-herinneringen.ics",data:new Blob([icsTekst(items)],{type:"text/calendar"})});st.className="status ok";st.textContent="Klaar: open het bestand om de herinneringen in je agenda te zetten."}
+    catch(err){st.className="status err";st.textContent=err&&err.code==="declined"?"Download geannuleerd.":"Het agendabestand kon niet gemaakt worden."}}});
+
+// ---------- Fokkersprofiel: een openbare pagina met je paarden en contactgegevens ----------
+const F_COLL="fokkers";state.fokkers={};
+const profielVan=(uid)=>uid!=null&&uid!==""?state.fokkers[String(uid)]||null:null;
+const urlVan=(u)=>{u=String(u||"").trim();if(!u)return"";if(!/^https?:\/\//i.test(u))u="https://"+u;return /^https?:\/\/[^\s<>"]+\.[^\s<>"]+$/i.test(u)?u:""};
+function profielPaarden(uid,p){const eigen=state.horses.filter(h=>h.eigenaar_id!=null&&String(h.eigenaar_id)===String(uid));const extra=p&&p.toon_stal?(p.stal||[]).map(byId).filter(Boolean):[];
+  const m=new Map();eigen.concat(extra).forEach(h=>m.set(h.id,h));return [...m.values()].sort((a,b)=>(a.geslacht===b.geslacht?0:a.geslacht==="hengst"?-1:1)||String(a.naam).localeCompare(String(b.naam)))}
+function profielStalSync(nw){const p=profielVan(state.meId);if(!p||!p.toon_stal||!db)return;const lijst=nw.hengsten.concat(nw.merries);if(JSON.stringify(lijst)===JSON.stringify(p.stal||[]))return;
+  try{db.collection(F_COLL).doc(state.meId).set(clean(Object.assign({},p,{stal:lijst,bijgewerkt:new Date().toISOString()}))).catch(()=>{})}catch(_){}}
+function profielRegel(h,knop){const sb=h.stamboom||{};return `<li class="stal-item"><div class="stal-naam"><button type="button" class="linkbtn" ${knop}="${esc(h.id)}">${esc(h.naam)}</button><div class="small muted">${[h.geslacht==="merrie"?"merrie":"hengst",h.geboortejaar,(sb.v||"?")+" x "+(sb.mv||"?")].filter(Boolean).map(esc).join(" · ")}</div></div></li>`}
+function renderProfiel(){const out=$("profOut");if(!out)return;ensureStal();
+  if(!stalAan()){out.innerHTML=geenWerkplek();return}
+  const p=profielVan(state.meId);const v=p||{stalnaam:state.stal.naam||"",toon_stal:true};const ps=profielPaarden(state.meId,Object.assign({},v,{stal:state.stal.hengsten.concat(state.stal.merries)}));
+  const veld=(id,lab,val,extra)=>`<div class="field"><label class="label" for="pf-${id}">${lab}</label><input id="pf-${id}" value="${esc(val||"")}" ${extra||""}></div>`;
+  out.innerHTML=`<section class="card"><div class="stal-titel" style="margin:0 0 6px"><div style="min-width:0"><div class="label">Fokkersprofiel</div><h3 style="margin:2px 0 0">${p?"Je profiel staat online":"Nog niet gepubliceerd"}</h3></div>${p?'<button type="button" class="btn ghost" data-profbekijk>Bekijk je profiel</button>':""}</div>
+    <p class="small muted" style="margin:0 0 10px">Een eigen pagina met je paarden en contactgegevens, zodat andere fokkers je vinden. Je profiel is te zien bij je paarden en via een eigen link. Alles wat je hier invult, is openbaar: vul enkel in wat je wil delen.</p>
+    <form id="profForm"><div class="prof-grid">${veld("stalnaam","Naam van je stal of fokkerij *",v.stalnaam,'maxlength="80" required')}${veld("naam","Contactpersoon",v.naam,'maxlength="80"')}${veld("plaats","Gemeente",v.plaats,'maxlength="80"')}${veld("land","Land",v.land,'maxlength="60"')}${veld("email","E-mailadres",v.email,'type="email" maxlength="120"')}${veld("telefoon","Telefoon",v.telefoon,'type="tel" maxlength="40"')}${veld("website","Website",v.website,'inputmode="url" maxlength="200" placeholder="www.jouwstal.be"')}</div>
+     <div class="field" style="margin-top:8px"><label class="label" for="pf-over">Over je fokkerij</label><textarea id="pf-over" rows="4" maxlength="1000" placeholder="bv. waar je op fokt, je bekendste paarden, of je veulens verkoopt">${esc(v.over||"")}</textarea></div>
+     <label class="check" style="margin-top:8px;display:flex;gap:8px;align-items:center"><input type="checkbox" id="pf-stal"${v.toon_stal?" checked":""}> Toon ook de hengsten en merries uit Mijn stal (naast je eigen paarden)</label>
+     <div class="row" style="margin-top:12px;gap:8px"><button class="btn" type="submit">${p?"Profiel bijwerken":"Profiel publiceren"}</button>${p?'<button type="button" class="btn ghost danger" data-profweg>Offline halen</button>':""}</div>
+     ${p&&state.site?`<p class="small" style="margin:10px 0 0">Link naar je profiel: <a href="${esc(location.origin+"/?fokker="+encodeURIComponent(state.meId))}" target="_blank" rel="noopener">${esc(location.origin+"/?fokker="+state.meId)}</a></p>`:""}
+     <div class="status" id="profSt" role="status"></div></form></section>
+   <section class="card" style="margin-top:14px"><h3 style="margin:0 0 8px">Paarden op je profiel <span class="muted small">(${ps.length})</span></h3>
+    ${ps.length?`<ul class="stal-list">${ps.map(h=>profielRegel(h,"data-stalopen")).join("")}</ul>`:'<p class="small muted" style="margin:0">Nog geen paarden. Paarden die je zelf toevoegt, staan altijd op je profiel.</p>'}</section>`}
+$("profOut").addEventListener("submit",async e=>{e.preventDefault();const st=$("profSt");const g=(id)=>$("pf-"+id).value.trim();
+  const web=g("website");if(web&&!urlVan(web)){st.className="status err";st.textContent="Dat webadres klopt niet.";return}
+  const doc={stalnaam:g("stalnaam"),naam:g("naam"),plaats:g("plaats"),land:g("land"),email:g("email"),telefoon:g("telefoon"),website:urlVan(web),over:$("pf-over").value.trim(),toon_stal:$("pf-stal").checked,stal:$("pf-stal").checked?state.stal.hengsten.concat(state.stal.merries):[],bijgewerkt:new Date().toISOString()};
+  if(!doc.stalnaam){st.className="status err";st.textContent="Geef je stal een naam.";return}
+  st.className="status";st.textContent="Bezig...";try{await db.collection(F_COLL).doc(state.meId).set(clean(doc));state.fokkers[state.meId]=doc;renderProfiel();const s2=$("profSt");s2.className="status ok";s2.textContent="Je profiel staat online."}
+  catch(err){st.className="status err";st.textContent="Bewaren lukte niet: "+(err&&err.message||"onbekende fout")}});
+$("profOut").addEventListener("click",async e=>{if(e.target.closest("[data-profbekijk]")){openFokker(state.meId);return}
+  const w=e.target.closest("[data-profweg]");if(w){if(w.dataset.zeker!=="1"){w.dataset.zeker="1";w.textContent="Zeker offline halen?";return}
+    try{await db.collection(F_COLL).doc(state.meId).delete();delete state.fokkers[state.meId];renderProfiel()}catch(err){const st=$("profSt");st.className="status err";st.textContent="Offline halen lukte niet."}}});
+function openFokker(uid){const p=profielVan(uid);if(!p)return;const ps=profielPaarden(uid,p);const d=document.createElement("dialog");d.className="detdlg";
+  const web=urlVan(p.website);const mail=/^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/.test(p.email||"")?p.email:"";const tel=String(p.telefoon||"").replace(/[^\d+]/g,"");
+  d.innerHTML=`<div class="dlg-head"><div style="min-width:0"><div class="label">Fokker</div><h3 style="margin:2px 0 0;overflow-wrap:anywhere">${esc(p.stalnaam)}</h3></div><button type="button" class="btn ghost" data-close>Sluiten</button></div>
+   <div class="dlg-body">${[p.naam,p.plaats,p.land].filter(Boolean).length?`<p class="small muted" style="margin:0 0 8px">${[p.naam,p.plaats,p.land].filter(Boolean).map(esc).join(" · ")}</p>`:""}
+    ${p.over?`<p style="margin:0 0 10px;white-space:pre-line">${esc(p.over)}</p>`:""}
+    ${mail||tel||web?`<dl class="facts" style="margin:0 0 12px">${mail?`<dt>E-mail</dt><dd><a href="mailto:${esc(mail)}">${esc(mail)}</a></dd>`:""}${tel?`<dt>Telefoon</dt><dd><a href="tel:${esc(tel)}">${esc(p.telefoon)}</a></dd>`:""}${web?`<dt>Website</dt><dd><a href="${esc(web)}" target="_blank" rel="noopener nofollow">${esc(web.replace(/^https?:\/\//,""))}</a></dd>`:""}</dl>`:""}
+    <h4 style="margin:6px 0">Paarden <span class="muted small">(${ps.length})</span></h4>${ps.length?`<ul class="stal-list">${ps.map(h=>profielRegel(h,"data-fokopen")).join("")}</ul>`:'<p class="small muted">Nog geen paarden.</p>'}</div>`;
+  document.body.appendChild(d);d.addEventListener("close",()=>d.remove());d.querySelector("[data-close]").onclick=()=>d.close();
+  d.addEventListener("click",e=>{const b=e.target.closest("[data-fokopen]");if(b){d.close();state.sel=b.dataset.fokopen;state.detTab="overzicht";setTab("zoeken")}});d.showModal()}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-fokker]");if(b){e.preventDefault();openFokker(b.dataset.fokker)}});
+
 // ---------- Combinaties: virtuele veulens ----------
 const vvId=()=>"v"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 function vvBewaar(sId,mId,naam,st){const s=byId(sId),m=byId(mId);if(!s||!m||!stalAan())return;
@@ -2512,10 +2652,12 @@ $("stalOut").addEventListener("click",e=>{const f=$("stalNaamForm");if(!f)return
   if(e.target.closest("[data-stalnaam]")){f.hidden=false;$("stalNaam").focus();$("stalNaam").select();return}
   if(e.target.closest("[data-stalnaamweg]")){f.hidden=true;$("stalNaam").value=state.stal.naam||""}});
 $("stalOut").addEventListener("submit",e=>{if(e.target.id!=="stalNaamForm")return;e.preventDefault();const n=$("stalNaam").value.replace(/\s+/g," ").trim().slice(0,80);stalSave(v=>{v.naam=n})});
-document.addEventListener("click",e=>{const t=e.target.closest("[data-staladd],[data-staldel],[data-stalopen],[data-stalcomb],[data-stalmatch],[data-stalvraag],[data-stalhc],[data-vvopen],[data-vvbewaar],[data-vvpdf],[data-vvedit],[data-vvweg]");if(!t||!t.closest("#p-stal,#p-veulens,#p-nakom"))return;const d=t.dataset;
+document.addEventListener("click",e=>{const t=e.target.closest("[data-staladd],[data-staldel],[data-stalopen],[data-stalcomb],[data-stalrol],[data-stalgodos],[data-stalmatch],[data-stalvraag],[data-stalhc],[data-vvopen],[data-vvbewaar],[data-vvpdf],[data-vvedit],[data-vvweg]");if(!t||!t.closest("#p-stal,#p-veulens,#p-nakom,#p-dossier,#p-profiel"))return;const d=t.dataset;
   if(d.staladd){const h=byId(d.staladd);if(h){stalSave(v=>{(h.geslacht==="merrie"?v.merries:v.hengsten).push(h.id)});const i=document.querySelector(`[data-stalzoek="${h.geslacht}"]`);if(i){i.value="";setTimeout(()=>{const j=document.querySelector(`[data-stalzoek="${h.geslacht}"]`);if(j)j.focus()},0)}}return}
   if(d.staldel){const h=byId(d.staldel);stalSave(v=>{v.hengsten=v.hengsten.filter(x=>x!==d.staldel);v.merries=v.merries.filter(x=>x!==d.staldel)});return}
   if(d.stalopen){state.sel=d.stalopen;state.detTab="overzicht";setTab("zoeken");return}
+  if(d.stalrol){const [id,r]=d.stalrol.split("|");stalSave(nw=>{nw.rol=nw.rol||{};if(r==="eigendom")nw.rol[id]="eigendom";else delete nw.rol[id]});return}
+  if(d.stalgodos){state.dosM=d.stalgodos;setTab("dossier");return}
   if(d.stalcomb){state.stalM=d.stalcomb;setTab("veulens");const c=$("stalCombCard");if(c){c.scrollIntoView({behavior:"smooth",block:"start"});c.classList.remove("flits");void c.offsetWidth;c.classList.add("flits")}return}
   if(d.stalmatch){fillSelects();$("mFor").value=d.stalmatch;setTab("matches");return}
   if(d.stalvraag!==undefined){state.lastToev="aanvragen";setTab("aanvragen");setTimeout(()=>{const i=document.querySelector("#aRows input");if(i){i.value=d.stalvraag;i.dispatchEvent(new Event("input",{bubbles:true}));i.focus()}},50);return}
@@ -2962,6 +3104,9 @@ buildPedInputs();$("dekFields").innerHTML=dekFormHtml("h");$("h-geslacht").addEv
   db.collection(REQ_COLL).onSnapshot(snap=>{state.aanvragen=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}));updateBadge();if(state.tab==="aanvragen")renderAanvragen()},err=>{});
   db.collection(V_COLL).onSnapshot(snap=>{state.veilingen=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}));buildLots();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="zoeken")renderDetail();if(state.tab==="vergelijken")renderCompare()},err=>{});
   if(window.fokwijzerCouncil)db.collection("councilvragen").onSnapshot(snap=>{state.cvragen={};snap.docs.forEach(d=>{state.cvragen[d.id]=d.data()});if(state.tab==="vergelijken"&&!councilBusy)renderCouncil(byId($("cS").value),byId($("cM").value))},err=>{});
+  db.collection(F_COLL).onSnapshot(snap=>{state.fokkers={};snap.docs.forEach(d=>{state.fokkers[d.id]=d.data()});
+    if(!state.fokLink){state.fokLink=true;try{const f=new URLSearchParams(location.search).get("fokker");if(f&&state.fokkers[f])openFokker(f)}catch(_){}}
+    if(state.tab==="profiel")renderProfiel();if(state.tab==="zoeken")renderDetail()},err=>{});
   db.collection(C_COLL).onSnapshot(snap=>{state.council={};snap.docs.forEach(d=>{state.council[d.id]=d.data()});if(state.tab==="vergelijken"&&!councilBusy)renderCouncil(byId($("cS").value),byId($("cM").value))},err=>{});
   db.collection(P_COLL).onSnapshot(snap=>{state.partners=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}));renderAds();if(state.tab==="zoeken")renderSearch()},err=>{});
   db.doc("systeem/advertenties").onSnapshot(s=>{state.adDemo=s.exists?s.data().voorbeelden!==false:true;renderAds();if(state.tab==="zoeken")renderSearch()},err=>{});

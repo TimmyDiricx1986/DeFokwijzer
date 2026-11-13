@@ -235,6 +235,11 @@ function guard(req, res, op) {
     res.status(403).json({ fout: "Je kunt enkel je eigen stal bekijken en aanpassen." });
     return false;
   }
+  // Fokkersprofiel: iedereen leest, enkel de eigenaar schrijft. Een beheerder mag een profiel weghalen.
+  if (coll === "fokkers" && op !== "read" && !req.actor.service && !(op === "delete" && req.actor.level >= LEVEL.beheerder) && (id == null || req.actor.userId == null || String(req.actor.userId) !== String(id))) {
+    res.status(403).json({ fout: "Je kunt enkel je eigen fokkersprofiel aanpassen." });
+    return false;
+  }
   return true;
 }
 // Bezoekers en lezers mogen grote lijsten minder vaak opvragen.

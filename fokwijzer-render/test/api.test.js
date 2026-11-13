@@ -436,3 +436,19 @@ test("expertenraad: aanvragen in de wachtrij, met daglimiet", async () => {
   assert.equal((await vraag({ hengst_id: "cr-h", merrie_id: "cr-b" }, cl)).status, 200);
   assert.equal((await vraag({ hengst_id: "cr-h", merrie_id: "cr-c" }, cl)).status, 429, "daglimiet van 3 per dag");
 });
+
+test("fokkersprofiel: openbaar leesbaar, enkel de eigenaar schrijft", async () => {
+  const cp = await login("bij@test.be", "Sterk-wachtwoord-456");
+  const me = await (await fetch(base + "/api/me", { headers: { cookie: cp } })).json();
+  const eigen = String(me.gebruiker.id);
+  assert.equal((await put("/api/c/fokkers/" + eigen, { stalnaam: "Stal Test", plaats: "Gent" }, cp)).status, 200, "eigen profiel");
+  const pub = await (await fetch(base + "/api/c/fokkers/" + eigen)).json();
+  assert.equal(pub.data.stalnaam, "Stal Test", "anoniem leesbaar");
+  assert.equal((await put("/api/c/fokkers/iemand-anders", { stalnaam: "X" }, cp)).status, 403, "niet voor een ander");
+  const cl = await login("lees@test.be", "Sterk-wachtwoord-789");
+  const ml = await (await fetch(base + "/api/me", { headers: { cookie: cl } })).json();
+  assert.equal((await put("/api/c/fokkers/" + String(ml.gebruiker.id), { stalnaam: "Y" }, cl)).status, 403, "bijdrager heeft geen profiel");
+  const cb = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  assert.equal((await put("/api/c/fokkers/" + eigen, { stalnaam: "Anders" }, cb)).status, 403, "beheerder past niet aan");
+  assert.equal((await fetch(base + "/api/c/fokkers/" + eigen, { method: "DELETE", headers: Object.assign({ cookie: cb }, H) })).status, 200, "beheerder mag weghalen");
+});

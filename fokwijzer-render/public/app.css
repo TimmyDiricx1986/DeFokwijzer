@@ -419,6 +419,16 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .hc-score{font-size:1.25rem;font-weight:700}
 .hc-vv{padding:5px 10px;font-size:.85rem}
 .count-badge[hidden]{display:none!important}
+.seg{display:inline-flex;flex-wrap:wrap;gap:2px;margin-top:6px;padding:2px;border:1px solid var(--line);border-radius:8px;background:var(--sunk)}
+.seg button{font:inherit;font-size:.78rem;font-weight:600;border:0;border-radius:6px;padding:3px 8px;background:transparent;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.dos-her{list-style:none;margin:0;padding:0}.dos-her-item{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:8px 0;border-top:1px solid var(--line)}.dos-her-item:first-child{border-top:0}
+.dos-her-item.laat .dos-dat b{color:var(--bad,#b3261e)}.dos-dat{display:flex;flex-direction:column}
+.dos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.dos-det{margin-top:8px}.dos-det summary{cursor:pointer;font-weight:600;font-size:.9rem;color:var(--accent)}.dos-det form{margin-top:8px;gap:8px;align-items:flex-end}
+#dosOut textarea,#profOut textarea{font:inherit}
+.prof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+@media (max-width:560px){.dos-her-item{grid-template-columns:1fr;gap:2px}}
 .nakom-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
 .stal-wijzer{margin-top:14px;font-size:.92rem;background:var(--sunk)}
 .stal-titel{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;margin:0 0 12px}
@@ -459,7 +469,7 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .subtabs button{font:inherit;font-weight:600;font-size:.92rem;border:0;border-radius:7px;padding:7px 14px;background:transparent;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:4px}
 .subtabs button[aria-selected="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .subtabs button[aria-selected="false"] .count-badge{background:var(--accent);color:var(--accent-ink)}
-@media (max-width:640px){.subtabs{display:flex}.subtabs button{flex:1 1 0;justify-content:center;padding:7px 4px;font-size:.82rem;text-align:center;white-space:normal;line-height:1.2;min-width:0}}
+@media (max-width:640px){.subtabs{display:flex}.subtabs button{flex:1 1 30%;justify-content:center;padding:7px 4px;font-size:.82rem;text-align:center;white-space:normal;line-height:1.2;min-width:0}}
 .dek-sp{border:0;padding:0;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}.dek-sp legend{float:left;margin:0 6px 0 0;padding:0}.dek-sp label{display:flex;gap:6px;align-items:center;font-size:.92rem}
 .dek-edit{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}.dek-edit summary{cursor:pointer;font-weight:600;color:var(--accent)}.dek-edit .wiki-form{margin-top:10px}
 .wiki-form textarea{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}
