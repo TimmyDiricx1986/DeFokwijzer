@@ -436,6 +436,9 @@ header.top #artWho .fw-lnk{font:inherit;font-size:.84rem;font-weight:600;backgro
 .dos-banner{border-color:#d9b26b;background:#fff7e6;margin-bottom:14px}
 .dos-maillog{margin:4px 0 0;padding-left:0;list-style:none}.dos-maillog li{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:4px 0;border-top:1px solid var(--line)}.dos-maillog li:first-child{border-top:0}
 .status.warn{color:#855a10}
+.fw-file{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.fw-filebtn{display:inline-flex;align-items:center;cursor:pointer;margin-right:10px}.fw-file:focus-visible+.fw-filebtn{outline:2px solid var(--accent);outline-offset:2px}
+.fw-filetxt{overflow-wrap:anywhere}
 .dos-kost{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}
 #dosOut textarea{font:inherit}
 @media (max-width:700px){.dos-mrow{grid-template-columns:1fr auto}.dos-msub,.dos-mvolg{grid-column:1/-1}.dos-grow{grid-column:auto}.dos-item{grid-template-columns:1fr;gap:2px}.dos-nieuw .label{min-width:0;width:100%}}

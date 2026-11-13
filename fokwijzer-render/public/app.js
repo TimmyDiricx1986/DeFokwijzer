@@ -1700,6 +1700,26 @@ async function mailActie(a,body){const st=$("mailSt");if(st){st.className="statu
     if(a==="instellen"&&stalAan())stalSave(()=>{})}
   catch(err){state.mail=null;mailLaad();setTimeout(()=>{const s2=$("mailSt");if(s2){s2.className="status err";s2.textContent=(err&&err.message)||"Dat lukte niet."}},400)}}
 
+// ---------- Bestandknoppen en foutmeldingen van formulieren altijd in de taal van De Fokwijzer ----------
+// De browser toont anders "Choose files" en "Please fill out this field" in de taal van het toestel.
+function fileTekst(inp){const t=inp.nextElementSibling&&inp.nextElementSibling.nextElementSibling;if(!t||!t.classList.contains("fw-filetxt"))return;const n=inp.files?inp.files.length:0;
+  t.textContent=n===0?"Geen bestand gekozen":n===1?inp.files[0].name:`${n} bestanden gekozen`}
+function fileKnoppen(){document.querySelectorAll('input[type="file"]:not(.fw-done):not([hidden])').forEach(inp=>{if(inp.closest("label"))return;inp.classList.add("fw-done","fw-file");if(!inp.id)inp.id="fwf"+Math.random().toString(36).slice(2,8);
+  const b=document.createElement("label");b.className="btn ghost fw-filebtn";b.htmlFor=inp.id;b.textContent=inp.multiple?"Bestanden kiezen":"Bestand kiezen";
+  const t=document.createElement("span");t.className="small muted fw-filetxt";inp.after(b,t);fileTekst(inp);inp.addEventListener("change",()=>fileTekst(inp))})}
+new MutationObserver(()=>fileKnoppen()).observe(document.body,{childList:true,subtree:true});fileKnoppen();
+document.addEventListener("reset",e=>setTimeout(()=>e.target.querySelectorAll&&e.target.querySelectorAll(".fw-file").forEach(fileTekst),0),true);
+document.addEventListener("invalid",e=>{const el=e.target,v=el.validity;if(!v)return;let m="";
+  if(v.valueMissing)m=el.type==="checkbox"?"Vink dit aan om verder te gaan.":el.type==="file"?"Kies een bestand.":el.tagName==="SELECT"?"Kies een optie.":"Vul dit veld in.";
+  else if(v.typeMismatch)m=el.type==="email"?"Geef een geldig e-mailadres.":el.type==="url"?"Geef een geldig webadres.":"Deze waarde klopt niet.";
+  else if(v.badInput)m=el.type==="number"?"Geef een geldig getal.":el.type==="date"?"Geef een geldige datum.":"Deze waarde klopt niet.";
+  else if(v.rangeUnderflow)m=`De waarde moet minstens ${el.min} zijn.`;else if(v.rangeOverflow)m=`De waarde mag hoogstens ${el.max} zijn.`;
+  else if(v.tooShort)m=`Gebruik minstens ${el.minLength} tekens.`;else if(v.tooLong)m=`Gebruik hoogstens ${el.maxLength} tekens.`;
+  else if(v.stepMismatch)m="Geef een geldige waarde.";else if(v.patternMismatch)m=el.title||"Het formaat klopt niet.";
+  if(m&&!v.customError)el.setCustomValidity(fwT(m))},true);
+const fwGeldig=(e)=>{const el=e.target;if(el&&el.setCustomValidity&&el.validity&&el.validity.customError&&!el.dataset.eigenFout)el.setCustomValidity("")};
+document.addEventListener("input",fwGeldig,true);document.addEventListener("change",fwGeldig,true);
+
 // ---------- Fokkersprofiel: een openbare pagina met je paarden en contactgegevens ----------
 const F_COLL="fokkers";state.fokkers={};
 const profielVan=(uid)=>uid!=null&&uid!==""?state.fokkers[String(uid)]||null:null;
