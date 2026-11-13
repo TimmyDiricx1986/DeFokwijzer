@@ -363,18 +363,26 @@ function chairCard(v,st){if(st==="bezig")return `<div class="card chair"><div cl
 function renderCouncil(s,m){const box=$("councilOut");if(!box)return;if(!s||!m){box.innerHTML="";return}
   const id=cId(s,m);const saved=(state.council||{})[id];const live=councilBusy&&councilBusy.id===id?councilBusy:null;
   const exp=live?live.exp:saved&&saved.experts||{};const vz=live?live.vz:saved&&saved.voorzitter;
-  const can=!!sampleNs&&!live;
-  let note="";if(!sampleNs)note=(sampleChecked||state.dbState==="none")?"De council is beschikbaar voor ingelogde bezoekers met een Fokwijzer-profiel, als AI-advies op de server is ingesteld.":"Council wordt geladen...";
+  const rij=!sampleNs&&!!window.fokwijzerCouncil;const vraag=(state.cvragen||{})[id];const wacht=rij&&vraag&&vraag.status==="wachtrij";
+  const can=rij?(!!state.meId&&!wacht&&!state.cBezig):(!!sampleNs&&!live);
+  let note="";if(rij){note=!state.meId?"Log in om advies van de expertenraad aan te vragen.":wacht?`Je aanvraag staat in de wachtrij sinds ${fmtTijd(vraag.aangevraagd_op)}. Het advies verschijnt hier vanzelf.`:saved?`Advies van ${fmtDate(saved.gemaakt_op)}.`:"De expertenraad (stalhouder, dierenarts, ruiter, veilingmeester en een voorzitter) beoordeelt deze combinatie."}
+  else if(!sampleNs)note=(sampleChecked||state.dbState==="none")?"Log in om advies van de expertenraad aan te vragen.":"De expertenraad wordt geladen...";
   else if(live)note="De experten beoordelen de combinatie. Dit duurt meestal 30 tot 90 seconden.";
   else if(saved)note=`Advies van ${fmtDate(saved.gemaakt_op)}${saved.veilinglots!=null?`, met ${saved.veilinglots} veilinglots in de database`:""}.`;
   else note="Laat de vijf experten deze combinatie beoordelen. Dit telt mee voor je limiet van AI-vragen (5 vragen).";
-  box.innerHTML=`<div class="councilhead"><div><h2>Council van experten</h2><p class="small muted" style="margin:4px 0 0">${esc(note)}</p></div>
-    <div class="row">${live?`<button class="btn ghost" type="button" id="cStop">Stop</button>`:`<button class="btn" type="button" id="cAsk"${can?"":" disabled"}>${saved?"Opnieuw vragen":"Vraag de council"}</button>`}</div></div>
-   ${live&&live.err?`<div class="status err" role="status">${esc(live.err)}</div>`:""}${state.cErr&&!live?`<div class="status err" role="status">${esc(state.cErr)}</div>`:""}
+  box.innerHTML=`<div class="councilhead"><div><h2>Expertenraad</h2><p class="small muted" style="margin:4px 0 0">${esc(note)}</p></div>
+    <div class="row">${live?`<button class="btn ghost" type="button" id="cStop">Stop</button>`:`<button class="btn" type="button" id="cAsk"${can?"":" disabled"}>${wacht?"In de wachtrij":saved?"Opnieuw vragen":"Vraag de expertenraad"}</button>`}</div></div>
+   ${live&&live.err?`<div class="status err" role="status">${esc(live.err)}</div>`:""}${state.cErr&&!live?`<div class="status err" role="status">${esc(state.cErr)}</div>`:""}${rij?'<p class="small muted" style="margin:6px 0 0"><span class="chip">Elk uur</span> Aanvragen worden verzameld en één keer per uur door de expertenraad verwerkt: je advies staat hier binnen het uur.</p>':""}
    ${(saved||live)?`${chairCard(vz,live?(Object.keys(live.st).every(k=>live.st[k]!=="bezig")&&!vz?(live.vzSt||""):""):"")}
    <div class="xgrid">${EXPERTS.map(e=>expertCard(e,exp[e.id],live?live.st[e.id]:(exp[e.id]?"":"Geen oordeel."))).join("")}</div>`:""}`;
-  const a=$("cAsk");if(a)a.onclick=()=>askCouncil(s,m,!!saved);const st=$("cStop");if(st)st.onclick=()=>{if(councilBusy&&councilBusy.ctl)councilBusy.ctl.abort()}}
+  const a=$("cAsk");if(a)a.onclick=()=>rij?vraagCouncil(s,m):askCouncil(s,m,!!saved);const st=$("cStop");if(st)st.onclick=()=>{if(councilBusy&&councilBusy.ctl)councilBusy.ctl.abort()}}
 const sampleErr=(e)=>{const c=e&&e.code;return c==="not_granted"?"Log in met een Fokwijzer-profiel om de council te gebruiken.":c==="rate_limited"?"Even te veel vragen of je verbruikslimiet is bereikt. Probeer later opnieuw.":c==="sampling_disabled"?"AI-advies is niet beschikbaar op deze server.":c==="cancelled"?"Gestopt.":c==="invalid_json"?"Het antwoord was geen geldig formaat.":c==="session_expired"?"Meld je opnieuw aan.":(e&&e.message&&!/^Fout \d+$/.test(e.message)?e.message:"Geen antwoord ("+(c||"fout")+").")};
+const fmtTijd=(iso)=>{const d=new Date(iso);return isNaN(d)?"":d.toLocaleTimeString("nl-BE",{hour:"2-digit",minute:"2-digit"})};
+async function vraagCouncil(s,m){if(state.cBezig)return;state.cBezig=true;state.cErr="";const rr=()=>{if(state.tab==="vergelijken")renderCouncil(byId($("cS").value),byId($("cM").value))};rr();
+  try{const d=councilData(s,m);const r=await window.fokwijzerCouncil.vraag({hengst_id:s.id,merrie_id:m.id,matching:d.matching,markt:d.markt});
+    state.cvragen=state.cvragen||{};const id=cId(s,m);if(r&&r.id&&!(state.cvragen[id]&&state.cvragen[id].status==="wachtrij"))state.cvragen[id]={status:"wachtrij",aangevraagd_op:new Date().toISOString()}}
+  catch(e){state.cErr=(e&&e.message)||"De aanvraag kon niet verstuurd worden."}
+  state.cBezig=false;rr()}
 async function askCouncil(s,m,again){if(!sampleNs||councilBusy)return;const id=cId(s,m);const data=councilData(s,m);const ctl=new AbortController();
   state.cErr="";councilBusy={id,ctl,exp:{},st:Object.fromEntries(EXPERTS.map(e=>[e.id,"bezig"])),vz:null,vzSt:""};const rr=()=>{if(state.tab==="vergelijken")renderCouncil(byId($("cS").value),byId($("cM").value))};rr();
   const opts={signal:ctl.signal};if(again)opts.cache=false;
@@ -2048,6 +2056,7 @@ buildPedInputs();$("dekFields").innerHTML=dekFormHtml("h");$("h-geslacht").addEv
    err=>{state.dbState="none";if(!state.loaded){state.horses=DEMO;state.demo=true}renderAll()});
   db.collection(REQ_COLL).onSnapshot(snap=>{state.aanvragen=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}));updateBadge();if(state.tab==="aanvragen")renderAanvragen()},err=>{});
   db.collection(V_COLL).onSnapshot(snap=>{state.veilingen=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}));buildLots();if(state.tab==="veilingen")renderVeilingen();if(state.tab==="zoeken")renderDetail();if(state.tab==="vergelijken")renderCompare()},err=>{});
+  if(window.fokwijzerCouncil)db.collection("councilvragen").onSnapshot(snap=>{state.cvragen={};snap.docs.forEach(d=>{state.cvragen[d.id]=d.data()});if(state.tab==="vergelijken"&&!councilBusy)renderCouncil(byId($("cS").value),byId($("cM").value))},err=>{});
   db.collection(C_COLL).onSnapshot(snap=>{state.council={};snap.docs.forEach(d=>{state.council[d.id]=d.data()});if(state.tab==="vergelijken"&&!councilBusy)renderCouncil(byId($("cS").value),byId($("cM").value))},err=>{});
   db.collection(P_COLL).onSnapshot(snap=>{state.partners=snap.docs.map(d=>Object.assign({},d.data(),{id:d.id}));renderAds();if(state.tab==="zoeken")renderSearch()},err=>{});
   db.doc("systeem/advertenties").onSnapshot(s=>{state.adDemo=s.exists?s.data().voorbeelden!==false:true;renderAds();if(state.tab==="zoeken")renderSearch()},err=>{});

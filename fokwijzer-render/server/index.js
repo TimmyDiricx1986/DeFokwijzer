@@ -179,6 +179,46 @@ app.post("/api/aanvraag", writeLimit, auth.need("gebruiker"), (req, res) => {
   res.json({ ok: true, pakket: docs[0].data.pakket, ids: docs.map((d) => d.id), resterend: l.resterend });
 });
 
+// ---------------------------------------------------------------- expertenraad (wachtrij)
+// Een aanvraag bevat enkel de twee paarden en de matchgegevens; de paardgegevens neemt de server zelf uit
+// de database. Een geplande taak verwerkt de wachtrij één keer per uur en zet het advies in "council".
+const COUNCIL_PER_DAG = { 1: 3, 2: 10 };
+const COUNCIL_VELDEN = ["naam", "geslacht", "geboortejaar", "stamboek", "stokmaat_cm", "stamboom", "hoogste_niveau_cm", "niveau_label", "nakomelingen", "fokwaarden", "wffs", "ocd", "ocd_toelichting", "record_status"];
+function councilBrief(h) {
+  const o = {};
+  for (const k of COUNCIL_VELDEN) if (h[k] != null && h[k] !== "") o[k] = h[k];
+  if (h.opmerking) o.opmerking = String(h.opmerking).slice(0, 1500);
+  if (!o.wffs) o.wffs = "onbekend";
+  return o;
+}
+const councilId = (s, m) => `${s}__${m}`.replace(/[^A-Za-z0-9_\-.~:@+]/g, "-").slice(0, 200);
+app.post("/api/council/aanvraag", writeLimit, auth.need("gebruiker"), (req, res) => {
+  const b = req.body || {};
+  const sd = typeof b.hengst_id === "string" && store.getDoc("paarden", b.hengst_id);
+  const md = typeof b.merrie_id === "string" && store.getDoc("paarden", b.merrie_id);
+  if (!sd || !md || !sd.data || !md.data) return res.status(400).json({ fout: "Kies een hengst en een merrie uit De Fokwijzer." });
+  const id = councilId(b.hengst_id, b.merrie_id);
+  if (!ID_RE.test(id)) return res.status(400).json({ fout: "Deze combinatie kan niet aangevraagd worden." });
+  const oud = store.getDoc("councilvragen", id);
+  if (oud && oud.data && oud.data.status === "wachtrij") return res.json({ ok: true, id, al: true });
+  const max = COUNCIL_PER_DAG[req.actor.level];
+  if (max != null && !req.actor.service) {
+    const sinds = Date.now() - 864e5;
+    const n = store.listDocs("councilvragen").filter((d) => d.data && d.data.aanvrager_id === req.actor.userId && Date.parse(d.data.aangevraagd_op) > sinds).length;
+    if (n >= max) return res.status(429).json({ fout: `Je kunt ${max} adviezen per dag aanvragen. Morgen kan het weer.`, code: "daglimiet" });
+  }
+  const obj = (v) => (v && typeof v === "object" && !Array.isArray(v) ? v : undefined);
+  const data = {
+    hengst_id: b.hengst_id, merrie_id: b.merrie_id, hengst: sd.data.naam, merrie: md.data.naam,
+    status: "wachtrij", aangevraagd_op: new Date().toISOString(), aanvrager_id: req.actor.userId,
+    gegevens: { hengst: councilBrief(sd.data), merrie: councilBrief(md.data), matching: obj(b.matching) || {}, markt: obj(b.markt) || {} },
+  };
+  const err = validDoc("councilvragen", data);
+  if (err) return res.status(400).json({ fout: err });
+  store.writeDoc("councilvragen", id, data, req.actor); broadcast("councilvragen", id);
+  res.json({ ok: true, id });
+});
+
 // ---------------------------------------------------------------- documenten
 function guard(req, res, op) {
   const { coll } = req.params;
