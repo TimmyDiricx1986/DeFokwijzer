@@ -19,6 +19,9 @@ const COLLS = table({
   // Werkplek van een Fokwijzer-profiel (bewaarde hengsten, merries en virtuele veulens): enkel het eigen
   // document, met als id het gebruikers-id (zie index.js). Een beheerder kan elke werkplek openen.
   mijnstal: { read: 2, create: 2, update: 2, delete: 2, max: 300e3 },
+  // Aanvragen voor de expertenraad: aanmaken enkel via /api/council/aanvraag. Een geplande taak verwerkt
+  // ze één keer per uur en zet het advies in "council".
+  councilvragen: { read: 1, create: 3, update: 3, delete: 3, max: 120e3 },
 });
 // Uitzonderingen voor losse systeemdocumenten.
 const SYS_DOCS = table({

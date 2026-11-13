@@ -55,8 +55,8 @@ def transform(html, links=('/over.html', '/privacy.html')):
 
     # ---------------------------------------------------------------- JavaScript-aanpassingen
     texts = [
-        ("De council werkt alleen in de Claude-app, aangemeld, met toestemming om Claude te gebruiken.",
-         "De council is beschikbaar voor ingelogde bezoekers met een Fokwijzer-profiel, als AI-advies op de server is ingesteld."),
+        ("De expertenraad werkt alleen in de Claude-app, aangemeld, met toestemming om Claude te gebruiken.",
+         "Log in om advies van de expertenraad aan te vragen."),
         ("Dit gebruikt je eigen Claude-verbruik (5 vragen).", "Dit telt mee voor je limiet van AI-vragen (5 vragen)."),
         ("Je gaf geen toestemming om Claude te gebruiken voor deze pagina.", "Log in met een Fokwijzer-profiel om de council te gebruiken."),
         ("Claude is niet beschikbaar voor dit account.", "AI-advies is niet beschikbaar op deze server."),

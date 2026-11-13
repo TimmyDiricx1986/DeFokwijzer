@@ -173,6 +173,11 @@
     dien: function (paarden) { return api("POST", "/api/aanvraag", { paarden: paarden }); },
   };
 
+  // Expertenraad: een aanvraag gaat in een wachtrij die één keer per uur verwerkt wordt.
+  window.fokwijzerCouncil = {
+    vraag: function (body) { return api("POST", "/api/council/aanvraag", body); },
+  };
+
   window.claude = {
     use: function (name) {
       if (name === "db") return Promise.resolve(dbNs);

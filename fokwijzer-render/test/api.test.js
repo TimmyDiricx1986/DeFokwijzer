@@ -411,3 +411,28 @@ test("mijn stal: enkel het eigen document, enkel voor Fokwijzer-profielen", asyn
   assert.equal((await put("/api/c/mijnstal/" + String(ml.gebruiker.id), stal, cl)).status, 403, "bijdrager heeft geen stal");
   assert.equal((await fetch(base + "/api/c/mijnstal/" + eigen)).status, 401, "anoniem");
 });
+
+test("expertenraad: aanvragen in de wachtrij, met daglimiet", async () => {
+  const cb = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  await put("/api/c/paarden/cr-h", { naam: "Raad Hengst", geslacht: "hengst", wffs: "N/N" }, cb);
+  await put("/api/c/paarden/cr-m", { naam: "Raad Merrie", geslacht: "merrie" }, cb);
+  const vraag = (body, cookie) => fetch(base + "/api/council/aanvraag", { method: "POST", headers: Object.assign({}, H, cookie ? { cookie } : {}), body: JSON.stringify(body) });
+  assert.equal((await vraag({ hengst_id: "cr-h", merrie_id: "cr-m" })).status, 401, "anoniem");
+  const cl = await login("lees@test.be", "Sterk-wachtwoord-789");
+  assert.equal((await vraag({ hengst_id: "bestaat-niet", merrie_id: "cr-m" }, cl)).status, 400);
+  const r = await vraag({ hengst_id: "cr-h", merrie_id: "cr-m", matching: { score: 77 } }, cl);
+  assert.equal(r.status, 200);
+  const j = await r.json();
+  assert.equal(j.id, "cr-h__cr-m");
+  const nog = await (await vraag({ hengst_id: "cr-h", merrie_id: "cr-m" }, cl)).json();
+  assert.equal(nog.al, true, "al in de wachtrij");
+  const doc = await (await fetch(base + "/api/c/councilvragen/cr-h__cr-m", { headers: { cookie: cl } })).json();
+  assert.equal(doc.data.status, "wachtrij");
+  assert.equal(doc.data.gegevens.hengst.naam, "Raad Hengst", "paardgegevens komen van de server");
+  assert.equal(doc.data.gegevens.matching.score, 77);
+  assert.equal((await put("/api/c/councilvragen/x", { status: "klaar" }, cl)).status, 403, "niet rechtstreeks schrijven");
+  for (const id of ["cr-a", "cr-b", "cr-c"]) await put("/api/c/paarden/" + id, { naam: id, geslacht: "merrie" }, cb);
+  assert.equal((await vraag({ hengst_id: "cr-h", merrie_id: "cr-a" }, cl)).status, 200);
+  assert.equal((await vraag({ hengst_id: "cr-h", merrie_id: "cr-b" }, cl)).status, 200);
+  assert.equal((await vraag({ hengst_id: "cr-h", merrie_id: "cr-c" }, cl)).status, 429, "daglimiet van 3 per dag");
+});
