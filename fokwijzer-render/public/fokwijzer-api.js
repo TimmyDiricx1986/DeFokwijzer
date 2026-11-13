@@ -173,6 +173,20 @@
     dien: function (paarden) { return api("POST", "/api/aanvraag", { paarden: paarden }); },
   };
 
+  // Verslagen van de dierenarts (merriedossier) en herinneringen per mail.
+  window.fokwijzerVerslag = {
+    upload: function (b) { return api("POST", "/api/verslagen", b); },
+    get: function (id) { return api("GET", "/api/verslagen/" + encodeURIComponent(id)).then(function (r) { return r.data; }); },
+    weg: function (id) { return api("DELETE", "/api/verslagen/" + encodeURIComponent(id)); },
+  };
+  window.fokwijzerMail = {
+    status: function () { return api("GET", "/api/mail/status"); },
+    instellen: function (b) { return api("POST", "/api/mail/instellen", b); },
+    opnieuw: function () { return api("POST", "/api/mail/opnieuw", {}); },
+    test: function () { return api("POST", "/api/mail/test", {}); },
+    stop: function () { return api("POST", "/api/mail/stop", {}); },
+  };
+
   // Expertenraad: een aanvraag gaat in een wachtrij die één keer per uur verwerkt wordt.
   window.fokwijzerCouncil = {
     vraag: function (body) { return api("POST", "/api/council/aanvraag", body); },

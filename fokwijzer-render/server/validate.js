@@ -24,6 +24,11 @@ const COLLS = table({
   // Openbaar fokkersprofiel van een Fokwijzer-profiel: iedereen leest, enkel de eigenaar schrijft
   // (id = gebruikers-id, zie index.js).
   fokkers: { read: 0, create: 2, update: 2, delete: 2, max: 60e3 },
+  // Verslagen van de dierenarts bij het merriedossier: enkel via /api/verslagen (eigenaar of beheerder).
+  verslagen: { read: 3, create: 99, update: 99, delete: 3, max: 5e6 },
+  // Herinneringen per mail: instellingen en verzonden mails, enkel via /api/mail (zie herinneringen.js).
+  mailinst: { read: 3, create: 99, update: 99, delete: 3, max: 20e3 },
+  maillog: { read: 3, create: 99, update: 99, delete: 3, max: 100e3 },
   councilvragen: { read: 1, create: 3, update: 3, delete: 3, max: 120e3 },
 });
 // Uitzonderingen voor losse systeemdocumenten.

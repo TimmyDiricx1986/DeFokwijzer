@@ -219,6 +219,53 @@ app.post("/api/council/aanvraag", writeLimit, auth.need("gebruiker"), (req, res)
   res.json({ ok: true, id });
 });
 
+// ---------------------------------------------------------------- verslagen van de dierenarts (merriedossier)
+// Een PDF of foto per verslag, enkel zichtbaar voor de eigenaar (id begint met het gebruikers-id) en voor beheerders.
+const VERSLAG_TYPES = new Set(["application/pdf", "image/jpeg", "image/png", "image/webp"]);
+const VERSLAG_MAX = 2.5 * 1024 * 1024, VERSLAG_PER_GEBRUIKER = 400;
+const eigenVerslag = (req, id) => typeof id === "string" && /^[0-9]+-[a-f0-9]{16}$/.test(id) && (req.actor.level >= LEVEL.beheerder || (req.actor.userId != null && id.startsWith(String(req.actor.userId) + "-")));
+app.post("/api/verslagen", writeLimit, auth.need("paardenbeheerder"), (req, res) => {
+  const b = req.body || {};
+  const type = String(b.type || "");
+  if (!req.actor.userId) return res.status(403).json({ fout: "Enkel voor een eigen account." });
+  if (!VERSLAG_TYPES.has(type)) return res.status(400).json({ fout: "Enkel PDF, JPG, PNG of WebP." });
+  const m = /^data:([a-z/]+);base64,([A-Za-z0-9+/]+={0,2})$/.exec(String(b.data || ""));
+  if (!m || m[1] !== type) return res.status(400).json({ fout: "Ongeldig bestand." });
+  const grootte = Math.floor(m[2].length * 3 / 4);
+  if (grootte > VERSLAG_MAX) return res.status(413).json({ fout: "Het bestand is te groot (maximaal 2,5 MB)." });
+  if (store.countPrefix("verslagen", String(req.actor.userId) + "-") >= VERSLAG_PER_GEBRUIKER) return res.status(429).json({ fout: "Je hebt het maximum aantal verslagen bereikt." });
+  const id = `${req.actor.userId}-${crypto.randomBytes(8).toString("hex")}`;
+  const naam = String(b.naam || "verslag").replace(/[\u0000-\u001f<>"\\/]/g, "").slice(0, 120) || "verslag";
+  store.writeQuiet("verslagen", id, { naam, type, grootte, data: b.data, merrie_id: String(b.merrie_id || "").slice(0, 160), opgeladen_op: new Date().toISOString() }, req.actor);
+  res.json({ ok: true, id, naam, type, grootte });
+});
+app.get("/api/verslagen/:id", auth.need("paardenbeheerder"), (req, res) => {
+  if (!eigenVerslag(req, req.params.id)) return res.status(403).json({ fout: "Je kunt enkel je eigen verslagen openen." });
+  const d = store.getDoc("verslagen", req.params.id);
+  if (!d) return res.status(404).json({ fout: "Verslag niet gevonden." });
+  res.json({ data: d.data });
+});
+app.delete("/api/verslagen/:id", writeLimit, auth.need("paardenbeheerder"), (req, res) => {
+  if (!eigenVerslag(req, req.params.id)) return res.status(403).json({ fout: "Je kunt enkel je eigen verslagen weghalen." });
+  res.json({ ok: store.deleteQuiet("verslagen", req.params.id, req.actor) });
+});
+
+// ---------------------------------------------------------------- herinneringen per mail
+const herinneringen = require("./herinneringen");
+const mailLimit = rateLimit({ windowMs: 10 * 60e3, limit: 10, standardHeaders: "draft-7", legacyHeaders: false, message: { fout: "Even te veel mails aangevraagd. Probeer het straks opnieuw." } });
+const eigenAccount = (req, res) => { if (req.actor.userId == null) { res.status(403).json({ fout: "Enkel voor een eigen account." }); return false; } return true; };
+const mailAntwoord = (res, r, uid) => res.status(r.fout ? (r.code === "daglimiet" ? 429 : r.code === "niet_ingesteld" ? 501 : 400) : 200).json(Object.assign({}, r, { status: herinneringen.status(uid) }));
+app.get("/api/mail/status", auth.need("paardenbeheerder"), (req, res) => { if (eigenAccount(req, res)) res.json(herinneringen.status(req.actor.userId)); });
+app.post("/api/mail/instellen", mailLimit, auth.need("paardenbeheerder"), async (req, res) => { if (eigenAccount(req, res)) mailAntwoord(res, await herinneringen.instellen(req.actor.userId, req.body || {}), req.actor.userId); });
+app.post("/api/mail/opnieuw", mailLimit, auth.need("paardenbeheerder"), async (req, res) => { if (eigenAccount(req, res)) mailAntwoord(res, await herinneringen.opnieuw(req.actor.userId), req.actor.userId); });
+app.post("/api/mail/test", mailLimit, auth.need("paardenbeheerder"), async (req, res) => { if (eigenAccount(req, res)) mailAntwoord(res, await herinneringen.testmail(req.actor.userId), req.actor.userId); });
+app.post("/api/mail/stop", auth.need("paardenbeheerder"), (req, res) => { if (eigenAccount(req, res)) mailAntwoord(res, herinneringen.stop(req.actor.userId), req.actor.userId); });
+// Handmatig of door een externe planner een ronde starten (service-token of beheerder).
+app.post("/api/mail/ronde", auth.need("beheerder"), async (req, res) => res.json(await herinneringen.ronde({ altijd: !!(req.body && req.body.altijd) })));
+const linkLimit = rateLimit({ windowMs: 10 * 60e3, limit: 60, standardHeaders: "draft-7", legacyHeaders: false });
+app.get("/mail/ontvangen/:token", linkLimit, (req, res) => { const r = herinneringen.linkPagina(req.params.token); res.status(r.status).type("html").send(r.html); });
+app.post("/mail/ontvangen/:token", linkLimit, (req, res) => { const r = herinneringen.bevestig(req.params.token); res.status(r.status).type("html").send(r.html); });
+
 // ---------------------------------------------------------------- documenten
 function guard(req, res, op) {
   const { coll } = req.params;
@@ -491,6 +538,7 @@ app.use((req, res) => res.status(404).sendFile(path.join(PUB, "404.html")));
 
 if (require.main === module) {
   store.startBackups();
+  require("./herinneringen").startPlanner();
   auth.bootstrapAdmin().catch((e) => console.error("[beheerder]", e.message));
   app.listen(PORT, () => {
     console.log(`De Fokwijzer draait op poort ${PORT}`);

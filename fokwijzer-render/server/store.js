@@ -118,6 +118,20 @@ const deleteDoc = db.transaction((coll, id, actor) => {
   audit({ actor: actor.label, user_id: actor.userId, ip: actor.ip, coll, doc_id: id, action: "verwijderd", before: prev.data });
   return true;
 });
+// Grote of privé-documenten (bv. verslagen van de dierenarts): wel loggen dat er iets gebeurde, maar zonder de inhoud.
+const writeQuiet = db.transaction((coll, id, data, actor) => {
+  const prev = q.get.get(coll, id);
+  q.upsert.run({ coll, id, data: JSON.stringify(data), ts: now(), by: actor.label });
+  audit({ actor: actor.label, user_id: actor.userId, ip: actor.ip, coll, doc_id: id, action: prev ? "bijgewerkt" : "aangemaakt" });
+});
+const deleteQuiet = db.transaction((coll, id, actor) => {
+  if (!q.get.get(coll, id)) return false;
+  q.del.run(coll, id);
+  audit({ actor: actor.label, user_id: actor.userId, ip: actor.ip, coll, doc_id: id, action: "verwijderd" });
+  return true;
+});
+const qCount = db.prepare("SELECT COUNT(*) AS n FROM docs WHERE coll = ? AND id LIKE ?");
+const countPrefix = (coll, prefix) => qCount.get(coll, prefix.replace(/[%_]/g, "") + "%").n;
 function history(coll, id) {
   return q.history.all(coll, id).map((r) => ({
     id: r.id, ts: r.ts, actor: r.actor, action: r.action,
@@ -164,4 +178,4 @@ function opslagInfo() {
   try { paarden = db.prepare("SELECT COUNT(*) n FROM docs WHERE coll='paarden'").get().n; gebruikers = db.prepare("SELECT COUNT(*) n FROM users").get().n; } catch (_) {}
   return { pad: DATA_DIR, vast, paarden, gebruikers };
 }
-module.exports = { db, now, listDocs, listJson, getDoc, writeDoc, deleteDoc, history, audit, startBackups, opslagInfo, DATA_DIR };
+module.exports = { db, now, listDocs, listJson, getDoc, writeDoc, deleteDoc, writeQuiet, deleteQuiet, countPrefix, history, audit, startBackups, opslagInfo, DATA_DIR };
