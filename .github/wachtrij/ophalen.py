@@ -117,6 +117,22 @@ def main():
                 print(f"Afbeelding bij stamboomtest {d['id']} niet opgehaald: {e}")
         tests.append(x)
     tests.sort(key=lambda x: x.get("opnieuw_op") or x.get("aangemaakt_op") or "")
+    # Expertenraad: aanvragen voor een advies over een fokcombinatie (zonder wie ze aanvroeg).
+    raad = []
+    try:
+        lijst = get(site + "/api/c/councilvragen", token) or []
+    except Exception as e:  # oude serverversie zonder deze collectie
+        print(f"Expertenraad niet opgehaald: {e}"); lijst = []
+    for d in lijst:
+        c = d.get("data") or {}
+        if c.get("status") != "wachtrij": continue
+        x = {k: c[k] for k in ("hengst_id", "merrie_id", "hengst", "merrie", "aangevraagd_op", "gegevens") if k in c}
+        x["id"] = d["id"]
+        x["sleutel"] = d["id"] + "|" + str(c.get("aangevraagd_op") or "")
+        raad.append(x)
+    raad.sort(key=lambda x: x.get("aangevraagd_op") or "")
+    with open(os.path.join(uit, "councilvragen.json"), "w", encoding="utf-8") as f:
+        json.dump(raad, f, ensure_ascii=False, indent=1)
     links = 0 if delen else downloadlinks(site, token, aanvragen) + downloadlinks(site, token, tests, "st-")
     paarden = []
     for d in get(site + "/api/c/paarden", token):
@@ -134,7 +150,7 @@ def main():
         json.dump(paarden, f, ensure_ascii=False, separators=(",", ":"))
     met = sum(1 for a in aanvragen if a.get("bijlage", "").startswith("bijlagen/") or a.get("bijlage") == "link")
     print(f"Wachtrij: {len(aanvragen)} aanvragen ({met} met afbeelding). Paarden op de site: {len(paarden)}."
-          + f" Stamboomtests in de wachtrij: {len(tests)}."
+          + f" Stamboomtests in de wachtrij: {len(tests)}. Expertenraad: {len(raad)}."
           + ("" if delen else f" Repository openbaar: {links} beveiligde downloadlinks in plaats van afbeeldingen."))
 
 if __name__ == "__main__":

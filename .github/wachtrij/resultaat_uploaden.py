@@ -40,6 +40,8 @@ def main():
     exp = json.load(open(path, encoding="utf-8"))
     if exp.get("formaat") == "fokwijzer-export" and exp.get("modus") == "stamboomtests":
         return stamboomtests(site, token, exp)
+    if exp.get("formaat") == "fokwijzer-export" and exp.get("modus") == "council":
+        return council(site, token, exp)
     if exp.get("formaat") != "fokwijzer-export" or exp.get("modus") != "aanvragen": sys.exit("Geen resultaatbestand voor aanvragen.")
     ok = overgeslagen = fout = 0
     for id_, r in (exp.get("collecties", {}).get("aanvragen") or {}).items():
@@ -78,6 +80,36 @@ def stamboomtests(site, token, exp):
         if res and res.get("ok"): ok += 1; print(f"  {id_}: {cur.get('bestand')} -> {r['status']}")
         else: fout += 1; print(f"  {id_}: fout {res}")
     print(f"Klaar: {ok} bijgewerkt, {overgeslagen} overgeslagen, {fout} fouten.")
+    if fout: sys.exit(1)
+
+# Expertenraad: het advies gaat naar "council" (zoals een advies uit de Claude-app) en de aanvraag krijgt
+# status "klaar", enkel als ze nog in de wachtrij staat met dezelfde sleutel (id|aangevraagd_op).
+EXPERTS = ("stalhouder", "dierenarts", "ruiter", "veilingmeester")
+def council(site, token, exp):
+    ok = overgeslagen = fout = 0
+    for id_, r in (exp.get("collecties", {}).get("council") or {}).items():
+        if not ID_RE.match(id_) or not isinstance(r, dict) or not isinstance(r.get("experts"), dict) or not isinstance(r.get("voorzitter"), dict):
+            print(f"  {id_}: ongeldig resultaat"); fout += 1; continue
+        cur = req("GET", f"{site}/api/c/councilvragen/{id_}", token).get("data")
+        if not cur:
+            print(f"  {id_}: aanvraag bestaat niet meer"); overgeslagen += 1; continue
+        sleutel = id_ + "|" + str(cur.get("aangevraagd_op") or "")
+        if cur.get("status") != "wachtrij" or r.get("verwerkt_voor") != sleutel:
+            print(f"  {id_}: intussen gewijzigd, niet overschreven"); overgeslagen += 1; continue
+        nu = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        m = ((cur.get("gegevens") or {}).get("matching") or {}).get("score")
+        doc = {"hengst_id": cur.get("hengst_id"), "merrie_id": cur.get("merrie_id"), "hengst": cur.get("hengst"), "merrie": cur.get("merrie"),
+               "experts": neutralize({k: v for k, v in r["experts"].items() if k in EXPERTS and isinstance(v, dict)}),
+               "voorzitter": neutralize(r["voorzitter"]), "gemaakt_op": nu, "via": "expertenraad (elk uur)", "matchscore": m}
+        res = req("PUT", f"{site}/api/c/council/{id_}", token, {"data": doc})
+        if not (res and res.get("ok")):
+            fout += 1; print(f"  {id_}: fout {res}"); continue
+        nieuw = {k: v for k, v in cur.items() if k != "gegevens"}
+        nieuw.update({"status": "klaar", "verwerkt_op": nu})
+        res = req("PUT", f"{site}/api/c/councilvragen/{id_}", token, {"data": nieuw})
+        if res and res.get("ok"): ok += 1; print(f"  {id_}: {cur.get('hengst')} x {cur.get('merrie')} -> klaar")
+        else: fout += 1; print(f"  {id_}: fout {res}")
+    print(f"Klaar: {ok} adviezen, {overgeslagen} overgeslagen, {fout} fouten.")
     if fout: sys.exit(1)
 
 if __name__ == "__main__":
