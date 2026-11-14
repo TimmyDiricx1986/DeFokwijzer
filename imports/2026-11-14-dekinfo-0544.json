@@ -1,0 +1,207 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-14",
+ "collecties": {
+  "paarden": {
+   "hickstead-white-2012": {
+    "dek": {
+     "dekgeld": "€ 750 per dosis excl. btw, koerier en gezondheidspapieren € 175 extra",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Pagina meldt dat hengsten op dit moment beperkt zijn tot browsen (bestellen mogelijk niet). Eén dosis geeft recht op registratie van één veulen. Zoon van Hickstead, 2012.",
+     "station": "Gestuet Sprehe (via Elite Stallions)",
+     "url": "https://elitestallions.co.uk/stallion/Hickstead White",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Hickstead White"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-14"
+    }
+   },
+   "apardi-2005": {
+    "dek": {
+     "dekgeld": "€ 1.450 excl. btw; diepvries koerier en gezondheidspapieren € 175 excl. btw extra; € 1.100 excl. btw terug indien merrie eind september niet drachtig",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Eén dekseizoen met onbeperkte pogingen diepvriessperma op één genoemde merrie. Pagina meldt dat hengsten op dit moment alleen te bekijken zijn. Ophalen enkel ma, wo, vr. Zoon van Corland, 2005.",
+     "station": "GFE (via Elite Stallions)",
+     "url": "https://www.elitestallions.co.uk/stallion/Apardi",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Apardi"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-14"
+    }
+   },
+   "276421000324904": {
+    "dek": {
+     "dekgeld": "Vers € 1.400 (€ 400 + € 1.000), diepvries € 1.400, ICSI € 700",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Tarieven op de hengstenpagina van Zangersheide; jaartal niet vermeld. Naast vers en diepvries ook ICSI aangeboden. Zoon van Colman, geboren 2004.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/contagio-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/contagio-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-14"
+    }
+   },
+   "forlee-2017": {
+    "dek": {
+     "dekgeld": "€ 1.200 excl. btw (onbeperkte pogingen diepvries, 1 merrie, 1 seizoen); € 900 terug als merrie na eind september niet drachtig",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Gekoeld sperma € 175 extra (koerier en gezondheidspapieren), diepvries ook € 175 extra. Pagina meldt dat hengsten momenteel enkel te bekijken zijn (browsing). Jaar niet vermeld.",
+     "station": "Ludger Beerbaum",
+     "url": "https://elitestallions.co.uk/stallion/Forlee",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Forlee"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-14"
+    }
+   },
+   "056015z55500215": {
+    "dek": {
+     "dekgeld": "€ 500 (ICSI)",
+     "toelichting": "Dekgeld enkel voor ICSI volgens pagina Zangersheide. Beschikbaarheid en seizoen niet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/count-on-me-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/count-on-me-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-14"
+    }
+   },
+   "cordial-2009": {
+    "dek": {
+     "dekgeld": "Vers: € 160 technisch, € 1.200 veulen; gekoeld: € 350 technisch, € 1.200 veulen (HT, dus excl. btw)",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2025",
+     "toelichting": "Bron meldt gekoeld sperma beschikbaar in 2025, vers via Haras de Talma. Gekoeld (technisch € 350) is ook vermeld.",
+     "station": "Haras de Talma",
+     "url": "https://france-etalons.com/en/stallions/CORDIAL-groomy-36002",
+     "bron": {
+      "naam": "France Etalons",
+      "url": "https://france-etalons.com/en/stallions/CORDIAL-groomy-36002"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-14"
+    }
+   },
+   "cordess-2-2006": {
+    "dek": {
+     "dekgeld": "€ 900 excl. btw (1 seizoen, onbeperkte pogingen, 1 merrie); € 500 + btw terug als merrie eind september niet drachtig",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma. Pagina meldt dat hengsten momenteel enkel te bekijken zijn (browsing). Jaar niet vermeld.",
+     "station": "Gestüt Gut Neuenhof",
+     "url": "https://elitestallions.co.uk/stallion/Cordess",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallions/jumping/cordess-chilled.html"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-14"
+    }
+   },
+   "quel-homme-de-hus-2006": {
+    "dek": {
+     "dekgeld": "€ 850 + btw per rietje (Stud fee 1 en 2)",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina meldt beschikbaar bij alle stations van de Holsteiner Verband Hengsthaltung GmbH. Seizoen niet vermeld.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/quel-homme-de-hus",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/quel-homme-de-hus"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-14"
+    }
+   },
+   "finishing-touch-wareslage-2005": {
+    "dek": {
+     "dekgeld": "€ 300 inseminatiekosten + € 900 bij drachtigheid, excl. btw",
+     "toelichting": "Soort sperma, beschikbaarheid en seizoen niet vermeld op de pagina.",
+     "station": "Hengststation Sosath (Lemwerder)",
+     "url": "https://sosath.com/en/stallions/detail/finishing-touch-wareslage",
+     "bron": {
+      "naam": "Sosath",
+      "url": "https://sosath.com/en/stallions/detail/finishing-touch-wareslage"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-14"
+    }
+   },
+   "056002w00235222": {
+    "dek": {
+     "dekgeld": "Vers € 1.800 (€ 600 + € 1.200), diepvries € 1.800, ICSI € 900",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Ook ICSI aangeboden (€ 900). Beschikbaarheid en seizoen niet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/epleaser-van-t-heike-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/epleaser-van-t-heike-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-14"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "snaike-de-blondel-2006": "niet_gevonden",
+  "528003201707763": "niet_gevonden",
+  "messini-de-f-2017": "niet_gevonden",
+  "easy-top-de-courcel-2014": "niet_gevonden",
+  "hickstead-white-2012": "gevonden",
+  "056002w00272193": "niet_gevonden",
+  "056002w00259772": "niet_gevonden",
+  "chacco-rouge-2006": "niet_gevonden",
+  "gitano-2006": "niet_gevonden",
+  "apardi-2005": "gevonden",
+  "056002w00229163": "niet_gevonden",
+  "276421000324904": "gevonden",
+  "cellestial-2004": "niet_gevonden",
+  "056002w00316275": "niet_gevonden",
+  "forlee-2017": "gevonden",
+  "056015z55500215": "gevonden",
+  "dragibus-du-rouget-2013": "niet_gevonden",
+  "cordial-2009": "gevonden",
+  "clarissimo-z-2008": "niet_gevonden",
+  "hh-messenger-2007": "niet_gevonden",
+  "cordess-2-2006": "gevonden",
+  "quel-homme-de-hus-2006": "gevonden",
+  "finishing-touch-wareslage-2005": "gevonden",
+  "056002w00235222": "gevonden",
+  "cancara-2004": "niet_gevonden"
+ }
+}
