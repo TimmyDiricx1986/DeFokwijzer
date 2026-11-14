@@ -518,3 +518,15 @@ test("herinneringen per mail: bevestigen, versturen en ontvangst bevestigen", as
   assert.equal((await fetch(base + "/mail/ontvangen/" + "0".repeat(48))).status, 404);
   assert.equal((await fetch(base + "/api/c/maillog")).status, 401, "log niet via de algemene API");
 });
+
+test("bezoekers per uur", async () => {
+  await fetch(base + "/api/stat", { method: "POST", headers: Object.assign({}, H, { "user-agent": "Mozilla/5.0 uurtest" }), body: JSON.stringify({ t: "load" }) });
+  const cb = await login("beheer@test.be", "Sterk-wachtwoord-123");
+  const r = await (await fetch(base + "/api/stats?uren=24", { headers: { cookie: cb } })).json();
+  assert.equal(r.uren, 24);
+  assert.ok(r.perUur.length >= 23 && r.perUur.length <= 25);
+  assert.ok(r.ditUur.bezoekers >= 1, "bezoek van dit uur geteld");
+  assert.equal(r.patroon.length, 24);
+  const l = await fetch(base + "/api/stats?uren=24");
+  assert.equal(l.status, 401);
+});

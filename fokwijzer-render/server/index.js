@@ -445,6 +445,7 @@ app.post("/api/stat", statLimit, (req, res) => {
   res.status(204).end();
 });
 app.get("/api/stats", auth.need("beheerder"), (req, res) => {
+  if (req.query.uren) return res.json(stats.reportUren(req.query.uren));
   res.json(stats.report(req.query.dagen, (id) => { const d = store.getDoc("paarden", id); return d && d.data && d.data.naam; }));
 });
 app.get("/api/ai/test", auth.need("beheerder"), async (req, res) => res.json(await ai.selfTest()));
