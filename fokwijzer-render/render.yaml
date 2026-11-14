@@ -8,7 +8,10 @@ services:
     plan: 0.5c-512mb
     branch: main
     autoDeployTrigger: commit
+    # De code staat in de map fokwijzer-render van de repository.
+    rootDir: fokwijzer-render
     dockerfilePath: ./Dockerfile
+    dockerContext: .
     healthCheckPath: /api/me
     disk:
       name: fokwijzer-data
