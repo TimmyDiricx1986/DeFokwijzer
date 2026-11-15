@@ -1,0 +1,193 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-15",
+ "collecties": {
+  "paarden": {
+   "canturano-2003": {
+    "dek": {
+     "dekgeld": "€ 1.550 excl. btw (3 pogingen, 1 merrie, 1 dekseizoen); verzending en gezondheidspapieren € 175 excl. btw",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Terugbetaling € 1.200 excl. btw als de merrie eind september niet drachtig is. Jaar niet vermeld op de pagina. Bron zegt dat hengsten momenteel enkel bekeken kunnen worden.",
+     "station": "France Etalons",
+     "url": "https://www.elitestallions.co.uk/stallion/Canturano",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Canturano"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-15"
+    }
+   },
+   "check-in-2003": {
+    "dek": {
+     "dekgeld": "€ 1.800 excl. btw (1 merrie, 1 dekseizoen); koerier en gezondheidspapieren € 175 excl. btw",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma (chilled). Jaar niet vermeld op de pagina. Bron zegt dat hengsten momenteel enkel bekeken kunnen worden.",
+     "station": "Haras de Clarbec",
+     "url": "https://elitestallions.co.uk/stallion/Check In",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Check In"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-15"
+    }
+   },
+   "van-gogh-2002": {
+    "dek": {
+     "dekgeld": "€ 1.700 excl. btw (sperma, 1 merrie, 1 dekseizoen)",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Gekoeld en diepgevroren sperma. Jaar niet vermeld op de pagina. Bron zegt dat hengsten momenteel enkel bekeken kunnen worden.",
+     "station": "De Wiemselbach",
+     "url": "https://elitestallions.co.uk/stallion/Van Gogh",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Van Gogh"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-15"
+    }
+   },
+   "tiger-van-t-ruytershof-2019": {
+    "dek": {
+     "dekgeld": "€ 1.250 vers; diepvries met garantie € 1.250 (€ 250 vooraf + € 1.000 bij drachtige merrie op 1 oktober, levend veulen)",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina biedt online bestelknop voor sperma. Dekseizoen en btw-status niet vermeld.",
+     "station": "Harrie Smolders",
+     "url": "https://www.harriesmolders.com/en/horses/details/tiger-van-t-ruytershof",
+     "bron": {
+      "naam": "Harrie Smolders",
+      "url": "https://www.harriesmolders.com/en/horses/details/tiger-van-t-ruytershof"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-15"
+    }
+   },
+   "casentos-2018": {
+    "dek": {
+     "dekgeld": "€ 350 + € 600 bij dracht + € 100 fokkosten, of € 350 + € 950 bij dracht (excl. btw)",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Beschikbaar bij alle stations van de Holsteiner Verband Hengsthaltung GmbH. Dekseizoen niet vermeld.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://holsteiner-verband.de/en/verband-stallions/stallions/horse/casentos",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/verband-stallions/stallions/horse/casentos"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-15"
+    }
+   },
+   "commil-champ-z-2018": {
+    "dek": {
+     "dekgeld": "€ 800 (€ 250 + € 550)",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beperkt",
+     "toelichting": "Nijhof noemt het dekgeld. Elite Stallions: diepvries, € 800 excl. btw voor max. 3 pogingen, hengst daar enkel te bekijken. Dekseizoen niet vermeld.",
+     "station": "Team Nijhof",
+     "url": "https://www.team-nijhof.nl/en/?p=25525",
+     "bron": {
+      "naam": "Team Nijhof",
+      "url": "https://www.team-nijhof.nl/en/?p=25525"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-15"
+    }
+   },
+   "king-kashmir-tn-2018": {
+    "dek": {
+     "dekgeld": "Op aanvraag",
+     "toelichting": "Dekgeld op aanvraag bij Team Nijhof. Sperma, beschikbaarheid en seizoen niet vermeld.",
+     "station": "Team Nijhof",
+     "url": "https://team-nijhof.nl/en/?p=25752",
+     "bron": {
+      "naam": "Team Nijhof",
+      "url": "https://team-nijhof.nl/en/?p=25752"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-15"
+    }
+   },
+   "newmarket-vm-2018": {
+    "dek": {
+     "dekgeld": "£ 1.117; £ 893 + btw terug na dierenartsverklaring niet drachtig",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Gekoeld sperma (EU chilled import), split terms. Bron: beschikbaarheid varieert, vooraf bevestigen; hengst concurreert tijdens het seizoen. Seizoen niet vermeld.",
+     "station": "Team Nijhof",
+     "url": "https://www.stallionai.co.uk/animals/stallion/newmarket-vm",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/newmarket-vm"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-15"
+    }
+   },
+   "vigado-2018": {
+    "dek": {
+     "dekgeld": "€ 350 + € 600 bij dracht + € 100 veulengeld, of € 350 + € 950 bij dracht (alles excl. btw); ICSI € 650 excl. btw",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Vers sperma en ICSI, op alle stations van de Holsteiner Verband Hengsthaltung GmbH. Dekseizoen niet vermeld.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://www.holsteiner-verband.de/en/suche/horse/vigado",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/suche/horse/vigado"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-15"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "cornet-du-lys": "niet_gevonden",
+  "ugano-sitte-2004": "niet_gevonden",
+  "canturano-2003": "gevonden",
+  "check-in-2003": "gevonden",
+  "comme-d-api-vd-hacienda-z-2003": "niet_gevonden",
+  "spartacus-tn-2003": "niet_gevonden",
+  "cormint-2002": "niet_gevonden",
+  "van-gogh-2002": "gevonden",
+  "528003201906873": "niet_gevonden",
+  "flacco-z-2019": "niet_gevonden",
+  "talent-van-de-berghoeve-2019": "niet_gevonden",
+  "talifax-van-t-roth-2019": "niet_gevonden",
+  "tellini-van-t-ruytershof": "niet_gevonden",
+  "tiger-van-t-ruytershof-2019": "gevonden",
+  "toetankhamon-de-muze": "niet_gevonden",
+  "trouble-balou-fdv-2019": "niet_gevonden",
+  "casentos-2018": "gevonden",
+  "casper-du-cache-pot-z": "niet_gevonden",
+  "commil-champ-z-2018": "gevonden",
+  "king-kashmir-tn-2018": "gevonden",
+  "newmarket-vm-2018": "gevonden",
+  "sparkling-jw-van-de-moerhoeve-2018": "niet_gevonden",
+  "special-star-de-corlato-2018": "niet_gevonden",
+  "spitfire-v-2018": "niet_gevonden",
+  "vigado-2018": "gevonden"
+ }
+}
