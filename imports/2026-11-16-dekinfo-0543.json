@@ -1,0 +1,196 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-16",
+ "collecties": {
+  "paarden": {
+   "allroad-2000-z-2017": {
+    "dek": {
+     "dekgeld": "Vers € 1.200, diepvries € 1.200, ICSI € 600",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "seizoen": "2025",
+     "toelichting": "Info van 2025. Pagina vermeldt 'Breed now - pay in 2025' bij vers sperma.",
+     "station": "Zangersheide",
+     "url": "https://zangersheide.com/en/stallions/allroad-2000-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://zangersheide.com/en/stallions/allroad-2000-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-16"
+    }
+   },
+   "cero-blue-tn-2017": {
+    "dek": {
+     "dekgeld": "€ 1.100",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Catalogus vermeldt diepvriessperma en/of ICSI algemeen voor alle hengsten.",
+     "station": "Team Nijhof (SWS Nijhof B.V.), Geesteren",
+     "url": "https://www.team-nijhof.nl/",
+     "bron": {
+      "naam": "Catalogus Team Nijhof 2026",
+      "url": "https://www.team-nijhof.nl/wp-content/uploads/2026/02/20260202_Catalogus-Nijhof-2026-inhoud-NL-1.pdf"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-16"
+    }
+   },
+   "chopano-va-2017": {
+    "dek": {
+     "dekgeld": "€ 900",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Pagina vermeldt 'Standing stud'.",
+     "station": "VDL Stud",
+     "url": "https://vdlstud.com/en/paarden/Chopano-VA-Chopin-VA-x-Cassini-I",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://vdlstud.com/en/paarden/Chopano-VA-Chopin-VA-x-Cassini-I"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-16"
+    }
+   },
+   "dubliner-2017": {
+    "dek": {
+     "dekgeld": "€ 350 + € 350 bij drachtigheid + € 100 veulengeld, of € 350 + € 650 bij drachtigheid; excl. btw",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Beschikbaar bij de dekstations van de Holsteiner Verband Hengsthaltung GmbH.",
+     "station": "Holsteiner Verband Hengsthaltung",
+     "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/dubliner",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/dubliner"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-16"
+    }
+   },
+   "madness": {
+    "dek": {
+     "dekgeld": "€ 1.200 excl. btw, 3 pogingen gekoeld, 1 merrie; € 900 excl. btw terug bij niet-drachtig eind september",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma. Op de pagina kon op dat moment niet besteld worden (alleen bekijken). Afhalen ma, wo, vr.",
+     "station": "Hengststation Dirk Ahlmann",
+     "url": "https://www.elitestallions.co.uk/stallion/Madness",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Madness"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-16"
+    }
+   },
+   "mr-cornet-de-regor-2017": {
+    "dek": {
+     "dekgeld": "€ 1.100 excl. btw, onbeperkt gekoeld, 1 merrie; € 850 excl. btw terug bij niet-drachtig eind september",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma. Courier en gezondheidspapieren € 175 excl. btw. Op de pagina kon op dat moment niet besteld worden (alleen bekijken).",
+     "station": "Brinkman",
+     "url": "https://elitestallions.co.uk/stallion/Mr%20Cornet%20De%20Regor",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Mr%20Cornet%20De%20Regor"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-16"
+    }
+   },
+   "zonik-plus-2016": {
+    "dek": {
+     "dekgeld": "£ 1.875 (diepvries)",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Wedstrijdsport krijgt voorrang bij splitsing. Beschikbaarheid vooraf telefonisch controleren; bestelmodule toont geen voorraad voor het geselecteerde land.",
+     "station": "ERC De Morette",
+     "url": "https://www.stallionai.co.uk/animals/stallion/zonik-plus",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/zonik-plus"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-16"
+    }
+   },
+   "charthago-blue-old-2015": {
+    "dek": {
+     "dekgeld": "€ 1.200 excl. btw (€ 300 eerste dekking + € 900 bij dracht), plus transportkosten en NVWA-papieren",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Gekoeld/vers en diepvriessperma. WFFS-test gratis. Pagina noemt geen seizoen.",
+     "station": "Van Olst Horses",
+     "url": "https://www.vanolsthorses.com/paarden/charthago-blue-old/?lang=en",
+     "bron": {
+      "naam": "Van Olst Horses",
+      "url": "https://www.vanolsthorses.com/paarden/charthago-blue-old/?lang=en"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-16"
+    }
+   },
+   "clear-heart-2015": {
+    "dek": {
+     "dekgeld": "€ 750 excl. btw bij inseminatie + € 750 excl. btw bij dracht",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Pagina noemt ook splitsing van dekgeld. WFFS negatief. Pagina noemt geen seizoen.",
+     "station": "Schockemöhle",
+     "url": "https://shop.schockemoehle.com/en/Clear-Heart/528003201501858",
+     "bron": {
+      "naam": "Schockemöhle shop",
+      "url": "https://shop.schockemoehle.com/en/Clear-Heart/528003201501858"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-16"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "056015z55638617": "niet_gevonden",
+  "528003201707299": "niet_gevonden",
+  "allroad-2000-z-2017": "gevonden",
+  "cero-blue-tn-2017": "gevonden",
+  "chopano-va-2017": "gevonden",
+  "dubliner-2017": "gevonden",
+  "gancio-van-t-smisveld-z": "niet_gevonden",
+  "happy-landais-2017": "niet_gevonden",
+  "madness": "gevonden",
+  "mr-cornet-de-regor-2017": "gevonden",
+  "ramazotti-tb": "niet_gevonden",
+  "riesling-van-de-gaathoeve-2017": "niet_gevonden",
+  "056002w00313798": "niet_gevonden",
+  "056002w00314345": "niet_gevonden",
+  "cornet-s-quaprice": "niet_gevonden",
+  "quito-van-den-aard": "niet_gevonden",
+  "qupido-h-2016": "niet_gevonden",
+  "thio-van-t-l-2016": "niet_gevonden",
+  "zonik-plus-2016": "gevonden",
+  "056002w00311925": "niet_gevonden",
+  "056015z55721215": "niet_gevonden",
+  "charlie-la-loi-z": "niet_gevonden",
+  "charthago-blue-old-2015": "gevonden",
+  "clear-heart-2015": "gevonden",
+  "kannan-jr-2015": "niet_gevonden"
+ }
+}
