@@ -127,6 +127,8 @@
     "Deze stal is nog leeg.": "This stable is still empty.",
     "Virtuele veulens": "Virtual foals",
     "Mijn veulens": "My foals",
+    "Veeg opzij om de hele stamboom te zien": "Swipe sideways to see the whole pedigree",
+    "Tik om de kaart groot te bekijken": "Tap to view the card full size",
     "Geen bestand gekozen": "No file chosen",
     "Bestanden kiezen": "Choose files",
     "Bestand kiezen": "Choose file",
