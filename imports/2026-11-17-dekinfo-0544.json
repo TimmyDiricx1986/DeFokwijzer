@@ -1,0 +1,205 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-17",
+ "collecties": {
+  "paarden": {
+   "pommerol-de-muze-2015": {
+    "dek": {
+     "dekgeld": "€ 1.000",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Dekgeld en soort sperma volgens hengstenpagina VDL Stud; pagina verwijst naar bestelling van sperma via de webshop. Geen dekseizoen vermeld.",
+     "station": "VDL Stud",
+     "url": "https://vdlstud.com/en/paarden/Pommerol-de-Muze-Emerald-van-t-Ruytershof-x-Kannan/",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://vdlstud.com/en/paarden/Pommerol-de-Muze-Emerald-van-t-Ruytershof-x-Kannan/"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-17"
+    }
+   },
+   "united-way-2015": {
+    "dek": {
+     "dekgeld": "€ 350 + € 950 bij dracht + € 100 veulengeld, of € 350 + € 1.450 bij dracht; alles excl. btw. ICSI € 950 excl. btw",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Twee dekgeldopties volgens Holsteiner Verband; ICSI als optie. Beschikbaar bij de stations van de Holsteiner Verband Hengsthaltung. Geen dekseizoen vermeld.",
+     "station": "Holsteiner Verband Hengsthaltung",
+     "url": "https://holsteiner-verband.de/en/suche/horse/united-way",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/suche/horse/united-way"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-17"
+    }
+   },
+   "armison-2014": {
+    "dek": {
+     "dekgeld": "€ 1.200 excl. btw, plus € 175 excl. btw voor diepvries koerier en gezondheidspapieren",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Volgens Elite Stallions (portaal) enkel diepvries; pagina meldt dat hengsten momenteel alleen te bekijken zijn (browsing). Bij niet gecontroleerde dracht voor eind september wordt € 900 excl. btw terugbetaald. Dekseizoen niet genoemd.",
+     "station": "Zuchthof Klatte",
+     "url": "https://elitestallions.co.uk/stallion/Armison",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Armison"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-17"
+    }
+   },
+   "comthago-vdl-2014": {
+    "dek": {
+     "dekgeld": "€ 1.750, excl. verzendkosten, exportcertificaten en btw",
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Dekgeld uit de dekvoorwaarden 2026 van VDL Stud (springhengsten); dekseizoen eindigt 15 augustus 2026. Soort sperma niet specifiek voor deze hengst vermeld.",
+     "station": "VDL Stud",
+     "url": "https://www.vdlstud.com",
+     "bron": {
+      "naam": "VDL Stud dekvoorwaarden",
+      "url": "https://www.vdlstud.com/en/dekvoorwaarden"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-17"
+    }
+   },
+   "mescal-2014": {
+    "dek": {
+     "dekgeld": "€ 800 excl. btw; gekoeld transport en gezondheidspapieren € 175 excl. btw extra",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Jaar niet vermeld; voorwaarden noemen 'one breeding season'. Pagina meldt 'Stallions are restricted to Browsing at this time', beschikbaarheid daarom onzeker.",
+     "station": "Hengststation Dirk Ahlmann",
+     "url": "https://elitestallions.co.uk/stallion/Mescal",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Mescal"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-17"
+    }
+   },
+   "k-i-checkter-2013": {
+    "dek": {
+     "dekgeld": "€ 1.200 excl. btw per dosis, voor één genoemde merrie in één dekseizoen",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Jaar niet vermeld. Pagina meldt 'Stallions are restricted to Browsing at this time', beschikbaarheid daarom onzeker.",
+     "station": "Checkter",
+     "url": "https://elitestallions.co.uk/stallion/Checkter",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Checkter"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-17"
+    }
+   },
+   "kanndarco-2013": {
+    "dek": {
+     "dekgeld": "€ 800 excl. btw; diepvriestransport en gezondheidspapieren € 175 excl. btw extra",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Jaar niet vermeld. Pagina meldt 'Stallions are restricted to Browsing at this time', beschikbaarheid daarom onzeker.",
+     "station": "Kanndarco",
+     "url": "https://elitestallions.co.uk/stallion/Kanndarco",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Kanndarco"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-17"
+    }
+   },
+   "highway-tn-n-o-p-2012": {
+    "dek": {
+     "dekgeld": "£ 1.340; £ 1.117 + btw wordt terugbetaald na ontvangst van dierenartsverklaring",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "EU Chilled Import (gekoeld). Bron: 'Availability may vary; please confirm prior to ordering semen'. Hengst concurreert tijdens het seizoen. Jaar niet vermeld.",
+     "station": "Highway TN",
+     "url": "https://www.stallionai.co.uk/animals/stallion/highway-tn",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/highway-tn"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-17"
+    }
+   },
+   "276433330689211": {
+    "dek": {
+     "dekgeld": "€ 900 (ICSI)",
+     "toelichting": "Prijs voor ICSI-sperma. Station, beschikbaarheid en jaar niet vermeld op de pagina.",
+     "url": "https://www.zangersheide.com/en/stallions/solid-gold-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/solid-gold-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-17"
+    }
+   },
+   "casallco-2011": {
+    "dek": {
+     "dekgeld": "€ 3.000 excl. btw, onbeperkt pogingen op één genoemde merrie in één dekseizoen; verzending/papieren € 175 excl. btw extra",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Gekoeld en diepvries. Pagina meldt 'Stallions are restricted to Browsing at this time'; gekoeld sperma kan in hoogseizoen zonder aankondiging niet beschikbaar zijn. Jaar niet vermeld.",
+     "station": "Deckstation Schockemöhle",
+     "url": "https://www.elitestallions.co.uk/stallion/Casallco",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Casallco"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-17"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "kristall-van-orchid-s-2015": "niet_gevonden",
+  "parfait-van-het-schaeck": "niet_gevonden",
+  "pommerol-de-muze-2015": "gevonden",
+  "pretty-boy-van-de-molenberg-2015": "niet_gevonden",
+  "united-way-2015": "gevonden",
+  "airforce-sbk-z-2014": "niet_gevonden",
+  "armison-2014": "gevonden",
+  "comme-le-pere-2014": "niet_gevonden",
+  "comthago-vdl-2014": "gevonden",
+  "cool-crack-z-2014": "niet_gevonden",
+  "cosmo-royale-2014": "niet_gevonden",
+  "ganesh-hero-z-2014": "niet_gevonden",
+  "johnnie-walker-vdl-2014": "niet_gevonden",
+  "jorlan-2014": "niet_gevonden",
+  "mescal-2014": "gevonden",
+  "dagon-des-baleines-2013": "niet_gevonden",
+  "i-am-codex-2013": "niet_gevonden",
+  "k-i-checkter-2013": "gevonden",
+  "kanndarco-2013": "gevonden",
+  "nestor-de-mariposa-2013": "niet_gevonden",
+  "056002w00302221": "niet_gevonden",
+  "caracho-2012": "niet_gevonden",
+  "highway-tn-n-o-p-2012": "gevonden",
+  "276433330689211": "gevonden",
+  "casallco-2011": "gevonden"
+ }
+}
