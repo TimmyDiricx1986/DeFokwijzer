@@ -464,6 +464,12 @@ function renderStam(){
   const head=`<div class="stam-head"><div><strong>Stammoeder: ${esc(root.name)}</strong>${root.year?" ("+esc(root.year)+")":""}${stams.size?` · stamnummer ${[...stams].map(esc).join(", ")}`:""}</div>`+
     `<div class="small muted">${count} paarden in deze lijn getoond${h.geslacht&&rootK!==selK&&selInTree?`, pad naar ${esc(h.naam)} gemarkeerd`:""}${state.stamRoot?` · <button type="button" class="btn ghost" style="padding:4px 10px;font-size:13px" id="stBack">Terug naar lijn van ${esc(h.naam)}</button>`:""}</div></div>`;
   const note=count<=1?'<p class="small muted">Van dit paard zijn in de database nog geen moeder of nakomelingen langs de moederlijn bekend.</p>':"";
+  if(window.matchMedia("(max-width:640px)").matches){
+    const li=(t)=>{const n=t.n,isDb=!!n.id,cls=["st-node","stv-node",n.sex==="hengst"?"h":"m",isDb?"db":"",t.k===selK?"sel":"",path.has(t.k)&&t.k!==selK?"path":""].filter(Boolean).join(" ");
+      const meta=[n.sex==="hengst"?"hengst":"merrie",n.year||"",n.stam&&t.d===0?"stam "+n.stam:""].filter(Boolean).join(" · ")+(t.more?` · +${t.more} niet getoond`:"");
+      const attrs=isDb?` tabindex="0" role="link" data-stid="${esc(n.id)}"`:"";
+      return `<li class="${path.has(t.k)?"op-pad":""}"><div class="${cls}"${attrs}><span class="st-num">${esc(t.num)}</span><span class="st-name">${esc(n.name)}</span><span class="st-meta">${esc(meta)}</span></div>${t.ch.length?`<ul>${t.ch.map(li).join("")}</ul>`:""}</li>`};
+    $("stOut").innerHTML=head+note+`<div class="stamv" aria-label="Stamlijn van ${esc(root.name)}"><ul class="stv">${li(tree)}</ul></div>`;return}
   $("stOut").innerHTML=head+note+`<div class="stamwrap"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Stamlijn van ${esc(root.name)}">${links}${nodesSvg}</svg></div>`;
   const selEl=$("stOut").querySelector(".st-node.sel");if(selEl&&selEl.scrollIntoView){const wrap=$("stOut").querySelector(".stamwrap");const r=selEl.getBBox?selEl.getBBox():null;const tr=/translate\(([\d.]+),([\d.]+)\)/.exec(selEl.getAttribute("transform"));if(tr&&wrap){wrap.scrollLeft=Math.max(0,+tr[1]-wrap.clientWidth/2+NW/2);wrap.scrollTop=Math.max(0,+tr[2]-wrap.clientHeight/2)}}
 }
@@ -834,12 +840,18 @@ async function drawPedCard(h,opt){
   const tf=cmp?Math.min(1,Math.max(.55,eh/104*1.15)):Math.min(1,Math.max(.55,k*1.3));
   const tx=pad+ew+Math.max(10,sp(24)),tMax=W-pad-tx;
   const kSz=Math.max(opt.minPx?11:0,13*tf);
-  let tsz=38*tf;c.font=`700 ${tsz}px ${DISP}`;while(c.measureText(h.naam||"").width>tMax&&tsz>14){tsz-=1;c.font=`700 ${tsz}px ${DISP}`}
-  let fsz=Math.max(opt.minPx?12:0,15*tf);c.font=`400 ${fsz}px ${BODY}`;while(c.measureText(facts).width>tMax&&fsz>(opt.minPx?12:9)){fsz-=.5;c.font=`400 ${fsz}px ${BODY}`}
+  // Op de gsm is maar een deel van de kaart zichtbaar (de rest veeg je opzij): titel en gegevens passen dan in dat deel, desnoods op twee regels.
+  const tMaxV=opt.zicht?Math.max(110,Math.min(tMax,opt.zicht-tx-44)):tMax;
+  let tsz=38*tf,tl=[h.naam||""];c.font=`700 ${tsz}px ${DISP}`;while(c.measureText(h.naam||"").width>tMaxV&&tsz>(opt.zicht?19:14)){tsz-=1;c.font=`700 ${tsz}px ${DISP}`}
+  if(opt.zicht&&c.measureText(h.naam||"").width>tMaxV){const past=()=>{tl=pcWrap(c,h.naam||"",tMaxV,9);return tl.length<=2&&tl.every(l=>c.measureText(l).width<=tMaxV)};while(!past()&&tsz>12){tsz-=.5;c.font=`700 ${tsz}px ${DISP}`}}
+  let fsz=Math.max(opt.minPx?12:0,15*tf),fl;c.font=`400 ${fsz}px ${BODY}`;
+  if(opt.zicht){fl=pcWrap(c,facts,tMaxV,9);while(fl.length>3&&fsz>11){fsz-=.5;c.font=`400 ${fsz}px ${BODY}`;fl=pcWrap(c,facts,tMaxV,9)}}
+  else{while(c.measureText(facts).width>tMax&&fsz>(opt.minPx?12:9)){fsz-=.5;c.font=`400 ${fsz}px ${BODY}`}fl=pcWrap(c,facts,tMax,1)}
+  const tlh=tsz*1.02,flh=fsz*1.3;
   const gapK=Math.max(7,kSz*.85),gapT=Math.max(6,tsz*.3);
-  const hBlock=kSz*.75+gapK+tsz*.72+gapT+fsz*.8;
+  const hBlock=kSz*.75+gapK+tsz*.72+(tl.length-1)*tlh+gapT+fsz*.8+(fl.length-1)*flh;
   const by0=headTop+Math.max(0,(eh-hBlock)/2);
-  const kickY=by0+kSz*.75,titleY=kickY+gapK+tsz*.72,factY=titleY+gapT+fsz*.8;
+  const kickY=by0+kSz*.75,titleY=kickY+gapK+tsz*.72,factY=titleY+(tl.length-1)*tlh+gapT+fsz*.8;
   const lineY=Math.max(headTop+eh,by0+hBlock+fsz*.25)+(cmp?6:Math.max(6,sp(14)));
   // voettekst: altijd leesbaar; past ze niet naast de legende, dan krijgt ze een eigen regel
   const ft="DE FOKWIJZER  ·  EEN WIKIGIDS VOOR EN DOOR PAARDENFOKKERS";const rd=Math.max(3,sp(4.5)),avail=W-2*pad;
@@ -872,8 +884,8 @@ async function drawPedCard(h,opt){
   // kop
   c.drawImage(emb,pad,headTop,ew,eh);
   c.fillStyle=GOLD;c.font=`700 ${kSz}px ${DISP}`;c.letterSpacing=(4*tf)+"px";c.fillText("STAMBOOM",tx,kickY);c.letterSpacing="0px";
-  c.fillStyle=GREEN;c.font=`700 ${tsz}px ${DISP}`;c.fillText(h.naam||"",tx,titleY);
-  c.fillStyle=MUTED;c.font=`400 ${fsz}px ${BODY}`;c.fillText(pcWrap(c,facts,tMax,1)[0]||"",tx,factY);
+  c.fillStyle=GREEN;c.font=`700 ${tsz}px ${DISP}`;tl.forEach((l,i)=>c.fillText(l,tx,titleY+i*tlh));
+  c.fillStyle=MUTED;c.font=`400 ${fsz}px ${BODY}`;fl.forEach((l,i)=>c.fillText(l,tx,factY+i*flh));
   c.strokeStyle=GOLD;c.lineWidth=1.5;c.beginPath();c.moveTo(pad,lineY);c.lineTo(W-pad,lineY);c.stroke();
   // watermerk
   c.globalAlpha=.07;const hw=Math.max(140,sp(380)),hh=hw*hor.height/hor.width;c.drawImage(hor,right-hw+sp(20),bottom-hh+sp(24),hw,hh);c.globalAlpha=1;
@@ -917,7 +929,7 @@ async function drawPedCard(h,opt){
   return cv}
 // Stamboomkaart in de app: dezelfde tekening als de download, op de maat van de plek waar ze staat.
 const pcObjs={};
-function pedCardSlot(h,mode){pcObjs[h.id]=h;return `<figure class="pcard-slot ${mode||""}" data-pc="${esc(h.id)}"><button type="button" class="pcard-img" data-act="card" data-id="${esc(h.id)}" title="Klik om de stamboomkaart groot te bekijken of te downloaden"><span class="pc-svg" role="img" aria-label="Stamboom van ${esc(h.naam)}"></span></button><figcaption><button type="button" class="pc-dl" data-act="card" data-id="${esc(h.id)}">Stamboomkaart downloaden</button></figcaption></figure>`}
+function pedCardSlot(h,mode){pcObjs[h.id]=h;return `<figure class="pcard-slot ${mode||""}" data-pc="${esc(h.id)}"><button type="button" class="pcard-img" data-act="card" data-id="${esc(h.id)}" title="Klik om de stamboomkaart groot te bekijken of te downloaden"><span class="pc-svg" role="img" aria-label="Stamboom van ${esc(h.naam)}"></span><span class="pc-tik">Tik om de kaart groot te bekijken</span></button><figcaption><button type="button" class="pc-dl" data-act="card" data-id="${esc(h.id)}">Stamboomkaart downloaden</button></figcaption></figure>`}
 let pcPainting=0,pcRatio=.52;
 async function paintPedSlots(){const my=++pcPainting;const slots=[...document.querySelectorAll(".pcard-slot")].filter(s=>s.offsetParent!==null);
   const dpr=Math.max(1,window.devicePixelRatio||1);
@@ -934,8 +946,8 @@ async function paintPedSlots(){const my=++pcPainting;const slots=[...document.qu
         Hh=Math.max(260,Math.min(nat,Math.round(avail*1.2)));
         det.style.height=Math.max(fwDetBase,fwDetBase+(Hh-avail))+"px"}
     }
-    const key=[h.id,JSON.stringify(pedOf(h)),h.naam,W,Hh].join("|");const img=btn.querySelector(".pc-svg");if(img.dataset.key===key)continue;
-    try{const cv=await drawPedCard(h,{W,H:Hh,svg:true,compact:W<700,minPx:13});if(my!==pcPainting)return;img.innerHTML=cv.svg;img.dataset.key=key;img.style.width=W+"px";
+    const zicht=mob?scr.clientWidth:(W<520?W+34:0);const key=[h.id,JSON.stringify(pedOf(h)),h.naam,W,Hh,zicht].join("|");const img=btn.querySelector(".pc-svg");if(img.dataset.key===key)continue;
+    try{const cv=await drawPedCard(h,{W,H:Hh,svg:true,compact:W<700,minPx:13,zicht});if(my!==pcPainting)return;img.innerHTML=cv.svg;img.dataset.key=key;img.style.width=W+"px";
       if(cv._lay){pcRatio=cv._lay.parEnd/cv._lay.W;if(mob){const over=cv._lay.parEnd-scr.clientWidth+4;scr.scrollLeft=over>0?Math.ceil(over):0}}}catch(_){}}
   if(typeof checkDetOverflow==="function")checkDetOverflow()}
 let pcResizeT=null;window.addEventListener("resize",()=>{clearTimeout(pcResizeT);pcResizeT=setTimeout(paintPedSlots,200)});
@@ -1124,7 +1136,7 @@ function renderDetail(){const h=byId(state.sel);if(!h){$("detail").innerHTML='<d
   const tabs=[["overzicht","Overzicht"]].concat(af?[["afstamming","Afstamming"]]:[]).concat(h.geslacht==="hengst"&&!h.ruin?[["dek","Dekinfo"]]:[]).concat([["gegevens","Gegevens"]]).concat(mk&&FW_EXTRA.veilingen?[["veilingen","Veilingen"]]:[]).concat([["bronnen","Bronnen ("+nb+")"]]).concat(h.opmerking?[["opmerkingen","Opmerkingen"]]:[]);
   if(!tabs.some(t=>t[0]===state.detTab))state.detTab="overzicht";
   const t=state.detTab;let body="";
-  if(t==="overzicht")body=`<div class="ov-ped" aria-label="Stamboom">${pedCardSlot(h,"pc-fill")}</div>`;
+  if(t==="overzicht")body=`<p class="veeg-hint">Veeg opzij om de hele stamboom te zien <span aria-hidden="true">&rarr;</span></p><div class="ov-ped" aria-label="Stamboom">${pedCardSlot(h,"pc-fill")}</div>`;
   else if(t==="afstamming"){const c=coi(af.s,af.m),dam=byName(af.m.naam);
     body=`<p class="small muted" style="margin:0 0 4px">Berekend uit de stamboom van ${esc(h.naam)}, aangevuld met de stambomen van de voorouders op de site.</p>
     ${foalFactsHtml(af.s,af.m,"detKin",dam?dam.id:"")}${coiHtml(c,"Inteelt van dit paard")}`;
@@ -1225,7 +1237,7 @@ const p1=(f)=>(f*100).toLocaleString("nl-BE",{maximumFractionDigits:1})+"%";
 function bloodHtml(b){const parts=[["xx","volbloed (xx)"],["ox","Arabisch volbloed (ox)"],["aa","Anglo-Arabier (AA)"]].filter(([k])=>b[k]>=.0005);
   return parts.length?parts.map(([k,l])=>`<span><span class="num" style="font-weight:600">${p1(b[k])}</span> ${l}</span>`).join('<span class="muted" aria-hidden="true"> · </span>'):'<span class="muted">geen volbloed in de bekende stamboom</span>'}
 function coiHtml(c,titel){const Fp=c.F*100,lvl=Fp>=state.t.max?"bad":Fp>=KWPN_COI?"warn":"good";
-  const row=(e)=>`<tr><th scope="row">${esc(e.naam)}</th><td class="num">${e.gv.join(", ")} x ${e.gm.join(", ")}</td><td class="num">${e.paden.length}</td><td class="num">${e.bijdrage<.00005?"&lt;0,01%":pct(e.bijdrage)}</td></tr>`;
+  const row=(e)=>`<tr><th scope="row">${esc(e.naam)}</th><td class="num"><span class="k-mob">Generatie (vader x moeder): </span>${e.gv.join(", ")} x ${e.gm.join(", ")}</td><td class="num"><span class="k-mob">Paden: </span>${e.paden.length}</td><td class="num"><span class="k-mob">Bijdrage: </span>${e.bijdrage<.00005?"&lt;0,01%":pct(e.bijdrage)}</td></tr>`;
   const head='<thead><tr><th>Voorouder</th><th>Generatie (vader x moeder)</th><th>Paden</th><th>Bijdrage</th></tr></thead>';
   const top=c.common.slice(0,12),rest=c.common.slice(12);
   return `<h3 style="margin-top:16px">${titel||"Inteelt van het veulen"}</h3>
@@ -1262,7 +1274,7 @@ function renderCompare(){const s=byId($("cS").value),m=byId($("cM").value);
   const nk=(h)=>num(o(h).sport)!=null?`<span class="num">${esc(o(h).sport)}</span> / <span class="num">${esc(o(h).m140||0)}</span> / <span class="num">${esc(o(h).m150||0)}</span>`:"onbekend";
   const zz=(h)=>{const z=zOf(h);return z==null?"onbekend":`<span class="num">${fz(z,2)}</span> SD`};
   $("cmpOut").innerHTML=`<div class="split" style="margin-top:0">
-   <div class="tablewrap"><table><thead><tr><th></th><th>${esc(s.naam)}</th><th>${esc(m.naam)}</th></tr></thead><tbody>
+   <div class="tablewrap"><table class="paar-tab" style="--hc-n:2"><thead><tr><th><span class="sr-only">Gegeven</span></th><th>${esc(s.naam)}</th><th>${esc(m.naam)}</th></tr></thead><tbody>
     ${row("Stamboek",esc(s.stamboek||"onbekend"),esc(m.stamboek||"onbekend"))}
     ${row("Geboortejaar",esc(s.geboortejaar||"onbekend"),esc(m.geboortejaar||"onbekend"))}
     ${row("Vader",esc(s.stamboom&&s.stamboom.v||"onbekend"),esc(m.stamboom&&m.stamboom.v||"onbekend"))}
@@ -1700,6 +1712,13 @@ async function mailActie(a,body){const st=$("mailSt");if(st){st.className="statu
     if(a==="instellen"&&stalAan())stalSave(()=>{})}
   catch(err){state.mail=null;mailLaad();setTimeout(()=>{const s2=$("mailSt");if(s2){s2.className="status err";s2.textContent=(err&&err.message)||"Dat lukte niet."}},400)}}
 
+// ---------- Opzij vegen: een vervaagde rand toont dat er links of rechts nog meer staat ----------
+const VEEG=".ov-ped,.tablewrap,.hc-wrap,.stamwrap,.dtabs,.pcdlg .pc-prev,.fw-chart-wrap,.fw-users-wrap";
+function veegEl(el){const m=el.scrollWidth>el.clientWidth+2;el.classList.toggle("veeg",m);el.classList.toggle("meer-r",m&&el.scrollLeft+el.clientWidth<el.scrollWidth-2);el.classList.toggle("meer-l",m&&el.scrollLeft>2)}
+let veegRaf=0;const veegAlles=()=>{if(veegRaf)return;veegRaf=requestAnimationFrame(()=>{veegRaf=0;document.querySelectorAll(VEEG).forEach(veegEl)})};
+document.addEventListener("scroll",e=>{const t=e.target;if(t&&t.matches&&t.matches(VEEG))veegEl(t)},{capture:true,passive:true});
+new MutationObserver(veegAlles).observe(document.body,{childList:true,subtree:true});window.addEventListener("resize",veegAlles);veegAlles();
+
 // ---------- Bestandknoppen en foutmeldingen van formulieren altijd in de taal van De Fokwijzer ----------
 // De browser toont anders "Choose files" en "Please fill out this field" in de taal van het toestel.
 function fileTekst(inp){const t=inp.nextElementSibling&&inp.nextElementSibling.nextElementSibling;if(!t||!t.classList.contains("fw-filetxt"))return;const n=inp.files?inp.files.length:0;
@@ -2014,6 +2033,7 @@ $("cmpOut").addEventListener("click",e=>{const b=e.target.closest("[data-stamvan
 $("stPaard").addEventListener("change",e=>{state.stamSel=e.target.value;state.stamRoot=null;renderStam()});
 ["stDiepte","stZonen"].forEach(id=>$(id).addEventListener("change",renderStam));
 $("stTop").addEventListener("click",e=>{const b=e.target.closest("[data-stroot]");if(!b)return;state.stamRoot=b.dataset.stroot;renderStam()});
+try{window.matchMedia("(max-width:640px)").addEventListener("change",()=>{if(state.tab==="stam")renderStam()})}catch(_){}
 $("stOut").addEventListener("click",e=>{if(e.target.closest("#stBack")){state.stamRoot=null;renderStam();return}const n=e.target.closest("[data-stid]");if(!n)return;state.sel=n.dataset.stid;setTab("zoeken")});
 $("stOut").addEventListener("keydown",e=>{if(e.key!=="Enter"&&e.key!==" ")return;const n=e.target.closest&&e.target.closest("[data-stid]");if(!n)return;e.preventDefault();state.sel=n.dataset.stid;setTab("zoeken")});
 $("wReset").addEventListener("click",()=>{state.w={...DEFAULT_W};state.t={...DEFAULT_T};renderMatches()});
