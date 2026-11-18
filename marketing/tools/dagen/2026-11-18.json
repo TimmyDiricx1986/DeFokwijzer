@@ -1,0 +1,13 @@
+{
+  "frames": "/home/claude/frames-2026-11-18",
+  "scenes": [
+    {"id": "s1", "tekst": "Je merries in een schrift? Dit kan beter."},
+    {"id": "s2", "tekst": "1. Mijn stal: al je paarden op één plek"},
+    {"id": "s3", "tekst": "2. Merriedossier + herinneringen per mail"},
+    {"id": "s4", "tekst": "3. Combinaties: virtueel veulen + inteelt"}
+  ],
+  "eindbeeld": "marketing/2026-11-18/tiktok-cover.png",
+  "eind_s": 4,
+  "uit": "marketing/2026-11-18/fokwijzer-tiktok-2026-11-18.mp4",
+  "deuntje": true
+}
