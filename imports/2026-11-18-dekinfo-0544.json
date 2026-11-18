@@ -1,0 +1,235 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-18",
+ "collecties": {
+  "paarden": {
+   "grand-slam-vdl-2011": {
+    "dek": {
+     "dekgeld": "€ 1.750,-",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Hengstenpagina van VDL Stud vermeldt dekgeld € 1.750,- en vers en diepgevroren sperma; bestellen via de webshop van Equinem. Seizoen niet vermeld.",
+     "station": "VDL Stud",
+     "url": "https://vdlstud.com/en/paarden/Grand-Slam-Cardento-x-Heartbreaker",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://vdlstud.com/en/paarden/Grand-Slam-Cardento-x-Heartbreaker"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   },
+   "lector-van-den-bisschop-2011": {
+    "dek": {
+     "dekgeld": "€ 1.250 excl. btw voor drie pogingen met gekoeld of diepgevroren sperma op één merrie in één seizoen",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Via Elite Stallions. Koerier en gezondheidspapieren € 175 excl. btw. € 1.000 excl. btw terug als de merrie eind september niet drachtig is. Pagina meldt dat hengsten momenteel enkel te bekijken zijn. Seizoen niet vermeld.",
+     "station": "Stal de Muze",
+     "url": "https://elitestallions.co.uk/stallion/Lector%20van%20den%20Bisschop",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Lector%20van%20den%20Bisschop"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   },
+   "luigi-d-eclipse-2011": {
+    "dek": {
+     "dekgeld": "€ 2.250 excl. btw voor het sperma; € 2.550 + btw voor onbeperkte pogingen op één merrie in één seizoen",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Via Elite Stallions. Courier en gezondheidspapieren € 175 excl. btw. Bij niet-drachtig eind september € 2.050 + btw terug. Pagina meldt dat hengsten momenteel enkel te bekijken zijn. Seizoen niet vermeld.",
+     "station": "Tal Milstein",
+     "url": "https://elitestallions.co.uk/stallion/Luigi D'Eclipse",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Luigi D'Eclipse"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   },
+   "andiamo-semilly-2010": {
+    "dek": {
+     "dekgeld": "€ 1.500 excl. btw voor maximaal drie pogingen met gekoeld of diepgevroren sperma op één merrie in één seizoen",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Via Elite Stallions. Courier en gezondheidspapieren € 175 excl. btw per soort sperma. Pagina meldt dat hengsten momenteel enkel te bekijken zijn. Seizoen niet vermeld.",
+     "station": "Haras De Semilly",
+     "url": "https://elitestallions.co.uk/stallion/Andiamo%20Semilly",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Andiamo%20Semilly"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   },
+   "continental-blue-2010": {
+    "dek": {
+     "dekgeld": "Inseminatie € 750 en dracht € 750, beide excl. btw",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Hengstenpagina in de webshop van Schockemöhle; dekgeld kan gesplitst worden volgens dekvoorwaarden §4. Seizoen niet vermeld.",
+     "station": "Paul Schockemöhle Pferdehaltung GmbH, Mühlen",
+     "url": "https://shop.schockemoehle.com/en/Continental-Blue/DE418184066110",
+     "bron": {
+      "naam": "Schockemöhle webshop",
+      "url": "https://shop.schockemoehle.com/en/Continental-Blue/DE418184066110"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   },
+   "diacontinus-2010": {
+    "dek": {
+     "dekgeld": "€ 1.200 excl. btw voor onbeperkte pogingen met gekoeld of diepgevroren sperma op één merrie in één seizoen",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Via Elite Stallions. Courier en gezondheidspapieren € 175 excl. btw per soort sperma. Pagina meldt dat hengsten momenteel enkel te bekijken zijn. Seizoen niet vermeld.",
+     "station": "Landgestuet Celle",
+     "url": "https://www.elitestallions.co.uk/stallion/Diacontinus",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Diacontinus"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   },
+   "056007000d46334": {
+    "dek": {
+     "dekgeld": "Vers € 1.400; diepvries € 1.400; ICSI € 700; vers: 'Breed now - pay in 2027'",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Hengstenpagina van Zangersheide vermeldt ook ICSI-sperma. Seizoen en btw-info niet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/dieu-merci-van-t-l-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/dieu-merci-van-t-l-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   },
+   "cascadello-2009": {
+    "dek": {
+     "dekgeld": "EUR 1.800 excl. btw, gekoeld, onbeperkte pogingen per genoemde merrie per dekseizoen; koerier en gezondheidspapieren EUR 175 excl. btw extra",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma. Bij niet-drachtig eind september wordt EUR 1.500 excl. btw terugbetaald. Pagina toont hem momenteel alleen ter bekijking, bestellen niet mogelijk. Jaar niet vermeld.",
+     "station": "Hengststation Dirk Ahlmann",
+     "url": "https://www.elitestallions.co.uk/stallion/Cascadello%20I",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Cascadello%20I"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   },
+   "etoulon-vdl-2009": {
+    "dek": {
+     "dekgeld": "EUR 1.500",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Dekseizoen 2026 eindigt op 15 augustus 2026. Diepgevroren sperma is beschikbaar wanneer de hengst op wedstrijd is. Vers sperma op werkdagen voor 09:30 bestellen voor levering de volgende dag.",
+     "station": "VDL Stud",
+     "url": "https://www.vdlstud.com",
+     "bron": {
+      "naam": "VDL Stud dekvoorwaarden 2026",
+      "url": "https://www.vdlstud.com/en/dekvoorwaarden"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   },
+   "varihoka-du-temple-2009": {
+    "dek": {
+     "dekgeld": "EUR 1.200 excl. btw, diepvries, onbeperkte pogingen per genoemde merrie per dekseizoen; koerier en gezondheidspapieren EUR 175 excl. btw extra",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Terugbetaling EUR 600 + btw als de merrie eind september niet drachtig is. Pagina toont hem momenteel alleen ter bekijking, bestellen nog niet mogelijk. Jaar niet vermeld.",
+     "station": "Deckstation Schockemohle",
+     "url": "https://shop.schockemoehle.com/en/Varihoka-du-Temple/25000109174111P",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Varihoka%20du%20Temple"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   },
+   "casino-berlin-2008": {
+    "dek": {
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2026",
+     "toelichting": "Vermeld in Sosath hengstencatalogus 2026 (p. 16), enkel diepvriessperma op aanvraag. Stationering in Lemwerder niet expliciet bevestigd voor deze hengst. Moeder in catalogus: Estia v. Caretino. Dekgeld op aanvraag, enkel diepvries (nur TG auf Anfrage).",
+     "station": "Sosath Hengststation, Lemwerder",
+     "url": "https://sosath.com/download/Sosath_Katalog_2026_A5_neu.pdf",
+     "bron": {
+      "naam": "Sosath Katalog 2026",
+      "url": "https://sosath.com/download/Sosath_Katalog_2026_A5_neu.pdf"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-18"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "de-flor-111-z-2011": "niet_gevonden",
+  "grand-slam-vdl-2011": "gevonden",
+  "lector-van-den-bisschop-2011": "gevonden",
+  "luigi-d-eclipse-2011": "gevonden",
+  "pollux-de-muze-z-2011": "niet_gevonden",
+  "andiamo-semilly-2010": "gevonden",
+  "arnac-d-elphen-2010": "niet_gevonden",
+  "caressini-2010": "niet_gevonden",
+  "continental-blue-2010": "gevonden",
+  "diacontinus-2010": "gevonden",
+  "espoir-des-merisiers-2010": "niet_gevonden",
+  "056007000d46334": "gevonden",
+  "528003200908510": "niet_gevonden",
+  "air-jordan-alpha-z-2009": "niet_gevonden",
+  "casalito-2009": "niet_gevonden",
+  "casanova-de-beaufour-dxb": "niet_gevonden",
+  "cascadello-2009": "gevonden",
+  "chellsini-z-2009": "niet_gevonden",
+  "clinton-s-heart": "niet_gevonden",
+  "don-diarado-2009": "niet_gevonden",
+  "etoulon-vdl-2009": "gevonden",
+  "jaguar-vd-berghoeve-2009": "niet_gevonden",
+  "varihoka-du-temple-2009": "gevonden",
+  "casino-berlin-2008": "gevonden",
+  "chianti-s-champion-2008": "niet_gevonden"
+ }
+}
