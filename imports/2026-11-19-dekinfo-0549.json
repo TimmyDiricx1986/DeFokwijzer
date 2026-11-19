@@ -1,0 +1,275 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-19",
+ "collecties": {
+  "paarden": {
+   "caribis-z-2007": {
+    "dek": {
+     "dekgeld": "Vers EUR 1.600 (Breed now - pay in 2025), diepvries EUR 1.600, ICSI EUR 800",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "seizoen": "2025",
+     "toelichting": "Info van 2025. Vers sperma aangeboden met optie 'Breed now - pay in 2025'. Ook ICSI voor EUR 800.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/caribis-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/caribis-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "chaplin-2007": {
+    "dek": {
+     "dekgeld": "Op aanvraag (stud fee upon request)",
+     "toelichting": "Dekgeld niet vermeld op de pagina, enkel op aanvraag.",
+     "station": "Team Nijhof",
+     "url": "https://www.team-nijhof.nl/en/paarden/chaplin/",
+     "bron": {
+      "naam": "Team Nijhof",
+      "url": "https://www.team-nijhof.nl/en/paarden/chaplin/"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "276421000169205": {
+    "dek": {
+     "dekgeld": "Vers EUR 1.400 (EUR 400 + EUR 1.000), diepvries EUR 1.400",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Ook ICSI voor EUR 700. Seizoen niet vermeld op de pagina.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/hh-conrad-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/hh-conrad-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "056007000u38868": {
+    "dek": {
+     "dekgeld": "Vers EUR 1.600 (EUR 600 + EUR 1.000), diepvries EUR 1.600",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Ook ICSI voor EUR 800. Seizoen niet vermeld op de pagina.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/utamaro-d-ecaussines-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/utamaro-d-ecaussines-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "stakkatol-2004": {
+    "dek": {
+     "dekgeld": "USD 1.700 (vermelde prijs, status Pre-Sales)",
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Sperma te bestellen via voorverkoop (pre-order). Seizoen en soort sperma niet vermeld. Pagina noemt een 1- of 2-dosiscontract voor Schockemoehle Stud-hengsten.",
+     "station": "Superior Equine Sires",
+     "url": "https://superiorequinesires.com/stakkatol",
+     "bron": {
+      "naam": "Superior Equine Sires",
+      "url": "https://superiorequinesires.com/stakkatol"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "zambesi-tn-2004": {
+    "dek": {
+     "dekgeld": "EUR 1.250",
+     "toelichting": "Soort sperma, beschikbaarheid en seizoen niet vermeld op de pagina.",
+     "station": "Team Nijhof",
+     "url": "https://team-nijhof.nl/en/?p=9407",
+     "bron": {
+      "naam": "Team Nijhof",
+      "url": "https://team-nijhof.nl/en/?p=9407"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "zinedine-2004": {
+    "dek": {
+     "dekgeld": "EUR 1.500 excl. btw, koerier en gezondheidspapieren EUR 175 excl. btw extra",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma, aanbod per dekseizoen (jaartal niet vermeld). EUR 1.200 excl. btw terug als merrie voor eind september niet drachtig is. Pagina meldt dat hengsten nu enkel bekeken kunnen worden.",
+     "station": "Ludger Beerbaum",
+     "url": "https://www.elitestallions.co.uk/stallion/Zinedine",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Zinedine"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "inshallah-de-muze-2008": {
+    "dek": {
+     "dekgeld": "€ 1.000,-",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Op de hengstpagina van VDL Stud staat dekgeld € 1.000,- met sperma: frozen. Seizoen en voorwaarden worden niet vermeld.",
+     "station": "VDL Stud",
+     "url": "https://www.vdlstud.com/en/paarden/Inshallah-de-Muze-Nabab-de-Reve-x-For-Pleasure/",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://www.vdlstud.com/en/paarden/Inshallah-de-Muze-Nabab-de-Reve-x-For-Pleasure/"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "chacco-blue-ii-2007": {
+    "dek": {
+     "dekgeld": "€ 1.550,00 excl. btw, max. 3 pogingen diepvries voor 1 merrie in 1 dekseizoen",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Elite Stallions meldt dat hengsten daar momenteel alleen te bekijken zijn (bestellen niet mogelijk). Jaar niet vermeld; voorwaarden noemen terugbetaling van € 1.200 excl. btw bij niet drachtig eind september.",
+     "station": "France Etalons",
+     "url": "https://elitestallions.co.uk/stallion/Chacco%20Blue%20II",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Chacco%20Blue%20II"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "baltic-vdl": {
+    "dek": {
+     "dekgeld": "€ 2.000,-; ICSI € 2.500,- per sessie per merrie",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Sperma te bestellen via de Equinem-shop. Seizoen niet vermeld. De pagina noemt vader Quaprice Z; geboortejaar 2006 komt overeen.",
+     "station": "VDL Stud",
+     "url": "https://vdlstud.com/en/paarden/Baltic-VDL-Quaprice-Z-x-Jus-de-Pomme",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://vdlstud.com/en/paarden/Baltic-VDL-Quaprice-Z-x-Jus-de-Pomme"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "connor-2006": {
+    "dek": {
+     "dekgeld": "Excl. btw: € 350 + € 450 bij dracht + € 100 veulengeld, of € 350 + € 900 bij dracht; ICSI € 500",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Diepvriessperma verkrijgbaar bij alle stations van de Holsteiner Verband Hengsthaltung GmbH. Seizoen niet vermeld. Geboortejaar 2006 en vader Casall komen overeen.",
+     "station": "Holsteiner Verband Hengsthaltung",
+     "url": "https://www.holsteiner-verband.de/en/hengsthaltung/hengste/horse/connor",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/hengsthaltung/hengste/horse/connor"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "bisquet-balou-van-de-mispelaere-2005": {
+    "dek": {
+     "dekgeld": "Reservering € 350 + drachtigheid € 1.100, excl. btw (5,5%)",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Online reserveren mogelijk vanaf 1 februari. Seizoen en geboortejaar niet vermeld; hengst is 21 jaar oud, vader Balou du Rouet komt overeen.",
+     "station": "Groupe France Elevage (Falaise)",
+     "url": "https://gfeweb.com/en/stallions-liste/bisquet-balou-rheinisches-warmblut-bay,88.html",
+     "bron": {
+      "naam": "Groupe France Elevage",
+      "url": "https://gfeweb.com/en/stallions-liste/bisquet-balou-rheinisches-warmblut-bay,88.html"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "don-vhp-z-2004": {
+    "dek": {
+     "dekgeld": "2500 (valuta niet vermeld op de pagina)",
+     "toelichting": "Hengstpagina BWP. Soort sperma, beschikbaarheid en seizoen niet vermeld. Geboortejaar 2004 en vader Diamant de Semilly komen overeen.",
+     "station": "Euro Horse BV / Axel Verlooy",
+     "url": "https://www.belgian-warmblood.com/nl/hengst/don-vhp-z-don-van-het-parelshof-z",
+     "bron": {
+      "naam": "BWP",
+      "url": "https://www.belgian-warmblood.com/nl/hengst/don-vhp-z-don-van-het-parelshof-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   },
+   "zapatero-vdl-2004": {
+    "dek": {
+     "dekgeld": "€ 1.100,-",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Hengstpagina van VDL Stud met link om sperma te bestellen. Seizoen en voorwaarden niet vermeld.",
+     "station": "VDL Stud",
+     "url": "https://vdlstud.com/en/paarden/Zapatero-Chin-Chin-x-Ircolando",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://vdlstud.com/en/paarden/Zapatero-Chin-Chin-x-Ircolando"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-19"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "i-am-moerhoeve-s-star-2008": "niet_gevonden",
+  "a-lee-spring-power-2007": "niet_gevonden",
+  "caribis-z-2007": "gevonden",
+  "chaplin-2007": "gevonden",
+  "hunters-scendro-2007": "niet_gevonden",
+  "bacardi-vdl-2006": "niet_gevonden",
+  "christian-25-2006": "niet_gevonden",
+  "276421000169205": "gevonden",
+  "056007000u38868": "gevonden",
+  "cachas": "niet_gevonden",
+  "stakkatol-2004": "gevonden",
+  "zambesi-tn-2004": "gevonden",
+  "zinedine-2004": "gevonden",
+  "inshallah-de-muze-2008": "gevonden",
+  "caretino-gold-2007": "niet_gevonden",
+  "chacco-blue-ii-2007": "gevonden",
+  "cream-on-top-2007": "niet_gevonden",
+  "untouched-2007": "niet_gevonden",
+  "baltic-vdl": "gevonden",
+  "connor-2006": "gevonden",
+  "bisquet-balou-van-de-mispelaere-2005": "gevonden",
+  "blue-hors-zack-2004": "niet_gevonden",
+  "don-vhp-z-2004": "gevonden",
+  "tullabeg-fusion-2004": "niet_gevonden",
+  "zapatero-vdl-2004": "gevonden"
+ }
+}
