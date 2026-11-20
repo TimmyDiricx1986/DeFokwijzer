@@ -1,0 +1,13 @@
+{
+  "frames": "/home/claude/frames-2026-11-20",
+  "scenes": [
+    {"id": "s1", "tekst": "Hengstenkeuze in november? Begin hier."},
+    {"id": "s2", "tekst": "1. Zet je favoriete hengsten naast elkaar"},
+    {"id": "s3", "tekst": "2. Je merrie erbij: score + virtueel veulen"},
+    {"id": "s4", "tekst": "3. Check de inteelt vóór je dekt"}
+  ],
+  "eindbeeld": "marketing/2026-11-20/tiktok-cover.png",
+  "eind_s": 4,
+  "uit": "marketing/2026-11-20/fokwijzer-tiktok-2026-11-20.mp4",
+  "deuntje": true
+}
