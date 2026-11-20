@@ -1,0 +1,120 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-20",
+ "collecties": {
+  "paarden": {
+   "all-star-5-2003": {
+    "dek": {
+     "dekgeld": "€1.800 excl. btw, onbeperkte pogingen diepvries op één genoemde merrie per seizoen; €900 excl. btw terug als merrie na eind september niet drachtig is",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Pagina meldt dat hengsten nu enkel te bekijken zijn (\"restricted to Browsing\"), bestellen momenteel niet mogelijk. Geen seizoensjaar vermeld. Naam, geboortejaar 2003 en vader Argentinus kloppen.",
+     "station": "Elite Stallions",
+     "url": "https://elitestallions.co.uk/stallion/All%20Star%205",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/All%20Star%205"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-20"
+    }
+   },
+   "cabrio-van-de-heffinck-2002": {
+    "dek": {
+     "sperma": [],
+     "beschikbaar": "niet",
+     "toelichting": "Pagina meldt \"Archived - semen not available\". Geen dekgeld of seizoen vermeld. Naam, geboortejaar 2002 en vader Cassini I kloppen.",
+     "station": "Superior Equine Sires",
+     "url": "https://superiorequinesires.com/cabrio-van-de-heffinck",
+     "bron": {
+      "naam": "Superior Equine Sires",
+      "url": "https://superiorequinesires.com/cabrio-van-de-heffinck"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-20"
+    }
+   },
+   "fidertanz-2002": {
+    "dek": {
+     "dekgeld": "Inseminatiegeld €600 plus btw, dracht-/gestation fee €600 plus btw (verdeling volgens dekvoorwaarden §4)",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Pagina in de Schockemöhle-shop; beschikbaarheid en seizoensjaar niet vermeld. Naam, geboortejaar 2002 en vader Fidermark kloppen.",
+     "station": "Deckstation Schockemöhle, Mühlen (DE)",
+     "url": "https://shop.schockemoehle.com/en/Fidertanz/DE443430613202",
+     "bron": {
+      "naam": "Schockemöhle shop",
+      "url": "https://shop.schockemoehle.com/en/Fidertanz/DE443430613202"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-20"
+    }
+   },
+   "vleut-2002": {
+    "dek": {
+     "dekgeld": "€1.450 excl. btw, onbeperkte pogingen diepvries op één genoemde merrie per seizoen; €1.100 excl. btw terug bij niet-dracht voor 30 september",
+     "sperma": [
+      "diepvries"
+     ],
+     "toelichting": "Pagina meldt dat hengsten nu enkel te bekijken zijn (\"restricted to Browsing\"), bestellen momenteel niet mogelijk. Geen seizoensjaar vermeld. Geboortejaar 2002 en vader Quick Star kloppen.",
+     "station": "GFE",
+     "url": "https://elitestallions.co.uk/stallion/Vleut",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Vleut"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-20"
+    }
+   },
+   "056015z55002023": {
+    "dek": {
+     "dekgeld": "€800, te betalen in 2027 (\"Breed now - pay in 2027\")",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina Studfarm Zangersheide. Naam, geboortejaar 2023 en moeder Sancha LS kloppen; vader staat als \"Emerald\" (zonder \"van 't Ruytershof\"). Seizoensjaar niet expliciet vermeld.",
+     "station": "Studfarm Zangersheide, Lanaken",
+     "url": "https://www.zangersheide.com/en/stallions/estoril-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/estoril-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-20"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "tsar-hero-2003": "niet_gevonden",
+  "all-star-5-2003": "gevonden",
+  "der-senaat-111-2003": "niet_gevonden",
+  "cabrio-van-de-heffinck-2002": "gevonden",
+  "fidertanz-2002": "gevonden",
+  "goliath-van-de-groenweg-2002": "niet_gevonden",
+  "sir-shutterfly-2002": "niet_gevonden",
+  "vleut-2002": "gevonden",
+  "056002w00336404": "niet_gevonden",
+  "056002w00337776": "niet_gevonden",
+  "056015z55002023": "gevonden",
+  "056015z55273923": "niet_gevonden",
+  "056015z55352723": "niet_gevonden",
+  "056015z55657323": "niet_gevonden",
+  "abnormal-van-het-peggershof-2023": "niet_gevonden",
+  "adamo-vh-molenhof-2023": "niet_gevonden",
+  "akiro-van-het-hippo-lux-2023": "niet_gevonden",
+  "alcazar-pa-2023": "niet_gevonden",
+  "all-in-van-t-klavertje-vier-2023": "niet_gevonden",
+  "all-paid-van-de-kampanje-2023": "niet_gevonden",
+  "allobiz-van-koekshof-2023": "niet_gevonden",
+  "alto-van-kattebeek-2023": "niet_gevonden",
+  "amadeus-van-t-zaveleinde-2023": "niet_gevonden",
+  "amadou-de-kalvarie-2023": "niet_gevonden",
+  "amai-van-het-gagelhof-2023": "niet_gevonden"
+ }
+}
