@@ -1,0 +1,13 @@
+{
+  "frames": "/home/claude/frames-2026-11-23",
+  "scenes": [
+    {"id": "s1", "tekst": "Je stal op één plek? 15 seconden."},
+    {"id": "s2", "tekst": "1. Typ de naam van je hengst"},
+    {"id": "s3", "tekst": "2. Tik op je merrie, klaar"},
+    {"id": "s4", "tekst": "Afstamming komt vanzelf mee"}
+  ],
+  "eindbeeld": "marketing/2026-11-23/tiktok-cover.png",
+  "eind_s": 4,
+  "uit": "marketing/2026-11-23/fokwijzer-tiktok-2026-11-23.mp4",
+  "deuntje": true
+}
