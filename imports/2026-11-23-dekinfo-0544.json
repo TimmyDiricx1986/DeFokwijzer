@@ -1,0 +1,54 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-23",
+ "collecties": {
+  "paarden": {
+   "action-blue-2012": {
+    "dek": {
+     "dekgeld": "€ 500 inseminatiegeld + € 500 dracht (excl. btw)",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Diepvriessperma aangeboden in de webshop van Deckstation Schockemöhle. Seizoen niet vermeld.",
+     "station": "Deckstation Schockemöhle",
+     "url": "https://shop.schockemoehle.com/en/Action-Blue/DE418180200812",
+     "bron": {
+      "naam": "Deckstation Schockemöhle shop",
+      "url": "https://shop.schockemoehle.com/en/Action-Blue/DE418180200812"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-23"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "action-blue-2012": "gevonden",
+  "grey-dream-2023": "niet_gevonden",
+  "highlander-sh-l3b-z-2023": "niet_gevonden",
+  "king-kashmir-aeg-z-2023": "niet_gevonden",
+  "mochito-k-van-kattenheye-2023": "niet_gevonden",
+  "nissim-de-reile-2023": "niet_gevonden",
+  "on-fire-2023": "niet_gevonden",
+  "radieux-t-l-2023": "niet_gevonden",
+  "rexelleau-dbh-z-2023": "niet_gevonden",
+  "stockholm-z-2023": "niet_gevonden",
+  "tobias-ter-wilgen-2023": "niet_gevonden",
+  "true-balou-v-d-kasteeldreef-z-2023": "niet_gevonden",
+  "056002w00335365": "niet_gevonden",
+  "roccossifred": "niet_gevonden",
+  "halito-van-de-wittert-z-2023": "niet_gevonden",
+  "jen-bello-ch-z-2023": "niet_gevonden",
+  "marcel-d-ecaussinnes-z-2023": "niet_gevonden",
+  "ninkasi-dlh-2023": "niet_gevonden",
+  "notorious-dlh-2023": "niet_gevonden",
+  "pomerol-de-septon-z-2023": "niet_gevonden",
+  "randy-paret-st-z-2023": "niet_gevonden",
+  "sauvignon-erd-z-2023": "niet_gevonden",
+  "tijuana-bg-z-2023": "niet_gevonden",
+  "tolentino-z-2023": "niet_gevonden",
+  "uno-vd-berghoeve-z-2023": "niet_gevonden"
+ }
+}
