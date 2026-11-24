@@ -1,0 +1,107 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-24",
+ "collecties": {
+  "paarden": {
+   "056002w00335756": {
+    "dek": {
+     "dekgeld": "£ 893 (EU Chilled Import; £ 669 + btw, btw terug na dierenartsverklaring niet-drachtig)",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Split terms. Beschikbaarheid en seizoen niet vermeld op de pagina.",
+     "station": "Stal De Muze",
+     "url": "https://www.stallionai.co.uk/animals/stallion/wuhan-de-la-liniere",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/wuhan-de-la-liniere"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-24"
+    }
+   },
+   "276441410362822": {
+    "dek": {
+     "dekgeld": "€ 800 vers sperma, betaling in 2027 (Breed now - pay in 2027)",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina verwijst naar 'See conditions'. Seizoen niet expliciet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/dow-jones-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/dow-jones-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-24"
+    }
+   },
+   "cognac-2022": {
+    "dek": {
+     "dekgeld": "Optie 1: € 350 + € 200 bij drachtigheid + € 100 veulengeld; optie 2: € 350 + € 550 bij drachtigheid (alles excl. btw)",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Beschikbaar bij alle stations van de Holsteiner Verband Hengsthaltung GmbH. Seizoen niet vermeld op de pagina.",
+     "station": "Holsteiner Verband Hengsthaltung (Hengststall Elmshorn)",
+     "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/cognac",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/cognac"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-24"
+    }
+   },
+   "conchezz-2022": {
+    "dek": {
+     "dekgeld": "Optie 1: € 350 + € 200 bij drachtigheid + € 100 veulengeld; optie 2: € 350 + € 550 bij drachtigheid (alles excl. btw)",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Staat bij alle stations van de Holsteiner Verband Hengsthaltung GmbH. Seizoen niet vermeld op de pagina.",
+     "station": "Holsteiner Verband Hengsthaltung",
+     "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/conchezz",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/conchezz"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-24"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "arac-du-seigneur-z-2006": "niet_gevonden",
+  "056002w00335756": "gevonden",
+  "276441410362822": "gevonden",
+  "aganix-van-de-to-jo-pe-hoeve-z-2022": "niet_gevonden",
+  "air-france-2022": "niet_gevonden",
+  "amadeus-sih-z-2022": "niet_gevonden",
+  "aragon-2000-z-2022": "niet_gevonden",
+  "armstrong-2022": "niet_gevonden",
+  "bumblebee-ec-z-2022": "niet_gevonden",
+  "canoubio-s-2022": "niet_gevonden",
+  "caviar-z-2022": "niet_gevonden",
+  "ceewatch-ll-z-2022": "niet_gevonden",
+  "charcoal-vd-berghoeve-z-2022": "niet_gevonden",
+  "cognac-2022": "gevonden",
+  "coloris-k-van-kattenheye-z-2022": "niet_gevonden",
+  "conchezz-2022": "gevonden",
+  "copytender-v-v-z-2022": "niet_gevonden",
+  "cosmos-van-den-doorn-z-2022": "niet_gevonden",
+  "diamond": "niet_gevonden",
+  "dincan-e-2022": "niet_gevonden",
+  "dolce-gusto-van-het-rozendaelhof-2022": "niet_gevonden",
+  "el-juan-kattenheye-donkhoeve-z-2022": "niet_gevonden",
+  "emir-d-heyboght-z-2022": "niet_gevonden",
+  "emir-van-t-goor-z-2022": "niet_gevonden",
+  "madnik-d-2022": "niet_gevonden"
+ }
+}
