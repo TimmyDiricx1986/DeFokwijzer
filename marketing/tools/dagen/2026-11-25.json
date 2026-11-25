@@ -1,0 +1,14 @@
+{
+  "frames": "/home/claude/frames-2026-11-25",
+  "scenes": [
+    {"id": "s1", "tekst": "Nooit meer een echo of vaccin vergeten?"},
+    {"id": "s2", "tekst": "1. Registreer een dekking"},
+    {"id": "s3", "tekst": "2. Echo's en vaccins staan klaar"},
+    {"id": "s4", "tekst": "3. Zet je herinneringen per mail aan"},
+    {"id": "s5", "tekst": "Eén klik: mail goed ontvangen"}
+  ],
+  "eindbeeld": "marketing/2026-11-25/tiktok-cover.png",
+  "eind_s": 4,
+  "uit": "marketing/2026-11-25/fokwijzer-tiktok-2026-11-25.mp4",
+  "deuntje": true
+}
