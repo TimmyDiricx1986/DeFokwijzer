@@ -1,0 +1,125 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-26",
+ "collecties": {
+  "paarden": {
+   "056015z55139621": {
+    "dek": {
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/champion-2000-z",
+     "dekgeld": "Vers EUR 800, diepvries EUR 800, ICSI EUR 400",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "bron": {
+      "naam": "Zangersheide hengstpagina",
+      "url": "https://www.zangersheide.com/en/stallions/champion-2000-z"
+     },
+     "toelichting": "Vers met optie 'Breed now - pay in 2027'. Pagina noemt geen seizoen of beschikbaarheid.",
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-26"
+    }
+   },
+   "056015z55626021": {
+    "dek": {
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/asgreen-2000-z",
+     "dekgeld": "Vers EUR 800, diepvries EUR 800, ICSI EUR 400",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "bron": {
+      "naam": "Zangersheide hengstpagina",
+      "url": "https://www.zangersheide.com/en/stallions/asgreen-2000-z"
+     },
+     "toelichting": "Vers met optie 'Breed now - pay in 2027'. Pagina noemt geen seizoen of beschikbaarheid.",
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-26"
+    }
+   },
+   "276421000303721": {
+    "dek": {
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/gran-diablo-viktory-z",
+     "dekgeld": "Vers EUR 800, diepvries EUR 800, ICSI EUR 400",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "bron": {
+      "naam": "Zangersheide hengstpagina",
+      "url": "https://www.zangersheide.com/en/stallions/gran-diablo-viktory-z"
+     },
+     "seizoen": "2025",
+     "toelichting": "Info van 2025. Vers met optie 'Breed now - pay in 2025'. Pagina noemt geen beschikbaarheid.",
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-26"
+    }
+   },
+   "cascolero-2021": {
+    "dek": {
+     "dekgeld": "EUR 350 excl. btw + EUR 200 bij dracht + EUR 100 veulengeld, of EUR 350 + EUR 550 bij dracht",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Twee tariefopties vermeld. Staat op alle stations van de Holsteiner Verband Hengsthaltung. Vader Casall, moeder Joy III, geboren 26.05.2021.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://www.holsteiner-verband.de/en/suche/horse/cascolero",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/suche/horse/cascolero"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-26"
+    }
+   },
+   "kantato-2021": {
+    "dek": {
+     "dekgeld": "EUR 350 excl. btw + EUR 250 bij dracht + EUR 100 veulengeld, of EUR 350 + EUR 600 bij dracht",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Twee tariefopties vermeld. Beschikbaar op alle stations van de Holsteiner Verband Hengsthaltung. Vader Keaton, moeder Hella BB, geboren 19.04.2021.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://www.holsteiner-verband.de/en/hengsthaltung/hengste/horse/kantato",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/hengsthaltung/hengste/horse/kantato"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-26"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "deauville-de-la-vie-2003": "niet_gevonden",
+  "colandro-2002": "niet_gevonden",
+  "winston-van-de-klothoef-2022": "niet_gevonden",
+  "wiseguy-j-l-2022": "niet_gevonden",
+  "wolfgang-jb-2022": "niet_gevonden",
+  "woodstock-van-de-kruishoeve-2022": "niet_gevonden",
+  "woody-van-t-roth-2022": "niet_gevonden",
+  "056015z55139621": "gevonden",
+  "056015z55626021": "gevonden",
+  "276421000303721": "gevonden",
+  "056015z55646121": "niet_gevonden",
+  "aram-de-bo-z-2021": "niet_gevonden",
+  "austin": "niet_gevonden",
+  "bel015z55647621": "niet_gevonden",
+  "cascolero-2021": "gevonden",
+  "chaccos-pleasure-sr-2021": "niet_gevonden",
+  "chuck": "niet_gevonden",
+  "clown-of-hearts-jes-2021": "niet_gevonden",
+  "diarindo-2021": "niet_gevonden",
+  "dominance-2000-z-2021": "niet_gevonden",
+  "emmerson-hero-z-2021": "niet_gevonden",
+  "kantato-2021": "gevonden",
+  "empire-kalone-2021": "niet_gevonden",
+  "four-seasons-s-sa-z": "niet_gevonden",
+  "lancelot-d-elphen-2021": "niet_gevonden"
+ }
+}
