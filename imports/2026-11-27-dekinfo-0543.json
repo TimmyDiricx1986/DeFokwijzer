@@ -1,0 +1,209 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-27",
+ "collecties": {
+  "paarden": {
+   "056015z55581020": {
+    "dek": {
+     "dekgeld": "€ 800 vers (breed now, pay in 2025); € 800 diepgevroren; € 400 ICSI",
+     "sperma": [
+      "vers",
+      "diepgevroren"
+     ],
+     "toelichting": "Info van 2025. Prijzen volgens Zangersheide-hengstenpagina; ICSI-optie ook vermeld. Beschikbaarheid niet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://zangersheide.com/en/stallions/ambassador-z",
+     "seizoen": "2025",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://zangersheide.com/en/stallions/ambassador-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-27"
+    }
+   },
+   "276441410102920": {
+    "dek": {
+     "dekgeld": "€ 1.000 vers (nu dekken, in 2027 betalen); € 1.000 diepgevroren; € 500 ICSI",
+     "sperma": [
+      "vers",
+      "diepgevroren"
+     ],
+     "toelichting": "Prijzen volgens Zangersheide-hengstenpagina; ICSI-optie ook vermeld. Beschikbaarheid en seizoen niet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/django-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/django-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-27"
+    }
+   },
+   "chicago-blue-vdl-2020": {
+    "dek": {
+     "dekgeld": "€ 800",
+     "sperma": [
+      "vers",
+      "diepgevroren"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Vers sperma: bestellen een dag van tevoren voor 09.30 uur; in het weekend contact opnemen met VDL Stud. Seizoen niet vermeld.",
+     "station": "VDL Stud",
+     "url": "https://vdlstud.com/en/paarden/Chicago-Blue-VDL-Chacco-Blue-x-Cento/",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://vdlstud.com/en/paarden/Chicago-Blue-VDL-Chacco-Blue-x-Cento/"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-27"
+    }
+   },
+   "deichkind": {
+    "dek": {
+     "dekgeld": "€ 350 + € 300 bij dracht + € 100 veulengeld, of € 350 + € 650 bij dracht (alles + btw)",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Gekoeld sperma, beschikbaar op de stations van de Holsteiner Verband Hengsthaltung. Seizoen niet vermeld.",
+     "station": "Holsteiner Verband Hengsthaltung",
+     "url": "https://www.holsteiner-verband.de/en/suche/horse/deichkind",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/suche/horse/deichkind"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-27"
+    }
+   },
+   "dourking-hero-z-2020": {
+    "dek": {
+     "dekgeld": "€ 400 inseminatie + € 400 dracht (excl. btw)",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Vers sperma. Beschikbaarheid en seizoen niet vermeld. Hengst staat in Mühlen (D), eigenaar Paul Schockemöhle Pferdehaltung GmbH.",
+     "station": "Deckstation Schockemöhle",
+     "url": "https://shop.schockemoehle.com/en/Dourking-Hero-Z/056015Z55237620",
+     "bron": {
+      "naam": "Deckstation Schockemöhle",
+      "url": "https://shop.schockemoehle.com/en/Dourking-Hero-Z/056015Z55237620"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-27"
+    }
+   },
+   "528003200202350": {
+    "dek": {
+     "dekgeld": "€ 1.000 excl. btw (gekoeld sperma, onbeperkte pogingen op 1 merrie per seizoen) + € 175 excl. btw koerier en papieren",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Bij niet drachtig eind september wordt € 700 + btw terugbetaald. Seizoen en beschikbaarheid niet vermeld; pagina toont hengsten alleen ter bezichtiging.",
+     "station": "Hengststation Bachl",
+     "url": "https://www.elitestallions.co.uk/stallion/Vigaro",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Vigaro"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-27"
+    }
+   },
+   "rocket-man-tn-2021": {
+    "dek": {
+     "dekgeld": "€ 900",
+     "toelichting": "Soort sperma, seizoen en beschikbaarheid niet vermeld op de pagina.",
+     "station": "Team Nijhof (Geesteren)",
+     "url": "https://www.team-nijhof.nl/en/paarden/rocket-man-tn/",
+     "bron": {
+      "naam": "Team Nijhof",
+      "url": "https://www.team-nijhof.nl/en/paarden/rocket-man-tn/"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-27"
+    }
+   },
+   "056015z55784920": {
+    "dek": {
+     "dekgeld": "Vers € 1.000, diepvries € 1.000, ICSI € 500 (\"Breed now - pay in 2026\" bij vers)",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "toelichting": "Pagina noemt 'Breed now - pay in 2026' bij het verse dekgeld; beschikbaarheid niet expliciet vermeld.",
+     "station": "Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/devil-2000-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/devil-2000-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-27"
+    }
+   },
+   "kastell-an-taro-dk-2020": {
+    "dek": {
+     "dekgeld": "€ 1.000 excl. btw (gekoeld sperma, onbeperkte pogingen) + € 175 excl. btw koerier en papieren",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Bij niet drachtig eind september wordt € 750 + btw terugbetaald. Seizoen niet vermeld; pagina toont hengsten alleen ter bezichtiging. Fokker vermeld als Karel Cox Horses.",
+     "url": "https://elitestallions.co.uk/stallion/Kastell An Taro DK",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Kastell An Taro DK"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-27"
+    }
+   },
+   "ultra-flip-de-muze-2020": {
+    "dek": {
+     "dekgeld": "£ 1.117 (£ 893 + btw, btw terug na dierenartsverklaring niet drachtig), split terms",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma, EU Chilled Import. Seizoen en beschikbaarheid niet vermeld.",
+     "station": "Stal De Muze",
+     "url": "https://www.stallionai.co.uk/animals/stallion/ultra-flip-de-muze",
+     "bron": {
+      "naam": "Stallion AI",
+      "url": "https://www.stallionai.co.uk/animals/stallion/ultra-flip-de-muze"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-27"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "e-star-2009": "niet_gevonden",
+  "ququsettete-di-villagana-2021": "niet_gevonden",
+  "rocky-2021": "niet_gevonden",
+  "vinocello-bv-2021": "niet_gevonden",
+  "056015z55581020": "gevonden",
+  "276441410102920": "gevonden",
+  "chicago-blue-vdl-2020": "gevonden",
+  "deichkind": "gevonden",
+  "dourking-hero-z-2020": "gevonden",
+  "picobello-van-t-roosakker-2020": "niet_gevonden",
+  "ube-vd-bisschop-2020": "niet_gevonden",
+  "ultra-star-jm-2020": "niet_gevonden",
+  "uranus-van-t-zorgvliet-2020": "niet_gevonden",
+  "528003200202350": "gevonden",
+  "rocket-man-tn-2021": "gevonden",
+  "vdm-de-muze-2021": "niet_gevonden",
+  "vitalis-js-van-het-hagenbroek-2021": "niet_gevonden",
+  "056015z55784920": "gevonden",
+  "442001000006220": "niet_gevonden",
+  "codex-son-z-2020": "niet_gevonden",
+  "diacont-2020": "niet_gevonden",
+  "kastell-an-taro-dk-2020": "gevonden",
+  "total-unique-2020": "niet_gevonden",
+  "ultra-flip-de-muze-2020": "gevonden",
+  "unicum-vd-donkhoeve-2020": "niet_gevonden"
+ }
+}
