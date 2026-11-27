@@ -1,0 +1,13 @@
+{
+  "frames": "/home/claude/frames-2026-11-27",
+  "scenes": [
+    {"id": "s1", "tekst": "Zelfde vader? Check dit vóór je dekt."},
+    {"id": "s2", "tekst": "1. Hengst én merrie van Diamant de Semilly"},
+    {"id": "s3", "tekst": "2. Inteelt veulen 12,5%: uitgesloten"},
+    {"id": "s4", "tekst": "3. Andere hengst: 0,24% inteelt"}
+  ],
+  "eindbeeld": "marketing/2026-11-27/tiktok-cover.png",
+  "eind_s": 4,
+  "uit": "marketing/2026-11-27/fokwijzer-tiktok-2026-11-27.mp4",
+  "deuntje": true
+}
