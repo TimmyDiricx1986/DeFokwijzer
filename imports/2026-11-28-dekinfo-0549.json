@@ -1,0 +1,184 @@
+{
+ "formaat": "fokwijzer-export",
+ "modus": "dekinfo",
+ "datum": "2026-11-28",
+ "collecties": {
+  "paarden": {
+   "vigaro-2002": {
+    "dek": {
+     "dekgeld": "EUR 1000 excl. btw, onbeperkte pogingen gekoeld sperma op 1 merrie per seizoen; EUR 700 excl. btw terug als merrie na eind september niet drachtig is",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma. Verzending en gezondheidspapieren EUR 175 excl. btw. Pagina vermeldt geen jaartal; portaal toont bestellen als beperkt tot browsen.",
+     "station": "Hengststation Bachl",
+     "url": "https://www.elitestallions.co.uk/stallion/Vigaro",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://www.elitestallions.co.uk/stallion/Vigaro"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-28"
+    }
+   },
+   "056015z55279019": {
+    "dek": {
+     "dekgeld": "EUR 1400 vers; EUR 1400 diepvries; ICSI EUR 750 (vers: nu fokken, betalen in 2027)",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Ook ICSI aangeboden voor EUR 750. Bij vers sperma nu fokken en betalen in 2027.",
+     "station": "Stoeterij Zangersheide",
+     "url": "https://www.zangersheide.com/en/stallions/j-nius-v-v-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://www.zangersheide.com/en/stallions/j-nius-v-v-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-28"
+    }
+   },
+   "arezzo-man-2019": {
+    "dek": {
+     "dekgeld": "Dekgeld 1: EUR 350 + btw plus EUR 750 + btw bij drachtigheid; dekgeld 2: EUR 350 + btw plus EUR 850 + btw bij drachtigheid",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Vers sperma beschikbaar via de Holsteiner Verband Hengsthaltung. Pagina noemt geen jaartal, alleen dit seizoen.",
+     "station": "Holsteiner Verband Hengsthaltung GmbH",
+     "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/arezzo-man",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://holsteiner-verband.de/en/hengsthaltung/hengste/horse/arezzo-man"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-28"
+    }
+   },
+   "agino-z-2018": {
+    "dek": {
+     "dekgeld": "EUR 1200 excl. btw, onbeperkte pogingen gekoeld sperma op 1 merrie per seizoen; EUR 900 terug als merrie na eind september niet drachtig is",
+     "sperma": [
+      "vers"
+     ],
+     "toelichting": "Gekoeld sperma. Verzending en gezondheidspapieren EUR 175 excl. btw. Pagina vermeldt geen jaartal; portaal toont bestellen als beperkt tot browsen.",
+     "station": "De Wiemselbach",
+     "url": "https://elitestallions.co.uk/stallion/Agino%20Z",
+     "bron": {
+      "naam": "Elite Stallions",
+      "url": "https://elitestallions.co.uk/stallion/Agino%20Z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-28"
+    }
+   },
+   "sambucci-de-muze-2018": {
+    "dek": {
+     "dekgeld": "€ 1.000,-",
+     "sperma": [
+      "vers"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Vermeld als 'Standing stud' bij VDL Stud; seizoen niet vermeld op de pagina.",
+     "station": "VDL Stud",
+     "url": "https://vdlstud.com/en/paarden/Sambucci-de-Muze-Hunters-Scendro-x-Vigo-dArsouilles",
+     "bron": {
+      "naam": "VDL Stud",
+      "url": "https://vdlstud.com/en/paarden/Sambucci-de-Muze-Hunters-Scendro-x-Vigo-dArsouilles"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-28"
+    }
+   },
+   "056015z55643917": {
+    "dek": {
+     "dekgeld": "Vers € 1.200, diepvries € 1.200, ICSI € 600",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Info van 2025. Bij vers sperma staat 'Breed now - pay in 2025'. Ook ICSI aangeboden.",
+     "seizoen": "2025",
+     "station": "Zangersheide",
+     "url": "https://zangersheide.com/en/stallions/ansingh-de-lis-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://zangersheide.com/en/stallions/ansingh-de-lis-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-28"
+    }
+   },
+   "056015z55715817": {
+    "dek": {
+     "dekgeld": "Vers € 1.200 (breed now, pay in 2025), diepvries € 1.200, ICSI € 600",
+     "sperma": [
+      "vers",
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Info van 2025. Pagina: 'we can offer him at stud for the 2025 season'. Ook ICSI aangeboden.",
+     "seizoen": "2025",
+     "station": "Zangersheide",
+     "url": "https://zangersheide.com/en/stallions/codex-diaz-z",
+     "bron": {
+      "naam": "Zangersheide",
+      "url": "https://zangersheide.com/en/stallions/codex-diaz-z"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-28"
+    }
+   },
+   "million-s-way-2017": {
+    "dek": {
+     "dekgeld": "Stud fee 1: € 350 + btw, plus € 450 + btw bij dracht en € 100 + btw veulengeld. Stud fee 2: € 350 + btw, plus € 800 + btw bij dracht",
+     "sperma": [
+      "diepvries"
+     ],
+     "beschikbaar": "beschikbaar",
+     "toelichting": "Pagina: beschikbaar op alle stations van de Holsteiner Verband Hengsthaltung. Gekoppelde tarieflijst heet Decktaxen-Uebersicht_2026.",
+     "seizoen": "2026",
+     "station": "Holsteiner Verband Hengsthaltung",
+     "url": "https://www.holsteiner-verband.de/en/hengsthaltung/hengste/horse/millions-way",
+     "bron": {
+      "naam": "Holsteiner Verband",
+      "url": "https://www.holsteiner-verband.de/en/hengsthaltung/hengste/horse/millions-way"
+     },
+     "herkomst": "automatisch",
+     "bijgewerkt": "2026-11-28"
+    }
+   }
+  }
+ },
+ "gecontroleerd": {
+  "cayado": "niet_gevonden",
+  "chellthago-z-2002": "niet_gevonden",
+  "vigaro-2002": "gevonden",
+  "056015z55279019": "gevonden",
+  "528003201900169": "niet_gevonden",
+  "528003201901421": "niet_gevonden",
+  "arezzo-man-2019": "gevonden",
+  "chavaros-ii-2019": "niet_gevonden",
+  "dancing-heros-de-rock-1-z-2019": "niet_gevonden",
+  "056015z55466518": "niet_gevonden",
+  "826016173962018": "niet_gevonden",
+  "agino-z-2018": "gevonden",
+  "boleybawn-alvaro-2018": "niet_gevonden",
+  "casolo": "niet_gevonden",
+  "formidable-2000-z-2018": "niet_gevonden",
+  "raven-2018": "niet_gevonden",
+  "sambucci-de-muze-2018": "gevonden",
+  "spreefeuer-dree-boeken-2018": "niet_gevonden",
+  "056015z55643917": "gevonden",
+  "056015z55715817": "gevonden",
+  "best-buddy-2017": "niet_gevonden",
+  "chagrin-d-amour-2017": "niet_gevonden",
+  "d-chaque-fois-de-semilly-z-2017": "niet_gevonden",
+  "manoulito-z-2017": "niet_gevonden",
+  "million-s-way-2017": "gevonden"
+ }
+}
